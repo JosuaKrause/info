@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>joschi-mvn</groupId>
+	<artifactId>JKanvas</artifactId>
+	<version>1.1.0</version>
+	<name>JKanvas</name>
+	<description>A ZUI framework</description>
+	<properties>
+		<compileSource>1.7</compileSource>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+	<url>https://github.com/JosuaKrause/Kanvas</url>
+	<issueManagement>
+		<system>GitHub Tracker</system>
+		<url>https://github.com/JosuaKrause/Kanvas/issues</url>
+	</issueManagement>
+	<licenses>
+		<license>
+			<name>License</name>
+			<url>LICENSE</url>
+		</license>
+	</licenses>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.9</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<distributionManagement>
+		<repository>
+			<id>repo</id>
+			<url>http://merkur57.inf.uni-konstanz.de/~krause/mvn/releases</url>
+		</repository>
+	</distributionManagement>
+</project>
