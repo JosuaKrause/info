@@ -1,0 +1,37 @@
+{
+  "types": [
+    {
+      "type": "paper",
+      "name": "Publications",
+      "color": "black"
+    }
+  ],
+  "documents": [
+    {
+      "type": "paper",
+      "title": "INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data",
+      "logo": "img/infuselogo.png",
+      "short-title": "INFUSE",
+      "href": "http://nyuvis.github.io/infuse/",
+      "authors": "Josua Krause, Adam Perer, Enrico Bertini",
+      "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2014)",
+      "date": "Oct 2014",
+      "bibtex": null,
+      "published": true,
+      "pdf": null
+    },
+    {
+      "type": "paper",
+      "title": "Interactive Visualization for Real-Time Public Transport Journey Planning",
+      "logo": "img/busvislogo.png",
+      "short-title": "BusVis",
+      "href": "http://graphics.uni-konstanz.de/publikationen/2012/busvis/",
+      "authors": "Josua Krause, Marc Spicker, Leonard W&ouml;rteler, Matthias Sch&auml;fer, Leishi Zhang, Hendrik Strobelt",
+      "conference": "SIGRAD 2012 &mdash; Short Paper",
+      "date": "2012",
+      "bibtex": null,
+      "published": true,
+      "pdf": null
+    }
+  ]
+}
