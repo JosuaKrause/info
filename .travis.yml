@@ -12,10 +12,13 @@ after_success: |
   [ $TRAVIS_BRANCH = master ] &&
   [ $TRAVIS_PULL_REQUEST = false ] &&
   mkdir -p ${OUTPUT} &&
-  find . -not -path "*${OUTPUT}/*" -not -path "*mvn-repo/*" -type file -not -name "*.py" -not -name "*.tmpl" -not -name "${LIB_COPY}" -not -name ".*" > "${LIB_COPY}"
-  rsync -av . "${OUTPUT}" --files-from "${LIB_COPY}"
+  find . -not -path "*${OUTPUT}/*" -not -path "*mvn-repo/*" -type file -not -name "*.py" -not -name "*.tmpl" -not -name "${LIB_COPY}" -not -name ".*" > "${LIB_COPY}" &&
+  cat "${LIB_COPY}" &&
+  rsync -av . "${OUTPUT}" --files-from "${LIB_COPY}" &&
   ./create_page.py --documents content.json --template index.tmpl --out ${OUTPUT}/index.html &&
   pip install ghp-import --user ${USER} &&
   ${HOME}/.local/bin/ghp-import -n ${OUTPUT} &&
   git push -qf "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" gh-pages
-
+notifications:
+  email:
+    on_success: never
