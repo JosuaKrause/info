@@ -20,6 +20,8 @@ def create_media(types, docs):
         type['docs'].append(doc)
     content = ''
     for type in types:
+        if not type['docs']:
+            continue
         content += '<h3>{0}</h3>'.format(type['name'])
         type['docs'].sort(key=lambda t: (tparse(t['date']), t['title']), reverse=True)
         for doc in type['docs']:
