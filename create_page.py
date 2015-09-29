@@ -3,6 +3,7 @@
 from __future__ import print_function
 from __future__ import division
 
+import io
 import os
 import csv
 import sys
@@ -22,7 +23,7 @@ def create_media(types, docs):
         content += '<h3>{0}</h3>'.format(type['name'])
         type['docs'].sort(key=lambda t: (tparse(t['date']), t['title']), reverse=True)
         for doc in type['docs']:
-            entry = """
+            entry = u"""
             <div class="media">
               <a class="pull-left" href="{0}">
                 <img class="media-object" src="{1}" title="{2}" alt="{3}" style="width: 64px;">
@@ -45,10 +46,10 @@ def create_media(types, docs):
     return content
 
 def apply_template(tmpl, docs):
-    with open(tmpl, 'r') as tf:
+    with io.open(tmpl, 'r', encoding='utf8') as tf:
         content = tf.read()
-    with open(docs, 'r') as df:
-        dobj = json.loads(df.read())
+    with io.open(docs, 'r', encoding='utf8') as df:
+        dobj = json.load(df)
     type_order = dobj['types']
     doc_objs = dobj['documents']
     media = create_media(type_order, doc_objs)
@@ -97,7 +98,7 @@ if __name__ == '__main__':
         usage()
     content = apply_template(tmpl, docs)
     if out != '-':
-        with open(out, 'w') as outf:
+        with io.open(out, 'w', encoding='utf8') as outf:
             outf.write(content)
     else:
         sys.stdout.write(content)
