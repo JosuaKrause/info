@@ -57,6 +57,19 @@
       "bibtex": null,
       "published": true,
       "pdf": null
+    },
+    {
+      "type": "project",
+      "title": "Bubble Sets",
+      "logo": "img/nologo.png",
+      "short-title": "Bubble Sets",
+      "href": "https://github.com/JosuaKrause/Bubble-Sets/"
+      "authors": "",
+      "conference": "",
+      "date": "May 2011",
+      "bibtex": null,
+      "published": true,
+      "pdf": null
     }
   ]
 }
