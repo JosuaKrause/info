@@ -12,7 +12,7 @@ after_success: |
   [ $TRAVIS_BRANCH = master ] &&
   [ $TRAVIS_PULL_REQUEST = false ] &&
   mkdir -p ${OUTPUT} &&
-  find . -not -path "*${OUTPUT}/*" -not -path "*mvn-repo/*" -type file -not -name "*.py" -not -name "*.tmpl" -not -name "${LIB_COPY}" -not -name ".*" > "${LIB_COPY}" &&
+  find . -not -path "*${OUTPUT}/*" -not -path "*mvn-repo/*" -type f -not -name "*.py" -not -name "*.tmpl" -not -name "${LIB_COPY}" -not -name ".*" > "${LIB_COPY}" &&
   cat "${LIB_COPY}" &&
   rsync -av . "${OUTPUT}" --files-from "${LIB_COPY}" &&
   ./create_page.py --documents content.json --template index.tmpl --out ${OUTPUT}/index.html &&
