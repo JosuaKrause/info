@@ -14,8 +14,9 @@ after_success: |
   mkdir -p ${OUTPUT} &&
   find . -not -path "*.git/*" -not -path "*${OUTPUT}/*" -not -path "*mvn-repo/*" -type f -not -name "*.py" -not -name "*.tmpl" -not -name "${LIB_COPY}" -not -name ".*" > "${LIB_COPY}" &&
   rsync -av . "${OUTPUT}" --files-from "${LIB_COPY}" &&
-  pip install python-dateutil ghp-import --user ${USER} &&
+  pip install --upgrade pip python-dateutil &&
   ./create_page.py --documents content.json --template index.tmpl --out ${OUTPUT}/index.html &&
+  pip install ghp-import --user ${USER} &&
   ${HOME}/.local/bin/ghp-import -n ${OUTPUT} &&
   git push -qf "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" gh-pages
 notifications:
