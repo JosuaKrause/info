@@ -22,13 +22,6 @@ def create_media(types, docs):
         content += '<h3>{0}</h3>'.format(type['name'])
         type['docs'].sort(key=lambda t: (tparse(t['date']), t['title']), reverse=True)
         for doc in type['docs']:
-            print(doc['href'])
-            print(doc['logo'])
-            print(doc['title'])
-            print(doc['short-title'])
-            print(doc['authors'])
-            print(doc['conference'])
-            print(doc['date'] if doc['published'] else "to be published&hellip;")
             entry = """
             <div class="media">
               <a class="pull-left" href="{0}">

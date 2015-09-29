@@ -4,6 +4,31 @@
       "type": "paper",
       "name": "Publications",
       "color": "black"
+    },
+    {
+      "type": "poster",
+      "name": "Posters",
+      "color": "black"
+    },
+    {
+      "type": "project",
+      "name": "Notable Projects",
+      "color": "black"
+    },
+    {
+      "type": "thesis",
+      "name": "Theses",
+      "color": "black"
+    },
+    {
+      "type": "teaching",
+      "name": "Teaching",
+      "color": "black"
+    },
+    {
+      "type": "work",
+      "name": "Employments",
+      "color": "black"
     }
   ],
   "documents": [
