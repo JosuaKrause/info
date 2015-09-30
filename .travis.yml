@@ -6,9 +6,7 @@ env:
   global:
     OUTPUT=www
     LIB_COPY=filelist.txt
-script:
-  true
-after_success: |
+script: |
   [ $TRAVIS_BRANCH = master ] &&
   [ $TRAVIS_PULL_REQUEST = false ] &&
   mkdir -p "${OUTPUT}" &&
