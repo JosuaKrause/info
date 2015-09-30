@@ -135,6 +135,32 @@
       "bibtex": null,
       "published": true,
       "pdf": null
+    },
+    {
+      "type": "thesis",
+      "title": "Annotation of Changes in Evolving Graphs &mdash; Annotation ver &auml;nderlicher Graphen",
+      "logo": "img/nologo.png",
+      "short-title": "Annotation of Changes in Evolving Graphs",
+      "href": "#",
+      "authors": "Josua Krause",
+      "conference": "Bachelor Thesis, Universit&auml;t Konstanz",
+      "date": "Nov 10, 2011",
+      "bibtex": null,
+      "published": true,
+      "pdf": null
+    },
+    {
+      "type": "thesis",
+      "title": "Graph Comics: Interactive Staging for Exploring Dynamic Graphs",
+      "logo": "img/nologo.png",
+      "short-title": "Graph Comics",
+      "href": "#",
+      "authors": "Josua Krause",
+      "conference": "Master Thesis, Universit&auml;t Konstanz",
+      "date": "Mar 23, 2014",
+      "bibtex": null,
+      "published": true,
+      "pdf": null
     }
   ]
 }
