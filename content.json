@@ -187,6 +187,58 @@
       "bibtex": null,
       "published": true,
       "pdf": null
+    },
+    {
+      "type": "poster",
+      "title": "Data-Driven Cohort Construction with Interactive Visual Queries",
+      "logo": "img/nologo.png",
+      "short-title": "Data-Driven Cohort Construction with Interactive Visual Queries",
+      "href": "#",
+      "authors": "Josua Krause, Adam Perer",
+      "conference": "Visual Analytics in Health Care",
+      "date": "Oct 2015",
+      "bibtex": null,
+      "published": true,
+      "pdf": null
+    },
+    {
+      "type": "poster",
+      "title": "Visual Inspection of Longitudinal Electronic Medical Records",
+      "logo": "img/nologo.png",
+      "short-title": "Visual Inspection of Longitudinal Electronic Medical Records",
+      "href": "#",
+      "authors": "Josua Krause, Narges Razavian, Enrico Bertini, David Sontag",
+      "conference": "Visual Analytics in Health Care",
+      "date": "Oct 2015",
+      "bibtex": null,
+      "published": true,
+      "pdf": null
+    },
+    {
+      "type": "poster",
+      "title": "Visual Exploration of Temporal Data in Electronic Medical Records",
+      "logo": "img/nologo.png",
+      "short-title": "Visual Exploration of Temporal Data in Electronic Medical Records",
+      "href": "#",
+      "authors": "Josua Krause, Narges Razavian, Enrico Bertini, David Sontag",
+      "conference": "AMIA Annual Symposium",
+      "date": "Nov 2015",
+      "bibtex": null,
+      "published": false,
+      "pdf": null
+    },
+    {
+      "type": "paper",
+      "title": "Supporting Iterative Cohort Construction with Visual Temporal Queries",
+      "logo": "img/coquitologo.png",
+      "short-title": "COQUITO",
+      "href": "https://vimeo.com/136535362",
+      "authors": "Josua Krause, Adam Perer, Harry Stavropoulos",
+      "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2015)",
+      "date": "Oct 2015",
+      "bibtex": null,
+      "published": true,
+      "pdf": null
     }
   ]
 }
