@@ -41,9 +41,7 @@
       "authors": "Josua Krause, Adam Perer, Enrico Bertini",
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2014)",
       "date": "Oct 2014",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "paper",
@@ -54,256 +52,175 @@
       "authors": "Josua Krause, Marc Spicker, Leonard Wörteler, Matthias Schäfer, Leishi Zhang, Hendrik Strobelt",
       "conference": "SIGRAD 2012 &mdash; Short Paper",
       "date": "2012",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "project",
       "title": "Bubble Sets",
-      "logo": "img/nologo.png",
-      "short-title": "Bubble Sets",
-      "href": "https://github.com/JosuaKrause/Bubble-Sets",
+      "github": "https://github.com/JosuaKrause/Bubble-Sets",
       "authors": "Josua Krause, Christopher Collins",
       "conference": "GitHub",
       "date": "May 2011",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "project",
       "title": "patient-viz",
-      "logo": "img/nologo.png",
-      "short-title": "patient-viz",
-      "href": "https://github.com/nyuvis/patient-viz",
+      "github": "https://github.com/nyuvis/patient-viz",
       "authors": "Josua Krause, Narges Sharif Razavian, Enrico Bertini, David Sontag",
       "conference": "GitHub",
       "date": "Jan 2015",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "project",
       "title": "jk-js",
-      "logo": "img/nologo.png",
-      "short-title": "jk-js",
-      "href": "https://github.com/JosuaKrause/jk-js",
+      "github": "https://github.com/JosuaKrause/jk-js",
       "authors": "Josua Krause",
       "conference": "GitHub",
       "date": "Sep 2014",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "project",
       "title": "JKanvas",
-      "logo": "img/nologo.png",
-      "short-title": "JKanvas",
-      "href": "https://github.com/JosuaKrause/JKanvas",
+      "github": "https://github.com/JosuaKrause/JKanvas",
       "authors": "Josua Krause",
       "conference": "GitHub",
       "date": "Jul 2012",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "project",
       "title": "curl-chk",
-      "logo": "img/nologo.png",
-      "short-title": "curl-chk",
-      "href": "https://github.com/JosuaKrause/curl-chk",
+      "github": "https://github.com/JosuaKrause/curl-chk",
       "authors": "Josua Krause",
       "conference": "GitHub",
       "date": "May 2015",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "project",
       "title": "mustache.xq",
-      "logo": "img/nologo.png",
-      "short-title": "mustache.xq",
-      "href": "https://github.com/JosuaKrause/mustache.xq",
+      "github": "https://github.com/JosuaKrause/mustache.xq",
       "authors": "Josua Krause",
       "conference": "GitHub",
       "date": "May 2013",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "thesis",
       "title": "Annotation of Changes in Evolving Graphs &mdash; Annotation ver&auml;nderlicher Graphen",
-      "logo": "img/nologo.png",
       "short-title": "Annotation of Changes in Evolving Graphs",
-      "href": "#",
       "authors": "Josua Krause",
       "conference": "Bachelor Thesis, Universit&auml;t Konstanz",
       "date": "Nov 10, 2011",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "thesis",
       "title": "Graph Comics: Interactive Staging for Exploring Dynamic Graphs",
-      "logo": "img/nologo.png",
       "short-title": "Graph Comics",
-      "href": "#",
       "authors": "Josua Krause",
       "conference": "Master Thesis, Universit&auml;t Konstanz",
       "date": "Mar 23, 2014",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "poster",
       "title": "INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data",
-      "logo": "img/nologo.png",
       "short-title": "INFUSE",
       "href": "http://cds.nyu.edu/projects/infuse-interactive-feature-selection-predictive-modeling-high-dimensional-data/",
       "authors": "Josua Krause, Adam Perer, Enrico Bertini",
       "conference": "Moore Sloan Poster Session NYU",
       "date": "May 2014",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "poster",
       "title": "Annotation of Changes in Evolving Graphs",
-      "logo": "img/nologo.png",
-      "short-title": "Annotation of Changes in Evolving Graphs",
-      "href": "#",
       "authors": "Josua Krause",
       "conference": "Summer School Poster Session Universit&auml;t Konstanz",
       "date": "2011",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "poster",
       "title": "Data-Driven Cohort Construction with Interactive Visual Queries",
-      "logo": "img/nologo.png",
-      "short-title": "Data-Driven Cohort Construction with Interactive Visual Queries",
-      "href": "#",
       "authors": "Josua Krause, Adam Perer",
       "conference": "Visual Analytics in Health Care",
       "date": "Oct 25, 2015",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "poster",
       "title": "Visual Inspection of Longitudinal Electronic Medical Records",
-      "logo": "img/nologo.png",
-      "short-title": "Visual Inspection of Longitudinal Electronic Medical Records",
-      "href": "#",
       "authors": "Josua Krause, Narges Razavian, Enrico Bertini, David Sontag",
       "conference": "Visual Analytics in Health Care",
       "date": "Oct 25, 2015",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "poster",
       "title": "Visual Exploration of Temporal Data in Electronic Medical Records",
-      "logo": "img/nologo.png",
       "short-title": "Visual Exploration of Temporal Data in Electronic Medical Records",
-      "href": "#",
       "authors": "Josua Krause, Narges Razavian, Enrico Bertini, David Sontag",
       "conference": "AMIA Annual Symposium",
       "date": "Nov 16, 2015",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "paper",
       "title": "Supporting Iterative Cohort Construction with Visual Temporal Queries",
       "logo": "img/coquitologo.png",
       "short-title": "COQUITO",
-      "href": "https://vimeo.com/136535362",
+      "video": "https://vimeo.com/136535362",
       "authors": "Josua Krause, Adam Perer, Harry Stavropoulos",
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2015)",
       "date": "Oct 2015",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "teaching",
       "title": "Concepts of Programming",
-      "logo": "img/nologo.png",
-      "short-title": "Concepts of Programming",
-      "href": "#",
       "authors": "Teaching Assistant",
       "conference": "Universit&auml;t Konstanz",
       "date": "2011",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "teaching",
       "title": "Concepts of Computer Science",
-      "logo": "img/nologo.png",
-      "short-title": "Concepts of Computer Science",
-      "href": "#",
       "authors": "Teaching Assistant",
       "conference": "Universit&auml;t Konstanz",
       "date": "2012",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "teaching",
       "title": "Information Visualization",
-      "logo": "img/nologo.png",
-      "short-title": "Information Visualization",
-      "href": "#",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "date": "Feb 2015",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "teaching",
       "title": "Information Visualization",
-      "logo": "img/nologo.png",
-      "short-title": "Information Visualization",
-      "href": "#",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "date": "Sep 2015",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     },
     {
       "type": "teaching",
       "title": "D3 Tutorial on Electronic Health Records &dash; Introduction to Visual Analytics in Healthcare",
-      "logo": "img/nologo.png",
       "short-title": "D3 Tutorial on Electronic Health Records",
-      "href": "https://github.com/JosuaKrause/d3-tutorial",
+      "github": "https://github.com/JosuaKrause/d3-tutorial",
       "authors": "Hands-on Tutorial Session",
       "conference": "AMIA Annual Symposium",
       "date": "Nov 15, 2015",
-      "bibtex": null,
-      "published": true,
-      "pdf": null
+      "published": true
     }
   ]
 }

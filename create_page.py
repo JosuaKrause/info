@@ -7,6 +7,7 @@ import io
 import os
 import csv
 import sys
+import zlib
 import json
 from dateutil.parser import parse as tparse
 
@@ -25,26 +26,57 @@ def create_media(types, docs):
         content += '<h3>{0}</h3>'.format(type['name'])
         type['docs'].sort(key=lambda t: (tparse(t['date']), t['title']), reverse=True)
         for doc in type['docs']:
-            entry = u"""
-            <div class="media">
-              <a class="pull-left" href="{0}">
-                <img class="media-object" src="{1}" title="{2}" alt="{3}" style="width: 64px;">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading"><a href="{0}">{2}</a><br/>
-                <small>{4}</small></h4>
-                <em>{5} &mdash; {6}</em>
-            </div>
+            entry_id = "entry{:08x}".format(zlib.crc32("{0}_{1}".format(type['name'], doc['title'])) & 0xffffffff)
+            appendix = []
+            if 'href' in doc and doc['href']:
+                appendix.append(u"""<a href="{0}">[page]</a>""".format(doc['href']))
+            if 'demo' in doc and doc['demo']:
+                appendix.append(u"""<a href="{0}">[demo]</a>""".format(doc['demo']))
+            if 'pdf' in doc and doc['pdf']:
+                appendix.append(u"""<a href="{0}">[pdf]</a>""".format(doc['pdf']))
+            if 'video' in doc and doc['video']:
+                appendix.append(u"""<a href="{0}">[video]</a>""".format(doc['video']))
+            if 'github' in doc and doc['github']:
+                appendix.append(u"""<a href="{0}">[github]</a>""".format(doc['github']))
+            if 'bibtex' in doc and doc['bibtex']:
+                bibtex = doc['bibtex'].strip()
+                filename = "bibtex/{0}.bib".format(entry_id)
+                if not os.path.exists(os.path.dirname(filename)):
+                    os.makedirs(os.path.dirname(filename))
+                with open(filename, 'w') as f:
+                    print(bibtex, file=f)
+                appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(filename))
+            body = u"""
+            <h4 class="media-heading"><a href="#{0}">{1}</a><br/>
+            <small>{2}</small></h4>
+            <em>{3} &mdash; {4}</em>{5}
             """.format(
-                doc['href'],
-                doc['logo'],
+                entry_id,
                 doc['title'],
-                doc['short-title'],
                 doc['authors'],
                 doc['conference'],
-                doc['date'] if doc['published'] else "to be published&hellip;"
+                doc['date'] if doc['published'] else "to be published&hellip;",
+                "<br/>\n{0}".format(" ".join(appendix)) if appendix else ""
             )
-            content += entry
+            entry = u"""
+            <a class="pull-left" href="#{0}">
+              <img class="media-object" src="{1}" title="{2}" alt="{3}" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              {4}
+            </div>
+            """.format(
+                entry_id,
+                doc['logo'] if 'logo' in doc else "img/nologo.png",
+                doc['title'],
+                doc['short-title'] if 'short-title' in doc else doc['title'],
+                body
+            )
+            content += u"""
+            <div class="media" id="{0}">
+              {1}
+            </div>
+            """.format(entry_id, entry)
     return content
 
 def apply_template(tmpl, docs):
