@@ -13,7 +13,7 @@ script: |
   find . -not -path '*.git/*' -not -path '*'"${OUTPUT}/"'*' -not -path '*mvn-repo/*' -type f -not -name '*.py' -not -name '*.tmpl' -not -name "${LIB_COPY}" -not -name '.*' > "${LIB_COPY}" &&
   rsync -av . "${OUTPUT}" --files-from "${LIB_COPY}" &&
   pip install --upgrade pip &&
-  pip install --upgrade python-dateutil ghp-import &&
+  pip install --upgrade python-dateutil ghp-import pytz &&
   ./create_page.py --documents content.json --template index.tmpl --out "${OUTPUT}/index.html" --prefix "${OUTPUT}" &&
   ghp-import -n "${OUTPUT}" &&
   git push -qf "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" gh-pages
