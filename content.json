@@ -96,7 +96,7 @@
       "short-title": "BusVis",
       "href": "http://graphics.uni-konstanz.de/publikationen/2012/busvis",
       "authors": "Josua Krause, Marc Spicker, Leonard Wörteler, Matthias Schäfer, Leishi Zhang, Hendrik Strobelt",
-      "conference": "SIGRAD 2012 &mdash; Short Paper",
+      "conference": "SIGRAD 2012 — Short Paper",
       "short-conference": "SIGRAD",
       "date": "2012",
       "published": true,
@@ -164,10 +164,10 @@
     },
     {
       "type": "thesis",
-      "title": "Annotation of Changes in Evolving Graphs &mdash; Annotation ver&auml;nderlicher Graphen",
+      "title": "Annotation of Changes in Evolving Graphs — Annotation veränderlicher Graphen",
       "short-title": "Annotation of Changes in Evolving Graphs",
       "authors": "Josua Krause",
-      "conference": "Bachelor Thesis, Universit&auml;t Konstanz",
+      "conference": "Bachelor Thesis, Universität Konstanz",
       "short-conference": "Uni KN",
       "date": "Nov 10, 2011",
       "published": true
@@ -177,7 +177,7 @@
       "title": "Graph Comics: Interactive Staging for Exploring Dynamic Graphs",
       "short-title": "Graph Comics",
       "authors": "Josua Krause",
-      "conference": "Master Thesis, Universit&auml;t Konstanz",
+      "conference": "Master Thesis, Universität Konstanz",
       "short-conference": "Uni KN",
       "date": "Mar 23, 2014",
       "published": true
@@ -197,7 +197,7 @@
       "type": "poster",
       "title": "Annotation of Changes in Evolving Graphs",
       "authors": "Josua Krause",
-      "conference": "Summer School Poster Session Universit&auml;t Konstanz",
+      "conference": "Summer School Poster Session Universität Konstanz",
       "short-conference": "Uni KN",
       "date": "2011",
       "published": true
@@ -253,7 +253,7 @@
       "type": "teaching",
       "title": "Concepts of Programming",
       "authors": "Teaching Assistant",
-      "conference": "Universit&auml;t Konstanz",
+      "conference": "Universität Konstanz",
       "short-conference": "Uni KN",
       "date": "2011",
       "published": true
@@ -262,7 +262,7 @@
       "type": "teaching",
       "title": "Concepts of Computer Science",
       "authors": "Teaching Assistant",
-      "conference": "Universit&auml;t Konstanz",
+      "conference": "Universität Konstanz",
       "short-conference": "Uni KN",
       "date": "2012",
       "published": true
@@ -296,7 +296,7 @@
     },
     {
       "type": "teaching",
-      "title": "D3 Tutorial on Electronic Health Records &dash; Introduction to Visual Analytics in Healthcare",
+      "title": "D3 Tutorial on Electronic Health Records — Introduction to Visual Analytics in Healthcare",
       "short-title": "D3 Tutorial on Electronic Health Records",
       "github": "https://github.com/JosuaKrause/d3-tutorial",
       "authors": "Hands-on Tutorial Session",
