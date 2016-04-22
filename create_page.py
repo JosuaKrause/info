@@ -112,7 +112,7 @@ def create_media(pref, types, docs, dry_run):
         timeline_fn = os.path.join(pref if pref is not None else ".", "material/timeline.json")
         if not os.path.exists(os.path.dirname(timeline_fn)):
             os.makedirs(os.path.dirname(timeline_fn))
-        with io.open(timeline_fn, 'w', encoding='utf-8') as tl:
+        with open(timeline_fn, 'wb') as tl:
             print(json.dumps({ "events": events }, sort_keys=True, indent=2, encoding='utf-8'), file=tl)
     return content
 
