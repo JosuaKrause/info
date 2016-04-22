@@ -40,6 +40,7 @@
       "href": "http://nyuvis.github.io/infuse",
       "authors": "Josua Krause, Adam Perer, Enrico Bertini",
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2014)",
+      "short-conference": "Vis",
       "date": "Oct 2014",
       "published": true,
       "bibtex": "@article{infuse14,
@@ -60,6 +61,7 @@
       "title": "Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots",
       "authors": "Anshul Vikram Pandey, Josua Krause, Cristian Felix, Jeremy Boy, Enrico Bertini",
       "conference": "ACM CHI 2016",
+      "short-conference": "CHI",
       "logo": "img/scatterplot.png",
       "published": true,
       "date": "May 2016",
@@ -76,6 +78,7 @@
       "short-title": "Prospector",
       "authors": "Josua Krause, Adam Perer, Kenney Ng",
       "conference": "ACM CHI 2016",
+      "short-conference": "CHI",
       "logo": "img/prospector.png",
       "published": true,
       "date": "May 2016",
@@ -94,6 +97,7 @@
       "href": "http://graphics.uni-konstanz.de/publikationen/2012/busvis",
       "authors": "Josua Krause, Marc Spicker, Leonard Wörteler, Matthias Schäfer, Leishi Zhang, Hendrik Strobelt",
       "conference": "SIGRAD 2012 &mdash; Short Paper",
+      "short-conference": "SIGRAD",
       "date": "2012",
       "published": true,
       "bibtex": "@inproceedings{KSW+12a,
@@ -164,6 +168,7 @@
       "short-title": "Annotation of Changes in Evolving Graphs",
       "authors": "Josua Krause",
       "conference": "Bachelor Thesis, Universit&auml;t Konstanz",
+      "short-conference": "Uni KN",
       "date": "Nov 10, 2011",
       "published": true
     },
@@ -173,6 +178,7 @@
       "short-title": "Graph Comics",
       "authors": "Josua Krause",
       "conference": "Master Thesis, Universit&auml;t Konstanz",
+      "short-conference": "Uni KN",
       "date": "Mar 23, 2014",
       "published": true
     },
@@ -183,6 +189,7 @@
       "href": "http://cds.nyu.edu/projects/infuse-interactive-feature-selection-predictive-modeling-high-dimensional-data/",
       "authors": "Josua Krause, Adam Perer, Enrico Bertini",
       "conference": "Moore Sloan Poster Session NYU",
+      "short-conference": "NYU",
       "date": "May 2014",
       "published": true
     },
@@ -191,6 +198,7 @@
       "title": "Annotation of Changes in Evolving Graphs",
       "authors": "Josua Krause",
       "conference": "Summer School Poster Session Universit&auml;t Konstanz",
+      "short-conference": "Uni KN",
       "date": "2011",
       "published": true
     },
@@ -199,6 +207,7 @@
       "title": "Data-Driven Cohort Construction with Interactive Visual Queries",
       "authors": "Josua Krause, Adam Perer",
       "conference": "Visual Analytics in Health Care",
+      "short-conference": "Vis",
       "date": "Oct 25, 2015",
       "published": true
     },
@@ -207,6 +216,7 @@
       "title": "Visual Inspection of Longitudinal Electronic Medical Records",
       "authors": "Josua Krause, Narges Razavian, Enrico Bertini, David Sontag",
       "conference": "Visual Analytics in Health Care",
+      "short-conference": "Vis",
       "date": "Oct 25, 2015",
       "published": true
     },
@@ -216,6 +226,7 @@
       "short-title": "Visual Exploration of Temporal Data in Electronic Medical Records",
       "authors": "Josua Krause, Narges Razavian, Enrico Bertini, David Sontag",
       "conference": "AMIA Annual Symposium",
+      "short-conference": "AMIA",
       "date": "Nov 16, 2015",
       "published": true
     },
@@ -227,6 +238,7 @@
       "video": "https://vimeo.com/136535362",
       "authors": "Josua Krause, Adam Perer, Harry Stavropoulos",
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2015)",
+      "short-conference": "Vis",
       "date": "Oct 2015",
       "published": true,
       "bibtex": "@article{coquito15,
@@ -242,6 +254,7 @@
       "title": "Concepts of Programming",
       "authors": "Teaching Assistant",
       "conference": "Universit&auml;t Konstanz",
+      "short-conference": "Uni KN",
       "date": "2011",
       "published": true
     },
@@ -250,6 +263,7 @@
       "title": "Concepts of Computer Science",
       "authors": "Teaching Assistant",
       "conference": "Universit&auml;t Konstanz",
+      "short-conference": "Uni KN",
       "date": "2012",
       "published": true
     },
@@ -258,6 +272,7 @@
       "title": "Information Visualization",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
       "date": "Feb 2015",
       "published": true
     },
@@ -266,6 +281,7 @@
       "title": "Information Visualization",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
       "date": "Sep 2015",
       "published": true
     },
@@ -274,6 +290,7 @@
       "title": "Information Visualization",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
       "date": "Feb 2016",
       "published": true
     },
@@ -284,6 +301,7 @@
       "github": "https://github.com/JosuaKrause/d3-tutorial",
       "authors": "Hands-on Tutorial Session",
       "conference": "AMIA Annual Symposium",
+      "short-conference": "AMIA",
       "date": "Nov 15, 2015",
       "published": true
     }

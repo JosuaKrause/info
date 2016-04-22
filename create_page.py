@@ -101,7 +101,7 @@ def create_media(pref, types, docs, dry_run):
             """.format(entry_id, entry)
             event = {
                 "id": entry_id,
-                "type": doc['conference'],
+                "type": doc['short-conference'] if 'short-conference' in doc else doc['conference'],
                 "group": type,
                 "name": doc['title'],
                 "time": mktime(tparse(doc['date'])),
