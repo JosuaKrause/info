@@ -30,6 +30,9 @@ def mktime(dt):
         res = (td.microseconds + (td.seconds + td.days * _day_seconds) * _milli) / _milli
     return int(res - res % _day_seconds)
 
+def monthtime(dt):
+    return "{0}-{1}".format(dt.year, dt.month)
+
 def create_media(pref, types, docs, dry_run):
     type_lookup = {}
     for type in types:
@@ -101,7 +104,7 @@ def create_media(pref, types, docs, dry_run):
             </div>
             """.format(entry_id, entry)
             group = type['name']
-            etime = mktime(tparse(doc['date']))
+            etime = monthtime(tparse(doc['date']))
             if etime not in event_times:
                 event_times[etime] = set()
             num = 1
@@ -142,7 +145,7 @@ def apply_template(tmpl, docs, pref, dry_run):
     js_fillin = u"""
     function start() {
       var w = "100%";
-      var h = 300;
+      var h = 200;
       var radius = 8;
       var textHeight = 20;
       var timeline = new Timeline(d3.select("#div-timeline"), w, h, radius, textHeight);
