@@ -30,6 +30,9 @@ def mktime(dt):
         res = (td.microseconds + (td.seconds + td.days * _day_seconds) * _milli) / _milli
     return int(res - res % _day_seconds)
 
+def monthtime(dt):
+    return "{0}-{1}".format(dt.year, dt.month)
+
 def create_media(pref, types, docs, dry_run):
     type_lookup = {}
     for type in types:
@@ -102,19 +105,19 @@ def create_media(pref, types, docs, dry_run):
             """.format(entry_id, entry)
             otid = doc['short-conference'] if 'short-conference' in doc else doc['conference']
             tid = otid
-            etime = mktime(tparse(doc['date']))
-            if etime not in event_times:
-                event_times[etime] = set()
+            mtime = monthtime(tparse(doc['date']))
+            if mtime not in event_times:
+                event_times[mtime] = set()
             num = 1
-            while tid in event_times[etime]:
+            while tid in event_times[mtime]:
                 num += 1
                 tid = "{0} ({1})".format(otid, num)
-            event_times[etime].add(tid)
+            event_times[mtime].add(tid)
             event = {
                 "id": tid,
                 "group": type['name'],
                 "name": doc['title'],
-                "time": etime,
+                "time": mktime(tparse(doc['date'])),
                 "link": u"#{0}".format(entry_id),
             }
             events.append(event)
