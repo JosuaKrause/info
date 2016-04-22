@@ -136,7 +136,7 @@ def apply_template(tmpl, docs, pref, dry_run):
             return m.group(0).replace('\n', '\\n')
 
         data = re.sub(u'''"([^"]|\\\\")*":\s*"([^"]|\\\\")*"''', sanitize, data)
-        dobj = json.loads(data, encoding='utf-8')
+        dobj = json.loads(data.encode('utf-8'), encoding='utf-8')
     type_order = dobj['types']
     doc_objs = dobj['documents']
     media = create_media(pref, type_order, doc_objs, dry_run)
