@@ -133,8 +133,8 @@ def apply_template(tmpl, docs, pref, dry_run):
     js_fillin = u"""
     function start() {
       var w = 800;
-      var h = 415;
-      var radius = 2;
+      var h = 300;
+      var radius = 8;
       var textHeight = 20;
       var timeline = new Timeline(d3.select("#div-timeline"), w, h, radius, textHeight);
       d3.json("material/timeline.json", function(err, data) {
