@@ -46,7 +46,7 @@ def create_media(pref, types, docs, dry_run):
         content += '<h3>{0}</h3>'.format(type['name'])
         type['docs'].sort(key=lambda t: (tparse(t['date']), t['title']), reverse=True)
         for doc in type['docs']:
-            entry_id = "entry{:08x}".format(zlib.crc32("{0}_{1}".format(type['name'], doc['title'])) & 0xffffffff)
+            entry_id = "entry{:08x}".format(zlib.crc32("{0}_{1}_{2}".format(type['name'], doc['title'], mktime(tparse(doc['date'])))) & 0xffffffff)
             appendix = []
             if 'href' in doc and doc['href']:
                 appendix.append(u"""<a href="{0}">[page]</a>""".format(doc['href']))
