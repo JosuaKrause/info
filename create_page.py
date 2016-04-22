@@ -44,10 +44,10 @@ def create_media(pref, types, docs, dry_run):
     for type in types:
         if not type['docs']:
             continue
-        content += '<h3>{0}</h3>'.format(type['name'])
+        content += u'<h3>{0}</h3>'.format(type['name'])
         type['docs'].sort(key=lambda t: (tparse(t['date']), t['title']), reverse=True)
         for doc in type['docs']:
-            entry_id = "entry{:08x}".format(zlib.crc32("{0}_{1}_{2}".format(type['name'], doc['title'], mktime(tparse(doc['date'])))) & 0xffffffff)
+            entry_id = u"entry{:08x}".format(zlib.crc32(u"{0}_{1}_{2}".format(type['name'], doc['title'], mktime(tparse(doc['date'])))) & 0xffffffff)
             appendix = []
             if 'href' in doc and doc['href']:
                 appendix.append(u"""<a href="{0}">[page]</a>""".format(doc['href']))
@@ -61,7 +61,7 @@ def create_media(pref, types, docs, dry_run):
                 appendix.append(u"""<a href="{0}">[github]</a>""".format(doc['github']))
             if 'bibtex' in doc and doc['bibtex']:
                 bibtex = doc['bibtex'].strip()
-                link = "bibtex/{0}.bib".format(entry_id)
+                link = u"bibtex/{0}.bib".format(entry_id)
                 filename = os.path.join(pref if pref is not None else ".", link)
                 if not dry_run:
                     if not os.path.exists(os.path.dirname(filename)):
@@ -78,8 +78,8 @@ def create_media(pref, types, docs, dry_run):
                 doc['title'],
                 doc['authors'],
                 doc['conference'],
-                doc['date'] if doc['published'] else "to be published&hellip;",
-                "<br/>\n{0}".format(" ".join(appendix)) if appendix else ""
+                doc['date'] if doc['published'] else u"to be published&hellip;",
+                u"<br/>\n{0}".format(" ".join(appendix)) if appendix else ""
             )
             entry = u"""
             <a class="pull-left" href="#{0}">
@@ -115,7 +115,7 @@ def create_media(pref, types, docs, dry_run):
                 "group": type['name'],
                 "name": doc['title'],
                 "time": etime,
-                "link": "#{0}".format(entry_id),
+                "link": u"#{0}".format(entry_id),
             }
             events.append(event)
     if not dry_run:
