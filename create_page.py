@@ -65,7 +65,7 @@ def create_media(pref, types, docs, dry_run):
                 if not dry_run:
                     if not os.path.exists(os.path.dirname(filename)):
                         os.makedirs(os.path.dirname(filename))
-                    with io.open(filename, 'w', encoding='utf8') as f:
+                    with io.open(filename, 'w', encoding='utf-8') as f:
                         print(bibtex, file=f)
                 appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(link))
             body = u"""
@@ -112,12 +112,12 @@ def create_media(pref, types, docs, dry_run):
         timeline_fn = os.path.join(pref if pref is not None else ".", "material/timeline.json")
         if not os.path.exists(os.path.dirname(timeline_fn)):
             os.makedirs(os.path.dirname(timeline_fn))
-        with io.open(timeline_fn, 'w', encoding='utf8') as tl:
-            json.dump({ "events": events }, tl, sort_keys=True, indent=2, encoding='utf-8')
+        with io.open(timeline_fn, 'w', encoding='utf-8') as tl:
+            print(json.dumps({ "events": events }, sort_keys=True, indent=2, encoding='utf-8'), file=tl)
     return content
 
 def apply_template(tmpl, docs, pref, dry_run):
-    with io.open(tmpl, 'r', encoding='utf8') as tf:
+    with io.open(tmpl, 'r', encoding='utf-8') as tf:
         content = tf.read()
     with open(docs, 'rb') as df:
         data = df.read()
@@ -207,7 +207,7 @@ if __name__ == '__main__':
     content = apply_template(tmpl, docs, pref, dry_run)
     if not dry_run:
         if out != '-':
-            with io.open(out, 'w', encoding='utf8') as outf:
+            with io.open(out, 'w', encoding='utf-8') as outf:
                 outf.write(content)
         else:
             sys.stdout.write(content)
