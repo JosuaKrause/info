@@ -45,7 +45,7 @@ def create_media(types, docs, dry_run):
                 if not dry_run:
                     if not os.path.exists(os.path.dirname(filename)):
                         os.makedirs(os.path.dirname(filename))
-                    with open(filename, 'w', encoding='utf8') as f:
+                    with io.open(filename, 'w', encoding='utf8') as f:
                         print(bibtex, file=f)
                 appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(filename))
             body = u"""
@@ -84,7 +84,7 @@ def create_media(types, docs, dry_run):
 def apply_template(tmpl, docs, dry_run):
     with io.open(tmpl, 'r', encoding='utf8') as tf:
         content = tf.read()
-    with io.open(docs, 'rb') as df:
+    with open(docs, 'rb') as df:
         data = df.read()
 
         def sanitize(m):
