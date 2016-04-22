@@ -47,7 +47,7 @@ def create_media(pref, types, docs, dry_run):
         content += u'<h3>{0}</h3>'.format(type['name'])
         type['docs'].sort(key=lambda t: (tparse(t['date']), t['title']), reverse=True)
         for doc in type['docs']:
-            entry_id = u"entry{:08x}".format(zlib.crc32(u"{0}_{1}_{2}".format(type['name'], doc['title'], mktime(tparse(doc['date'])))) & 0xffffffff)
+            entry_id = u"entry{:08x}".format(zlib.crc32(u"{0}_{1}_{2}".format(type['name'], doc['title'], mktime(tparse(doc['date']))).encode('utf-8')) & 0xffffffff)
             appendix = []
             if 'href' in doc and doc['href']:
                 appendix.append(u"""<a href="{0}">[page]</a>""".format(doc['href']))
@@ -129,14 +129,14 @@ def create_media(pref, types, docs, dry_run):
 def apply_template(tmpl, docs, pref, dry_run):
     with io.open(tmpl, 'r', encoding='utf-8') as tf:
         content = tf.read()
-    with open(docs, 'rb') as df:
+    with io.open(docs, 'r', encoding='utf-8') as df:
         data = df.read()
 
         def sanitize(m):
             return m.group(0).replace('\n', '\\n')
 
         data = re.sub(u'''"([^"]|\\\\")*":\s*"([^"]|\\\\")*"''', sanitize, data)
-        dobj = json.loads(data.encode('utf-8'), encoding='utf-8')
+        dobj = json.loads(data, encoding='utf-8')
     type_order = dobj['types']
     doc_objs = dobj['documents']
     media = create_media(pref, type_order, doc_objs, dry_run)
