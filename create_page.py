@@ -8,9 +8,27 @@ import re
 import os
 import csv
 import sys
-import zlib
 import json
+import pytz
+import zlib
+
 from dateutil.parser import parse as tparse
+from datetime import datetime, timedelta, tzinfo
+
+_compute_self = "total_seconds" not in dir(timedelta(seconds=1))
+_tz = pytz.timezone('US/Eastern')
+_epoch = datetime(year=1970, month=1, day=1, tzinfo=_tz)
+_day_seconds = 24 * 3600
+_milli = 10**6
+def mktime(dt):
+    if dt.tzinfo is None:
+        dt = datetime(year=dt.year, month=dt.month, day=dt.day, tzinfo=_tz)
+    if not _compute_self:
+        res = (dt - _epoch).total_seconds()
+    else:
+        td = dt - _epoch
+        res = (td.microseconds + (td.seconds + td.days * _day_seconds) * _milli) / _milli
+    return int(res - res % _day_seconds)
 
 def create_media(pref, types, docs, dry_run):
     type_lookup = {}
@@ -20,6 +38,7 @@ def create_media(pref, types, docs, dry_run):
     for doc in docs:
         type = type_lookup[doc['type']]
         type['docs'].append(doc)
+    events = []
     content = ''
     for type in types:
         if not type['docs']:
@@ -80,6 +99,21 @@ def create_media(pref, types, docs, dry_run):
               {1}
             </div>
             """.format(entry_id, entry)
+            event = {
+                "id": entry_id,
+                "type": doc['conference'],
+                "group": type,
+                "name": doc['title'],
+                "time": mktime(tparse(doc['date'])),
+                "link": "#{0}".format(entry_id),
+            }
+            events.append(event)
+    if not dry_run:
+        timeline_fn = os.path.join(pref if pref is not None else ".", "material/timeline.json")
+        if not os.path.exists(os.path.dirname(timeline_fn)):
+            os.makedirs(os.path.dirname(timeline_fn))
+        with io.open(timeline_fn, 'w', encoding='utf8') as tl:
+            json.dump({ "events": events }, file=tl, sort_keys=True, indent=True)
     return content
 
 def apply_template(tmpl, docs, pref, dry_run):
@@ -96,7 +130,27 @@ def apply_template(tmpl, docs, pref, dry_run):
     type_order = dobj['types']
     doc_objs = dobj['documents']
     media = create_media(pref, type_order, doc_objs, dry_run)
-    return content.format(media)
+    js_fillin = u"""
+    function start() {
+      var w = 800;
+      var h = 600;
+      var radius = 2;
+      var textHeight = 20;
+      var timeline = new Timeline(d3.select("#div-timeline"), w, h, radius, textHeight);
+      d3.json("material/timeline.json", function(err, data) {
+        if(err) {
+          console.warn(err);
+          d3.select("#timeline-row").style({
+            "display": "none"
+          });
+          return;
+        }
+        timeline.events(data["events"]);
+        timeline.update();
+      });
+    }
+    """
+    return content.format(media, js_fillin)
 
 def usage():
     print("""
