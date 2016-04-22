@@ -41,7 +41,48 @@
       "authors": "Josua Krause, Adam Perer, Enrico Bertini",
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2014)",
       "date": "Oct 2014",
-      "published": true
+      "published": true,
+      "bibtex": "@article{infuse14,
+  author={Krause, Josua and Perer, Adam and Bertini, Enrico},
+  journal={Visualization and Computer Graphics, {IEEE} Transactions on},
+  title={{INFUSE:} Interactive Feature Selection for Predictive Modeling of High Dimensional Data},
+  year={2014},
+  month={Dec},
+  volume={20},
+  number={12},
+  pages={1614--1623},
+  keywords={data analysis;data visualisation;pattern classification;INFUSE system;algorithmic output;classifiers;clinical researchers;cross-validation folds;electronic medical records;feature selection algorithms;high dimensional data modeling;interactive feature selection;patient outcomes;predicted outcomes;predictive modeling;predictive modeling techniques;user interpretation;visual analytics system;Algorithm design and analysis;Data models;Data visualization;Feature extraction;Prediction algorithms;Predictive models;Predictive modeling;classification;feature selection;high-dimensional data;visual analytics},
+  ISSN={1077-2626}
+}"
+    },
+    {
+      "type": "paper",
+      "title": "Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models",
+      "short-title": "Prospector",
+      "authors": "Josua Krause, Adam Perer, Kenney Ng",
+      "conference": "ACM CHI 2016",
+      "published": true,
+      "date": "May 2016",
+      "bibtex": "@article{prospector16,
+  author={Josua Krause and Adam Perer and Kenney Ng},
+  title={Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models},
+  journal={ACM CHI 2016},
+  year={2016}
+}"
+    },
+    {
+      "type": "paper",
+      "title": "Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots",
+      "authors": "Anshul Vikram Pandey, Josua Krause, Cristian Felix, Jeremy Boy, Enrico Bertini",
+      "conference": "ACM CHI 2016",
+      "published": true,
+      "date": "May 2016",
+      "bibtex": "@article{pandey16,
+  title={Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots},
+  author={Anshul Vikram Pandey and Josua Krause and Cristian Felix and Jeremy Boy and Enrico Bertini},
+  journal={ACM CHI 2016},
+  year={2016}
+}"
     },
     {
       "type": "paper",
@@ -52,7 +93,14 @@
       "authors": "Josua Krause, Marc Spicker, Leonard Wörteler, Matthias Schäfer, Leishi Zhang, Hendrik Strobelt",
       "conference": "SIGRAD 2012 &mdash; Short Paper",
       "date": "2012",
-      "published": true
+      "published": true,
+      "bibtex": "@inproceedings{KSW+12a,
+  author = {Krause, Josua and Spicker, Marc and Wörteler, Leonard and Schaefer, Matthias and Zhang, Leishi and Strobelt, Hendrik},
+  booktitle = {Proceedings of SIGRAD 2012 -- Interactive Visual Analysis of Data},
+  title = {{Interactive Visualization for Real-time Public Transport Journey Planning}},
+  year = {2012},
+  pages = {95 -- 98}
+}"
     },
     {
       "type": "project",
@@ -178,7 +226,14 @@
       "authors": "Josua Krause, Adam Perer, Harry Stavropoulos",
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2015)",
       "date": "Oct 2015",
-      "published": true
+      "published": true,
+      "bibtex": "@article{coquito15,
+  author={Krause, Josua and Perer, Adam and Stavropoulos, Harry},
+  journal={Visualization and Computer Graphics, {IEEE} Transactions on},
+  title={Supporting Iterative Cohort Construction with Visual Temporal Queries},
+  year={2015},
+  month={Oct}
+}"
     },
     {
       "type": "teaching",
@@ -210,6 +265,14 @@
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "date": "Sep 2015",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Information Visualization",
+      "authors": "Teaching Assistant",
+      "conference": "NYU Tandon School of Engineering",
+      "date": "Feb 2016",
       "published": true
     },
     {
