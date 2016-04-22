@@ -38,6 +38,7 @@ def create_media(pref, types, docs, dry_run):
     for doc in docs:
         type = type_lookup[doc['type']]
         type['docs'].append(doc)
+    event_times = {}
     events = []
     content = ''
     for type in types:
@@ -99,11 +100,20 @@ def create_media(pref, types, docs, dry_run):
               {1}
             </div>
             """.format(entry_id, entry)
+            group = type['name']
+            etime = mktime(tparse(doc['date']))
+            if etime not in event_times:
+                event_times = set()
+            num = 1
+            while group in event_times[etime]:
+                num += 1
+                group = "{0} ({1})".format(type['name'], num)
+            event_times[etime].add(group)
             event = {
                 "id": doc['short-conference'] if 'short-conference' in doc else doc['conference'],
-                "group": type['name'],
+                "group": group,
                 "name": doc['title'],
-                "time": mktime(tparse(doc['date'])),
+                "time": etime,
                 "link": "#{0}".format(entry_id),
             }
             events.append(event)
@@ -131,7 +141,7 @@ def apply_template(tmpl, docs, pref, dry_run):
     media = create_media(pref, type_order, doc_objs, dry_run)
     js_fillin = u"""
     function start() {
-      var w = 800;
+      var w = "100%";
       var h = 300;
       var radius = 8;
       var textHeight = 20;

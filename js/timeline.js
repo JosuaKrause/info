@@ -1,13 +1,14 @@
 /**
  * Created by krause on 2016-04-22.
  */
-function Timeline(content, w, h, radius, textHeight) {
+function Timeline(content, wtext, h, radius, textHeight) {
   var svg = content.append("svg").attr({
-    "width": w,
+    "width": wtext,
     "height": h + textHeight,
   }).style({
     "border": "solid black 1px"
   });
+  var w = svg.node().clientWidth;
 
   var events = [];
   this.events = function(_) {
