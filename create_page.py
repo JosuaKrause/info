@@ -12,7 +12,7 @@ import zlib
 import json
 from dateutil.parser import parse as tparse
 
-def create_media(types, docs, dry_run):
+def create_media(pref, types, docs, dry_run):
     type_lookup = {}
     for type in types:
         type_lookup[type['type']] = type
@@ -41,7 +41,7 @@ def create_media(types, docs, dry_run):
                 appendix.append(u"""<a href="{0}">[github]</a>""".format(doc['github']))
             if 'bibtex' in doc and doc['bibtex']:
                 bibtex = doc['bibtex'].strip()
-                filename = "bibtex/{0}.bib".format(entry_id)
+                filename = os.path.join(pref if pref is not None else ".", "bibtex/{0}.bib".format(entry_id))
                 if not dry_run:
                     if not os.path.exists(os.path.dirname(filename)):
                         os.makedirs(os.path.dirname(filename))
@@ -81,7 +81,7 @@ def create_media(types, docs, dry_run):
             """.format(entry_id, entry)
     return content
 
-def apply_template(tmpl, docs, dry_run):
+def apply_template(tmpl, docs, pref, dry_run):
     with io.open(tmpl, 'r', encoding='utf8') as tf:
         content = tf.read()
     with open(docs, 'rb') as df:
@@ -94,7 +94,7 @@ def apply_template(tmpl, docs, dry_run):
         dobj = json.loads(data, encoding='utf-8')
     type_order = dobj['types']
     doc_objs = dobj['documents']
-    media = create_media(type_order, doc_objs, dry_run)
+    media = create_media(pref, type_order, doc_objs, dry_run)
     return content.format(media)
 
 def usage():
@@ -103,6 +103,7 @@ usage: {0} [-h] [--dry] [--out <file>] --documents <file> --template <file>
 -h: print help
 --documents <file>: specifies the documents input
 --template <file>: specifies the template file
+--prefix <file>: specifies the file prefix
 --out <file>: specifies the output file. default is STD_OUT.
 --dry: do not produce any output
 """.strip().format(sys.argv[0]), file=sys.stderr)
@@ -111,6 +112,7 @@ usage: {0} [-h] [--dry] [--out <file>] --documents <file> --template <file>
 if __name__ == '__main__':
     tmpl = None
     docs = None
+    pref = None
     out = '-'
     dry_run = False
     args = sys.argv[:]
@@ -134,6 +136,11 @@ if __name__ == '__main__':
                 print("--documents requires argument", file=sys.stderr)
                 usage()
             docs = args.pop(0)
+        elif arg == '--prefix':
+            if not args:
+                print("--prefix requires argument", file=sys.stderr)
+                usage()
+            pref = args.pop(0)
         elif arg == '--dry':
             dry_run = True
         else:
@@ -142,7 +149,7 @@ if __name__ == '__main__':
     if tmpl is None or docs is None:
         print('input is underspecified', file=sys.stderr)
         usage()
-    content = apply_template(tmpl, docs, dry_run)
+    content = apply_template(tmpl, docs, pref, dry_run)
     if not dry_run:
         if out != '-':
             with io.open(out, 'w', encoding='utf8') as outf:
