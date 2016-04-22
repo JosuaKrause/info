@@ -4,6 +4,7 @@ from __future__ import print_function
 from __future__ import division
 
 import io
+import re
 import os
 import csv
 import sys
@@ -81,10 +82,16 @@ def create_media(types, docs, dry_run):
     return content
 
 def apply_template(tmpl, docs, dry_run):
-    with io.open(tmpl, 'rb') as tf:
+    with io.open(tmpl, 'r') as tf:
         content = tf.read()
     with io.open(docs, 'rb') as df:
-        dobj = json.loads(df.read(), encoding='utf-8')
+        data = df.read()
+
+        def sanitize(m):
+            return m.group(0).replace('\n', '\\n')
+
+        data = re.sub(u'''"([^"]|\\\\")*":\s*"([^"]|\\\\")*"''', sanitize, data)
+        dobj = json.loads(data, encoding='utf-8')
     type_order = dobj['types']
     doc_objs = dobj['documents']
     media = create_media(type_order, doc_objs, dry_run)
