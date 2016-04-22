@@ -45,8 +45,8 @@ def create_media(types, docs, dry_run):
                 if not dry_run:
                     if not os.path.exists(os.path.dirname(filename)):
                         os.makedirs(os.path.dirname(filename))
-                    with open(filename, 'w') as f:
-                        print(bibtex, file=f, encoding='utf8')
+                    with open(filename, 'w', encoding='utf8') as f:
+                        print(bibtex, file=f)
                 appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(filename))
             body = u"""
             <h4 class="media-heading"><a href="#{0}">{1}</a><br/>
