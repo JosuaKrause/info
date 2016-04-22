@@ -103,7 +103,7 @@ def create_media(pref, types, docs, dry_run):
             group = type['name']
             etime = mktime(tparse(doc['date']))
             if etime not in event_times:
-                event_times = set()
+                event_times[etime] = set()
             num = 1
             while group in event_times[etime]:
                 num += 1
