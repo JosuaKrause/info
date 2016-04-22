@@ -72,6 +72,8 @@ function Timeline(content, wtext, h, radius, textHeight) {
       "fill": function(e) {
         return groupScale(e["group"]);
       }
+    }).style({
+      "cursor": "pointer",
     }).on("mouseover", function(e) {
       var cur = d3.select(this);
       cur.transition().duration(100).attr({
