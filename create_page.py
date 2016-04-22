@@ -100,8 +100,7 @@ def create_media(pref, types, docs, dry_run):
             </div>
             """.format(entry_id, entry)
             event = {
-                "id": entry_id,
-                "type": doc['short-conference'] if 'short-conference' in doc else doc['conference'],
+                "id": doc['short-conference'] if 'short-conference' in doc else doc['conference'],
                 "group": type['name'],
                 "name": doc['title'],
                 "time": mktime(tparse(doc['date'])),
