@@ -113,7 +113,7 @@ def create_media(pref, types, docs, dry_run):
         if not os.path.exists(os.path.dirname(timeline_fn)):
             os.makedirs(os.path.dirname(timeline_fn))
         with io.open(timeline_fn, 'w', encoding='utf8') as tl:
-            json.dump({ "events": events }, file=tl, sort_keys=True, indent=True)
+            json.dump({ "events": events }, tl, sort_keys=True, indent=2)
     return content
 
 def apply_template(tmpl, docs, pref, dry_run):
