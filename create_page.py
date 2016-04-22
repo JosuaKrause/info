@@ -41,13 +41,14 @@ def create_media(pref, types, docs, dry_run):
                 appendix.append(u"""<a href="{0}">[github]</a>""".format(doc['github']))
             if 'bibtex' in doc and doc['bibtex']:
                 bibtex = doc['bibtex'].strip()
-                filename = os.path.join(pref if pref is not None else ".", "bibtex/{0}.bib".format(entry_id))
+                link = "bibtex/{0}.bib".format(entry_id)
+                filename = os.path.join(pref if pref is not None else ".", link)
                 if not dry_run:
                     if not os.path.exists(os.path.dirname(filename)):
                         os.makedirs(os.path.dirname(filename))
                     with io.open(filename, 'w', encoding='utf8') as f:
                         print(bibtex, file=f)
-                appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(filename))
+                appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(link))
             body = u"""
             <h4 class="media-heading"><a href="#{0}">{1}</a><br/>
             <small>{2}</small></h4>
