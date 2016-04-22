@@ -11,7 +11,7 @@ import zlib
 import json
 from dateutil.parser import parse as tparse
 
-def create_media(types, docs):
+def create_media(types, docs, dry_run):
     type_lookup = {}
     for type in types:
         type_lookup[type['type']] = type
@@ -41,10 +41,11 @@ def create_media(types, docs):
             if 'bibtex' in doc and doc['bibtex']:
                 bibtex = doc['bibtex'].strip()
                 filename = "bibtex/{0}.bib".format(entry_id)
-                if not os.path.exists(os.path.dirname(filename)):
-                    os.makedirs(os.path.dirname(filename))
-                with open(filename, 'w') as f:
-                    print(bibtex, file=f)
+                if not dry_run:
+                    if not os.path.exists(os.path.dirname(filename)):
+                        os.makedirs(os.path.dirname(filename))
+                    with open(filename, 'w') as f:
+                        print(bibtex, file=f)
                 appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(filename))
             body = u"""
             <h4 class="media-heading"><a href="#{0}">{1}</a><br/>
@@ -79,23 +80,24 @@ def create_media(types, docs):
             """.format(entry_id, entry)
     return content
 
-def apply_template(tmpl, docs):
-    with io.open(tmpl, 'r', encoding='utf8') as tf:
+def apply_template(tmpl, docs, dry_run):
+    with io.open(tmpl, 'rb') as tf:
         content = tf.read()
-    with io.open(docs, 'r', encoding='utf8') as df:
-        dobj = json.load(df)
+    with io.open(docs, 'rb') as df:
+        dobj = json.loads(df.read(), encoding='utf-8')
     type_order = dobj['types']
     doc_objs = dobj['documents']
-    media = create_media(type_order, doc_objs)
+    media = create_media(type_order, doc_objs, dry_run)
     return content.format(media)
 
 def usage():
     print("""
-usage: {0} [-h] [--out <file>] --documents <file> --template <file>
+usage: {0} [-h] [--dry] [--out <file>] --documents <file> --template <file>
 -h: print help
 --documents <file>: specifies the documents input
 --template <file>: specifies the template file
 --out <file>: specifies the output file. default is STD_OUT.
+--dry: do not produce any output
 """.strip().format(sys.argv[0]), file=sys.stderr)
     exit(1)
 
@@ -103,6 +105,7 @@ if __name__ == '__main__':
     tmpl = None
     docs = None
     out = '-'
+    dry_run = False
     args = sys.argv[:]
     args.pop(0)
     while args:
@@ -124,16 +127,19 @@ if __name__ == '__main__':
                 print("--documents requires argument", file=sys.stderr)
                 usage()
             docs = args.pop(0)
+        elif arg == '--dry':
+            dry_run = True
         else:
             print('unrecognized argument: {0}'.format(arg), file=sys.stderr)
             usage()
     if tmpl is None or docs is None:
         print('input is underspecified', file=sys.stderr)
         usage()
-    content = apply_template(tmpl, docs)
-    if out != '-':
-        with io.open(out, 'w', encoding='utf8') as outf:
-            outf.write(content)
-    else:
-        sys.stdout.write(content)
-        sys.stdout.flush()
+    content = apply_template(tmpl, docs, dry_run)
+    if not dry_run:
+        if out != '-':
+            with io.open(out, 'w', encoding='utf8') as outf:
+                outf.write(content)
+        else:
+            sys.stdout.write(content)
+            sys.stdout.flush()
