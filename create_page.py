@@ -72,6 +72,7 @@ def create_media(pref, types, docs, dry_run):
                     with io.open(filename, 'w', encoding='utf-8') as f:
                         print(bibtex, file=f)
                 appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(link))
+            authors = doc['authors'].replace("Josua Krause", "<span style=\"text-decoration: underline;\">Josua Krause</span>")
             body = u"""
             <h4 class="media-heading"><a href="#{0}">{1}</a><br/>
             <small>{2}</small></h4>
@@ -79,7 +80,7 @@ def create_media(pref, types, docs, dry_run):
             """.format(
                 entry_id,
                 doc['title'],
-                doc['authors'],
+                authors,
                 doc['conference'],
                 doc['date'] if doc['published'] else u"to be published&hellip;",
                 u"<br/>\n{0}".format(" ".join(appendix)) if appendix else ""
