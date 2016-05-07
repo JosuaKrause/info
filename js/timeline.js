@@ -9,11 +9,34 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     "border": "solid black 1px"
   });
   var w = svg.node().clientWidth;
+  var visAxisG = svg.append("g");
+  var inner = svg.append("g");
+  var base = inner.append("g");
 
   var events = [];
   this.events = function(_) {
     if(!arguments.length) return events;
     events = _;
+  };
+
+  function fitInto(pixWidth, pixHeight, w, h, fit) {
+    var rw = pixWidth / w;
+    var rh = pixHeight / h;
+    return fit ? Math.min(rw, rh) : Math.max(rw, rh);
+  }
+
+  function zoomTo(x, y, factor, scale, off) {
+    var f = factor;
+    var newScale = scale * factor;
+    newScale <= 0 && console.warn("factor: " + factor + " zoom: " + newScale);
+    off[0] = (off[0] - x) * f + x;
+    off[1] = (off[1] - y) * f + y;
+    return newScale;
+  }
+
+  function asTransition(sel, smooth) {
+    if(!smooth) return sel;
+    return sel.transition().duration(750).ease("easeInOutCubic");
   };
 
   this.update = function() {
@@ -70,26 +93,59 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     var xScale = d3.time.scale().domain([ d3.min(times), d3.max(times) ]).range([ 0, w ]).nice();
     var visScale = xScale.copy();
     var xAxis = d3.svg.axis().scale(visScale).tickSize(-h).tickSubdivide(true);
-    var visAxis = svg.append("g").classed({
+    var visAxis = visAxisG.classed({
       "x": true,
       "axis": true
     }).attr({
       "transform": "translate(" + [ 0, h ] + ")"
     }).call(xAxis);
+
     function zoom() {
       var move = d3.event.translate;
       var s = d3.event.scale;
-      base.attr({
-        "transform": "translate(" + move + ") scale(" + s + ")"
+      applyZoom(move, s, false);
+    }
+
+    var zoomObj = d3.behavior.zoom().scaleExtent([ 0.5, 8 ]).on("zoom", zoom);
+    svg.call(zoomObj).on("dblclick.zoom", function() {
+      showAll(true);
+    });
+
+    function showRectangle(rect, margin, fit, smooth) {
+      var screenW = w - 2 * margin;
+      var screenH = h - 2 * margin;
+      var factor = fitInto(screenW, screenH, rect["width"], rect["height"], fit);
+      var scale = 1;
+      var move = [
+        margin + (screenW - rect["width"]) * 0.5 - rect["x"],
+        margin + (screenH - rect["height"]) * 0.5 - rect["y"],
+      ];
+      scale = zoomTo(screenW * 0.5 + margin, screenH * 0.5 + margin, factor, scale, move);
+      zoomObj.translate(move);
+      zoomObj.scale(scale);
+      applyZoom(move, scale, smooth);
+    }
+
+    function applyZoom(move, scale, smooth) {
+      asTransition(inner, smooth).attr({
+        "transform": "translate(" + move + ") scale(" + scale + ")"
       });
-      visScale.range([ move[0], move[0] + w * s ]);
-      visAxis.call(xAxis);
-      label.attr({
-        "font-size": 16 / s
+      visScale.range([ move[0], move[0] + w * scale ]);
+      asTransition(visAxis, smooth).call(xAxis);
+      asTransition(label, smooth).attr({
+        "font-size": 16 / scale,
       });
     }
-    var base = svg.append("g").append("g");
-    svg.call(d3.behavior.zoom().scaleExtent([ 0.5, 8 ]).on("zoom", zoom));
+
+    function showAll(smooth) {
+      showRectangle({
+        "x": 0,
+        "y": 0,
+        "width": w,
+        "height": h,
+      }, 5, true, smooth);
+    }
+
     var sel = base.selectAll("rect.event").data(events);
     sel.exit().remove();
     sel.enter().append("rect").classed("event", true);
@@ -162,5 +218,7 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     });
     var canceled = {};
     var tasks = 0;
+
+    showAll(false);
   };
 } // Timeline
