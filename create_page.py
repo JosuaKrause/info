@@ -33,6 +33,23 @@ def mktime(dt):
 def monthtime(dt):
     return "{0}-{1}".format(dt.year, dt.month)
 
+def create_autopage(content, doc, ofile):
+    abstract = "<h4>Abstract</h4><p>{0}</p>".format(doc['abstract']) if 'abstract' in doc and doc['abstract'] else ""
+    bibtex = "<h4>Bibtex</h4><pre>{0}</pre>".format(doc['bibtex'].strip()) if 'bibtex' in doc and doc['bibtex'] else ""
+    output = content.format(
+        title=doc['title'],
+        conference=doc['conference'],
+        authors=doc['authors'],
+        image="", # TODO always empty for now
+        abstract=abstract,
+        links="", # TODO always empty for now
+        bibtex=bibtex,
+        logo=doc['logo'] if 'logo' in doc else "img/nologo.png",
+    )
+    if not dry_run:
+        with io.open(ofile, 'w', encoding='utf-8') as outf:
+            outf.write(output)
+
 def create_media(pref, types, docs, dry_run):
     type_lookup = {}
     for type in types:
@@ -44,6 +61,7 @@ def create_media(pref, types, docs, dry_run):
     event_times = {}
     events = []
     content = ''
+    auto_pages = []
     for type in types:
         if not type['docs']:
             continue
@@ -53,6 +71,8 @@ def create_media(pref, types, docs, dry_run):
             entry_id = u"entry{:08x}".format(zlib.crc32(u"{0}_{1}_{2}".format(type['name'], doc['title'], mktime(tparse(doc['date']))).encode('utf-8')) & 0xffffffff)
             appendix = []
             if 'href' in doc and doc['href']:
+                if 'autopage' in doc and doc['autopage']:
+                    auto_pages.append(doc)
                 appendix.append(u"""<a href="{0}">[page]</a>""".format(doc['href']))
             if 'demo' in doc and doc['demo']:
                 appendix.append(u"""<a href="{0}">[demo]</a>""".format(doc['demo']))
@@ -64,14 +84,14 @@ def create_media(pref, types, docs, dry_run):
                 appendix.append(u"""<a href="{0}">[github]</a>""".format(doc['github']))
             if 'bibtex' in doc and doc['bibtex']:
                 bibtex = doc['bibtex'].strip()
-                link = u"bibtex/{0}.bib".format(entry_id)
-                filename = os.path.join(pref if pref is not None else ".", link)
+                bibtex_link = u"bibtex/{0}.bib".format(entry_id)
+                bibtex_filename = os.path.join(pref if pref is not None else ".", bibtex_link)
                 if not dry_run:
-                    if not os.path.exists(os.path.dirname(filename)):
-                        os.makedirs(os.path.dirname(filename))
-                    with io.open(filename, 'w', encoding='utf-8') as f:
+                    if not os.path.exists(os.path.dirname(bibtex_filename)):
+                        os.makedirs(os.path.dirname(bibtex_filename))
+                    with io.open(bibtex_filename, 'w', encoding='utf-8') as f:
                         print(bibtex, file=f)
-                appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(link))
+                appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(bibtex_link))
             authors = doc['authors'].replace("Josua Krause", "<span style=\"text-decoration: underline;\">Josua Krause</span>")
             body = u"""
             <h4 class="media-heading"><a href="#{0}">{1}</a><br/>
@@ -134,6 +154,11 @@ def create_media(pref, types, docs, dry_run):
                 "events": events,
                 "type_names": type_names,
             }, sort_keys=True, indent=2, encoding='utf-8'), file=tl)
+    if auto_pages:
+        with io.open("page.tmpl", 'r', encoding='utf-8') as tf:
+            page_tmpl = tf.read()
+        for doc in auto_pages:
+            create_autopage(page_tmpl, doc, os.path.join(pref if pref is not None else ".", doc['href']))
     return content
 
 def apply_template(tmpl, docs, pref, dry_run):
