@@ -45,6 +45,7 @@
       "date": "Oct 2014",
       "published": true,
       "pdf": "material/vast2014-infuse.pdf",
+      "video": "http://vimeo.com/114366032",
       "bibtex": "@article{infuse,
   author={Krause, Josua and Perer, Adam and Bertini, Enrico},
   journal={Visualization and Computer Graphics, {IEEE} Transactions on},

@@ -46,8 +46,21 @@ def create_autopage(content, doc, ofile):
         </div>
     </div>
     """.format(doc['teaser_desc'] if chk(doc, 'teaser_desc') else doc['teaser'], doc['teaser']) if chk(doc, 'teaser') else ""
+    if chk(doc, 'video'):
+        m = re.match("^https?://vimeo.com/(\d+)$", doc['video'])
+        if m is not None:
+            video = u"""
+            <p style="text-align: center;margin: 0 auto;">
+              <iframe src="https://player.vimeo.com/video/{0}" width="640" height="389" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              <br><a href="https://vimeo.com/{0}">Watch on Vimeo</a>
+            </p>
+            """.format(m.group(1))
+        else:
+            video = ""
+    else:
+        video = ""
     links = []
-    add_misc_links(links, doc)
+    add_misc_links(links, doc, video)
     output = content.format(
         title=doc['title'],
         conference=doc['conference'],
@@ -57,17 +70,18 @@ def create_autopage(content, doc, ofile):
         links=u"""<h3 style="text-align: center;">{0}</h3>""".format(" ".join(links)) if links else "",
         bibtex=bibtex,
         logo=doc['logo'] if chk(doc, 'logo') else "img/nologo.png",
+        video=video,
     )
     if not dry_run:
         with io.open(ofile, 'w', encoding='utf-8') as outf:
             outf.write(output)
 
-def add_misc_links(appendix, doc):
+def add_misc_links(appendix, doc, no_video=False):
     if chk(doc, 'demo'):
         appendix.append(u"""<a href="{0}">[demo]</a>""".format(doc['demo']))
     if chk(doc, 'pdf'):
         appendix.append(u"""<a href="{0}">[pdf]</a>""".format(doc['pdf']))
-    if chk(doc, 'video'):
+    if chk(doc, 'video') and not no_video:
         appendix.append(u"""<a href="{0}">[video]</a>""".format(doc['video']))
     if chk(doc, 'github'):
         appendix.append(u"""<a href="{0}">[github]</a>""".format(doc['github']))
