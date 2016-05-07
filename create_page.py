@@ -47,7 +47,7 @@ def create_media(pref, types, docs, dry_run):
     for type in types:
         if not type['docs']:
             continue
-        content += u'<h3>{0}</h3>'.format(type['name'])
+        content += u'<h3 id="{0}">{1}</h3>'.format(type['name'].replace(" ", "_"), type['name'])
         type['docs'].sort(key=lambda t: (tparse(t['date']), t['title']), reverse=True)
         for doc in type['docs']:
             entry_id = u"entry{:08x}".format(zlib.crc32(u"{0}_{1}_{2}".format(type['name'], doc['title'], mktime(tparse(doc['date']))).encode('utf-8')) & 0xffffffff)
@@ -150,7 +150,7 @@ def apply_template(tmpl, docs, pref, dry_run):
       var h = 200;
       var radius = 8;
       var textHeight = 20;
-      var timeline = new Timeline(d3.select("#div-timeline"), w, h, radius, textHeight);
+      var timeline = new Timeline(d3.select("#div-timeline"), d3.select("#div-legend"), w, h, radius, textHeight);
       d3.json("material/timeline.json", function(err, data) {
         if(err) {
           console.warn(err);
