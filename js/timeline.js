@@ -13,6 +13,12 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
   var inner = svg.append("g");
   var base = inner.append("g");
 
+  var typeNames = {};
+  this.typeNames = function(_) {
+    if(!arguments.length) return typeNames;
+    typeNames = _;
+  };
+
   var events = [];
   this.events = function(_) {
     if(!arguments.length) return events;
@@ -59,13 +65,13 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     });
     lSelE.append("span").classed("legend-text", true);
     lSel.selectAll(".legend-text").text(function(g) {
-      return g;
+      return typeNames[g] || "???";
     }).style({
       "vertical-align": "middle",
       "cursor": "pointer",
     }).on("click", function(g) {
       jumpToElem({
-        "link": "#" + g.replace(" ", "_")
+        "link": "#" + g
       });
     });
     lSel.selectAll(".legend-color").style({

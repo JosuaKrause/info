@@ -47,7 +47,7 @@ def create_media(pref, types, docs, dry_run):
     for type in types:
         if not type['docs']:
             continue
-        content += u'<h3 id="{0}">{1}</h3>'.format(type['name'].replace(" ", "_"), type['name'])
+        content += u'<h3 id="{0}">{1}</h3>'.format(type['type'], type['name'])
         type['docs'].sort(key=lambda t: (tparse(t['date']), t['title']), reverse=True)
         for doc in type['docs']:
             entry_id = u"entry{:08x}".format(zlib.crc32(u"{0}_{1}_{2}".format(type['name'], doc['title'], mktime(tparse(doc['date']))).encode('utf-8')) & 0xffffffff)
@@ -116,7 +116,7 @@ def create_media(pref, types, docs, dry_run):
             event_times[mtime].add(tid)
             event = {
                 "id": tid,
-                "group": type['name'],
+                "group": type['type'],
                 "name": doc['title'],
                 "time": mktime(tparse(doc['date'])),
                 "link": u"#{0}".format(entry_id),
@@ -127,7 +127,13 @@ def create_media(pref, types, docs, dry_run):
         if not os.path.exists(os.path.dirname(timeline_fn)):
             os.makedirs(os.path.dirname(timeline_fn))
         with open(timeline_fn, 'wb') as tl:
-            print(json.dumps({ "events": events }, sort_keys=True, indent=2, encoding='utf-8'), file=tl)
+            type_names = {}
+            for type in types:
+                type_names[type['type']] = type['name']
+            print(json.dumps({
+                "events": events,
+                "type_names": type_names,
+            }, sort_keys=True, indent=2, encoding='utf-8'), file=tl)
     return content
 
 def apply_template(tmpl, docs, pref, dry_run):
@@ -159,6 +165,7 @@ def apply_template(tmpl, docs, pref, dry_run):
           });
           return;
         }
+        timeline.typeNames(data["type_names"]);
         timeline.events(data["events"]);
         timeline.update();
       });

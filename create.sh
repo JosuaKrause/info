@@ -8,7 +8,6 @@ if [ -z $NO_DEFAULT ]; then
   PUBLISH=
 fi
 
-
 if [ -z $NO_WEB ]; then
   git submodule update --init --recursive
   pip install --upgrade pip
