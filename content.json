@@ -89,6 +89,17 @@
       "pdf": "material/chi2016-prospector.pdf",
       "href": "prospector.html",
       "autopage": true,
+      "teaser": "img/prospector_teaser.png",
+      "teaser_desc": "Prospector user interface for localized inspection.",
+      "abstract": "Understanding predictive models, in terms of interpreting and identifying actionable
+insights, is a challenging task. Often the importance of a feature in a model is only a rough estimate
+condensed into one number. However, our research goes beyond these naïve estimates through the design
+and implementation of an interactive visual analytics system, Prospector. By providing interactive
+partial dependence diagnostics, data scientists can understand how features affect the prediction overall.
+In addition, our support for localized inspection allows data scientists to understand how and why
+specific datapoints are predicted as they are, as well as support for tweaking feature values and seeing
+how the prediction responds. Our system is then evaluated using a case study involving a team of data
+scientists improving predictive models for detecting the onset of diabetes from electronic medical records.",
       "bibtex": "@article{prospector16,
   author={Josua Krause and Adam Perer and Kenney Ng},
   title={Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models},
@@ -252,6 +263,16 @@
       "published": true,
       "href": "coquito.html",
       "autopage": true,
+      "teaser": "img/coquito_teaser.png",
+      "teaser_desc": "COQUITO user interface in action.",
+      "abstract": "Many researchers across diverse disciplines aim to analyze the behavior of cohorts
+whose behaviors are recorded in large event databases. However, extracting cohorts from databases is
+a difficult yet important step, often overlooked in many analytical solutions. This is especially true
+when researchers wish to restrict their cohorts to exhibit a particular temporal pattern of interest.
+In order to fill this gap, we designed COQUITO, a visual interface that assists users defining cohorts
+with temporal constraints. COQUITO was designed to be comprehensible to domain experts with no
+preknowledge of database queries and also to encourage exploration. We then demonstrate the utility
+of COQUITO via two case studies, involving medical and social media researchers.",
       "bibtex": "@article{coquito15,
   author={Krause, Josua and Perer, Adam and Stavropoulos, Harry},
   journal={Visualization and Computer Graphics, {IEEE} Transactions on},

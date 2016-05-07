@@ -33,22 +33,44 @@ def mktime(dt):
 def monthtime(dt):
     return "{0}-{1}".format(dt.year, dt.month)
 
+def chk(doc, field):
+    return field in doc and doc[field]
+
 def create_autopage(content, doc, ofile):
-    abstract = "<h4>Abstract</h4><p>{0}</p>".format(doc['abstract']) if 'abstract' in doc and doc['abstract'] else ""
-    bibtex = "<h4>Bibtex</h4><pre>{0}</pre>".format(doc['bibtex'].strip()) if 'bibtex' in doc and doc['bibtex'] else ""
+    abstract = u"<h4>Abstract</h4><p>{0}</p>".format(doc['abstract']) if chk(doc, 'abstract') else ""
+    bibtex = u"<h4>Bibtex</h4><pre>{0}</pre>".format(doc['bibtex'].strip()) if chk(doc, 'bibtex') else ""
+    image = u"""
+    <div class="row">
+        <div class="col-md-9">
+            <img alt="{0}" src="{1}" style="margin: 0 5%; width: 90%;">
+        </div>
+    </div>
+    """.format(doc['teaser_desc'] if chk(doc, 'teaser_desc') else doc['teaser'], doc['teaser']) if chk(doc, 'teaser') else ""
+    links = []
+    add_misc_links(links, doc)
     output = content.format(
         title=doc['title'],
         conference=doc['conference'],
         authors=doc['authors'],
-        image="", # TODO always empty for now
+        image=image,
         abstract=abstract,
-        links="", # TODO always empty for now
+        links=u"""<h3 style="text-align: center;">{0}</h3>""".format(" ".join(links)) if links else "",
         bibtex=bibtex,
-        logo=doc['logo'] if 'logo' in doc else "img/nologo.png",
+        logo=doc['logo'] if chk(doc, 'logo') else "img/nologo.png",
     )
     if not dry_run:
         with io.open(ofile, 'w', encoding='utf-8') as outf:
             outf.write(output)
+
+def add_misc_links(appendix, doc):
+    if chk(doc, 'demo'):
+        appendix.append(u"""<a href="{0}">[demo]</a>""".format(doc['demo']))
+    if chk(doc, 'pdf'):
+        appendix.append(u"""<a href="{0}">[pdf]</a>""".format(doc['pdf']))
+    if chk(doc, 'video'):
+        appendix.append(u"""<a href="{0}">[video]</a>""".format(doc['video']))
+    if chk(doc, 'github'):
+        appendix.append(u"""<a href="{0}">[github]</a>""".format(doc['github']))
 
 def create_media(pref, types, docs, dry_run):
     type_lookup = {}
@@ -71,18 +93,11 @@ def create_media(pref, types, docs, dry_run):
             entry_id = u"entry{:08x}".format(zlib.crc32(u"{0}_{1}_{2}".format(type['name'], doc['title'], mktime(tparse(doc['date']))).encode('utf-8')) & 0xffffffff)
             appendix = []
             if 'href' in doc and doc['href']:
-                if 'autopage' in doc and doc['autopage']:
+                if chk(doc, 'autopage'):
                     auto_pages.append(doc)
                 appendix.append(u"""<a href="{0}">[page]</a>""".format(doc['href']))
-            if 'demo' in doc and doc['demo']:
-                appendix.append(u"""<a href="{0}">[demo]</a>""".format(doc['demo']))
-            if 'pdf' in doc and doc['pdf']:
-                appendix.append(u"""<a href="{0}">[pdf]</a>""".format(doc['pdf']))
-            if 'video' in doc and doc['video']:
-                appendix.append(u"""<a href="{0}">[video]</a>""".format(doc['video']))
-            if 'github' in doc and doc['github']:
-                appendix.append(u"""<a href="{0}">[github]</a>""".format(doc['github']))
-            if 'bibtex' in doc and doc['bibtex']:
+            add_misc_links(appendix, doc)
+            if chk(doc, 'bibtex'):
                 bibtex = doc['bibtex'].strip()
                 bibtex_link = u"bibtex/{0}.bib".format(entry_id)
                 bibtex_filename = os.path.join(pref if pref is not None else ".", bibtex_link)
@@ -114,9 +129,9 @@ def create_media(pref, types, docs, dry_run):
             </div>
             """.format(
                 entry_id,
-                doc['logo'] if 'logo' in doc else "img/nologo.png",
+                doc['logo'] if chk(doc, 'logo') else "img/nologo.png",
                 doc['title'],
-                doc['short-title'] if 'short-title' in doc else doc['title'],
+                doc['short-title'] if chk(doc, 'short-title') else doc['title'],
                 body
             )
             content += u"""
@@ -124,7 +139,7 @@ def create_media(pref, types, docs, dry_run):
               {1}
             </div>
             """.format(entry_id, entry)
-            otid = doc['short-conference'] if 'short-conference' in doc else doc['conference']
+            otid = doc['short-conference'] if chk(doc, 'short-conference') else doc['conference']
             tid = otid
             mtime = monthtime(tparse(doc['date']))
             if mtime not in event_times:
