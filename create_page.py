@@ -122,17 +122,19 @@ def create_media(pref, types, docs, dry_run):
                         print(bibtex, file=f)
                 appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(bibtex_link))
             authors = doc['authors'].replace("Josua Krause", "<span style=\"text-decoration: underline;\">Josua Krause</span>")
+            awards = [ u"""<img src="img/badge.png" style="height: 1em;" alt="{0}" title="{0}">""".format(award) for award in doc['awards'] ] if chk(doc, 'awards') else []
             body = u"""
             <h4 class="media-heading"><a href="#{0}">{1}</a><br/>
             <small>{2}</small></h4>
-            <em>{3} &mdash; {4}</em>{5}
+            <em>{3} &mdash; {4}</em>{5}{6}
             """.format(
                 entry_id,
                 doc['title'],
                 authors,
                 doc['conference'],
                 doc['date'] if doc['published'] else u"to be published&hellip;",
-                u"<br/>\n{0}".format(" ".join(appendix)) if appendix else ""
+                u"<br/>\n{0}".format(" ".join(appendix)) if appendix else "",
+                u"{0}{1}".format(" " if appendix else u"<br/>\n", " ".join(awards)) if awards else "",
             )
             entry = u"""
             <a class="pull-left" href="#{0}">
@@ -146,7 +148,7 @@ def create_media(pref, types, docs, dry_run):
                 doc['logo'] if chk(doc, 'logo') else "img/nologo.png",
                 doc['title'],
                 doc['short-title'] if chk(doc, 'short-title') else doc['title'],
-                body
+                body,
             )
             content += u"""
             <div class="media" id="{0}">

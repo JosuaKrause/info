@@ -71,6 +71,7 @@
       "date": "May 2016",
       "href": "http://vgc.poly.edu/projects/similarityperception/",
       "pdf": "material/chi2016-similarity.pdf",
+      "awards": [ "Honorable Mention" ],
       "bibtex": "@article{pandey16,
   title={Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots},
   author={Anshul Vikram Pandey and Josua Krause and Cristian Felix and Jeremy Boy and Enrico Bertini},
