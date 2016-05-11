@@ -72,11 +72,22 @@
       "href": "http://vgc.poly.edu/projects/similarityperception/",
       "pdf": "material/chi2016-similarity.pdf",
       "awards": [ "Honorable Mention" ],
-      "bibtex": "@article{pandey16,
-  title={Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots},
-  author={Anshul Vikram Pandey and Josua Krause and Cristian Felix and Jeremy Boy and Enrico Bertini},
-  journal={ACM CHI 2016},
-  year={2016}
+      "bibtex": "@inproceedings{Pandey:2016:TUH:2858036.2858155,
+  author = {Pandey, Anshul Vikram and Krause, Josua and Felix, Cristian and Boy, Jeremy and Bertini, Enrico},
+  title = {Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots},
+  booktitle = {Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems},
+  series = {CHI '16},
+  year = {2016},
+  isbn = {978-1-4503-3362-7},
+  location = {Santa Clara, California, USA},
+  pages = {3659--3669},
+  numpages = {11},
+  url = {http://doi.acm.org/10.1145/2858036.2858155},
+  doi = {10.1145/2858036.2858155},
+  acmid = {2858155},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+  keywords = {human perception modeling, information visualization, plot similarity, quality measures}
 }"
     },
     {
@@ -90,6 +101,7 @@
       "published": true,
       "date": "May 2016",
       "pdf": "material/chi2016-prospector.pdf",
+      "video": "https://vimeo.com/166142733",
       "href": "prospector.html",
       "autopage": true,
       "teaser": "img/prospector_teaser.png",
@@ -103,11 +115,22 @@ In addition, our support for localized inspection allows data scientists to unde
 specific datapoints are predicted as they are, as well as support for tweaking feature values and seeing
 how the prediction responds. Our system is then evaluated using a case study involving a team of data
 scientists improving predictive models for detecting the onset of diabetes from electronic medical records.",
-      "bibtex": "@article{prospector16,
-  author={Josua Krause and Adam Perer and Kenney Ng},
-  title={Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models},
-  journal={ACM CHI 2016},
-  year={2016}
+      "bibtex": "@inproceedings{Krause:2016:IPV:2858036.2858529,
+  author = {Krause, Josua and Perer, Adam and Ng, Kenney},
+  title = {Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models},
+  booktitle = {Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems},
+  series = {CHI '16},
+  year = {2016},
+  isbn = {978-1-4503-3362-7},
+  location = {Santa Clara, California, USA},
+  pages = {5686--5697},
+  numpages = {12},
+  url = {http://doi.acm.org/10.1145/2858036.2858529},
+  doi = {10.1145/2858036.2858529},
+  acmid = {2858529},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+  keywords = {interactive machine learning, partial dependence, predictive modeling}
 }"
     },
     {
