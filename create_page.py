@@ -17,7 +17,9 @@ from datetime import datetime, timedelta, tzinfo
 
 ld_json_knowledge = u"""{
 "@type": "Person",
-"name": "Josua (Joschi) Krause",
+"name": "Josua Krause",
+"additionalName": "Joschi",
+"birthDate": "January 18, 1988",
 "homepage": "https://josuakrause.github.io/info/",
 "url": "https://josuakrause.github.io/info/",
 "logo": "https://josuakrause.github.io/info/img/photo.jpg"
