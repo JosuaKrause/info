@@ -71,13 +71,7 @@ def create_autopage(content, doc, ofile):
         video = ""
     links = []
     add_misc_links(links, doc, video)
-    keywords = [
-        "Josua",
-        "Krause",
-        "Joschi",
-        "Josua Krause",
-        "Joschi Krause",
-    ]
+    keywords = []
     if 'keywords' in doc:
         keywords.extend(doc['keywords'])
     output = content.format(
@@ -261,11 +255,6 @@ I'm interested in the intersection of Visual Analytics and Machine Learning espe
 You can find my <a href="material/cv.pdf">CV here</a>.
         """.strip(),
         keywords=",".join(sorted([
-            "Josua",
-            "Krause",
-            "Joschi",
-            "Josua Krause",
-            "Joschi Krause",
             "Healthcare",
             "Visual Analytics",
             "Machine Learning",
