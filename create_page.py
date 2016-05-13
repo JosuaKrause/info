@@ -15,6 +15,16 @@ import zlib
 from dateutil.parser import parse as tparse
 from datetime import datetime, timedelta, tzinfo
 
+ga_tracking = u"""
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-77732102-1', 'auto');
+ga('send', 'pageview');
+"""
+
 _compute_self = "total_seconds" not in dir(timedelta(seconds=1))
 _tz = pytz.timezone('US/Eastern')
 _epoch = datetime(year=1970, month=1, day=1, tzinfo=_tz)
@@ -71,6 +81,8 @@ def create_autopage(content, doc, ofile):
         bibtex=bibtex,
         logo=doc['logo'] if chk(doc, 'logo') else "img/nologo.png",
         video=video,
+        tracking=ga_tracking,
+        description=u"""{0} by {1} appears in {1}""".format(doc['title'], doc['authors'], doc['conference']),
     )
     if not dry_run:
         with io.open(ofile, 'w', encoding='utf-8') as outf:
@@ -227,7 +239,21 @@ def apply_template(tmpl, docs, pref, dry_run):
       });
     }
     """
-    return content.format(media, js_fillin)
+    return content.format(
+        name=u"""Josua (Joschi) Krause""",
+        description=u"""
+Hi, I'm Josua (Joschi) Krause, PhD Candidate in Computer Science at NYU Tandon School of Engineering. I'm interested in the intersection of Visual Analytics and Machine Learning especially in the field of Health Care Analytics.
+        """.strip(),
+        description_long=u"""
+Hi, I'm a PhD Candidate in Computer Science at <a href="http://engineering.nyu.edu/">NYU Tandon School of Engineering</a>, Brooklyn, NY.
+My advisor is <a href="http://enrico.bertini.me/">Prof. Dr. Enrico Bertini</a>.
+I'm interested in the intersection of Visual Analytics and Machine Learning especially in the field of Health Care Analytics.
+You can find my <a href="material/cv.pdf">CV here</a>.
+        """.strip(),
+        content=media,
+        js=js_fillin,
+        tracking=ga_tracking,
+    )
 
 def usage():
     print("""

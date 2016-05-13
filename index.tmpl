@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <link rel="shortcut icon" type="image/x-icon" href="img/icon.png">
-  <title>Josua Krause</title>
+  <title>{name}</title>
   <meta charset="utf-8">
+  <meta name="description" content="{description}">
   <link rel="stylesheet" type="text/css" href="jk-js/lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="js/timeline.css">
   <script src="jk-js/lib/d3/d3.min.js" charset="utf-8"></script>
@@ -13,7 +14,7 @@
   <nav class="navbar navbar-default" role="navigation">
     <div class="container clearfix">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Josua (Joschi) Krause</a>
+        <a class="navbar-brand" href="#">{name}</a>
       </div>
       <div class="nav navbar-nav navbar-right">
         <a href="https://plus.google.com/+JosuaKrause/"><img src="img/Red-signin_Short_base_44dp.png" style="width: 39.44px;"></a>
@@ -35,23 +36,20 @@
     <div class="row">
       <div class="col-md-9">
         <p>
-          Hi, I'm a PhD Candidate in Computer Science at <a href="http://engineering.nyu.edu/">NYU Tandon School of Engineering</a>, Brooklyn, NY.
-          My advisor is <a href="http://enrico.bertini.me/">Prof. Dr. Enrico Bertini</a>.
-          I'm interested in the intersection of Visual Analytics and Machine Learning especially in
-          the field of Health Care Analytics.
-          You can find my <a href="material/cv.pdf">CV here</a>.
+          {description_long}
         </p>
       </div>
     </div>
     <div class="row">
       <div class="col-md-10" role="main">
-        {0}
+        {content}
       </div>
     </div>
   </div>
 
 <script>
-{1}
+{js}
+{tracking}
 </script>
 </body>
 </html>
