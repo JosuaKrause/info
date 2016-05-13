@@ -91,7 +91,7 @@ def create_autopage(content, doc, ofile):
         logo=doc['logo'] if chk(doc, 'logo') else "img/nologo.png",
         video=video,
         tracking=ga_tracking,
-        description=u"""{0} by {1} appears in {1}""".format(doc['title'], doc['authors'], doc['conference']),
+        description=u"""{0} by {1} appears in {2}""".format(doc['title'], doc['authors'], doc['conference']),
         keywords=",".join(sorted(keywords)),
     )
     if not dry_run:
