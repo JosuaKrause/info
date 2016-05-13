@@ -15,6 +15,14 @@ import zlib
 from dateutil.parser import parse as tparse
 from datetime import datetime, timedelta, tzinfo
 
+ld_json_knowledge = u"""{
+"@type": "Person",
+"name": "Josua (Joschi) Krause",
+"homepage": "https://josuakrause.github.io/info/",
+"url": "https://josuakrause.github.io/info/",
+"logo": "https://josuakrause.github.io/info/img/photo.jpg"
+}"""
+
 ga_tracking = u"""
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -263,6 +271,7 @@ You can find my <a href="material/cv.pdf">CV here</a>.
         content=media,
         js=js_fillin,
         tracking=ga_tracking,
+        knowledge=ld_json_knowledge,
     )
 
 def usage():
