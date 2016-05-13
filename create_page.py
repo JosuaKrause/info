@@ -16,6 +16,13 @@ from dateutil.parser import parse as tparse
 from datetime import datetime, timedelta, tzinfo
 
 ld_json_knowledge = u"""{
+"@context": {
+ "schema": "http://schema.org/",
+ "name": "schema:name",
+ "body": "schema:articleBody",
+ "words": "schema:wordCount"
+},
+"@id": "https://josuakrause.github.io/info/",
 "@type": "Person",
 "name": "Josua Krause",
 "additionalName": "Joschi",
