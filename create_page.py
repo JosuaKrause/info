@@ -16,12 +16,7 @@ from dateutil.parser import parse as tparse
 from datetime import datetime, timedelta, tzinfo
 
 ld_json_knowledge = u"""{
-"@context": {
- "schema": "http://schema.org/",
- "name": "schema:name",
- "body": "schema:articleBody",
- "words": "schema:wordCount"
-},
+"@context": "http://schema.org/",
 "@id": "https://josuakrause.github.io/info/",
 "@type": "Person",
 "name": "Josua Krause",
@@ -29,7 +24,7 @@ ld_json_knowledge = u"""{
 "birthDate": "January 18, 1988",
 "homepage": "https://josuakrause.github.io/info/",
 "url": "https://josuakrause.github.io/info/",
-"logo": "https://josuakrause.github.io/info/img/photo.jpg"
+"image": "https://josuakrause.github.io/info/img/photo.jpg"
 }"""
 
 ga_tracking = u"""
