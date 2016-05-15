@@ -24,7 +24,18 @@ ld_json_knowledge = u"""{
 "birthDate": "January 18, 1988",
 "homepage": "https://josuakrause.github.io/info/",
 "url": "https://josuakrause.github.io/info/",
-"image": "https://josuakrause.github.io/info/img/photo.jpg"
+"image": "https://josuakrause.github.io/info/img/photo.jpg",
+"sameAs" : [
+    "https://www.linkedin.com/in/josua-krause-48b3b091",
+    "https://github.com/JosuaKrause/",
+    "https://plus.google.com/+JosuaKrause/",
+    "https://www.youtube.com/user/j0sch1",
+    "https://www.facebook.com/josua.krause",
+    "http://engineering.nyu.edu/people/josua-krause",
+    "https://vimeo.com/user35425102",
+    "https://scholar.google.com/citations?user=hFjNgPEAAAAJ",
+    "http://dblp.uni-trier.de/pers/hd/k/Krause:Josua"
+]
 }"""
 
 ga_tracking = u"""
