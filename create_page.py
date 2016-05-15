@@ -22,7 +22,6 @@ ld_json_knowledge = u"""{
 "name": "Josua Krause",
 "additionalName": "Joschi",
 "birthDate": "January 18, 1988",
-"homepage": "https://josuakrause.github.io/info/",
 "url": "https://josuakrause.github.io/info/",
 "image": "https://josuakrause.github.io/info/img/photo.jpg",
 "sameAs" : [
