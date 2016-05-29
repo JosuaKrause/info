@@ -105,7 +105,7 @@ def create_autopage(content, doc, ofile):
         abstract=abstract,
         links=u"""<h3 style="text-align: center;">{0}</h3>""".format(" ".join(links)) if links else "",
         bibtex=bibtex,
-        logo=doc['logo'] if chk(doc, 'logo') else "img/nologo.png",
+        logo=doc['logo'] if chk(doc, 'logo') else u"img/nologo.png",
         video=video,
         tracking=ga_tracking,
         description=u"""{0} by {1} appears in {2}""".format(doc['title'], doc['authors'], doc['conference']),
