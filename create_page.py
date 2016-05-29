@@ -109,7 +109,6 @@ def create_autopage(content, doc, ofile):
         video=video,
         tracking=ga_tracking,
         description=u"""{0} by {1} appears in {2}""".format(doc['title'], doc['authors'], doc['conference']),
-        keywords=",".join(sorted(keywords)),
     )
     if not dry_run:
         with io.open(ofile, 'w', encoding='utf-8') as outf:
@@ -277,11 +276,6 @@ My advisor is <a href="http://enrico.bertini.me/">Prof. Dr. Enrico Bertini</a>.
 I'm interested in the intersection of Visual Analytics and Machine Learning especially in the field of Health Care Analytics.
 You can find my <a href="material/cv.pdf">CV here</a>.
         """.strip(),
-        keywords=",".join(sorted([
-            "Healthcare",
-            "Visual Analytics",
-            "Machine Learning",
-        ])),
         content=media,
         js=js_fillin,
         tracking=ga_tracking,
