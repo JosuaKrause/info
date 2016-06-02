@@ -9,6 +9,9 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     "border": "solid black 1px"
   });
   var w = svg.node().clientWidth;
+  if(w === 0) { // taking care of firefox
+    w = 748;
+  }
   var visAxisG = svg.append("g");
   var inner = svg.append("g");
   var base = inner.append("g");
