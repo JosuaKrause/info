@@ -10,7 +10,7 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
   });
   var w = svg.node().clientWidth;
   if(w === 0) { // taking care of firefox
-    w = 748;
+    w = svg.node().getBoundingClientRect()["width"] - 2; // border: 1px
   }
   var visAxisG = svg.append("g");
   var inner = svg.append("g");
