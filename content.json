@@ -166,6 +166,15 @@ scientists improving predictive models for detecting the onset of diabetes from 
     },
     {
       "type": "project",
+      "title": "Bubble Sets for JavaScript",
+      "github": "https://github.com/JosuaKrause/bubblesets-js",
+      "authors": "Josua Krause",
+      "conference": "GitHub",
+      "date": "June 2016",
+      "published": true
+    },
+    {
+      "type": "project",
       "title": "patient-viz",
       "github": "https://github.com/nyuvis/patient-viz",
       "authors": "Josua Krause, Narges Sharif Razavian, Enrico Bertini, David Sontag",
