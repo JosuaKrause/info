@@ -123,6 +123,12 @@ def add_misc_links(appendix, doc, no_video=False):
         appendix.append(u"""<a href="{0}">[video]</a>""".format(doc['video']))
     if chk(doc, 'github'):
         appendix.append(u"""<a href="{0}">[github]</a>""".format(doc['github']))
+    if chk(doc, 'slides'):
+        appendix.append(u"""<a href="{0}">[slides]</a>""".format(doc['slides']))
+    if chk(doc, 'external'):
+        appendix.append(u"""<a href="{0}">[external]</a>""".format(doc['external']))
+    if chk(doc, 'poster'):
+        appendix.append(u"""<a href="{0}">[poster]</a>""".format(doc['poster']))
 
 def create_media(pref, types, docs, dry_run):
     type_lookup = {}
