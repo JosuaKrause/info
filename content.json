@@ -38,6 +38,7 @@
       "logo": "img/infuselogo.png",
       "short-title": "INFUSE",
       "external": "http://nyuvis.github.io/infuse",
+      "slides": "material/infuse.key.zip",
       "authors": "Josua Krause, Adam Perer, Enrico Bertini",
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2014)",
       "short-conference": "Vis",
