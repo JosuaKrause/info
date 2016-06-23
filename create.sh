@@ -15,9 +15,11 @@ if [ -z $NO_WEB ]; then
 fi
 
 mkdir -p "${OUTPUT}"
-find . -not -path '*.git/*' -not -path '*'"${OUTPUT}/"'*' -not -path '*mvn-repo/*' -type f -not -name '*.py' -not -name '*.tmpl' -not -name "${LIB_COPY}" -not -name '.*' > "${LIB_COPY}"
+find . -not -path '*.git/*' -not -path '*'"${OUTPUT}/"'*' -not -path '*mvn-repo/*' -type f -not -name '*.md' -not -name '*.py' -not -name '*.tmpl' -not -name '*.sh' -not -name "${LIB_COPY}" -not -name '.*' > "${LIB_COPY}"
 rsync -av . "${OUTPUT}" --files-from "${LIB_COPY}"
 ./create_page.py --documents content.json --template index.tmpl --out "${OUTPUT}/index.html" --prefix "${OUTPUT}"
+PREV_DIR=`pwd`
+pushd "${OUTPUT}" && find . -not -path '*jk-js/*' -not -path '*jk-js' | "${PREV_DIR}/create_sitemap.py" "sitemap.xml" && popd
 
 if [ -z $PUBLISH ]; then
   python -m SimpleHTTPServer || true
