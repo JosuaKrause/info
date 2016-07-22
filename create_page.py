@@ -182,7 +182,7 @@ def create_media(pref, types, docs, dry_run):
             )
             entry = u"""
             <a class="pull-left" href="#{0}">
-              <img class="media-object" src="{1}" title="{2}" alt="{3}">
+              <img class="media-object" src="{1}" title="{2}" alt="{3}" style="width: 64px;">
             </a>
             <div class="media-body">
               {4}
