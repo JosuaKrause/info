@@ -168,7 +168,7 @@ def create_media(pref, types, docs, dry_run):
             authors = doc['authors'].replace("Josua Krause", "<span style=\"text-decoration: underline;\">Josua Krause</span>")
             awards = [ u"""<img src="img/badge.png" style="height: 1em;" alt="{0}" title="{0}">""".format(award) for award in doc['awards'] ] if chk(doc, 'awards') else []
             body = u"""
-            <h4 class="media-heading"><a href="#{0}">{1}</a><br/>
+            <h4 class="media-heading">{1} <a href="#{0}" class="anchor" aria-hidden="true"><i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i></a><br/>
             <small>{2}</small></h4>
             <em>{3} &mdash; {4}</em>{5}{6}
             """.format(

@@ -19,7 +19,7 @@ find . -not -path '*.git/*' -not -path '*'"${OUTPUT}/"'*' -not -path '*mvn-repo/
 rsync -av . "${OUTPUT}" --files-from "${LIB_COPY}"
 ./create_page.py --documents content.json --template index.tmpl --out "${OUTPUT}/index.html" --prefix "${OUTPUT}"
 PREV_DIR=`pwd`
-pushd "${OUTPUT}" && find . -not -path '*jk-js/*' -not -path '*jk-js' | "${PREV_DIR}/create_sitemap.py" "sitemap.xml" && popd
+pushd "${OUTPUT}" && find . -not -path '*lib/*' -not -path '*lib' | "${PREV_DIR}/create_sitemap.py" "sitemap.xml" && popd
 
 if [ -z $PUBLISH ]; then
   python -m SimpleHTTPServer || true
