@@ -138,6 +138,18 @@ scientists improving predictive models for detecting the onset of diabetes from 
     },
     {
       "type": "poster",
+      "title": "Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models",
+      "short-title": "Prospector",
+      "authors": "Josua Krause, Adam Perer, Kenney Ng",
+      "conference": "Interactive Data Exploration and Analytics (IDEA) 2016",
+      "short-conference": "IDEA",
+      "published": true,
+      "date": "Aug 14, 2016",
+      "pdf": "material/idea2016-prospector.pdf",
+      "href": "prospector.html"
+    },
+    {
+      "type": "poster",
       "title": "Using Visual Analytics to Interpret Predictive Machine Learning Models",
       "authors": "Josua Krause, Adam Perer, Enrico Bertini",
       "conference": "2016 ICML Workshop on Human Interpretability in Machine Learning",
