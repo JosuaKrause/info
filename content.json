@@ -193,7 +193,7 @@ solutions and provide two examples of where such techniques have been successful
     },
     {
       "type": "paper",
-      "title": "SeekAView: An Intelligent Dimensionality Reduction Strategy for Navigating High-Dimensional Data Spaces",
+      "title": "SeekAView: An Intelligent Dimensionality Reduction Strategy for Navigating HD Data Spaces",
       "logo": "img/seekaviewlogo.png",
       "short-title": "SeekAView",
       "demo": "http://nyuvis.github.io/SeekAView/",
