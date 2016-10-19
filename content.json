@@ -192,6 +192,30 @@ solutions and provide two examples of where such techniques have been successful
 }"
     },
     {
+      "type": "paper",
+      "title": "SeekAView: An Intelligent Dimensionality Reduction Strategy for Navigating High-Dimensional Data Spaces",
+      "logo": "img/seekaviewlogo.png",
+      "short-title": "SeekAView",
+      "demo": "http://nyuvis.github.io/SeekAView/",
+      "authors": "Josua Krause, Aritra Dasgupta, Jean-Daniel Fekete, Enrico Bertini",
+      "conference": "IEEE Symposium on Large Data Analysis and Visualization (LDAV)",
+      "short-conference": "LDAV",
+      "date": "October 23, 2016",
+      "published": true,
+      "pdf": "material/ldav2016-seekaview.pdf",
+      "href": "seekaview.html",
+      "teaser": "img/seekaview_teaser.png",
+      "teaser_desc": "SeekAView user interface in action.",
+      "autopage": true,
+      "bibtex": "@article{seekaview,
+  author={Krause, Josua and Dasgupta, Aritra and Fekete, Jean-Daniel and Bertini, Enrico},
+  journal={Large Data Analysis and Visualization (LDAV), {IEEE} Symposium on},
+  title={{SeekAView:} An Intelligent Dimensionality Reduction Strategy for Navigating High-Dimensional Data Spaces},
+  year={2016},
+  month={Oct}
+}"
+    },
+    {
       "type": "project",
       "title": "Bubble Sets",
       "github": "https://github.com/JosuaKrause/Bubble-Sets",
