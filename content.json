@@ -198,9 +198,9 @@ solutions and provide two examples of where such techniques have been successful
       "short-title": "SeekAView",
       "demo": "http://nyuvis.github.io/SeekAView/",
       "authors": "Josua Krause, Aritra Dasgupta, Jean-Daniel Fekete, Enrico Bertini",
-      "conference": "IEEE Symposium on Large Data Analysis and Visualization (LDAV)",
+      "conference": "IEEE Symposium on Large Data Analysis and Visualization (LDAV) - Short Paper",
       "short-conference": "LDAV",
-      "date": "October 23, 2016",
+      "date": "Oct 23, 2016",
       "published": true,
       "pdf": "material/ldav2016-seekaview.pdf",
       "href": "seekaview.html",
@@ -214,6 +214,26 @@ solutions and provide two examples of where such techniques have been successful
   year={2016},
   month={Oct}
 }"
+    },
+    {
+      "type": "project",
+      "title": "Quick Server",
+      "github": "https://github.com/JosuaKrause/quick_server",
+      "page": "https://pypi.python.org/pypi/quick-server",
+      "authors": "Josua Krause",
+      "conference": "PyPI",
+      "date": "Sep 15, 2016",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "Quick Cache",
+      "github": "https://github.com/JosuaKrause/quick_cache",
+      "page": "https://pypi.python.org/pypi/quick-cache",
+      "authors": "Josua Krause",
+      "conference": "PyPI",
+      "date": "Sep 15, 2016",
+      "published": true
     },
     {
       "type": "project",
