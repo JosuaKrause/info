@@ -220,13 +220,14 @@ solutions and provide two examples of where such techniques have been successful
       "title": "Explanatory Visual Analytics for Enhancing Human Interpretability of Machine Learning Models",
       "short-title": "Visual Analytics Explanations for Machine Learning",
       "authors": "Josua Krause, Aritra Dasgupta, Enrico Bertini",
-      "conference": "Visualization in Data Science (VDS at IEEE VIS 2016) – Talk",
+      "conference": "Visualization in Data Science (VDS at IEEE VIS 2016)",
       "short-conference": "VDS",
       "date": "Oct 24, 2016",
       "published": true,
       "href": "explain.html",
       "autopage": true,
-      "external": "http://www.visualdatascience.org/2016/program/"
+      "external": "http://www.visualdatascience.org/2016/program/",
+      "slides": "material/vds2016.pdf"
     },
     {
       "type": "project",
