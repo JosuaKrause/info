@@ -216,6 +216,19 @@ solutions and provide two examples of where such techniques have been successful
 }"
     },
     {
+      "type": "poster",
+      "title": "Explanatory Visual Analytics for Enhancing Human Interpretability of Machine Learning Models",
+      "short-title": "Visual Analytics Explanations for Machine Learning",
+      "authors": "Josua Krause, Aritra Dasgupta, Enrico Bertini",
+      "conference": "Visualization in Data Science (VDS at IEEE VIS 2016) – Talk",
+      "short-conference": "VDS",
+      "date": "Oct 24, 2016",
+      "published": true,
+      "href": "explain.html",
+      "autopage": true,
+      "href": "http://www.visualdatascience.org/2016/program/",
+    },
+    {
       "type": "project",
       "title": "Quick Server",
       "github": "https://github.com/JosuaKrause/quick_server",
