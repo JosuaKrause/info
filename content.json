@@ -227,7 +227,16 @@ solutions and provide two examples of where such techniques have been successful
       "href": "explain.html",
       "autopage": true,
       "external": "http://www.visualdatascience.org/2016/program/",
-      "slides": "material/vds2016.pdf"
+      "slides": "material/vds2016.pdf",
+      "abstract": "The recent successes of machine learning (ML) have exposed the
+      need for making models more interpretable and accessible to different stakeholders
+      in the data science ecosystem, like domain experts, data analysts, and even
+      the general public. The assumption here is that higher interpretability will
+      lead to more confident human decision-making based on model outcomes. In this
+      talk, we report on two main contributions. First, we describe the role of
+      model explanations by providing examples of well-known ML models. Second,
+      we discuss how explanatory visual analytics systems can be instantiated for
+      enhancing model interpretability by referring to our past and current research."
     },
     {
       "type": "project",
