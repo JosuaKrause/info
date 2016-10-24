@@ -226,7 +226,7 @@ solutions and provide two examples of where such techniques have been successful
       "published": true,
       "href": "explain.html",
       "autopage": true,
-      "href": "http://www.visualdatascience.org/2016/program/",
+      "external": "http://www.visualdatascience.org/2016/program/",
     },
     {
       "type": "project",
