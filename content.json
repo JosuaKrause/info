@@ -198,7 +198,7 @@ solutions and provide two examples of where such techniques have been successful
       "short-title": "SeekAView",
       "demo": "http://nyuvis.github.io/SeekAView/",
       "authors": "Josua Krause, Aritra Dasgupta, Jean-Daniel Fekete, Enrico Bertini",
-      "conference": "IEEE Symposium on Large Data Analysis and Visualization (LDAV) - Short Paper",
+      "conference": "IEEE Symposium on Large Data Analysis and Visualization (LDAV)",
       "short-conference": "LDAV",
       "date": "Oct 23, 2016",
       "published": true,
