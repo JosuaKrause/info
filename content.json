@@ -40,7 +40,7 @@
       "authors": "Paolo Tamagnini, Josua Krause, Aritra Dasgupta, Enrico Bertini",
       "conference": "Workshop on Human-In-the-Loop Data Analytics (HILDA 2017)",
       "short-conference": "HILDA",
-      "date": "May 2017",
+      "date": "May 14, 2017",
       "published": true,
       "pdf": "material/rivelo.pdf",
       "bibtex": "@article{rivelo,
@@ -50,7 +50,7 @@
   year={2017},
   month={May},
   doi={10.1145/3077257.3077260},
-  isbn={978-1-4503-5029-7/17/05}
+  isbn={978-1-4503-5029-7}
 }"
     },
     {
