@@ -33,6 +33,27 @@
   ],
   "documents": [
     {
+      "type": "poster",
+      "title": "Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations",
+      "logo": "img/nologo.png",
+      "short-title": "Rivelo",
+      "authors": "Paolo Tamagnini, Josua Krause, Aritra Dasgupta, Enrico Bertini",
+      "conference": "Workshop on Human-In-the-Loop Data Analytics (HILDA 2017)",
+      "short-conference": "HILDA",
+      "date": "May 2017",
+      "published": true,
+      "pdf": "material/rivelo.pdf",
+      "bibtex": "@article{rivelo,
+  author={Tamagnini, Paolo and Krause, Josua and Dasgupta, Aritra and Bertini, Enrico},
+  journal={Workshop on Human-In-the-Loop Data Analytics},
+  title={Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations},
+  year={2017},
+  month={May},
+  doi={10.1145/3077257.3077260},
+  isbn={978-1-4503-5029-7/17/05}
+}"
+    },
+    {
       "type": "paper",
       "title": "INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data",
       "logo": "img/infuselogo.png",
@@ -470,6 +491,15 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
       "date": "Feb 2016",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Information Visualization",
+      "authors": "Teaching Assistant",
+      "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
+      "date": "Sep 2016",
       "published": true
     },
     {
