@@ -1,1 +1,3 @@
+*.tmpl text
+
 *.tmpl linguist-language=HTML
