@@ -70,7 +70,7 @@ def chk(doc, field):
     return field in doc and doc[field]
 
 def create_autopage(content, doc, ofile):
-    abstract = u"<h4>Abstract</h4><p>{0}</p>".format(doc['abstract']) if chk(doc, 'abstract') else ""
+    abstract = u"<h4>Abstract</h4><p style=\"text-align: justify;\">{0}</p>".format(doc['abstract']) if chk(doc, 'abstract') else ""
     bibtex = u"<h4>Bibtex</h4><pre>{0}</pre>".format(doc['bibtex'].strip()) if chk(doc, 'bibtex') else ""
     image = u"""
     <div class="row">
@@ -83,7 +83,7 @@ def create_autopage(content, doc, ofile):
         m = re.match("^https?://vimeo.com/(\d+)$", doc['video'])
         if m is not None:
             video = u"""
-            <p style="text-align: center;margin: 0 auto;">
+            <p style="text-align: center; margin: 0 auto;">
               <iframe src="https://player.vimeo.com/video/{0}" width="640" height="389" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
               <br><a href="https://vimeo.com/{0}">Watch on Vimeo</a>
             </p>
