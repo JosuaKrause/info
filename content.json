@@ -181,7 +181,7 @@ scientists improving predictive models for detecting the onset of diabetes from 
 transparency in machine learning models for experts to understand and trust their decisions.
 To this end, we propose a visual analytics workflow to help data scientists and domain
 experts explore, diagnose, and understand the decisions made by a binary classifier.
-The approach leverages \"instance-level explanations\", measures of local feature relevance
+The approach leverages &ldquo;instance-level explanations&rdquo;, measures of local feature relevance
 that explain single instances, and uses them to build a set of visual representations
 that guide the users in their investigation. The workflow is based on three main visual
 representations and steps: one based on aggregate statistics to see how data distributes
