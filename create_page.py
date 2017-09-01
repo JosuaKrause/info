@@ -278,7 +278,7 @@ Hi, I'm Josua (Joschi) Krause, PhD Candidate in Computer Science at NYU Tandon S
         """.strip(),
         description_long=u"""
 Hi, I'm a PhD Candidate in Computer Science at <a href="http://engineering.nyu.edu/">NYU Tandon School of Engineering</a>, Brooklyn, NY.
-My advisor is <a href="http://enrico.bertini.me/">Prof. Dr. Enrico Bertini</a>.
+My advisor is <a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
 I'm interested in the intersection of Visual Analytics and Machine Learning especially in the field of Health Care Analytics.
 You can find my <a href="material/cv.pdf">CV here</a>.
         """.strip(),
