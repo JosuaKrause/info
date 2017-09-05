@@ -548,6 +548,15 @@ of COQUITO via two case studies, involving medical and social media researchers.
     },
     {
       "type": "teaching",
+      "title": "Foundations of Data Science",
+      "authors": "Teaching Assistant",
+      "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
+      "date": "Sep 2017",
+      "published": true
+    },
+    {
+      "type": "teaching",
       "title": "D3 Tutorial on Electronic Health Records — Introduction to Visual Analytics in Healthcare",
       "short-title": "D3 Tutorial on Electronic Health Records",
       "github": "https://github.com/JosuaKrause/d3-tutorial",
