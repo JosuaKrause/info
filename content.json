@@ -565,6 +565,17 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "short-conference": "AMIA",
       "date": "Nov 15, 2015",
       "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "React Tutorial for Visualizations",
+      "short-title": "React Tutorial for Visualizations",
+      "github": "https://github.com/JosuaKrause/react_vis_tutorial/",
+      "authors": "Tutorial",
+      "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
+      "date": "Oct 16, 2017",
+      "published": false
     }
   ]
 }
