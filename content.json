@@ -175,6 +175,7 @@ scientists improving predictive models for detecting the onset of diabetes from 
       "github": "https://github.com/nyuvis/explanation_explorer",
       "video": "https://vimeo.com/235631465",
       "href": "explainer.html",
+      "slides": "material/explainer.key",
       "autopage": true,
       "keywords": ["machine learning", "visualization", "predictive modeling", "instance level explanations"],
       "teaser": "img/explainer_teaser.png",
