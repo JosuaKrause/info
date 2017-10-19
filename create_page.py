@@ -84,9 +84,8 @@ def create_autopage(content, doc, ofile):
         if m is not None:
             video = u"""
             <p style="text-align: center; margin: 0 auto;">
-              Video:<br>
               <iframe src="https://player.vimeo.com/video/{0}" width="640" height="389" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-              <br><a href="https://vimeo.com/{0}">Watch on Vimeo</a>
+              <br><a href="https://vimeo.com/{0}">Watch video on Vimeo</a>
             </p>
             """.format(m.group(1))
         else:
@@ -98,7 +97,6 @@ def create_autopage(content, doc, ofile):
         if m is not None:
             talk = u"""
             <p style="text-align: center; margin: 0 auto;">
-              Talk:<br>
               <iframe src="https://player.vimeo.com/video/{0}" width="640" height="389" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
               <br><a href="https://vimeo.com/{0}">Watch talk on Vimeo</a>
             </p>
