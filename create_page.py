@@ -84,6 +84,7 @@ def create_autopage(content, doc, ofile):
         if m is not None:
             video = u"""
             <p style="text-align: center; margin: 0 auto;">
+              Video:<br>
               <iframe src="https://player.vimeo.com/video/{0}" width="640" height="389" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
               <br><a href="https://vimeo.com/{0}">Watch on Vimeo</a>
             </p>
@@ -92,6 +93,20 @@ def create_autopage(content, doc, ofile):
             video = ""
     else:
         video = ""
+    if chk(doc, 'talk'):
+        m = re.match("^https?://vimeo.com/(\d+)$", doc['talk'])
+        if m is not None:
+            talk = u"""
+            <p style="text-align: center; margin: 0 auto;">
+              Talk:<br>
+              <iframe src="https://player.vimeo.com/video/{0}" width="640" height="389" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              <br><a href="https://vimeo.com/{0}">Watch talk on Vimeo</a>
+            </p>
+            """.format(m.group(1))
+        else:
+            talk = ""
+    else:
+        talk = ""
     links = []
     add_misc_links(links, doc, video)
     keywords = []
@@ -107,6 +122,7 @@ def create_autopage(content, doc, ofile):
         bibtex=bibtex,
         logo=doc['logo'] if chk(doc, 'logo') else u"img/nologo.png",
         video=video,
+        talk=talk,
         tracking=ga_tracking,
         description=u"""{0} by {1} appears in {2}""".format(doc['title'], doc['authors'], doc['conference']),
     )
@@ -121,6 +137,8 @@ def add_misc_links(appendix, doc, no_video=False):
         appendix.append(u"""<a href="{0}">[pdf]</a>""".format(doc['pdf']))
     if chk(doc, 'video') and not no_video:
         appendix.append(u"""<a href="{0}">[video]</a>""".format(doc['video']))
+    if chk(doc, 'talk') and not no_video:
+        appendix.append(u"""<a href="{0}">[talk]</a>""".format(doc['talk']))
     if chk(doc, 'github'):
         appendix.append(u"""<a href="{0}">[github]</a>""".format(doc['github']))
     if chk(doc, 'slides'):
