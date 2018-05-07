@@ -413,6 +413,17 @@ solutions and provide two examples of where such techniques have been successful
       "published": true
     },
     {
+      "type": "thesis",
+      "title": "Using Visual Analytics to Explain Black-Box Machine Learning",
+      "short-title": "Using VA to Explain Black-Box ML",
+      "authors": "Josua Krause",
+      "conference": "PhD Thesis, NYU Tandon School of Engineering",
+      "short-conference": "NYU Tandon",
+      "date": "Mar 15, 2018",
+      "pdf": "material/phd_thesis.pdf",
+      "published": true
+    },
+    {
       "type": "poster",
       "title": "INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data",
       "short-title": "INFUSE",
@@ -579,7 +590,7 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
       "date": "Oct 16, 2017",
-      "published": false
+      "published": true
     }
   ]
 }
