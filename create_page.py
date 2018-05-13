@@ -180,7 +180,7 @@ def create_media(pref, types, docs, dry_run):
                         os.makedirs(os.path.dirname(bibtex_filename))
                     with io.open(bibtex_filename, 'w', encoding='utf-8') as f:
                         print(bibtex, file=f)
-                appendix.append(u"""<a href="{0}">[bibtex]</a>""".format(bibtex_link))
+                appendix.append(u"""<a href="{0}" rel="nofollow">[bibtex]</a>""".format(bibtex_link))
             authors = doc['authors'].replace("Josua Krause", "<span style=\"text-decoration: underline;\">Josua Krause</span>")
             awards = [ u"""<img src="img/badge.png" style="height: 1em;" alt="{0}" title="{0}">""".format(award) for award in doc['awards'] ] if chk(doc, 'awards') else []
             body = u"""
