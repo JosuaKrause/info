@@ -294,7 +294,7 @@ Hi, I'm Josua (Joschi) Krause, PhD Candidate in Computer Science at NYU Tandon S
         """.strip(),
         description_long=u"""
 Hi, I'm interested in the intersection of Visual Analytics and Machine Learning especially in the field of Finance and Health Care Analytics.
-I earned my PhD in Computer Science at <a href="http://engineering.nyu.edu/">NYU Tandon School of Engineering</a>, Brooklyn, NY
+I received my PhD in Computer Science from <a href="http://engineering.nyu.edu/">NYU Tandon School of Engineering</a>, Brooklyn, NY
 under <a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
 You can find my <a href="material/cv.pdf">CV here</a>.
         """.strip(),
