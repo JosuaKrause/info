@@ -293,9 +293,9 @@ def apply_template(tmpl, docs, pref, dry_run):
 Hi, I'm Josua (Joschi) Krause, PhD Candidate in Computer Science at NYU Tandon School of Engineering. I'm interested in the intersection of Visual Analytics and Machine Learning especially in the field of Health Care Analytics.
         """.strip(),
         description_long=u"""
-Hi, I'm a PhD Candidate in Computer Science at <a href="http://engineering.nyu.edu/">NYU Tandon School of Engineering</a>, Brooklyn, NY.
-My advisor is <a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
-I'm interested in the intersection of Visual Analytics and Machine Learning especially in the field of Health Care Analytics.
+Hi, I'm interested in the intersection of Visual Analytics and Machine Learning especially in the field of Finance and Health Care Analytics.
+I earned my PhD in Computer Science at <a href="http://engineering.nyu.edu/">NYU Tandon School of Engineering</a>, Brooklyn, NY
+under <a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
 You can find my <a href="material/cv.pdf">CV here</a>.
         """.strip(),
         content=media,
