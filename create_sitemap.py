@@ -11,6 +11,8 @@ import pytz
 from datetime import datetime
 
 _tz = pytz.timezone('US/Eastern')
+
+
 def create_sitemap(out, lines):
     out.write(u"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset
@@ -43,15 +45,18 @@ def create_sitemap(out, lines):
         if line.endswith(".bib"):
             continue
         filename = line if line else "."
-        if os.path.isdir(filename) and not os.path.exists(os.path.join(filename, 'index.html')):
+        if os.path.isdir(filename) and not os.path.exists(
+                os.path.join(filename, 'index.html')):
             continue
         print("processing: {0}".format(line))
-        mtime = datetime.fromtimestamp(os.path.getmtime(filename), tz=_tz).isoformat()
+        mtime = datetime.fromtimestamp(
+            os.path.getmtime(filename), tz=_tz).isoformat()
         out.write(tmpl.format(base=base, path=line, mod=mtime))
         out.flush()
     out.write(u"""</urlset>
 """)
     out.flush()
+
 
 def usage():
     print("""
@@ -60,6 +65,7 @@ usage: {0} [-h] <file>
 <file>: specifies the output file
 """.strip().format(sys.argv[0]), file=sys.stderr)
     exit(1)
+
 
 if __name__ == '__main__':
     args = sys.argv[:]
