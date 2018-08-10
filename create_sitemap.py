@@ -44,6 +44,8 @@ def create_sitemap(out, lines):
             continue
         if line.endswith(".bib"):
             continue
+        if line.endswith(".key"):
+            continue
         filename = line if line else "."
         if os.path.isdir(filename) and not os.path.exists(
                 os.path.join(filename, 'index.html')):
