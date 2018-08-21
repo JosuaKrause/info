@@ -250,7 +250,7 @@ predictions, which provide necessary navigation to explain machine
 learning models.",
       "bibtex": "@article{idea2018krause,
   author={Krause, Josua and Perer, Adam and Bertini, Enrico},
-  journal={Interactive Data Exploration and Analytics (IDEA 2018)},
+  journal={In Proceedings of KDD 2018 Workshop on Interactive Data Exploration and Analytics (IDEA'18)},
   title={A User Study on the Effect of Aggregating Explanations for Interpreting Machine Learning Models},
   year={2018},
   month={Aug}
