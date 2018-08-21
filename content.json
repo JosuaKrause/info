@@ -459,7 +459,7 @@ solutions and provide two examples of where such techniques have been successful
       "short-title": "Using VA to Explain Black-Box ML",
       "authors": "Josua Krause",
       "conference": "PhD Thesis, NYU Tandon School of Engineering",
-      "short-conference": "NYU Tandon",
+      "short-conference": "NYU",
       "date": "Mar 15, 2018",
       "pdf": "material/phd_thesis.pdf",
       "published": true
@@ -631,6 +631,16 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
       "date": "Oct 16, 2017",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "VIS for Practice Workshop – Visualization for the Web: Front- & Backends",
+      "short-title": "VIS for Practice Workshop",
+      "authors": "Workshop",
+      "conference": "Universität Konstanz",
+      "short-conference": "Uni KN",
+      "date": "Aug 7, 2018",
       "published": true
     }
   ]
