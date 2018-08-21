@@ -253,7 +253,9 @@ learning models.",
   journal={In Proceedings of KDD 2018 Workshop on Interactive Data Exploration and Analytics (IDEA'18)},
   title={A User Study on the Effect of Aggregating Explanations for Interpreting Machine Learning Models},
   year={2018},
-  month={Aug}
+  month={Aug},
+  publisher = {ACM},
+  address = {New York, NY, USA}
 }"
     },
     {
