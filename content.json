@@ -234,6 +234,20 @@ can generate useful hypotheses on how a model can be improved.",
       "demo": "http://nyuvis-web.poly.edu/projects/explainer/",
       "external": "http://poloclub.gatech.edu/idea2018/",
       "autopage": true,
+      "abstract": "Recently, there is growing consensus of the critical need to have better
+techniques to explain machine learning models. However, many
+of the popular techniques are instance-level explanations, which explain
+the model from the point of view of a single data point. While
+local explanations may be misleading, they are also not human-scale,
+as it is impossible for users to read explanations for how the model
+behaves on all of their data points. Our work-in-progress paper explores
+the effectiveness of providing instance-level explanations in
+aggregate, by demonstrating that such aggregated explanations have
+a significant impact on users’ ability to detect biases in data. This is
+achieved by comparing meaningful subsets, such as differences between
+ground truth labels, predicted labels, and correct and incorrect
+predictions, which provide necessary navigation to explain machine
+learning models.",
       "bibtex": "@article{idea2018krause,
   author={Krause, Josua and Perer, Adam and Bertini, Enrico},
   journal={Interactive Data Exploration and Analytics (IDEA 2018)},
