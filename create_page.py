@@ -366,7 +366,7 @@ Finance and Health Care Analytics. I received my PhD in Computer Science from
 Brooklyn, NY under
 <a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
 Currently I'm working at <a href="https://www.accern.com/">Accern</a>
-as Senior Data Scientist.
+as VP of Data Science.
 You can find my <a href="material/cv.pdf">CV here</a>.
         """.strip(),
         content=media,
