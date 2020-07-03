@@ -27,13 +27,9 @@ ld_json_knowledge = u"""{
     "@type": "http://schema.org/EducationalOrganization",
     "http://schema.org/name": "NYU"
   },
-  "http://schema.org/birthDate": {
-    "@type": "http://schema.org/Date",
-    "@value": "January 18, 1988"
-  },
+  "http://schema.org/birthDate": "January 18, 1988",
   "http://schema.org/familyName": "Krause",
   "http://schema.org/givenName": "Josua",
-  "http://schema.org/homepage": "https://josuakrause.github.io/info/",
   "http://schema.org/image": {
     "@id": "https://josuakrause.github.io/info/img/photo.jpg"
   },
@@ -76,10 +72,7 @@ ld_json_knowledge = u"""{
     {
       "@id": "https://theorg.com/org/accern/team/josua-krause"
     }
-  ],
-  "http://schema.org/url": {
-    "@id": "https://josuakrause.github.io/info/"
-  }
+  ]
 }"""
 
 ga_tracking = u"""
