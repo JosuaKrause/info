@@ -16,40 +16,70 @@ from dateutil.parser import parse as tparse
 from datetime import datetime, timedelta, tzinfo
 
 ld_json_knowledge = u"""{
-"@context": "http://schema.org/",
-"@id": "https://josuakrause.github.io/info/",
-"@type": "Person",
-"homepage": "https://josuakrause.github.io/info/",
-"name": "Josua Krause",
-"familyName": "Krause",
-"givenName": "Josua",
-"jobTitle": "Vice President of Data Science",
-"additionalName": "Joschi",
-"affiliation": {
-  "@type": "Organization",
-  "name": "Accern Corp."
-},
-"alumniOf": {
-  "@type": "EducationalOrganization",
-  "name": "NYU"
-},
-"birthDate": "January 18, 1988",
-"url": "https://josuakrause.github.io/info/",
-"image": "https://josuakrause.github.io/info/img/photo.jpg",
-"sameAs" : [
-    "https://www.linkedin.com/in/josuakrause/",
-    "https://www.linkedin.com/in/josua-krause-48b3b091/",
-    "https://github.com/JosuaKrause/",
-    "https://www.youtube.com/c/JosuaKrause/",
-    "http://archive.engineering.nyu.edu/people/josua-krause",
-    "https://vimeo.com/user35425102",
-    "https://scholar.google.com/citations?user=hFjNgPEAAAAJ",
-    "https://dblp.uni-trier.de/pers/k/Krause:Josua.html",
-    "https://dblp.org/pers/k/Krause:Josua.html",
-    "https://dl.acm.org/profile/99659020297",
-    "https://ieeexplore.ieee.org/author/37085594931",
-    "https://theorg.com/org/accern/team/josua-krause"
-]
+  "@id": "https://josuakrause.github.io/info/",
+  "@type": "http://schema.org/Person",
+  "http://schema.org/additionalName": "Joschi",
+  "http://schema.org/affiliation": {
+    "@type": "http://schema.org/Organization",
+    "http://schema.org/name": "Accern Corp."
+  },
+  "http://schema.org/alumniOf": {
+    "@type": "http://schema.org/EducationalOrganization",
+    "http://schema.org/name": "NYU"
+  },
+  "http://schema.org/birthDate": {
+    "@type": "http://schema.org/Date",
+    "@value": "January 18, 1988"
+  },
+  "http://schema.org/familyName": "Krause",
+  "http://schema.org/givenName": "Josua",
+  "http://schema.org/homepage": "https://josuakrause.github.io/info/",
+  "http://schema.org/image": {
+    "@id": "https://josuakrause.github.io/info/img/photo.jpg"
+  },
+  "http://schema.org/jobTitle": "Vice President of Data Science",
+  "http://schema.org/name": "Josua Krause",
+  "http://schema.org/sameAs": [
+    {
+      "@id": "https://www.linkedin.com/in/josuakrause/"
+    },
+    {
+      "@id": "https://www.linkedin.com/in/josua-krause-48b3b091/"
+    },
+    {
+      "@id": "https://github.com/JosuaKrause/"
+    },
+    {
+      "@id": "https://www.youtube.com/c/JosuaKrause/"
+    },
+    {
+      "@id": "http://archive.engineering.nyu.edu/people/josua-krause"
+    },
+    {
+      "@id": "https://vimeo.com/user35425102"
+    },
+    {
+      "@id": "https://scholar.google.com/citations?user=hFjNgPEAAAAJ"
+    },
+    {
+      "@id": "https://dblp.uni-trier.de/pers/k/Krause:Josua.html"
+    },
+    {
+      "@id": "https://dblp.org/pers/k/Krause:Josua.html"
+    },
+    {
+      "@id": "https://dl.acm.org/profile/99659020297"
+    },
+    {
+      "@id": "https://ieeexplore.ieee.org/author/37085594931"
+    },
+    {
+      "@id": "https://theorg.com/org/accern/team/josua-krause"
+    }
+  ],
+  "http://schema.org/url": {
+    "@id": "https://josuakrause.github.io/info/"
+  }
 }"""
 
 ga_tracking = u"""
