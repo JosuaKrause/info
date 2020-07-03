@@ -31,45 +31,58 @@ ld_json_knowledge = u"""{
   "http://schema.org/familyName": "Krause",
   "http://schema.org/givenName": "Josua",
   "http://schema.org/image": {
+    "@type": "http://schema.org/URL",
     "@id": "https://josuakrause.github.io/info/img/photo.jpg"
   },
   "http://schema.org/jobTitle": "Vice President of Data Science",
   "http://schema.org/name": "Josua Krause",
   "http://schema.org/sameAs": [
     {
+      "@type": "http://schema.org/URL",
       "@id": "https://www.linkedin.com/in/josuakrause/"
     },
     {
+      "@type": "http://schema.org/URL",
       "@id": "https://www.linkedin.com/in/josua-krause-48b3b091/"
     },
     {
+      "@type": "http://schema.org/URL",
       "@id": "https://github.com/JosuaKrause/"
     },
     {
+      "@type": "http://schema.org/URL",
       "@id": "https://www.youtube.com/c/JosuaKrause/"
     },
     {
+      "@type": "http://schema.org/URL",
       "@id": "http://archive.engineering.nyu.edu/people/josua-krause"
     },
     {
+      "@type": "http://schema.org/URL",
       "@id": "https://vimeo.com/user35425102"
     },
     {
+      "@type": "http://schema.org/URL",
       "@id": "https://scholar.google.com/citations?user=hFjNgPEAAAAJ"
     },
     {
+      "@type": "http://schema.org/URL",
       "@id": "https://dblp.uni-trier.de/pers/k/Krause:Josua.html"
     },
     {
+      "@type": "http://schema.org/URL",
       "@id": "https://dblp.org/pers/k/Krause:Josua.html"
     },
     {
+      "@type": "http://schema.org/URL",
       "@id": "https://dl.acm.org/profile/99659020297"
     },
     {
+      "@type": "http://schema.org/URL",
       "@id": "https://ieeexplore.ieee.org/author/37085594931"
     },
     {
+      "@type": "http://schema.org/URL",
       "@id": "https://theorg.com/org/accern/team/josua-krause"
     }
   ]
