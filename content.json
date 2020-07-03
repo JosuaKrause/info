@@ -1,0 +1,647 @@
+{
+  "types": [
+    {
+      "type": "paper",
+      "name": "Publications",
+      "color": "black"
+    },
+    {
+      "type": "poster",
+      "name": "Posters / Workshops",
+      "color": "black"
+    },
+    {
+      "type": "project",
+      "name": "Notable Projects",
+      "color": "black"
+    },
+    {
+      "type": "thesis",
+      "name": "Theses",
+      "color": "black"
+    },
+    {
+      "type": "teaching",
+      "name": "Teaching",
+      "color": "black"
+    },
+    {
+      "type": "work",
+      "name": "Employments",
+      "color": "black"
+    }
+  ],
+  "documents": [
+    {
+      "type": "poster",
+      "title": "Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations",
+      "logo": "img/nologo.png",
+      "short-title": "Rivelo",
+      "authors": "Paolo Tamagnini, Josua Krause, Aritra Dasgupta, Enrico Bertini",
+      "conference": "Workshop on Human-In-the-Loop Data Analytics (HILDA 2017)",
+      "short-conference": "HILDA",
+      "date": "May 14, 2017",
+      "published": true,
+      "pdf": "material/rivelo.pdf",
+      "demo": "http://nyuvis-web.poly.edu/projects/rivelo/demo.html",
+      "external": "http://nyuvis-web.poly.edu/projects/rivelo/",
+      "github": "https://github.com/nyuvis/rivelo",
+      "bibtex": "@article{rivelo,
+  author={Tamagnini, Paolo and Krause, Josua and Dasgupta, Aritra and Bertini, Enrico},
+  journal={Workshop on Human-In-the-Loop Data Analytics},
+  title={Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations},
+  year={2017},
+  month={May},
+  doi={10.1145/3077257.3077260},
+  isbn={978-1-4503-5029-7}
+}"
+    },
+    {
+      "type": "paper",
+      "title": "INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data",
+      "logo": "img/infuselogo.png",
+      "short-title": "INFUSE",
+      "external": "http://nyuvis.github.io/infuse",
+      "slides": "material/infuse.key.zip",
+      "authors": "Josua Krause, Adam Perer, Enrico Bertini",
+      "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2014)",
+      "short-conference": "Vis",
+      "github": "https://github.com/nyuvis/infuse-java/",
+      "date": "Oct 2014",
+      "published": true,
+      "pdf": "material/vast2014-infuse.pdf",
+      "video": "http://vimeo.com/114366032",
+      "bibtex": "@article{infuse,
+  author={Krause, Josua and Perer, Adam and Bertini, Enrico},
+  journal={Visualization and Computer Graphics, {IEEE} Transactions on},
+  title={{INFUSE:} Interactive Feature Selection for Predictive Modeling of High Dimensional Data},
+  year={2014},
+  month={Dec},
+  volume={20},
+  number={12},
+  pages={1614--1623},
+  keywords={data analysis;data visualisation;pattern classification;INFUSE system;algorithmic output;classifiers;clinical researchers;cross-validation folds;electronic medical records;feature selection algorithms;high dimensional data modeling;interactive feature selection;patient outcomes;predicted outcomes;predictive modeling;predictive modeling techniques;user interpretation;visual analytics system;Algorithm design and analysis;Data models;Data visualization;Feature extraction;Prediction algorithms;Predictive models;Predictive modeling;classification;feature selection;high-dimensional data;visual analytics},
+  doi={10.1109/TVCG.2014.2346482},
+  ISSN={1077-2626}
+}"
+    },
+    {
+      "type": "paper",
+      "title": "Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots",
+      "authors": "Anshul Vikram Pandey, Josua Krause, Cristian Felix, Jeremy Boy, Enrico Bertini",
+      "conference": "ACM CHI 2016",
+      "short-conference": "CHI",
+      "logo": "img/scatterplot.png",
+      "published": true,
+      "date": "May 2016",
+      "external": "http://vgc.poly.edu/projects/similarityperception/",
+      "pdf": "material/chi2016-similarity.pdf",
+      "awards": [ "Honorable Mention" ],
+      "bibtex": "@inproceedings{Pandey:2016:TUH:2858036.2858155,
+  author = {Pandey, Anshul Vikram and Krause, Josua and Felix, Cristian and Boy, Jeremy and Bertini, Enrico},
+  title = {Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots},
+  booktitle = {Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems},
+  series = {CHI '16},
+  year = {2016},
+  isbn = {978-1-4503-3362-7},
+  location = {Santa Clara, California, USA},
+  pages = {3659--3669},
+  numpages = {11},
+  url = {http://doi.acm.org/10.1145/2858036.2858155},
+  doi = {10.1145/2858036.2858155},
+  acmid = {2858155},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+  keywords = {human perception modeling, information visualization, plot similarity, quality measures}
+}"
+    },
+    {
+      "type": "paper",
+      "title": "Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models",
+      "short-title": "Prospector",
+      "authors": "Josua Krause, Adam Perer, Kenney Ng",
+      "conference": "ACM CHI 2016",
+      "short-conference": "CHI",
+      "logo": "img/prospector.png",
+      "slides": "material/chi-prospector-05-12.key",
+      "published": true,
+      "date": "May 2016",
+      "pdf": "material/chi2016-prospector.pdf",
+      "video": "https://vimeo.com/166142733",
+      "href": "prospector.html",
+      "autopage": true,
+      "keywords": ["interactive machine learning", "partial dependence", "predictive modeling"],
+      "teaser": "img/prospector_teaser.png",
+      "teaser_desc": "Prospector user interface for localized inspection.",
+      "abstract": "Understanding predictive models, in terms of interpreting and identifying actionable
+insights, is a challenging task. Often the importance of a feature in a model is only a rough estimate
+condensed into one number. However, our research goes beyond these naïve estimates through the design
+and implementation of an interactive visual analytics system, Prospector. By providing interactive
+partial dependence diagnostics, data scientists can understand how features affect the prediction overall.
+In addition, our support for localized inspection allows data scientists to understand how and why
+specific datapoints are predicted as they are, as well as support for tweaking feature values and seeing
+how the prediction responds. Our system is then evaluated using a case study involving a team of data
+scientists improving predictive models for detecting the onset of diabetes from electronic medical records.",
+      "bibtex": "@inproceedings{Krause:2016:IPV:2858036.2858529,
+  author = {Krause, Josua and Perer, Adam and Ng, Kenney},
+  title = {Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models},
+  booktitle = {Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems},
+  series = {CHI '16},
+  year = {2016},
+  isbn = {978-1-4503-3362-7},
+  location = {Santa Clara, California, USA},
+  pages = {5686--5697},
+  numpages = {12},
+  url = {http://doi.acm.org/10.1145/2858036.2858529},
+  doi = {10.1145/2858036.2858529},
+  acmid = {2858529},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+  keywords = {interactive machine learning, partial dependence, predictive modeling}
+}"
+    },
+    {
+      "type": "paper",
+      "title": "A Workflow for Visual Diagnostics of Binary Classifiers using Instance-Level Explanations",
+      "short-title": "Explainer",
+      "authors": "Josua Krause, Aritra Dasgupta, Jordan Swartz, Yindalon Aphinyanaphongs, Enrico Bertini",
+      "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2017)",
+      "short-conference": "VAST",
+      "logo": "img/explainer.png",
+      "published": true,
+      "date": "Oct 2017",
+      "demo": "http://nyuvis-web.poly.edu/projects/explanation_explorer/",
+      "pdf": "https://arxiv.org/abs/1705.01968",
+      "github": "https://github.com/nyuvis/explanation_explorer",
+      "video": "https://vimeo.com/235631465",
+      "talk": "https://vimeo.com/238852188",
+      "href": "explainer.html",
+      "slides": "material/explainer.key",
+      "autopage": true,
+      "keywords": ["machine learning", "visualization", "predictive modeling", "instance level explanations"],
+      "teaser": "img/explainer_teaser.png",
+      "teaser_desc": "Inspecting common explanations derived from the input data.",
+      "abstract": "Human-in-the-loop data analysis applications necessitate greater
+transparency in machine learning models for experts to understand and trust their decisions.
+To this end, we propose a visual analytics workflow to help data scientists and domain
+experts explore, diagnose, and understand the decisions made by a binary classifier.
+The approach leverages &ldquo;instance-level explanations&rdquo;, measures of local feature relevance
+that explain single instances, and uses them to build a set of visual representations
+that guide the users in their investigation. The workflow is based on three main visual
+representations and steps: one based on aggregate statistics to see how data distributes
+across correct / incorrect decisions; one based on explanations to understand which
+features are used to make these decisions; and one based on raw data, to derive insights
+on potential root causes for the observed patterns. The workflow is derived from a
+long-term collaboration with a group of machine learning and healthcare professionals
+who used our method to make sense of machine learning models they developed. The case
+study from this collaboration demonstrates that the proposed workflow helps experts
+derive useful knowledge about the model and the phenomena it describes, thus experts
+can generate useful hypotheses on how a model can be improved.",
+      "bibtex": "@article{explainer17,
+  author={Krause, Josua and Dasgupta, Aritra and Swartz, Jordan and Aphinyanaphongs, Yindalon and Bertini, Enrico},
+  journal={Visual Analytics Science and Technology (VAST), {IEEE} Conference on},
+  title={A Workflow for Visual Diagnostics of Binary Classifiers using Instance-Level Explanations},
+  year={2017},
+  month={Oct}
+}"
+    },
+    {
+      "type": "poster",
+      "title": "Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models",
+      "short-title": "Prospector",
+      "authors": "Josua Krause, Adam Perer, Kenney Ng",
+      "conference": "Interactive Data Exploration and Analytics (IDEA) 2016",
+      "short-conference": "IDEA",
+      "published": true,
+      "date": "Aug 14, 2016",
+      "pdf": "material/idea2016-prospector.pdf",
+      "href": "prospector.html"
+    },
+    {
+      "type": "poster",
+      "title": "A User Study on the Effect of Aggregating Explanations for Interpreting Machine Learning Models",
+      "logo": "img/nologo.png",
+      "short-title": "Study on Aggregating Explanations for Interpreting Models",
+      "authors": "Josua Krause, Adam Perer, Enrico Bertini",
+      "conference": "Interactive Data Exploration and Analytics (IDEA 2018)",
+      "short-conference": "IDEA",
+      "date": "Aug 20, 2018",
+      "published": true,
+      "pdf": "material/idea2018.pdf",
+      "slides": "material/idea2018-slides.pdf",
+      "href": "explanation_study.html",
+      "teaser": "img/idea2018.png",
+      "demo": "http://nyuvis-web.poly.edu/projects/explainer/",
+      "external": "http://poloclub.gatech.edu/idea2018/",
+      "autopage": true,
+      "abstract": "Recently, there is growing consensus of the critical need to have better
+techniques to explain machine learning models. However, many
+of the popular techniques are instance-level explanations, which explain
+the model from the point of view of a single data point. While
+local explanations may be misleading, they are also not human-scale,
+as it is impossible for users to read explanations for how the model
+behaves on all of their data points. Our work-in-progress paper explores
+the effectiveness of providing instance-level explanations in
+aggregate, by demonstrating that such aggregated explanations have
+a significant impact on users’ ability to detect biases in data. This is
+achieved by comparing meaningful subsets, such as differences between
+ground truth labels, predicted labels, and correct and incorrect
+predictions, which provide necessary navigation to explain machine
+learning models.",
+      "bibtex": "@article{idea2018krause,
+  author={Krause, Josua and Perer, Adam and Bertini, Enrico},
+  journal={In Proceedings of KDD 2018 Workshop on Interactive Data Exploration and Analytics (IDEA'18)},
+  title={A User Study on the Effect of Aggregating Explanations for Interpreting Machine Learning Models},
+  year={2018},
+  month={Aug},
+  publisher = {ACM},
+  address = {New York, NY, USA}
+}"
+    },
+    {
+      "type": "poster",
+      "title": "Using Visual Analytics to Interpret Predictive Machine Learning Models",
+      "authors": "Josua Krause, Adam Perer, Enrico Bertini",
+      "conference": "2016 ICML Workshop on Human Interpretability in Machine Learning",
+      "short-conference": "WHI",
+      "published": true,
+      "poster": "material/WHI_2016_poster.pdf",
+      "slides": "material/WHI_2016_using_VA_for_ML_interpretation.pdf",
+      "date": "Jun 22, 2016",
+      "teaser": "img/WHI_2016.png",
+      "pdf": "http://arxiv.org/abs/1606.05685",
+      "href": "interpret.html",
+      "autopage": true,
+      "keywords": ["interpretability", "predictive models", "visual analytics", "visualization", "machine learning"],
+      "abstract": "It is commonly believed that increasing the interpretability of a machine
+learning model may decrease its predictive power. However, inspecting input-output relationships of
+those models using visual analytics, while treating them as black-box, can help to understand the
+reasoning behind outcomes without sacrificing predictive quality. We identify a space of possible
+solutions and provide two examples of where such techniques have been successfully used in practice."
+    },
+    {
+      "type": "paper",
+      "title": "Interactive Visualization for Real-Time Public Transport Journey Planning",
+      "logo": "img/busvislogo.png",
+      "short-title": "BusVis",
+      "external": "http://graphics.uni-konstanz.de/publikationen/2012/busvis",
+      "authors": "Josua Krause, Marc Spicker, Leonard Wörteler, Matthias Schäfer, Leishi Zhang, Hendrik Strobelt",
+      "conference": "SIGRAD 2012 — Short Paper",
+      "short-conference": "SIGRAD",
+      "slides": "material/talk_sigrad2012.pdf",
+      "github": "https://github.com/JosuaKrause/BusVis",
+      "date": "2012",
+      "pdf": "material/sigrad2012-busvispaper.pdf",
+      "published": true,
+      "bibtex": "@inproceedings{KSW+12a,
+  author = {Krause, Josua and Spicker, Marc and Wörteler, Leonard and Schäfer, Matthias and Zhang, Leishi and Strobelt, Hendrik},
+  booktitle = {Proceedings of SIGRAD 2012 -- Interactive Visual Analysis of Data},
+  title = {{Interactive Visualization for Real-time Public Transport Journey Planning}},
+  year = {2012},
+  pages = {95--98}
+}"
+    },
+    {
+      "type": "paper",
+      "title": "SeekAView: An Intelligent Dimensionality Reduction Strategy for Navigating HD Data Spaces",
+      "logo": "img/seekaviewlogo.png",
+      "short-title": "SeekAView",
+      "demo": "http://nyuvis.github.io/SeekAView/",
+      "authors": "Josua Krause, Aritra Dasgupta, Jean-Daniel Fekete, Enrico Bertini",
+      "conference": "IEEE Symposium on Large Data Analysis and Visualization (LDAV)",
+      "short-conference": "LDAV",
+      "date": "Oct 23, 2016",
+      "published": true,
+      "pdf": "material/ldav2016-seekaview.pdf",
+      "href": "seekaview.html",
+      "teaser": "img/seekaview_teaser.png",
+      "teaser_desc": "SeekAView user interface in action.",
+      "autopage": true,
+      "bibtex": "@article{seekaview,
+  author={Krause, Josua and Dasgupta, Aritra and Fekete, Jean-Daniel and Bertini, Enrico},
+  journal={Large Data Analysis and Visualization (LDAV), {IEEE} Symposium on},
+  title={{SeekAView:} An Intelligent Dimensionality Reduction Strategy for Navigating High-Dimensional Data Spaces},
+  year={2016},
+  month={Oct}
+}"
+    },
+    {
+      "type": "poster",
+      "title": "Explanatory Visual Analytics for Enhancing Human Interpretability of Machine Learning Models",
+      "short-title": "Visual Analytics Explanations for Machine Learning",
+      "authors": "Josua Krause, Aritra Dasgupta, Enrico Bertini",
+      "conference": "Visualization in Data Science (VDS at IEEE VIS 2016)",
+      "short-conference": "VDS",
+      "date": "Oct 24, 2016",
+      "published": true,
+      "href": "explain.html",
+      "autopage": true,
+      "external": "http://www.visualdatascience.org/2016/program/",
+      "slides": "material/vds2016.pdf",
+      "abstract": "The recent successes of machine learning (ML) have exposed the
+      need for making models more interpretable and accessible to different stakeholders
+      in the data science ecosystem, like domain experts, data analysts, and even
+      the general public. The assumption here is that higher interpretability will
+      lead to more confident human decision-making based on model outcomes. In this
+      talk, we report on two main contributions. First, we describe the role of
+      model explanations by providing examples of well-known ML models. Second,
+      we discuss how explanatory visual analytics systems can be instantiated for
+      enhancing model interpretability by referring to our past and current research."
+    },
+    {
+      "type": "project",
+      "title": "Quick Server",
+      "github": "https://github.com/JosuaKrause/quick_server",
+      "href": "https://pypi.python.org/pypi/quick-server",
+      "authors": "Josua Krause",
+      "conference": "PyPI",
+      "date": "Sep 15, 2016",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "Quick Cache",
+      "github": "https://github.com/JosuaKrause/quick_cache",
+      "href": "https://pypi.python.org/pypi/quick-cache",
+      "authors": "Josua Krause",
+      "conference": "PyPI",
+      "date": "Sep 15, 2016",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "Bubble Sets",
+      "github": "https://github.com/JosuaKrause/Bubble-Sets",
+      "authors": "Josua Krause, Christopher Collins",
+      "conference": "GitHub",
+      "date": "May 2011",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "Bubble Sets for JavaScript",
+      "github": "https://github.com/JosuaKrause/bubblesets-js",
+      "authors": "Josua Krause",
+      "conference": "GitHub",
+      "date": "June 2016",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "patient-viz",
+      "github": "https://github.com/nyuvis/patient-viz",
+      "authors": "Josua Krause, Narges Sharif Razavian, Enrico Bertini, David Sontag",
+      "conference": "GitHub",
+      "date": "Jan 2015",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "jk-js",
+      "github": "https://github.com/JosuaKrause/jk-js",
+      "authors": "Josua Krause",
+      "conference": "GitHub",
+      "date": "Sep 2014",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "JKanvas",
+      "github": "https://github.com/JosuaKrause/JKanvas",
+      "authors": "Josua Krause",
+      "conference": "GitHub",
+      "date": "Jul 2012",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "curl-chk",
+      "github": "https://github.com/JosuaKrause/curl-chk",
+      "authors": "Josua Krause",
+      "conference": "GitHub",
+      "date": "May 2015",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "mustache.xq",
+      "github": "https://github.com/JosuaKrause/mustache.xq",
+      "authors": "Josua Krause",
+      "conference": "GitHub",
+      "date": "May 2013",
+      "published": true
+    },
+    {
+      "type": "thesis",
+      "title": "Annotation of Changes in Evolving Graphs — Annotation veränderlicher Graphen",
+      "short-title": "Annotation of Changes in Evolving Graphs",
+      "authors": "Josua Krause",
+      "conference": "Bachelor Thesis, Universität Konstanz",
+      "short-conference": "Uni KN",
+      "date": "Nov 10, 2011",
+      "pdf": "material/bsc_thesis.pdf",
+      "published": true
+    },
+    {
+      "type": "thesis",
+      "title": "Graph Comics: Interactive Staging for Exploring Dynamic Graphs",
+      "short-title": "Graph Comics",
+      "authors": "Josua Krause",
+      "conference": "Master Thesis, Universität Konstanz",
+      "short-conference": "Uni KN",
+      "date": "Mar 23, 2014",
+      "pdf": "material/msc_thesis.pdf",
+      "published": true
+    },
+    {
+      "type": "thesis",
+      "title": "Using Visual Analytics to Explain Black-Box Machine Learning",
+      "short-title": "Using VA to Explain Black-Box ML",
+      "authors": "Josua Krause",
+      "conference": "PhD Thesis, NYU Tandon School of Engineering",
+      "short-conference": "NYU",
+      "date": "Mar 15, 2018",
+      "pdf": "material/phd_thesis.pdf",
+      "published": true
+    },
+    {
+      "type": "poster",
+      "title": "INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data",
+      "short-title": "INFUSE",
+      "external": "http://cds.nyu.edu/projects/infuse-interactive-feature-selection-predictive-modeling-high-dimensional-data/",
+      "authors": "Josua Krause, Adam Perer, Enrico Bertini",
+      "conference": "Moore Sloan Poster Session NYU (Poster)",
+      "short-conference": "NYU",
+      "date": "May 2014",
+      "published": true
+    },
+    {
+      "type": "poster",
+      "title": "Annotation of Changes in Evolving Graphs",
+      "authors": "Josua Krause",
+      "conference": "Summer School Poster Session Universität Konstanz (Poster)",
+      "short-conference": "Uni KN",
+      "date": "2011",
+      "published": true
+    },
+    {
+      "type": "poster",
+      "title": "Data-Driven Cohort Construction with Interactive Visual Queries",
+      "authors": "Josua Krause, Adam Perer",
+      "conference": "Visual Analytics in Health Care (Workshop)",
+      "short-conference": "Vis",
+      "date": "Oct 25, 2015",
+      "published": true
+    },
+    {
+      "type": "poster",
+      "title": "Visual Inspection of Longitudinal Electronic Medical Records",
+      "authors": "Josua Krause, Narges Razavian, Enrico Bertini, David Sontag",
+      "conference": "Visual Analytics in Health Care (Workshop)",
+      "short-conference": "Vis",
+      "slides": "material/vahc-patient-viz-wide.key",
+      "date": "Oct 25, 2015",
+      "published": true
+    },
+    {
+      "type": "poster",
+      "title": "Visual Exploration of Temporal Data in Electronic Medical Records",
+      "short-title": "Visual Exploration of Temporal Data in Electronic Medical Records",
+      "authors": "Josua Krause, Narges Razavian, Enrico Bertini, David Sontag",
+      "conference": "AMIA Annual Symposium (Poster)",
+      "short-conference": "AMIA",
+      "poster": "material/amia_2015_poster.pdf",
+      "date": "Nov 16, 2015",
+      "published": true
+    },
+    {
+      "type": "paper",
+      "title": "Supporting Iterative Cohort Construction with Visual Temporal Queries",
+      "logo": "img/coquitologo.png",
+      "short-title": "COQUITO",
+      "video": "https://vimeo.com/136535362",
+      "authors": "Josua Krause, Adam Perer, Harry Stavropoulos",
+      "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2015)",
+      "short-conference": "Vis",
+      "slides": "material/vast-coquito.key",
+      "date": "Oct 2015",
+      "pdf": "material/vast2015-coquito.pdf",
+      "published": true,
+      "href": "coquito.html",
+      "autopage": true,
+      "keywords": ["visual temporal queries", "cohort definition", "electronic medical records", "information visualization"],
+      "teaser": "img/coquito_teaser.png",
+      "teaser_desc": "COQUITO user interface in action.",
+      "abstract": "Many researchers across diverse disciplines aim to analyze the behavior of cohorts
+whose behaviors are recorded in large event databases. However, extracting cohorts from databases is
+a difficult yet important step, often overlooked in many analytical solutions. This is especially true
+when researchers wish to restrict their cohorts to exhibit a particular temporal pattern of interest.
+In order to fill this gap, we designed COQUITO, a visual interface that assists users defining cohorts
+with temporal constraints. COQUITO was designed to be comprehensible to domain experts with no
+preknowledge of database queries and also to encourage exploration. We then demonstrate the utility
+of COQUITO via two case studies, involving medical and social media researchers.",
+      "bibtex": "@article{coquito15,
+  author={Krause, Josua and Perer, Adam and Stavropoulos, Harry},
+  journal={Visualization and Computer Graphics, {IEEE} Transactions on},
+  title={Supporting Iterative Cohort Construction with Visual Temporal Queries},
+  year={2015},
+  month={Oct}
+}"
+    },
+    {
+      "type": "teaching",
+      "title": "Concepts of Programming",
+      "authors": "Teaching Assistant",
+      "conference": "Universität Konstanz",
+      "short-conference": "Uni KN",
+      "date": "2011",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Concepts of Computer Science",
+      "authors": "Teaching Assistant",
+      "conference": "Universität Konstanz",
+      "short-conference": "Uni KN",
+      "date": "2012",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Information Visualization",
+      "authors": "Teaching Assistant",
+      "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
+      "date": "Feb 2015",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Information Visualization",
+      "authors": "Teaching Assistant",
+      "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
+      "date": "Sep 2015",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Information Visualization",
+      "authors": "Teaching Assistant",
+      "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
+      "date": "Feb 2016",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Information Visualization",
+      "authors": "Teaching Assistant",
+      "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
+      "date": "Sep 2016",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Foundations of Data Science",
+      "authors": "Teaching Assistant",
+      "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
+      "date": "Sep 2017",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "D3 Tutorial on Electronic Health Records — Introduction to Visual Analytics in Healthcare",
+      "short-title": "D3 Tutorial on Electronic Health Records",
+      "github": "https://github.com/JosuaKrause/d3-tutorial",
+      "authors": "Hands-on Tutorial Session",
+      "conference": "AMIA Annual Symposium",
+      "short-conference": "AMIA",
+      "date": "Nov 15, 2015",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "React Tutorial for Visualizations",
+      "short-title": "React Tutorial for Visualizations",
+      "github": "https://github.com/JosuaKrause/react_vis_tutorial/",
+      "authors": "Tutorial",
+      "conference": "NYU Tandon School of Engineering",
+      "short-conference": "NYU",
+      "date": "Oct 16, 2017",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "VIS for Practice Workshop — Visualization for the Web: Front- & Backends",
+      "short-title": "VIS for Practice Workshop",
+      "authors": "Workshop",
+      "conference": "Universität Konstanz",
+      "short-conference": "Uni KN",
+      "date": "Aug 7, 2018",
+      "published": true
+    }
+  ]
+}

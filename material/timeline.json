@@ -1,0 +1,285 @@
+{
+  "events": [
+    {
+      "group": "paper", 
+      "id": "VAST", 
+      "link": "#entry955439d2", 
+      "name": "A Workflow for Visual Diagnostics of Binary Classifiers using Instance-Level Explanations", 
+      "time": 1506988800
+    }, 
+    {
+      "group": "paper", 
+      "id": "LDAV", 
+      "link": "#entryd7adf25f", 
+      "name": "SeekAView: An Intelligent Dimensionality Reduction Strategy for Navigating HD Data Spaces", 
+      "time": 1477180800
+    }, 
+    {
+      "group": "paper", 
+      "id": "CHI", 
+      "link": "#entry5b127ea9", 
+      "name": "Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots", 
+      "time": 1462233600
+    }, 
+    {
+      "group": "paper", 
+      "id": "CHI (2)", 
+      "link": "#entry096e3532", 
+      "name": "Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models", 
+      "time": 1462233600
+    }, 
+    {
+      "group": "paper", 
+      "id": "Vis", 
+      "link": "#entrybe674434", 
+      "name": "Supporting Iterative Cohort Construction with Visual Temporal Queries", 
+      "time": 1443830400
+    }, 
+    {
+      "group": "paper", 
+      "id": "Vis", 
+      "link": "#entryac9c1b9c", 
+      "name": "INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data", 
+      "time": 1412294400
+    }, 
+    {
+      "group": "paper", 
+      "id": "SIGRAD", 
+      "link": "#entry489c0a87", 
+      "name": "Interactive Visualization for Real-Time Public Transport Journey Planning", 
+      "time": 1341273600
+    }, 
+    {
+      "group": "poster", 
+      "id": "IDEA", 
+      "link": "#entry43889621", 
+      "name": "A User Study on the Effect of Aggregating Explanations for Interpreting Machine Learning Models", 
+      "time": 1534723200
+    }, 
+    {
+      "group": "poster", 
+      "id": "HILDA", 
+      "link": "#entrya452ba4e", 
+      "name": "Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations", 
+      "time": 1494720000
+    }, 
+    {
+      "group": "poster", 
+      "id": "VDS", 
+      "link": "#entry6d4bc1ed", 
+      "name": "Explanatory Visual Analytics for Enhancing Human Interpretability of Machine Learning Models", 
+      "time": 1477267200
+    }, 
+    {
+      "group": "poster", 
+      "id": "IDEA", 
+      "link": "#entryd43547e3", 
+      "name": "Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models", 
+      "time": 1471132800
+    }, 
+    {
+      "group": "poster", 
+      "id": "WHI", 
+      "link": "#entry1fec4123", 
+      "name": "Using Visual Analytics to Interpret Predictive Machine Learning Models", 
+      "time": 1466553600
+    }, 
+    {
+      "group": "poster", 
+      "id": "AMIA", 
+      "link": "#entry96db0420", 
+      "name": "Visual Exploration of Temporal Data in Electronic Medical Records", 
+      "time": 1447632000
+    }, 
+    {
+      "group": "poster", 
+      "id": "Vis (2)", 
+      "link": "#entrybadd15ec", 
+      "name": "Visual Inspection of Longitudinal Electronic Medical Records", 
+      "time": 1445731200
+    }, 
+    {
+      "group": "poster", 
+      "id": "Vis (3)", 
+      "link": "#entry13d9fa4b", 
+      "name": "Data-Driven Cohort Construction with Interactive Visual Queries", 
+      "time": 1445731200
+    }, 
+    {
+      "group": "poster", 
+      "id": "NYU", 
+      "link": "#entry5d52396e", 
+      "name": "INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data", 
+      "time": 1399075200
+    }, 
+    {
+      "group": "poster", 
+      "id": "Uni KN", 
+      "link": "#entryc04d153a", 
+      "name": "Annotation of Changes in Evolving Graphs", 
+      "time": 1309651200
+    }, 
+    {
+      "group": "project", 
+      "id": "PyPI", 
+      "link": "#entryc5a57d88", 
+      "name": "Quick Server", 
+      "time": 1473897600
+    }, 
+    {
+      "group": "project", 
+      "id": "PyPI (2)", 
+      "link": "#entry9bba997e", 
+      "name": "Quick Cache", 
+      "time": 1473897600
+    }, 
+    {
+      "group": "project", 
+      "id": "GitHub", 
+      "link": "#entry513d0a75", 
+      "name": "Bubble Sets for JavaScript", 
+      "time": 1464912000
+    }, 
+    {
+      "group": "project", 
+      "id": "GitHub", 
+      "link": "#entryd6cc7252", 
+      "name": "curl-chk", 
+      "time": 1430611200
+    }, 
+    {
+      "group": "project", 
+      "id": "GitHub", 
+      "link": "#entry19511a9e", 
+      "name": "patient-viz", 
+      "time": 1420243200
+    }, 
+    {
+      "group": "project", 
+      "id": "GitHub", 
+      "link": "#entry6fa26f01", 
+      "name": "jk-js", 
+      "time": 1409702400
+    }, 
+    {
+      "group": "project", 
+      "id": "GitHub", 
+      "link": "#entry6a78ebdd", 
+      "name": "mustache.xq", 
+      "time": 1367539200
+    }, 
+    {
+      "group": "project", 
+      "id": "GitHub", 
+      "link": "#entryd9880f8b", 
+      "name": "JKanvas", 
+      "time": 1341273600
+    }, 
+    {
+      "group": "project", 
+      "id": "GitHub", 
+      "link": "#entry8c7c4563", 
+      "name": "Bubble Sets", 
+      "time": 1304380800
+    }, 
+    {
+      "group": "thesis", 
+      "id": "NYU", 
+      "link": "#entry4d9f75b2", 
+      "name": "Using Visual Analytics to Explain Black-Box Machine Learning", 
+      "time": 1521072000
+    }, 
+    {
+      "group": "thesis", 
+      "id": "Uni KN", 
+      "link": "#entry578b5c4f", 
+      "name": "Graph Comics: Interactive Staging for Exploring Dynamic Graphs", 
+      "time": 1395532800
+    }, 
+    {
+      "group": "thesis", 
+      "id": "Uni KN", 
+      "link": "#entryca5471e2", 
+      "name": "Annotation of Changes in Evolving Graphs \u2014 Annotation ver\u00e4nderlicher Graphen", 
+      "time": 1320883200
+    }, 
+    {
+      "group": "teaching", 
+      "id": "Uni KN", 
+      "link": "#entry37517f5a", 
+      "name": "VIS for Practice Workshop \u2014 Visualization for the Web: Front- & Backends", 
+      "time": 1533600000
+    }, 
+    {
+      "group": "teaching", 
+      "id": "NYU", 
+      "link": "#entry20dab013", 
+      "name": "React Tutorial for Visualizations", 
+      "time": 1508112000
+    }, 
+    {
+      "group": "teaching", 
+      "id": "NYU", 
+      "link": "#entry4a9055fd", 
+      "name": "Foundations of Data Science", 
+      "time": 1504396800
+    }, 
+    {
+      "group": "teaching", 
+      "id": "NYU", 
+      "link": "#entryfe5c56fa", 
+      "name": "Information Visualization", 
+      "time": 1472860800
+    }, 
+    {
+      "group": "teaching", 
+      "id": "NYU", 
+      "link": "#entry7882cba5", 
+      "name": "Information Visualization", 
+      "time": 1454457600
+    }, 
+    {
+      "group": "teaching", 
+      "id": "AMIA (2)", 
+      "link": "#entry8d63ed5e", 
+      "name": "D3 Tutorial on Electronic Health Records \u2014 Introduction to Visual Analytics in Healthcare", 
+      "time": 1447545600
+    }, 
+    {
+      "group": "teaching", 
+      "id": "NYU", 
+      "link": "#entrye4ee3619", 
+      "name": "Information Visualization", 
+      "time": 1441238400
+    }, 
+    {
+      "group": "teaching", 
+      "id": "NYU", 
+      "link": "#entry3a426794", 
+      "name": "Information Visualization", 
+      "time": 1422921600
+    }, 
+    {
+      "group": "teaching", 
+      "id": "Uni KN", 
+      "link": "#entrydc2dd103", 
+      "name": "Concepts of Computer Science", 
+      "time": 1341273600
+    }, 
+    {
+      "group": "teaching", 
+      "id": "Uni KN (2)", 
+      "link": "#entry7c5316d4", 
+      "name": "Concepts of Programming", 
+      "time": 1309651200
+    }
+  ], 
+  "type_names": {
+    "paper": "Publications", 
+    "poster": "Posters / Workshops", 
+    "project": "Notable Projects", 
+    "teaching": "Teaching", 
+    "thesis": "Theses", 
+    "work": "Employments"
+  }
+}

@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="img/icon.png">
+  <title>Josua (Joschi) Krause</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hi, I'm Josua (Joschi) Krause, PhD.
+I'm interested in the intersection of Visual Analytics and Machine Learning
+especially in the field of Finance and Health Care Analytics.
+Currently I'm working at Accern as Senior Data Scientist.">
+  <meta name="author" content="Josua (Joschi) Krause">
+  <link rel="stylesheet" type="text/css" href="lib/jk-js/lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="js/timeline.css">
+  <link rel="stylesheet" type="text/css" href="js/index.css">
+  <script src="lib/jk-js/lib/d3/d3.min.js" charset="utf-8"></script>
+  <script src="js/timeline.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-77732102-1', 'auto');
+ga('require', 'linkid');
+ga('send', 'pageview');
+
+    
+    function start() {
+      var w = "100%";
+      var h = 200;
+      var radius = 8;
+      var textHeight = 20;
+      var timeline = new Timeline(
+        d3.select("#div-timeline"),
+        d3.select("#div-legend"),
+        w, h, radius, textHeight
+      );
+      d3.json("material/timeline.json", function(err, data) {
+        if(err) {
+          console.warn(err);
+          d3.select("#timeline-row").style({
+            "display": "none"
+          });
+          return;
+        }
+        timeline.typeNames(data["type_names"]);
+        timeline.events(data["events"]);
+        timeline.update();
+      });
+    }
+    
+  </script>
+  <script type="application/ld+json">
+    {
+  "@id": "https://josuakrause.github.io/info/",
+  "@type": "http://schema.org/Person",
+  "http://schema.org/additionalName": "Joschi",
+  "http://schema.org/affiliation": {
+    "@type": "http://schema.org/Organization",
+    "http://schema.org/name": "Accern Corp."
+  },
+  "http://schema.org/alumniOf": {
+    "@type": "http://schema.org/EducationalOrganization",
+    "http://schema.org/name": "NYU"
+  },
+  "http://schema.org/birthDate": "January 18, 1988",
+  "http://schema.org/familyName": "Krause",
+  "http://schema.org/givenName": "Josua",
+  "http://schema.org/image": {
+    "@type": "http://schema.org/URL",
+    "@id": "https://josuakrause.github.io/info/img/photo.jpg"
+  },
+  "http://schema.org/jobTitle": "Vice President of Data Science",
+  "http://schema.org/name": "Josua Krause",
+  "http://schema.org/sameAs": [
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://www.linkedin.com/in/josuakrause/"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://www.linkedin.com/in/josua-krause-48b3b091/"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://github.com/JosuaKrause/"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://www.youtube.com/c/JosuaKrause/"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "http://archive.engineering.nyu.edu/people/josua-krause"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://vimeo.com/user35425102"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://scholar.google.com/citations?user=hFjNgPEAAAAJ"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://dblp.uni-trier.de/pers/k/Krause:Josua.html"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://dblp.org/pers/k/Krause:Josua.html"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://dl.acm.org/profile/99659020297"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://ieeexplore.ieee.org/author/37085594931"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://theorg.com/org/accern/team/josua-krause"
+    }
+  ]
+}
+  </script>
+</head>
+<body onload="start()">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container clearfix">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Josua (Joschi) Krause</a>
+      </div>
+      <div class="nav navbar-nav navbar-right">
+        <a href="https://plus.google.com/+JosuaKrause/"><img src="img/Red-signin_Short_base_44dp.png" style="width: 39.44px;"></a>
+        <a href="https://www.linkedin.com/in/josuakrause/"><img src="img/linkedinlogo.png" style="height: 32px;"></a>
+        <a href="https://github.com/JosuaKrause/"><img src="img/GitHub-Mark-32px.png" style="width: 32px;"></a>
+        <img src="img/photo.jpg" style="width: 64px;">
+      </div>
+    </div>
+  </nav>
+  <div class="container bs-docs-container">
+    <div class="row" id="timeline-row">
+      <div class="col-md-8">
+        <div id="div-timeline"></div>
+      </div>
+      <div class="col-md-2">
+        <div id="div-legend"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9">
+        <p style="text-align: justify;">
+          Hi, I'm interested in the intersection of Visual Analytics
+and Machine Learning especially in the field of
+Finance and Health Care Analytics. I received my PhD in Computer Science from
+<a href="http://engineering.nyu.edu/">NYU Tandon School of Engineering</a>,
+Brooklyn, NY under
+<a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
+Currently I'm working at <a href="https://www.accern.com/">Accern</a>
+as VP of Data Science.
+You can find my <a href="material/cv.pdf">CV here</a>.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10" role="main">
+        <h3 id="paper">Publications</h3>
+            <div class="media" id="entry955439d2">
+              
+            <a class="pull-left" href="#entry955439d2">
+              <img class="media-object" src="img/explainer.png"
+                   title="A Workflow for Visual Diagnostics of Binary Classifiers using Instance-Level Explanations" alt="Explainer" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              A Workflow for Visual Diagnostics of Binary Classifiers using Instance-Level Explanations <a href="#entry955439d2" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Aritra Dasgupta, Jordan Swartz, Yindalon Aphinyanaphongs, Enrico Bertini</small>
+            </h4>
+            <em>IEEE Transactions on Visualization and Computer Graphics (VAST 2017) &mdash; Oct 2017</em><br/>
+<a href="explainer.html">[page]</a> <a href="http://nyuvis-web.poly.edu/projects/explanation_explorer/">[demo]</a> <a href="https://arxiv.org/abs/1705.01968">[pdf]</a> <a href="https://vimeo.com/235631465">[video]</a> <a href="https://vimeo.com/238852188">[talk]</a> <a href="https://github.com/nyuvis/explanation_explorer">[github]</a> <a href="material/explainer.key">[slides]</a> <a href="bibtex/entry955439d2.bib" rel="nofollow">[bibtex]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entryd7adf25f">
+              
+            <a class="pull-left" href="#entryd7adf25f">
+              <img class="media-object" src="img/seekaviewlogo.png"
+                   title="SeekAView: An Intelligent Dimensionality Reduction Strategy for Navigating HD Data Spaces" alt="SeekAView" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              SeekAView: An Intelligent Dimensionality Reduction Strategy for Navigating HD Data Spaces <a href="#entryd7adf25f" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Aritra Dasgupta, Jean-Daniel Fekete, Enrico Bertini</small>
+            </h4>
+            <em>IEEE Symposium on Large Data Analysis and Visualization (LDAV) &mdash; Oct 23, 2016</em><br/>
+<a href="seekaview.html">[page]</a> <a href="http://nyuvis.github.io/SeekAView/">[demo]</a> <a href="material/ldav2016-seekaview.pdf">[pdf]</a> <a href="bibtex/entryd7adf25f.bib" rel="nofollow">[bibtex]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry5b127ea9">
+              
+            <a class="pull-left" href="#entry5b127ea9">
+              <img class="media-object" src="img/scatterplot.png"
+                   title="Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots" alt="Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Towards Understanding Human Similarity Perception in the Analysis of Large Sets of Scatter Plots <a href="#entry5b127ea9" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Anshul Vikram Pandey, <span style="text-decoration: underline;">Josua Krause</span>, Cristian Felix, Jeremy Boy, Enrico Bertini</small>
+            </h4>
+            <em>ACM CHI 2016 &mdash; May 2016</em><br/>
+<a href="material/chi2016-similarity.pdf">[pdf]</a> <a href="http://vgc.poly.edu/projects/similarityperception/">[external]</a> <a href="bibtex/entry5b127ea9.bib" rel="nofollow">[bibtex]</a> <img src="img/badge.png" style="height: 1em;" alt="Honorable Mention" title="Honorable Mention">
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry096e3532">
+              
+            <a class="pull-left" href="#entry096e3532">
+              <img class="media-object" src="img/prospector.png"
+                   title="Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models" alt="Prospector" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models <a href="#entry096e3532" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Adam Perer, Kenney Ng</small>
+            </h4>
+            <em>ACM CHI 2016 &mdash; May 2016</em><br/>
+<a href="prospector.html">[page]</a> <a href="material/chi2016-prospector.pdf">[pdf]</a> <a href="https://vimeo.com/166142733">[video]</a> <a href="material/chi-prospector-05-12.key">[slides]</a> <a href="bibtex/entry096e3532.bib" rel="nofollow">[bibtex]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entrybe674434">
+              
+            <a class="pull-left" href="#entrybe674434">
+              <img class="media-object" src="img/coquitologo.png"
+                   title="Supporting Iterative Cohort Construction with Visual Temporal Queries" alt="COQUITO" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Supporting Iterative Cohort Construction with Visual Temporal Queries <a href="#entrybe674434" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Adam Perer, Harry Stavropoulos</small>
+            </h4>
+            <em>IEEE Transactions on Visualization and Computer Graphics (VAST 2015) &mdash; Oct 2015</em><br/>
+<a href="coquito.html">[page]</a> <a href="material/vast2015-coquito.pdf">[pdf]</a> <a href="https://vimeo.com/136535362">[video]</a> <a href="material/vast-coquito.key">[slides]</a> <a href="bibtex/entrybe674434.bib" rel="nofollow">[bibtex]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entryac9c1b9c">
+              
+            <a class="pull-left" href="#entryac9c1b9c">
+              <img class="media-object" src="img/infuselogo.png"
+                   title="INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data" alt="INFUSE" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data <a href="#entryac9c1b9c" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Adam Perer, Enrico Bertini</small>
+            </h4>
+            <em>IEEE Transactions on Visualization and Computer Graphics (VAST 2014) &mdash; Oct 2014</em><br/>
+<a href="material/vast2014-infuse.pdf">[pdf]</a> <a href="http://vimeo.com/114366032">[video]</a> <a href="https://github.com/nyuvis/infuse-java/">[github]</a> <a href="material/infuse.key.zip">[slides]</a> <a href="http://nyuvis.github.io/infuse">[external]</a> <a href="bibtex/entryac9c1b9c.bib" rel="nofollow">[bibtex]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry489c0a87">
+              
+            <a class="pull-left" href="#entry489c0a87">
+              <img class="media-object" src="img/busvislogo.png"
+                   title="Interactive Visualization for Real-Time Public Transport Journey Planning" alt="BusVis" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Interactive Visualization for Real-Time Public Transport Journey Planning <a href="#entry489c0a87" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Marc Spicker, Leonard Wörteler, Matthias Schäfer, Leishi Zhang, Hendrik Strobelt</small>
+            </h4>
+            <em>SIGRAD 2012 — Short Paper &mdash; 2012</em><br/>
+<a href="material/sigrad2012-busvispaper.pdf">[pdf]</a> <a href="https://github.com/JosuaKrause/BusVis">[github]</a> <a href="material/talk_sigrad2012.pdf">[slides]</a> <a href="http://graphics.uni-konstanz.de/publikationen/2012/busvis">[external]</a> <a href="bibtex/entry489c0a87.bib" rel="nofollow">[bibtex]</a>
+            
+            </div>
+            
+            </div>
+            <h3 id="poster">Posters / Workshops</h3>
+            <div class="media" id="entry43889621">
+              
+            <a class="pull-left" href="#entry43889621">
+              <img class="media-object" src="img/nologo.png"
+                   title="A User Study on the Effect of Aggregating Explanations for Interpreting Machine Learning Models" alt="Study on Aggregating Explanations for Interpreting Models" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              A User Study on the Effect of Aggregating Explanations for Interpreting Machine Learning Models <a href="#entry43889621" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Adam Perer, Enrico Bertini</small>
+            </h4>
+            <em>Interactive Data Exploration and Analytics (IDEA 2018) &mdash; Aug 20, 2018</em><br/>
+<a href="explanation_study.html">[page]</a> <a href="http://nyuvis-web.poly.edu/projects/explainer/">[demo]</a> <a href="material/idea2018.pdf">[pdf]</a> <a href="material/idea2018-slides.pdf">[slides]</a> <a href="http://poloclub.gatech.edu/idea2018/">[external]</a> <a href="bibtex/entry43889621.bib" rel="nofollow">[bibtex]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entrya452ba4e">
+              
+            <a class="pull-left" href="#entrya452ba4e">
+              <img class="media-object" src="img/nologo.png"
+                   title="Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations" alt="Rivelo" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations <a href="#entrya452ba4e" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Paolo Tamagnini, <span style="text-decoration: underline;">Josua Krause</span>, Aritra Dasgupta, Enrico Bertini</small>
+            </h4>
+            <em>Workshop on Human-In-the-Loop Data Analytics (HILDA 2017) &mdash; May 14, 2017</em><br/>
+<a href="http://nyuvis-web.poly.edu/projects/rivelo/demo.html">[demo]</a> <a href="material/rivelo.pdf">[pdf]</a> <a href="https://github.com/nyuvis/rivelo">[github]</a> <a href="http://nyuvis-web.poly.edu/projects/rivelo/">[external]</a> <a href="bibtex/entrya452ba4e.bib" rel="nofollow">[bibtex]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry6d4bc1ed">
+              
+            <a class="pull-left" href="#entry6d4bc1ed">
+              <img class="media-object" src="img/nologo.png"
+                   title="Explanatory Visual Analytics for Enhancing Human Interpretability of Machine Learning Models" alt="Visual Analytics Explanations for Machine Learning" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Explanatory Visual Analytics for Enhancing Human Interpretability of Machine Learning Models <a href="#entry6d4bc1ed" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Aritra Dasgupta, Enrico Bertini</small>
+            </h4>
+            <em>Visualization in Data Science (VDS at IEEE VIS 2016) &mdash; Oct 24, 2016</em><br/>
+<a href="explain.html">[page]</a> <a href="material/vds2016.pdf">[slides]</a> <a href="http://www.visualdatascience.org/2016/program/">[external]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entryd43547e3">
+              
+            <a class="pull-left" href="#entryd43547e3">
+              <img class="media-object" src="img/nologo.png"
+                   title="Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models" alt="Prospector" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models <a href="#entryd43547e3" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Adam Perer, Kenney Ng</small>
+            </h4>
+            <em>Interactive Data Exploration and Analytics (IDEA) 2016 &mdash; Aug 14, 2016</em><br/>
+<a href="prospector.html">[page]</a> <a href="material/idea2016-prospector.pdf">[pdf]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry1fec4123">
+              
+            <a class="pull-left" href="#entry1fec4123">
+              <img class="media-object" src="img/nologo.png"
+                   title="Using Visual Analytics to Interpret Predictive Machine Learning Models" alt="Using Visual Analytics to Interpret Predictive Machine Learning Models" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Using Visual Analytics to Interpret Predictive Machine Learning Models <a href="#entry1fec4123" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Adam Perer, Enrico Bertini</small>
+            </h4>
+            <em>2016 ICML Workshop on Human Interpretability in Machine Learning &mdash; Jun 22, 2016</em><br/>
+<a href="interpret.html">[page]</a> <a href="http://arxiv.org/abs/1606.05685">[pdf]</a> <a href="material/WHI_2016_using_VA_for_ML_interpretation.pdf">[slides]</a> <a href="material/WHI_2016_poster.pdf">[poster]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry96db0420">
+              
+            <a class="pull-left" href="#entry96db0420">
+              <img class="media-object" src="img/nologo.png"
+                   title="Visual Exploration of Temporal Data in Electronic Medical Records" alt="Visual Exploration of Temporal Data in Electronic Medical Records" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Visual Exploration of Temporal Data in Electronic Medical Records <a href="#entry96db0420" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Narges Razavian, Enrico Bertini, David Sontag</small>
+            </h4>
+            <em>AMIA Annual Symposium (Poster) &mdash; Nov 16, 2015</em><br/>
+<a href="material/amia_2015_poster.pdf">[poster]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entrybadd15ec">
+              
+            <a class="pull-left" href="#entrybadd15ec">
+              <img class="media-object" src="img/nologo.png"
+                   title="Visual Inspection of Longitudinal Electronic Medical Records" alt="Visual Inspection of Longitudinal Electronic Medical Records" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Visual Inspection of Longitudinal Electronic Medical Records <a href="#entrybadd15ec" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Narges Razavian, Enrico Bertini, David Sontag</small>
+            </h4>
+            <em>Visual Analytics in Health Care (Workshop) &mdash; Oct 25, 2015</em><br/>
+<a href="material/vahc-patient-viz-wide.key">[slides]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry13d9fa4b">
+              
+            <a class="pull-left" href="#entry13d9fa4b">
+              <img class="media-object" src="img/nologo.png"
+                   title="Data-Driven Cohort Construction with Interactive Visual Queries" alt="Data-Driven Cohort Construction with Interactive Visual Queries" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Data-Driven Cohort Construction with Interactive Visual Queries <a href="#entry13d9fa4b" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Adam Perer</small>
+            </h4>
+            <em>Visual Analytics in Health Care (Workshop) &mdash; Oct 25, 2015</em>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry5d52396e">
+              
+            <a class="pull-left" href="#entry5d52396e">
+              <img class="media-object" src="img/nologo.png"
+                   title="INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data" alt="INFUSE" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              INFUSE: Interactive Feature Selection for Predictive Modeling of High Dimensional Data <a href="#entry5d52396e" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Adam Perer, Enrico Bertini</small>
+            </h4>
+            <em>Moore Sloan Poster Session NYU (Poster) &mdash; May 2014</em><br/>
+<a href="http://cds.nyu.edu/projects/infuse-interactive-feature-selection-predictive-modeling-high-dimensional-data/">[external]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entryc04d153a">
+              
+            <a class="pull-left" href="#entryc04d153a">
+              <img class="media-object" src="img/nologo.png"
+                   title="Annotation of Changes in Evolving Graphs" alt="Annotation of Changes in Evolving Graphs" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Annotation of Changes in Evolving Graphs <a href="#entryc04d153a" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span></small>
+            </h4>
+            <em>Summer School Poster Session Universität Konstanz (Poster) &mdash; 2011</em>
+            
+            </div>
+            
+            </div>
+            <h3 id="project">Notable Projects</h3>
+            <div class="media" id="entryc5a57d88">
+              
+            <a class="pull-left" href="#entryc5a57d88">
+              <img class="media-object" src="img/nologo.png"
+                   title="Quick Server" alt="Quick Server" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Quick Server <a href="#entryc5a57d88" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span></small>
+            </h4>
+            <em>PyPI &mdash; Sep 15, 2016</em><br/>
+<a href="https://pypi.python.org/pypi/quick-server">[page]</a> <a href="https://github.com/JosuaKrause/quick_server">[github]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry9bba997e">
+              
+            <a class="pull-left" href="#entry9bba997e">
+              <img class="media-object" src="img/nologo.png"
+                   title="Quick Cache" alt="Quick Cache" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Quick Cache <a href="#entry9bba997e" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span></small>
+            </h4>
+            <em>PyPI &mdash; Sep 15, 2016</em><br/>
+<a href="https://pypi.python.org/pypi/quick-cache">[page]</a> <a href="https://github.com/JosuaKrause/quick_cache">[github]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry513d0a75">
+              
+            <a class="pull-left" href="#entry513d0a75">
+              <img class="media-object" src="img/nologo.png"
+                   title="Bubble Sets for JavaScript" alt="Bubble Sets for JavaScript" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Bubble Sets for JavaScript <a href="#entry513d0a75" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span></small>
+            </h4>
+            <em>GitHub &mdash; June 2016</em><br/>
+<a href="https://github.com/JosuaKrause/bubblesets-js">[github]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entryd6cc7252">
+              
+            <a class="pull-left" href="#entryd6cc7252">
+              <img class="media-object" src="img/nologo.png"
+                   title="curl-chk" alt="curl-chk" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              curl-chk <a href="#entryd6cc7252" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span></small>
+            </h4>
+            <em>GitHub &mdash; May 2015</em><br/>
+<a href="https://github.com/JosuaKrause/curl-chk">[github]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry19511a9e">
+              
+            <a class="pull-left" href="#entry19511a9e">
+              <img class="media-object" src="img/nologo.png"
+                   title="patient-viz" alt="patient-viz" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              patient-viz <a href="#entry19511a9e" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Narges Sharif Razavian, Enrico Bertini, David Sontag</small>
+            </h4>
+            <em>GitHub &mdash; Jan 2015</em><br/>
+<a href="https://github.com/nyuvis/patient-viz">[github]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry6fa26f01">
+              
+            <a class="pull-left" href="#entry6fa26f01">
+              <img class="media-object" src="img/nologo.png"
+                   title="jk-js" alt="jk-js" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              jk-js <a href="#entry6fa26f01" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span></small>
+            </h4>
+            <em>GitHub &mdash; Sep 2014</em><br/>
+<a href="https://github.com/JosuaKrause/jk-js">[github]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry6a78ebdd">
+              
+            <a class="pull-left" href="#entry6a78ebdd">
+              <img class="media-object" src="img/nologo.png"
+                   title="mustache.xq" alt="mustache.xq" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              mustache.xq <a href="#entry6a78ebdd" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span></small>
+            </h4>
+            <em>GitHub &mdash; May 2013</em><br/>
+<a href="https://github.com/JosuaKrause/mustache.xq">[github]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entryd9880f8b">
+              
+            <a class="pull-left" href="#entryd9880f8b">
+              <img class="media-object" src="img/nologo.png"
+                   title="JKanvas" alt="JKanvas" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              JKanvas <a href="#entryd9880f8b" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span></small>
+            </h4>
+            <em>GitHub &mdash; Jul 2012</em><br/>
+<a href="https://github.com/JosuaKrause/JKanvas">[github]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry8c7c4563">
+              
+            <a class="pull-left" href="#entry8c7c4563">
+              <img class="media-object" src="img/nologo.png"
+                   title="Bubble Sets" alt="Bubble Sets" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Bubble Sets <a href="#entry8c7c4563" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span>, Christopher Collins</small>
+            </h4>
+            <em>GitHub &mdash; May 2011</em><br/>
+<a href="https://github.com/JosuaKrause/Bubble-Sets">[github]</a>
+            
+            </div>
+            
+            </div>
+            <h3 id="thesis">Theses</h3>
+            <div class="media" id="entry4d9f75b2">
+              
+            <a class="pull-left" href="#entry4d9f75b2">
+              <img class="media-object" src="img/nologo.png"
+                   title="Using Visual Analytics to Explain Black-Box Machine Learning" alt="Using VA to Explain Black-Box ML" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Using Visual Analytics to Explain Black-Box Machine Learning <a href="#entry4d9f75b2" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span></small>
+            </h4>
+            <em>PhD Thesis, NYU Tandon School of Engineering &mdash; Mar 15, 2018</em><br/>
+<a href="material/phd_thesis.pdf">[pdf]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry578b5c4f">
+              
+            <a class="pull-left" href="#entry578b5c4f">
+              <img class="media-object" src="img/nologo.png"
+                   title="Graph Comics: Interactive Staging for Exploring Dynamic Graphs" alt="Graph Comics" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Graph Comics: Interactive Staging for Exploring Dynamic Graphs <a href="#entry578b5c4f" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span></small>
+            </h4>
+            <em>Master Thesis, Universität Konstanz &mdash; Mar 23, 2014</em><br/>
+<a href="material/msc_thesis.pdf">[pdf]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entryca5471e2">
+              
+            <a class="pull-left" href="#entryca5471e2">
+              <img class="media-object" src="img/nologo.png"
+                   title="Annotation of Changes in Evolving Graphs — Annotation veränderlicher Graphen" alt="Annotation of Changes in Evolving Graphs" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Annotation of Changes in Evolving Graphs — Annotation veränderlicher Graphen <a href="#entryca5471e2" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small><span style="text-decoration: underline;">Josua Krause</span></small>
+            </h4>
+            <em>Bachelor Thesis, Universität Konstanz &mdash; Nov 10, 2011</em><br/>
+<a href="material/bsc_thesis.pdf">[pdf]</a>
+            
+            </div>
+            
+            </div>
+            <h3 id="teaching">Teaching</h3>
+            <div class="media" id="entry37517f5a">
+              
+            <a class="pull-left" href="#entry37517f5a">
+              <img class="media-object" src="img/nologo.png"
+                   title="VIS for Practice Workshop — Visualization for the Web: Front- & Backends" alt="VIS for Practice Workshop" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              VIS for Practice Workshop — Visualization for the Web: Front- & Backends <a href="#entry37517f5a" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Workshop</small>
+            </h4>
+            <em>Universität Konstanz &mdash; Aug 7, 2018</em>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry20dab013">
+              
+            <a class="pull-left" href="#entry20dab013">
+              <img class="media-object" src="img/nologo.png"
+                   title="React Tutorial for Visualizations" alt="React Tutorial for Visualizations" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              React Tutorial for Visualizations <a href="#entry20dab013" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Tutorial</small>
+            </h4>
+            <em>NYU Tandon School of Engineering &mdash; Oct 16, 2017</em><br/>
+<a href="https://github.com/JosuaKrause/react_vis_tutorial/">[github]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry4a9055fd">
+              
+            <a class="pull-left" href="#entry4a9055fd">
+              <img class="media-object" src="img/nologo.png"
+                   title="Foundations of Data Science" alt="Foundations of Data Science" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Foundations of Data Science <a href="#entry4a9055fd" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Teaching Assistant</small>
+            </h4>
+            <em>NYU Tandon School of Engineering &mdash; Sep 2017</em>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entryfe5c56fa">
+              
+            <a class="pull-left" href="#entryfe5c56fa">
+              <img class="media-object" src="img/nologo.png"
+                   title="Information Visualization" alt="Information Visualization" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Information Visualization <a href="#entryfe5c56fa" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Teaching Assistant</small>
+            </h4>
+            <em>NYU Tandon School of Engineering &mdash; Sep 2016</em>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry7882cba5">
+              
+            <a class="pull-left" href="#entry7882cba5">
+              <img class="media-object" src="img/nologo.png"
+                   title="Information Visualization" alt="Information Visualization" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Information Visualization <a href="#entry7882cba5" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Teaching Assistant</small>
+            </h4>
+            <em>NYU Tandon School of Engineering &mdash; Feb 2016</em>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry8d63ed5e">
+              
+            <a class="pull-left" href="#entry8d63ed5e">
+              <img class="media-object" src="img/nologo.png"
+                   title="D3 Tutorial on Electronic Health Records — Introduction to Visual Analytics in Healthcare" alt="D3 Tutorial on Electronic Health Records" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              D3 Tutorial on Electronic Health Records — Introduction to Visual Analytics in Healthcare <a href="#entry8d63ed5e" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Hands-on Tutorial Session</small>
+            </h4>
+            <em>AMIA Annual Symposium &mdash; Nov 15, 2015</em><br/>
+<a href="https://github.com/JosuaKrause/d3-tutorial">[github]</a>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entrye4ee3619">
+              
+            <a class="pull-left" href="#entrye4ee3619">
+              <img class="media-object" src="img/nologo.png"
+                   title="Information Visualization" alt="Information Visualization" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Information Visualization <a href="#entrye4ee3619" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Teaching Assistant</small>
+            </h4>
+            <em>NYU Tandon School of Engineering &mdash; Sep 2015</em>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry3a426794">
+              
+            <a class="pull-left" href="#entry3a426794">
+              <img class="media-object" src="img/nologo.png"
+                   title="Information Visualization" alt="Information Visualization" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Information Visualization <a href="#entry3a426794" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Teaching Assistant</small>
+            </h4>
+            <em>NYU Tandon School of Engineering &mdash; Feb 2015</em>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entrydc2dd103">
+              
+            <a class="pull-left" href="#entrydc2dd103">
+              <img class="media-object" src="img/nologo.png"
+                   title="Concepts of Computer Science" alt="Concepts of Computer Science" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Concepts of Computer Science <a href="#entrydc2dd103" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Teaching Assistant</small>
+            </h4>
+            <em>Universität Konstanz &mdash; 2012</em>
+            
+            </div>
+            
+            </div>
+            
+            <div class="media" id="entry7c5316d4">
+              
+            <a class="pull-left" href="#entry7c5316d4">
+              <img class="media-object" src="img/nologo.png"
+                   title="Concepts of Programming" alt="Concepts of Programming" style="width: 64px;">
+            </a>
+            <div class="media-body">
+              
+            <h4 class="media-heading">
+              Concepts of Programming <a href="#entry7c5316d4" class="anchor" aria-hidden="true">
+                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                  </a><br/>
+              <small>Teaching Assistant</small>
+            </h4>
+            <em>Universität Konstanz &mdash; 2011</em>
+            
+            </div>
+            
+            </div>
+            
+      </div>
+    </div>
+  </div>
+</body>
+</html>

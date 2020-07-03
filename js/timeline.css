@@ -1,0 +1,19 @@
+/**
+ * Created by krause on 2016-04-22.
+ */
+
+#div-timeline * {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.axis {
+  shape-rendering: crispEdges;
+}
+.x.axis line {
+  stroke: lightgray;
+}
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+.x.axis path {
+  display: none;
+}
