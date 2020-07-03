@@ -60,7 +60,7 @@ def create_sitemap(out, lines):
             os.path.getmtime(filename), tz=_tz).isoformat()
         out.write(tmpl.format(base=base, path=line, mod=mtime))
         out.flush()
-    curtime = date.fromtimestamp(time.time(), tz=_tz).isoformat()
+    curtime = datetime.fromtimestamp(time.time(), tz=_tz).isoformat()
     out.write(tmpl.format(base=base, path="", mod=curtime))
     out.write(tmpl.format(base="https://josuakrause.github.io/", path="", mod=curtime))
     out.write(u"""</urlset>
