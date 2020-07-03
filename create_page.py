@@ -19,21 +19,36 @@ ld_json_knowledge = u"""{
 "@context": "http://schema.org/",
 "@id": "https://josuakrause.github.io/info/",
 "@type": "Person",
+"homepage": "https://josuakrause.github.io/info/",
 "name": "Josua Krause",
+"familyName": "Krause",
+"givenName": "Josua",
+"jobTitle": "Vice President of Data Science",
 "additionalName": "Joschi",
+"affiliation": {
+  "@type": "Organization",
+  "name": "Accern Corp."
+},
+"alumniOf": {
+  "@type": "EducationalOrganization",
+  "name": "NYU"
+},
 "birthDate": "January 18, 1988",
 "url": "https://josuakrause.github.io/info/",
 "image": "https://josuakrause.github.io/info/img/photo.jpg",
 "sameAs" : [
     "https://www.linkedin.com/in/josuakrause/",
+    "https://www.linkedin.com/in/josua-krause-48b3b091/",
     "https://github.com/JosuaKrause/",
-    "https://plus.google.com/+JosuaKrause/",
-    "https://www.youtube.com/user/j0sch1",
-    "https://www.facebook.com/josua.krause",
-    "http://engineering.nyu.edu/people/josua-krause",
+    "https://www.youtube.com/c/JosuaKrause/",
+    "http://archive.engineering.nyu.edu/people/josua-krause",
     "https://vimeo.com/user35425102",
     "https://scholar.google.com/citations?user=hFjNgPEAAAAJ",
-    "http://dblp.uni-trier.de/pers/hd/k/Krause:Josua"
+    "https://dblp.uni-trier.de/pers/k/Krause:Josua.html",
+    "https://dblp.org/pers/k/Krause:Josua.html",
+    "https://dl.acm.org/profile/99659020297",
+    "https://ieeexplore.ieee.org/author/37085594931",
+    "https://theorg.com/org/accern/team/josua-krause"
 ]
 }"""
 
