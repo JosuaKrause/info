@@ -11,6 +11,11 @@
       "color": "black"
     },
     {
+      "type": "blog",
+      "name": "Blog",
+      "color": "black",
+    },
+    {
       "type": "project",
       "name": "Notable Projects",
       "color": "black"
@@ -347,6 +352,14 @@ solutions and provide two examples of where such techniques have been successful
       model explanations by providing examples of well-known ML models. Second,
       we discuss how explanatory visual analytics systems can be instantiated for
       enhancing model interpretability by referring to our past and current research."
+    },
+    {
+      "type": "blog",
+      "title": "Adaptive Modeling: Building Models that Last",
+      "href": "https://accern.com/post/adaptive-modeling-building-models-that-last",
+      "authors": "Josua Krause",
+      "date": "Feb 3, 2021",
+      "published": true
     },
     {
       "type": "project",
