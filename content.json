@@ -1,6 +1,16 @@
 {
   "types": [
     {
+      "type": "blog",
+      "name": "Blog",
+      "color": "black"
+    },
+    {
+      "type": "teaching",
+      "name": "Teaching",
+      "color": "black"
+    },
+    {
       "type": "paper",
       "name": "Publications",
       "color": "black"
@@ -11,11 +21,6 @@
       "color": "black"
     },
     {
-      "type": "blog",
-      "name": "Blog",
-      "color": "black"
-    },
-    {
       "type": "project",
       "name": "Notable Projects",
       "color": "black"
@@ -23,11 +28,6 @@
     {
       "type": "thesis",
       "name": "Theses",
-      "color": "black"
-    },
-    {
-      "type": "teaching",
-      "name": "Teaching",
       "color": "black"
     },
     {
@@ -655,6 +655,27 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "conference": "Universität Konstanz",
       "short-conference": "Uni KN",
       "date": "Aug 7, 2018",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Foundation of Data Science",
+      "short-title": "Foundation of Data Science",
+      "authors": "Adjunct Professor",
+      "conference": "New York University",
+      "short-conference": "NYU",
+      "date": "Dec 27, 2021",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "How to Spot and Understand AI Bias within Financial Services",
+      "short-title": "AI Bias Webinar",
+      "authors": "Webinar",
+      "conference": "Accern",
+      "short-conference": "Accern",
+      "date": "Mar 30, 2022",
+      "external": "https://meet.accern.com/ai-bias-webinar",
       "published": true
     }
   ]
