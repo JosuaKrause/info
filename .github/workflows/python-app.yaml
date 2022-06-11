@@ -1,0 +1,25 @@
+name: Python Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  ci_pipeline:
+    name: CI Pipeline
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['2.7']
+    env:
+      OUTPUT: www
+      LIB_COPY: filelist.txt
+      NO_DEFAULT: 1
+      NO_WEB: ""
+      PUBLISH: 1
+
+    steps:
+    - name: Build
+      run: |
+        ./create.sh
