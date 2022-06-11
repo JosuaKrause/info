@@ -16,7 +16,7 @@ jobs:
       OUTPUT: www
       LIB_COPY: filelist.txt
       NO_DEFAULT: 1
-      NO_WEB: ""
+      NO_WEB: ''
       PUBLISH: 1
 
     steps:
