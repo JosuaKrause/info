@@ -1,4 +1,3 @@
-import io
 import json
 import os
 import re
@@ -204,7 +203,7 @@ def create_autopage(content, doc, ofile, dry_run):
             f"appears in {doc['conference']}"),
     )
     if not dry_run:
-        with io.open(ofile, "w", encoding="utf-8") as fout:
+        with open(ofile, "w", encoding="utf-8") as fout:
             fout.write(output)
 
 
@@ -266,7 +265,7 @@ def create_media(pref, types, docs, dry_run):
                 if not dry_run:
                     if not os.path.exists(os.path.dirname(bibtex_filename)):
                         os.makedirs(os.path.dirname(bibtex_filename))
-                    with io.open(bibtex_filename, "w", encoding="utf-8") as f:
+                    with open(bibtex_filename, "w", encoding="utf-8") as f:
                         print(bibtex, file=f)
                 appendix.append(
                     f"<a href=\"{bibtex_link}\" rel=\"nofollow\">[bibtex]</a>")
@@ -349,7 +348,7 @@ def create_media(pref, types, docs, dry_run):
                 "type_names": type_names,
             }, sort_keys=True, indent=2, encoding="utf-8"), file=tlout)
     if auto_pages:
-        with io.open("page.tmpl", "r", encoding="utf-8") as tfin:
+        with open("page.tmpl", "r", encoding="utf-8") as tfin:
             page_tmpl = tfin.read()
         for doc in auto_pages:
             create_autopage(
@@ -359,9 +358,9 @@ def create_media(pref, types, docs, dry_run):
 
 
 def apply_template(tmpl, docs, pref, dry_run):
-    with io.open(tmpl, "r", encoding="utf-8") as tfin:
+    with open(tmpl, "r", encoding="utf-8") as tfin:
         content = tfin.read()
-    with io.open(docs, "r", encoding="utf-8") as dfin:
+    with open(docs, "r", encoding="utf-8") as dfin:
         data = dfin.read()
 
         def sanitize(m):
@@ -369,7 +368,7 @@ def apply_template(tmpl, docs, pref, dry_run):
 
         data = re.sub(
             r'''"([^"]|\\\\")*":\s*"([^"]|\\\\")*"''', sanitize, data)
-        dobj = json.loads(data, encoding="utf-8")
+        dobj = json.loads(data)
     type_order = dobj["types"]
     doc_objs = dobj["documents"]
     media = create_media(pref, type_order, doc_objs, dry_run)
@@ -481,7 +480,7 @@ def run():
     content = apply_template(tmpl, docs, pref, dry_run)
     if not dry_run:
         if out != "-":
-            with io.open(out, "w", encoding="utf-8") as outf:
+            with open(out, "w", encoding="utf-8") as outf:
                 outf.write(content)
         else:
             sys.stdout.write(content)

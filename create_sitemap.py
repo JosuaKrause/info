@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import division, print_function
 
-import io
 import os
 import sys
 import time
@@ -87,7 +86,7 @@ def run():
     if len(args) != 1:
         usage()
     output = args[0]
-    with io.open(output, "w", encoding="utf-8") as f_out:
+    with open(output, "w", encoding="utf-8") as f_out:
         create_sitemap(f_out, sys.stdin.readlines())
 
 
