@@ -12,27 +12,27 @@
     },
     {
       "type": "paper",
-      "name": "Publications",
+      "name": "Publication",
       "color": "black"
     },
     {
       "type": "poster",
-      "name": "Posters / Workshops",
+      "name": "Poster / Workshop",
       "color": "black"
     },
     {
       "type": "project",
-      "name": "Notable Projects",
+      "name": "Notable Project",
       "color": "black"
     },
     {
       "type": "thesis",
-      "name": "Theses",
+      "name": "Thesis",
       "color": "black"
     },
     {
       "type": "work",
-      "name": "Employments",
+      "name": "Employment",
       "color": "black"
     }
   ],

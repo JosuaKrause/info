@@ -238,6 +238,9 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
     for doc in docs:
         kind = type_lookup[doc[group_by]]
         kind["docs"].append(doc)
+    event_kind_lookup = {}
+    for kind in event_types:
+        event_kind_lookup[kind["type"]] = kind
     event_times = {}
     events = []
     content = ""
@@ -288,13 +291,14 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
             awds = (
                 f"{' ' if appx else f'<br/>{NL}'}{' '.join(awards)}"
                 if awards else "")
+            kind = event_kind_lookup[doc["type"]]["name"]
             body = f"""
             <h4 class="media-heading">
               {doc['title']}
                 <a href="#{entry_id}" class="anchor" aria-hidden="true">
                   <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
                 </a><br/>
-              <small>{authors}</small>
+              <small>{kind}: {authors}</small>
             </h4>
             <em>{doc['conference']} &mdash; {pub}</em>{appx}{awds}
             """
