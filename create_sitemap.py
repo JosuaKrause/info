@@ -50,10 +50,10 @@ def create_sitemap(out, lines):
         if os.path.isdir(filename) and not os.path.exists(
                 os.path.join(filename, "index.html")):
             continue
-        print(f"processing: {line}")
+        print(f"processing: {base}{filename}")
         mtime = datetime.fromtimestamp(
             os.path.getmtime(filename), tz=_tz).isoformat()
-        out.write(tmpl.format(base=base, path=line, mod=mtime))
+        out.write(tmpl.format(base=base, path=filename, mod=mtime))
         out.flush()
     curtime = datetime.fromtimestamp(time.time(), tz=_tz).isoformat()
     out.write(tmpl.format(base=base, path="", mod=curtime))
