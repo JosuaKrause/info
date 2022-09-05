@@ -339,14 +339,14 @@ def create_media(pref, types, docs, dry_run):
             pref if pref is not None else ".", "material/timeline.json")
         if not os.path.exists(os.path.dirname(timeline_fn)):
             os.makedirs(os.path.dirname(timeline_fn))
-        with open(timeline_fn, "wb") as tlout:
+        with open(timeline_fn, "w", encoding="utf-8") as tlout:
             type_names = {}
             for kind in types:
                 type_names[kind["type"]] = kind["name"]
             print(json.dumps({
                 "events": events,
                 "type_names": type_names,
-            }, sort_keys=True, indent=2).encode("utf-8"), file=tlout)
+            }, sort_keys=True, indent=2), file=tlout)
     if auto_pages:
         with open("page.tmpl", "r", encoding="utf-8") as tfin:
             page_tmpl = tfin.read()
