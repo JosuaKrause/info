@@ -9,6 +9,16 @@ import pytz
 _tz = pytz.timezone("US/Eastern")
 
 
+def has_private_folder(filename):
+    fname = os.path.basename(filename)
+    if fname.startswith("."):
+        return True
+    rec = os.path.dirname(filename)
+    if rec == ".":
+        return False
+    return has_private_folder(rec)
+
+
 def create_sitemap(out, lines):
     out.write("""<?xml version="1.0" encoding="UTF-8"?>
 <urlset
@@ -24,37 +34,49 @@ def create_sitemap(out, lines):
   </url>
 """
     base = "https://josuakrause.github.io/info/"
-    for line in sorted(set(lines)):
-        if not line.strip():
-            continue
+
+    def process_line(line):
         filename = os.path.normpath(line.strip())
+        if has_private_folder(filename):
+            return None
         fname = os.path.basename(filename)
-        if fname.startswith("."):
-            continue
         if fname.endswith(".js"):
-            continue
+            return None
         if fname.endswith(".css"):
-            continue
+            return None
         if fname.endswith(".json"):
-            continue
+            return None
         if fname.endswith(".zip"):
-            continue
+            return None
         if fname.endswith(".bib"):
-            continue
+            return None
         if fname.endswith(".key"):
-            continue
+            return None
         if fname.endswith(".png"):
-            continue
+            return None
         if fname.endswith(".jpg"):
-            continue
+            return None
         if os.path.isdir(filename) and not os.path.exists(
                 os.path.join(filename, "index.html")):
-            continue
+            return None
         print(f"processing: {base}{filename}")
         mtime = datetime.fromtimestamp(
             os.path.getmtime(filename), tz=_tz).isoformat()
         out.write(tmpl.format(base=base, path=filename, mod=mtime))
         out.flush()
+        return os.path.dirname(filename)
+
+    folders = set()
+    for line in sorted(set(lines)):
+        if not line.strip():
+            continue
+        cur = process_line(line)
+        if cur is not None:
+            folders.add(cur)
+    for line in sorted(folders):
+        if not line.strip():
+            continue
+        process_line(line)
     curtime = datetime.fromtimestamp(time.time(), tz=_tz).isoformat()
     out.write(tmpl.format(base=base, path="", mod=curtime))
     out.write(tmpl.format(
