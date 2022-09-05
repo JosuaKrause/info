@@ -14,7 +14,7 @@ def has_private_folder(filename):
     if fname.startswith("."):
         return True
     rec = os.path.dirname(filename)
-    if rec == ".":
+    if not rec:
         return False
     return has_private_folder(rec)
 
