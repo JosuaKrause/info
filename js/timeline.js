@@ -71,12 +71,13 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
       return typeNames[g] || "???";
     }).style({
       "vertical-align": "middle",
-      "cursor": "pointer",
-    }).on("click", function(g) {
-      jumpToElem({
-        "link": "#" + g
-      });
+      // "cursor": "pointer",
     });
+    // .on("click", function(g) {
+    //   jumpToElem({
+    //     "link": "#" + g
+    //   });
+    // });
     lSel.selectAll(".legend-color").style({
       "width": "1em",
       "height": "1em",
