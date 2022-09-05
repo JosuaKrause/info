@@ -236,7 +236,7 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
         type_lookup[kind["type"]] = kind
         kind["docs"] = []
     for doc in docs:
-        kind = type_lookup[doc[group_by]]
+        kind = type_lookup[group_by(doc)]
         kind["docs"].append(doc)
     event_kind_lookup = {}
     for kind in event_types:
@@ -291,14 +291,14 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
             awds = (
                 f"{' ' if appx else f'<br/>{NL}'}{' '.join(awards)}"
                 if awards else "")
-            kind = event_kind_lookup[doc["type"]]["name"]
+            kind_name = event_kind_lookup[doc["type"]]["name"]
             body = f"""
             <h4 class="media-heading">
               {doc['title']}
                 <a href="#{entry_id}" class="anchor" aria-hidden="true">
                   <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
                 </a><br/>
-              <small>{kind}: {authors}</small>
+              <small>{kind_name}: {authors}</small>
             </h4>
             <em>{doc['conference']} &mdash; {pub}</em>{appx}{awds}
             """
@@ -377,20 +377,27 @@ def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
         data = re.sub(
             r'''"([^"]|\\\\")*":\s*"([^"]|\\\\")*"''', sanitize, data)
         dobj = json.loads(data)
+
+    def get_type(doc):
+        return doc["type"]
+
+    def get_date(doc):
+        return f"{year(tparse(doc['date']))}"
+
     if is_ordered_by_type:
         type_order = dobj["types"]
-        group_by = "type"
+        group_by = get_type
     else:
         types = set()
         for doc in dobj["documents"]:
-            types.add(year(tparse(doc["date"])))
-        group_by = "date"
+            types.add(get_date(doc))
+        group_by = get_date
         type_order = [
             {
-                "type": f"{year_int}",
-                "name": f"{year_int}",
+                "type": f"{year_str}",
+                "name": f"{year_str}",
                 "color": "black",
-            } for year_int in sorted(types, reverse=True)
+            } for year_str in sorted(types, key=int, reverse=True)
         ]
     doc_objs = dobj["documents"]
     media = create_media(
