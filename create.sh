@@ -26,5 +26,5 @@ if [ -z $PUBLISH ]; then
   rm -rf "${OUTPUT}"
   rm "${LIB_COPY}"
 else
-  ghp-import -n "${OUTPUT}" && git push -qf gh-pages
+  ghp-import -n "${OUTPUT}" && git push -qf origin gh-pages
 fi
