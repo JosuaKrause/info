@@ -26,6 +26,5 @@ if [ -z $PUBLISH ]; then
   rm -rf "${OUTPUT}"
   rm "${LIB_COPY}"
 else
-  ghp-import -n "${OUTPUT}" &&
-  git push -qf "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" gh-pages
+  ghp-import -n "${OUTPUT}" && git push -qf gh-pages
 fi

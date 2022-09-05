@@ -37,6 +37,7 @@ def create_sitemap(out, lines):
 
     def process_line(line):
         filename = os.path.normpath(line.strip())
+        print(f"checking: {base}{filename}")
         if has_private_folder(filename):
             return None
         fname = os.path.basename(filename)
