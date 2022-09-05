@@ -125,6 +125,10 @@ def monthtime(dtime):
     return f"{dtime.year}-{dtime.month}"
 
 
+def year(dtime):
+    return dtime.year
+
+
 def chk(doc, field):
     return field in doc and doc[field]
 
@@ -226,13 +230,13 @@ def add_misc_links(appendix, doc, no_video=False):
         appendix.append(f"<a href=\"{doc['poster']}\">[poster]</a>")
 
 
-def create_media(pref, types, docs, dry_run):
+def create_media(pref, types, group_by, docs, dry_run):
     type_lookup = {}
     for kind in types:
         type_lookup[kind["type"]] = kind
         kind["docs"] = []
     for doc in docs:
-        kind = type_lookup[doc["type"]]
+        kind = type_lookup[doc[group_by]]
         kind["docs"].append(doc)
     event_times = {}
     events = []
@@ -279,7 +283,7 @@ def create_media(pref, types, docs, dry_run):
                 for award in doc["awards"]
             ] if chk(doc, "awards") else []
             pub = (
-                doc['date'] if doc['published'] else "to be published&hellip;")
+                doc["date"] if doc["published"] else "to be published&hellip;")
             appx = f"<br/>{NL}{' '.join(appendix)}" if appendix else ""
             awds = (
                 f"{' ' if appx else f'<br/>{NL}'}{' '.join(awards)}"
@@ -318,7 +322,7 @@ def create_media(pref, types, docs, dry_run):
                 if chk(doc, "short-conference")
                 else doc["conference"])
             tid = otid
-            mtime = monthtime(tparse(doc['date']))
+            mtime = monthtime(tparse(doc["date"]))
             if mtime not in event_times:
                 event_times[mtime] = set()
             num = 1
@@ -357,7 +361,7 @@ def create_media(pref, types, docs, dry_run):
     return content
 
 
-def apply_template(tmpl, docs, pref, dry_run):
+def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
     with open(tmpl, "r", encoding="utf-8") as tfin:
         content = tfin.read()
     with open(docs, "r", encoding="utf-8") as dfin:
@@ -369,9 +373,23 @@ def apply_template(tmpl, docs, pref, dry_run):
         data = re.sub(
             r'''"([^"]|\\\\")*":\s*"([^"]|\\\\")*"''', sanitize, data)
         dobj = json.loads(data)
-    type_order = dobj["types"]
+    if is_ordered_by_type:
+        type_order = dobj["types"]
+        group_by = "type"
+    else:
+        types = set()
+        for doc in dobj["documents"]:
+            types.add(year(tparse(doc["date"])))
+        group_by = "date"
+        type_order = [
+            {
+                "type": f"{year_int}",
+                "name": f"{year_int}",
+                "color": "black",
+            } for year_int in sorted(types, reverse=True)
+        ]
     doc_objs = dobj["documents"]
-    media = create_media(pref, type_order, doc_objs, dry_run)
+    media = create_media(pref, type_order, group_by, doc_objs, dry_run)
     js_fillin = """
     function start() {
       var w = "100%";
@@ -477,7 +495,12 @@ def run():
     if tmpl is None or docs is None:
         print("input is underspecified", file=sys.stderr)
         usage()
-    content = apply_template(tmpl, docs, pref, dry_run)
+    content = apply_template(
+        tmpl,
+        docs,
+        pref,
+        is_ordered_by_type=False,
+        dry_run=dry_run)
     if not dry_run:
         if out != "-":
             with open(out, "w", encoding="utf-8") as outf:
