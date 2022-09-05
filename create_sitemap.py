@@ -25,28 +25,28 @@ def create_sitemap(out, lines):
 """
     base = "https://josuakrause.github.io/info/"
     for line in sorted(set(lines)):
-        line = line.strip().lstrip("./")
-        if not line:
+        if not line.strip():
             continue
-        if line.startswith("."):
+        filename = os.path.normpath(line.strip())
+        fname = os.path.basename(filename)
+        if fname.startswith("."):
             continue
-        if line.endswith(".js"):
+        if fname.endswith(".js"):
             continue
-        if line.endswith(".css"):
+        if fname.endswith(".css"):
             continue
-        if line.endswith(".json"):
+        if fname.endswith(".json"):
             continue
-        if line.endswith(".zip"):
+        if fname.endswith(".zip"):
             continue
-        if line.endswith(".bib"):
+        if fname.endswith(".bib"):
             continue
-        if line.endswith(".key"):
+        if fname.endswith(".key"):
             continue
-        if line.endswith(".png"):
+        if fname.endswith(".png"):
             continue
-        if line.endswith(".jpg"):
+        if fname.endswith(".jpg"):
             continue
-        filename = line if line else "."
         if os.path.isdir(filename) and not os.path.exists(
                 os.path.join(filename, "index.html")):
             continue
