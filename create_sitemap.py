@@ -11,7 +11,7 @@ _tz = pytz.timezone("US/Eastern")
 
 def has_private_folder(filename):
     fname = os.path.basename(filename)
-    if fname.startswith("."):
+    if fname.startswith(".") and fname != ".":
         return True
     rec = os.path.dirname(filename)
     if not rec:
@@ -67,17 +67,11 @@ def create_sitemap(out, lines):
         out.flush()
         return os.path.dirname(filename)
 
-    folders = set()
     for line in sorted(set(lines)):
         if not line.strip():
             continue
-        cur = process_line(line)
-        if cur is not None:
-            folders.add(cur)
-    for line in sorted(folders):
-        if not line.strip():
-            continue
         process_line(line)
+
     curtime = datetime.fromtimestamp(time.time(), tz=_tz).isoformat()
     out.write(tmpl.format(base=base, path="", mod=curtime))
     out.write(tmpl.format(
