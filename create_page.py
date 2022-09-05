@@ -346,7 +346,7 @@ def create_media(pref, types, docs, dry_run):
             print(json.dumps({
                 "events": events,
                 "type_names": type_names,
-            }, sort_keys=True, indent=2, encoding="utf-8"), file=tlout)
+            }, sort_keys=True, indent=2).encode("utf-8"), file=tlout)
     if auto_pages:
         with open("page.tmpl", "r", encoding="utf-8") as tfin:
             page_tmpl = tfin.read()
