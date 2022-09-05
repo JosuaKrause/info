@@ -34,6 +34,11 @@
       "type": "work",
       "name": "Employment",
       "color": "black"
+    },
+    {
+      "type": "patent",
+      "name": "Patent",
+      "color": "black"
     }
   ],
   "documents": [
@@ -676,6 +681,39 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "short-conference": "Accern",
       "date": "Mar 30, 2022",
       "external": "https://meet.accern.com/ai-bias-webinar",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "AI4CI: Artificial Intelligence for Collective Intelligence",
+      "short-title": "UNDP AI4CI",
+      "authors": "Invited Talk",
+      "conference": "UNDP: Accelerator Labs",
+      "short-conference": "UNDP",
+      "date": "Jun 14, 2022",
+      "external": "https://www.linkedin.com/feed/update/urn:li:activity:6942440859225194496?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A6942440859225194496%2C6942441981222469632%29",
+      "published": true
+    },
+    {
+      "type": "patent",
+      "title": "Identifying and ranking risk factors using trained predictive models (US Patent 11,355,246)",
+      "short-title": "US 11,355,246",
+      "authors": "Josua Krause, Kenney Ng, Adam Perer",
+      "conference": "IBM",
+      "short-conference": "IBM",
+      "date": "Jun 7, 2022",
+      "external": "https://patentimages.storage.googleapis.com/df/42/d2/720b921a425f97/US11355246.pdf",
+      "published": true
+    },
+    {
+      "type": "patent",
+      "title": "Identifying and ranking risk factors using trained predictive models (US Patent 11,355,245)",
+      "short-title": "US 11,355,245",
+      "authors": "Josua Krause, Kenney Ng, Adam Perer",
+      "conference": "IBM",
+      "short-conference": "IBM",
+      "date": "Jun 7, 2022",
+      "external": "https://patentimages.storage.googleapis.com/45/ea/fd/51ad388d071be9/US11355245.pdf",
       "published": true
     }
   ]
