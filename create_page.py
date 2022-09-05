@@ -1,21 +1,19 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-from __future__ import print_function
-from __future__ import division
-
 import io
-import re
-import os
-import csv
-import sys
 import json
-import pytz
+import os
+import re
+import sys
 import zlib
+from datetime import datetime, timedelta
 
+import pytz
 from dateutil.parser import parse as tparse
-from datetime import datetime, timedelta, tzinfo
 
-ld_json_knowledge = u"""{
+
+NL = "\n"
+
+
+LD_JSON_KNOWLEDGE = """{
   "@id": "https://josuakrause.github.io/info/",
   "@type": "http://schema.org/Person",
   "http://schema.org/additionalName": "Joschi",
@@ -88,7 +86,7 @@ ld_json_knowledge = u"""{
   ]
 }"""
 
-ga_tracking = u"""
+GA_TRACKING = """
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -100,74 +98,84 @@ ga('send', 'pageview');
 """
 
 _compute_self = "total_seconds" not in dir(timedelta(seconds=1))
-_tz = pytz.timezone('US/Eastern')
+_tz = pytz.timezone("US/Eastern")
 _epoch = datetime(year=1970, month=1, day=1, tzinfo=_tz)
-_day_seconds = 24 * 3600
-_milli = 10**6
+_DAY_SECONDS = 24 * 3600
+_MILLI = 10 ** 6
 
 
-def mktime(dt):
-    if dt.tzinfo is None:
-        dt = datetime(year=dt.year, month=dt.month, day=dt.day, tzinfo=_tz)
+def mktime(dtime):
+    if dtime.tzinfo is None:
+        dtime = datetime(
+            year=dtime.year,
+            month=dtime.month,
+            day=dtime.day,
+            tzinfo=_tz)
     if not _compute_self:
-        res = (dt - _epoch).total_seconds()
+        res = (dtime - _epoch).total_seconds()
     else:
-        td = dt - _epoch
-        res = (td.microseconds + (td.seconds + td.days * _day_seconds) *
-               _milli) / _milli
-    return int(res - res % _day_seconds)
+        tdelta = dtime - _epoch
+        res = (
+            tdelta.microseconds + (
+                tdelta.seconds + tdelta.days * _DAY_SECONDS) * _MILLI
+            ) / _MILLI
+    return int(res - res % _DAY_SECONDS)
 
 
-def monthtime(dt):
-    return "{0}-{1}".format(dt.year, dt.month)
+def monthtime(dtime):
+    return f"{dtime.year}-{dtime.month}"
 
 
 def chk(doc, field):
     return field in doc and doc[field]
 
 
-def create_autopage(content, doc, ofile):
-    abstract = u"<h4>Abstract</h4><p style=\"text-align: justify;\">{0}</p>" \
-        .format(doc['abstract']) if chk(doc, 'abstract') else ""
-    bibtex = u"<h4>Bibtex</h4><pre>{0}</pre>" \
-        .format(doc['bibtex'].strip()) if chk(doc, 'bibtex') else ""
-    image = u"""
+def create_autopage(content, doc, ofile, dry_run):
+    abstract = (
+        "<h4>Abstract</h4><p style=\"text-align: justify;\">"
+        f"{doc['abstract']}</p>" if chk(doc, "abstract") else "")
+    bibtex = (
+        f"<h4>Bibtex</h4><pre>{doc['bibtex'].strip()}</pre>"
+        if chk(doc, 'bibtex') else "")
+    image = f"""
     <div class="row">
         <div class="col-md-9">
-            <img alt="{0}" src="{1}" style="margin: 0 5%; width: 90%;">
+            <img alt="{
+        doc['teaser_desc'] if chk(doc, 'teaser_desc') else doc['teaser']
+        }" src="{doc['teaser']}" style="margin: 0 5%; width: 90%;">
         </div>
     </div>
-    """.format(
-        doc['teaser_desc'] if chk(doc, 'teaser_desc') else doc['teaser'],
-        doc['teaser']) if chk(doc, 'teaser') else ""
-    if chk(doc, 'video'):
+    """ if chk(doc, "teaser") else ""
+    if chk(doc, "video"):
         m = re.match("^https?://vimeo.com/(\\d+)$", doc['video'])
         if m is not None:
-            video = u"""
+            video = f"""
             <p style="text-align: center; margin: 0 auto;">
-              <iframe src="https://player.vimeo.com/video/{0}"
+              <iframe src="https://player.vimeo.com/video/{m.group(1)}"
                       width="640" height="389" frameborder="0"
                       webkitallowfullscreen mozallowfullscreen
                       allowfullscreen></iframe>
-              <br><a href="https://vimeo.com/{0}">Watch video on Vimeo</a>
+              <br><a href="https://vimeo.com/{
+                m.group(1)}">Watch video on Vimeo</a>
             </p>
-            """.format(m.group(1))
+            """
         else:
             video = ""
     else:
         video = ""
-    if chk(doc, 'talk'):
+    if chk(doc, "talk"):
         m = re.match("^https?://vimeo.com/(\\d+)$", doc['talk'])
         if m is not None:
-            talk = u"""
+            talk = f"""
             <p style="text-align: center; margin: 0 auto;">
-              <iframe src="https://player.vimeo.com/video/{0}"
+              <iframe src="https://player.vimeo.com/video/{m.group(1)}"
                       width="640" height="389" frameborder="0"
                       webkitallowfullscreen mozallowfullscreen
                       allowfullscreen></iframe>
-              <br><a href="https://vimeo.com/{0}">Watch talk on Vimeo</a>
+              <br><a href="https://vimeo.com/{
+                m.group(1)}">Watch talk on Vimeo</a>
             </p>
-            """.format(m.group(1))
+            """
         else:
             talk = ""
     else:
@@ -175,152 +183,141 @@ def create_autopage(content, doc, ofile):
     links = []
     add_misc_links(links, doc, video)
     keywords = []
-    if 'keywords' in doc:
-        keywords.extend(doc['keywords'])
+    if "keywords" in doc:
+        keywords.extend(doc["keywords"])
     output = content.format(
-        title=doc['title'],
-        conference=doc['conference'],
-        authors=doc['authors'],
+        title=doc["title"],
+        conference=doc["conference"],
+        authors=doc["authors"],
         image=image,
         abstract=abstract,
-        links=u"""<h3 style="text-align: center;">{0}</h3>"""
-              .format(" ".join(links)) if links else "",
+        links=(
+            f"<h3 style=\"text-align: center;\">{' '.join(links)}</h3>"
+            if links else ""),
         bibtex=bibtex,
-        logo=doc['logo'] if chk(doc, 'logo') else u"img/nologo.png",
+        logo=doc['logo'] if chk(doc, 'logo') else "img/nologo.png",
         video=video,
         talk=talk,
-        tracking=ga_tracking,
-        description=u"""{0} by {1} appears in {2}"""
-                    .format(doc['title'], doc['authors'], doc['conference']),
+        tracking=GA_TRACKING,
+        description=(
+            f"{doc['title']} by {doc['authors']} "
+            f"appears in {doc['conference']}"),
     )
     if not dry_run:
-        with io.open(ofile, 'w', encoding='utf-8') as outf:
-            outf.write(output)
+        with io.open(ofile, "w", encoding="utf-8") as fout:
+            fout.write(output)
 
 
 def add_misc_links(appendix, doc, no_video=False):
-    if chk(doc, 'demo'):
-        appendix.append(
-            u"""<a href="{0}">[demo]</a>""".format(doc['demo']))
-    if chk(doc, 'pdf'):
-        appendix.append(
-            u"""<a href="{0}">[pdf]</a>""".format(doc['pdf']))
-    if chk(doc, 'video') and not no_video:
-        appendix.append(
-            u"""<a href="{0}">[video]</a>""".format(doc['video']))
-    if chk(doc, 'talk') and not no_video:
-        appendix.append(
-            u"""<a href="{0}">[talk]</a>""".format(doc['talk']))
-    if chk(doc, 'github'):
-        appendix.append(
-            u"""<a href="{0}">[github]</a>""".format(doc['github']))
-    if chk(doc, 'slides'):
-        appendix.append(
-            u"""<a href="{0}">[slides]</a>""".format(doc['slides']))
-    if chk(doc, 'external'):
-        appendix.append(
-            u"""<a href="{0}">[external]</a>""".format(doc['external']))
-    if chk(doc, 'poster'):
-        appendix.append(
-            u"""<a href="{0}">[poster]</a>""".format(doc['poster']))
+    if chk(doc, "demo"):
+        appendix.append(f"<a href=\"{doc['demo']}\">[demo]</a>")
+    if chk(doc, "pdf"):
+        appendix.append(f"<a href=\"{doc['pdf']}\">[pdf]</a>")
+    if chk(doc, "video") and not no_video:
+        appendix.append(f"<a href=\"{doc['video']}\">[video]</a>")
+    if chk(doc, "talk") and not no_video:
+        appendix.append(f"<a href=\"{doc['talk']}\">[talk]</a>")
+    if chk(doc, "github"):
+        appendix.append(f"<a href=\"{doc['github']}\">[github]</a>")
+    if chk(doc, "slides"):
+        appendix.append(f"<a href=\"{doc['slides']}\">[slides]</a>")
+    if chk(doc, "external"):
+        appendix.append(f"<a href=\"{doc['external']}\">[external]</a>")
+    if chk(doc, "poster"):
+        appendix.append(f"<a href=\"{doc['poster']}\">[poster]</a>")
 
 
 def create_media(pref, types, docs, dry_run):
     type_lookup = {}
-    for type in types:
-        type_lookup[type['type']] = type
-        type['docs'] = []
+    for kind in types:
+        type_lookup[kind["type"]] = kind
+        kind["docs"] = []
     for doc in docs:
-        type = type_lookup[doc['type']]
-        type['docs'].append(doc)
+        kind = type_lookup[doc["type"]]
+        kind["docs"].append(doc)
     event_times = {}
     events = []
-    content = ''
+    content = ""
     auto_pages = []
-    for type in types:
-        if not type['docs']:
+    for kind in types:
+        if not kind["docs"]:
             continue
-        content += u'<h3 id="{0}">{1}</h3>'.format(type['type'], type['name'])
-        type['docs'].sort(
-            key=lambda t: (tparse(t['date']), t['title']), reverse=True)
-        for doc in type['docs']:
-            entry_id = u"entry{:08x}".format(
-                zlib.crc32(u"{0}_{1}_{2}".format(type['name'], doc['title'],
-                           mktime(tparse(doc['date']))
-                          ).encode('utf-8')) & 0xffffffff)
+        content += f"<h3 id=\"{kind['type']}\">{kind['name']}</h3>"
+        kind["docs"].sort(
+            key=lambda t: (tparse(t["date"]), t["title"]), reverse=True)
+        for doc in kind["docs"]:
+            id_str = (
+                f"{kind['name']}_{doc['title']}_"
+                f"{mktime(tparse(doc['date']))}")
+            hash_id = zlib.crc32(id_str.encode("utf-8")) & 0xffffffff
+            entry_id = f"entry{hash_id:08x}"
             appendix = []
-            if 'href' in doc and doc['href']:
-                if chk(doc, 'autopage'):
+            if "href" in doc and doc["href"]:
+                if chk(doc, "autopage"):
                     auto_pages.append(doc)
                 appendix.append(
-                    u"""<a href="{0}">[page]</a>""".format(doc['href']))
+                    f"<a href=\"{doc['href']}\">[page]</a>")
             add_misc_links(appendix, doc)
-            if chk(doc, 'bibtex'):
-                bibtex = doc['bibtex'].strip()
-                bibtex_link = u"bibtex/{0}.bib".format(entry_id)
+            if chk(doc, "bibtex"):
+                bibtex = doc["bibtex"].strip()
+                bibtex_link = f"bibtex/{entry_id}.bib"
                 bibtex_filename = os.path.join(
                     pref if pref is not None else ".", bibtex_link)
                 if not dry_run:
                     if not os.path.exists(os.path.dirname(bibtex_filename)):
                         os.makedirs(os.path.dirname(bibtex_filename))
-                    with io.open(bibtex_filename, 'w', encoding='utf-8') as f:
+                    with io.open(bibtex_filename, "w", encoding="utf-8") as f:
                         print(bibtex, file=f)
                 appendix.append(
-                    u"""<a href="{0}" rel="nofollow">[bibtex]</a>"""
-                    .format(bibtex_link))
-            authors = doc['authors'].replace(
+                    f"<a href=\"{bibtex_link}\" rel=\"nofollow\">[bibtex]</a>")
+            authors = doc["authors"].replace(
                 "Josua Krause",
-                "<span style=\"text-decoration: underline;\">" +
+                "<span style=\"text-decoration: underline;\">"
                 "Josua Krause</span>")
-            astr = u"<img src=\"img/badge.png\" style=\"height: 1em;\" " + \
-                   u"alt=\"{0}\" title=\"{0}\">"
             awards = [
-                astr.format(award) for award in doc['awards']
-            ] if chk(doc, 'awards') else []
-            body = u"""
+                "<img src=\"img/badge.png\" style=\"height: 1em;\" "
+                f"alt=\"{award}\" title=\"{award}\">"
+                for award in doc["awards"]
+            ] if chk(doc, "awards") else []
+            pub = (
+                doc['date'] if doc['published'] else "to be published&hellip;")
+            appx = f"<br/>{NL}{' '.join(appendix)}" if appendix else ""
+            awds = (
+                f"{' ' if appx else f'<br/>{NL}'}{' '.join(awards)}"
+                if awards else "")
+            body = f"""
             <h4 class="media-heading">
-              {1} <a href="#{0}" class="anchor" aria-hidden="true">
-                    <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
-                  </a><br/>
-              <small>{2}</small>
+              {doc['title']}
+                <a href="#{entry_id}" class="anchor" aria-hidden="true">
+                  <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+                </a><br/>
+              <small>{authors}</small>
             </h4>
-            <em>{3} &mdash; {4}</em>{5}{6}
-            """.format(
-                entry_id,
-                doc['title'],
-                authors,
-                doc['conference'],
-                doc['date'] if doc['published']
-                else u"to be published&hellip;",
-                u"<br/>\n{0}".format(" ".join(appendix)) if appendix else "",
-                u"{0}{1}".format(
-                    " " if appendix else u"<br/>\n", " ".join(awards)
-                ) if awards else "",
-            )
-            entry = u"""
-            <a class="pull-left" href="#{0}">
-              <img class="media-object" src="{1}"
-                   title="{2}" alt="{3}" style="width: 64px;">
+            <em>{doc['conference']} &mdash; {pub}</em>{appx}{awds}
+            """
+            lsrc = doc["logo"] if chk(doc, "logo") else "img/nologo.png"
+            sttl = (
+                doc["short-title"]
+                if chk(doc, "short-title")
+                else doc["title"])
+            entry = f"""
+            <a class="pull-left" href="#{entry_id}">
+              <img class="media-object" src="{lsrc}"
+                   title="{doc['title']}" alt="{sttl}" style="width: 64px;">
             </a>
             <div class="media-body">
-              {4}
+              {body}
             </div>
-            """.format(
-                entry_id,
-                doc['logo'] if chk(doc, 'logo') else "img/nologo.png",
-                doc['title'],
-                doc['short-title'] if chk(doc, 'short-title')
-                else doc['title'],
-                body,
-            )
-            content += u"""
-            <div class="media" id="{0}">
-              {1}
+            """
+            content += f"""
+            <div class="media" id="{entry_id}">
+              {entry}
             </div>
-            """.format(entry_id, entry)
-            otid = doc['short-conference'] \
-                if chk(doc, 'short-conference') \
-                else doc['conference']
+            """
+            otid = (
+                doc["short-conference"]
+                if chk(doc, "short-conference")
+                else doc["conference"])
             tid = otid
             mtime = monthtime(tparse(doc['date']))
             if mtime not in event_times:
@@ -328,14 +325,14 @@ def create_media(pref, types, docs, dry_run):
             num = 1
             while tid in event_times[mtime]:
                 num += 1
-                tid = "{0} ({1})".format(otid, num)
+                tid = f"{otid} ({num})"
             event_times[mtime].add(tid)
             event = {
                 "id": tid,
-                "group": type['type'],
-                "name": doc['title'],
-                "time": mktime(tparse(doc['date'])),
-                "link": u"#{0}".format(entry_id),
+                "group": kind["type"],
+                "name": doc["title"],
+                "time": mktime(tparse(doc["date"])),
+                "link": f"#{entry_id}",
             }
             events.append(event)
     if not dry_run:
@@ -343,40 +340,40 @@ def create_media(pref, types, docs, dry_run):
             pref if pref is not None else ".", "material/timeline.json")
         if not os.path.exists(os.path.dirname(timeline_fn)):
             os.makedirs(os.path.dirname(timeline_fn))
-        with open(timeline_fn, 'wb') as tl:
+        with open(timeline_fn, "wb") as tlout:
             type_names = {}
-            for type in types:
-                type_names[type['type']] = type['name']
+            for kind in types:
+                type_names[kind["type"]] = kind["name"]
             print(json.dumps({
                 "events": events,
                 "type_names": type_names,
-            }, sort_keys=True, indent=2, encoding='utf-8'), file=tl)
+            }, sort_keys=True, indent=2, encoding="utf-8"), file=tlout)
     if auto_pages:
-        with io.open("page.tmpl", 'r', encoding='utf-8') as tf:
-            page_tmpl = tf.read()
+        with io.open("page.tmpl", "r", encoding="utf-8") as tfin:
+            page_tmpl = tfin.read()
         for doc in auto_pages:
             create_autopage(
                 page_tmpl, doc, os.path.join(
-                    pref if pref is not None else ".", doc['href']))
+                    pref if pref is not None else ".", doc["href"]), dry_run)
     return content
 
 
 def apply_template(tmpl, docs, pref, dry_run):
-    with io.open(tmpl, 'r', encoding='utf-8') as tf:
-        content = tf.read()
-    with io.open(docs, 'r', encoding='utf-8') as df:
-        data = df.read()
+    with io.open(tmpl, "r", encoding="utf-8") as tfin:
+        content = tfin.read()
+    with io.open(docs, "r", encoding="utf-8") as dfin:
+        data = dfin.read()
 
         def sanitize(m):
-            return m.group(0).replace('\n', '\\n')
+            return m.group(0).replace("\n", "\\n")
 
         data = re.sub(
             r'''"([^"]|\\\\")*":\s*"([^"]|\\\\")*"''', sanitize, data)
-        dobj = json.loads(data, encoding='utf-8')
-    type_order = dobj['types']
-    doc_objs = dobj['documents']
+        dobj = json.loads(data, encoding="utf-8")
+    type_order = dobj["types"]
+    doc_objs = dobj["documents"]
     media = create_media(pref, type_order, doc_objs, dry_run)
-    js_fillin = u"""
+    js_fillin = """
     function start() {
       var w = "100%";
       var h = 200;
@@ -402,14 +399,14 @@ def apply_template(tmpl, docs, pref, dry_run):
     }
     """
     return content.format(
-        name=u"""Josua (Joschi) Krause""",
-        description=u"""
+        name="Josua (Joschi) Krause",
+        description="""
 Hi, I'm Josua (Joschi) Krause, PhD.
 I'm interested in the intersection of Visual Analytics and Machine Learning
 especially in the field of Finance and Health Care Analytics.
-Currently I'm working at Accern as Senior Data Scientist.
+Currently I'm working at Accern as VP of Data Science.
         """.strip(),
-        description_long=u"""
+        description_long="""
 Hi, I'm interested in the intersection of Visual Analytics
 and Machine Learning especially in the field of
 Finance and Health Care Analytics. I received my PhD in Computer Science from
@@ -422,69 +419,74 @@ You can find my <a href="material/cv.pdf">CV here</a>.
         """.strip(),
         content=media,
         js=js_fillin,
-        tracking=ga_tracking,
-        knowledge=ld_json_knowledge,
-    )
+        tracking=GA_TRACKING,
+        knowledge=LD_JSON_KNOWLEDGE)
 
 
 def usage():
-    print("""
-usage: {0} [-h] [--dry] [--out <file>] --documents <file> --template <file>
+    print(f"""
+usage: {
+    sys.argv[0]
+    } [-h] [--dry] [--out <file>] --documents <file> --template <file>
 -h: print help
 --documents <file>: specifies the documents input
 --template <file>: specifies the template file
 --prefix <file>: specifies the file prefix
 --out <file>: specifies the output file. default is STD_OUT.
 --dry: do not produce any output
-""".strip().format(sys.argv[0]), file=sys.stderr)
-    exit(1)
+""".strip(), file=sys.stderr)
+    sys.exit(1)
 
 
-if __name__ == '__main__':
+def run():
     tmpl = None
     docs = None
     pref = None
-    out = '-'
+    out = "-"
     dry_run = False
     args = sys.argv[:]
     args.pop(0)
     while args:
         arg = args.pop(0)
-        if arg == '-h':
+        if arg == "-h":
             usage()
-        elif arg == '--template':
+        elif arg == "--template":
             if not args:
                 print("--template requires argument", file=sys.stderr)
                 usage()
             tmpl = args.pop(0)
-        elif arg == '--out':
+        elif arg == "--out":
             if not args:
                 print("--out requires argument", file=sys.stderr)
                 usage()
             out = args.pop(0)
-        elif arg == '--documents':
+        elif arg == "--documents":
             if not args:
                 print("--documents requires argument", file=sys.stderr)
                 usage()
             docs = args.pop(0)
-        elif arg == '--prefix':
+        elif arg == "--prefix":
             if not args:
                 print("--prefix requires argument", file=sys.stderr)
                 usage()
             pref = args.pop(0)
-        elif arg == '--dry':
+        elif arg == "--dry":
             dry_run = True
         else:
-            print('unrecognized argument: {0}'.format(arg), file=sys.stderr)
+            print(f"unrecognized argument: {arg}", file=sys.stderr)
             usage()
     if tmpl is None or docs is None:
-        print('input is underspecified', file=sys.stderr)
+        print("input is underspecified", file=sys.stderr)
         usage()
     content = apply_template(tmpl, docs, pref, dry_run)
     if not dry_run:
-        if out != '-':
-            with io.open(out, 'w', encoding='utf-8') as outf:
+        if out != "-":
+            with io.open(out, "w", encoding="utf-8") as outf:
                 outf.write(content)
         else:
             sys.stdout.write(content)
             sys.stdout.flush()
+
+
+if __name__ == "__main__":
+    run()
