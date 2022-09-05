@@ -230,7 +230,7 @@ def add_misc_links(appendix, doc, no_video=False):
         appendix.append(f"<a href=\"{doc['poster']}\">[poster]</a>")
 
 
-def create_media(pref, types, group_by, docs, dry_run):
+def create_media(pref, types, group_by, docs, *, event_types, dry_run):
     type_lookup = {}
     for kind in types:
         type_lookup[kind["type"]] = kind
@@ -332,7 +332,7 @@ def create_media(pref, types, group_by, docs, dry_run):
             event_times[mtime].add(tid)
             event = {
                 "id": tid,
-                "group": kind["type"],
+                "group": doc["type"],
                 "name": doc["title"],
                 "time": mktime(tparse(doc["date"])),
                 "link": f"#{entry_id}",
@@ -345,7 +345,7 @@ def create_media(pref, types, group_by, docs, dry_run):
             os.makedirs(os.path.dirname(timeline_fn))
         with open(timeline_fn, "w", encoding="utf-8") as tlout:
             type_names = {}
-            for kind in types:
+            for kind in event_types:
                 type_names[kind["type"]] = kind["name"]
             print(json.dumps({
                 "events": events,
@@ -389,7 +389,13 @@ def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
             } for year_int in sorted(types, reverse=True)
         ]
     doc_objs = dobj["documents"]
-    media = create_media(pref, type_order, group_by, doc_objs, dry_run)
+    media = create_media(
+        pref,
+        type_order,
+        group_by,
+        doc_objs,
+        event_types=dobj["types"],
+        dry_run=dry_run)
     js_fillin = """
     function start() {
       var w = "100%";
