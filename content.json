@@ -787,5 +787,60 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "external": "http://itolab.is.ocha.ac.jp/pvis2018/",
       "published": true
     },
+    {
+      "type": "committee",
+      "title": "IEEE InfoVis",
+      "short-title": "InfoVis",
+      "authors": "Reviewer",
+      "conference": "InfoVis",
+      "short-conference": "InfoVis",
+      "date": "Oct 26, 2018",
+      "external": "http://ieeevis.org/year/2018/welcome",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "IEEE InfoVis",
+      "short-title": "InfoVis",
+      "authors": "Reviewer",
+      "conference": "InfoVis",
+      "short-conference": "InfoVis",
+      "date": "Oct 26, 2018",
+      "external": "http://ieeevis.org/year/2018/welcome",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "IEEE Conference on Visual Analytics Science and Technology",
+      "short-title": "VAST",
+      "authors": "Reviewer",
+      "conference": "VAST",
+      "short-conference": "VAST",
+      "date": "Oct 26, 2018",
+      "external": "http://ieeevis.org/year/2018/welcome",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "KDD Workshop on Interactive Data Exploration and Analytics",
+      "short-title": "KDD IDEA",
+      "authors": "Reviewer",
+      "conference": "IDEA",
+      "short-conference": "IDEA",
+      "date": "Aug 20, 2018",
+      "external": "https://poloclub.gatech.edu/idea2018/",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "ACM CHI Conference on Human Factors in Computing Systems",
+      "short-title": "ACM CHI",
+      "authors": "Associate Chair",
+      "conference": "CHI",
+      "short-conference": "CHI",
+      "date": "May 9, 2019",
+      "external": "https://chi2019.acm.org/",
+      "published": true
+    }
   ]
 }
