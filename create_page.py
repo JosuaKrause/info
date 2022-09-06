@@ -96,6 +96,26 @@ ga('require', 'linkid');
 ga('send', 'pageview');
 """
 
+TAG = r"<[^>]*?>"
+
+DESCRIPTION = """
+Josua Krause is the VP of Data Science at
+<a href="https://www.accern.com/">Accern</a>, a no-code AI startup with offices
+in New York and Bangalore, where he leads the research, development, and
+deployment of AI models. Accern allows organizations to build and deploy AI
+solutions utilizing adaptive NLP and predictive features with a no-code
+development platform. His focus is on deep representation learning, natural
+language processing, and adaptive learning at scale. He recently has been
+Adjunct Professor at <a href="http://engineering.nyu.edu/">NYU</a>
+where he received his Ph.D. in Explainable Machine Learning under
+<a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
+"""
+
+DESCRIPTION_ADD = """
+<a href="material/cv.pdf">[Curriculum Vitae]</a>
+"""
+
+
 _compute_self = "total_seconds" not in dir(timedelta(seconds=1))
 _tz = pytz.timezone("US/Eastern")
 _epoch = datetime(year=1970, month=1, day=1, tzinfo=_tz)
@@ -434,23 +454,9 @@ def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
     """
     return content.format(
         name="Josua (Joschi) Krause",
-        description="""
-Hi, I'm Josua (Joschi) Krause, PhD.
-I'm interested in the intersection of Visual Analytics and Machine Learning
-especially in the field of Finance and Health Care Analytics.
-Currently I'm working at Accern as VP of Data Science.
-        """.strip(),
-        description_long="""
-Hi, I'm interested in the intersection of Visual Analytics
-and Machine Learning especially in the field of
-Finance and Health Care Analytics. I received my PhD in Computer Science from
-<a href="http://engineering.nyu.edu/">NYU Tandon School of Engineering</a>,
-Brooklyn, NY under
-<a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
-Currently I'm working at <a href="https://www.accern.com/">Accern</a>
-as VP of Data Science.
-You can find my <a href="material/cv.pdf">CV here</a>.
-        """.strip(),
+        description=re.sub(TAG, "", DESCRIPTION),
+        description_long=DESCRIPTION,
+        description_add=DESCRIPTION_ADD,
         content=media,
         js=js_fillin,
         tracking=GA_TRACKING,
