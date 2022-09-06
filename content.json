@@ -39,6 +39,11 @@
       "type": "patent",
       "name": "Patent",
       "color": "black"
+    },
+    {
+      "type": "committee",
+      "name": "Committee",
+      "color": "black"
     }
   ],
   "documents": [
@@ -691,7 +696,7 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "conference": "UNDP: Accelerator Labs",
       "short-conference": "UNDP",
       "date": "Jun 14, 2022",
-      "external": "https://www.linkedin.com/feed/update/urn:li:activity:6942440859225194496?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A6942440859225194496%2C6942441981222469632%29",
+      "external": "https://docs.google.com/document/d/1ghIntKryQeX8MbqdQh_otq3YTS0BRW1m044BBT0sF0I",
       "published": true
     },
     {
@@ -715,6 +720,72 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "date": "Jun 7, 2022",
       "external": "https://patentimages.storage.googleapis.com/45/ea/fd/51ad388d071be9/US11355245.pdf",
       "published": true
-    }
+    },
+    {
+      "type": "committee",
+      "title": "EuroVis",
+      "short-title": "EuroVis",
+      "authors": "Reviewer",
+      "conference": "EuroVis",
+      "short-conference": "EuroVis",
+      "date": "Jun 10, 2016",
+      "external": "https://www.cs.rug.nl/jbi/eurovis2016/",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "IEEE Conference on Visual Analytics Science and Technology",
+      "short-title": "VAST",
+      "authors": "Reviewer",
+      "conference": "VAST",
+      "short-conference": "VAST",
+      "date": "Oct 28, 2016",
+      "external": "http://ieeevis.org/year/2016/info/call-participation/vast-papers",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "IEEE InfoVis",
+      "short-title": "InfoVis",
+      "authors": "Reviewer",
+      "conference": "InfoVis",
+      "short-conference": "InfoVis",
+      "date": "Oct 6, 2017",
+      "external": "http://ieeevis.org/year/2017/info/call-participation/infovis-paper-types",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "IEEE Conference on Visual Analytics Science and Technology",
+      "short-title": "VAST",
+      "authors": "Reviewer",
+      "conference": "VAST",
+      "short-conference": "VAST",
+      "date": "Oct 6, 2017",
+      "external": "http://ieeevis.org/year/2017/info/call-participation/vast-paper-types",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "Workshop on Visual Analytics in Healthcare",
+      "short-title": "VAHC",
+      "authors": "Program Committee, Web Chair",
+      "conference": "VAHC",
+      "short-conference": "VAHC",
+      "date": "Oct 1, 2017",
+      "external": "https://www.visualanalyticshealthcare.org/VAHC2017/committee.html",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "IEEE Pacific Visualization Symposium",
+      "short-title": "PacificVis",
+      "authors": "Reviewer",
+      "conference": "PacificVis",
+      "short-conference": "PacificVis",
+      "date": "Apr 13, 2018",
+      "external": "http://itolab.is.ocha.ac.jp/pvis2018/",
+      "published": true
+    },
   ]
 }
