@@ -1,13 +1,13 @@
 {
   "types": [
     {
-      "type": "blog",
-      "name": "Blog",
+      "type": "thesis",
+      "name": "Thesis",
       "color": "black"
     },
     {
-      "type": "teaching",
-      "name": "Teaching",
+      "type": "work",
+      "name": "Employment",
       "color": "black"
     },
     {
@@ -21,23 +21,23 @@
       "color": "black"
     },
     {
-      "type": "project",
-      "name": "Notable Project",
+      "type": "blog",
+      "name": "Blog",
       "color": "black"
     },
     {
-      "type": "thesis",
-      "name": "Thesis",
-      "color": "black"
-    },
-    {
-      "type": "work",
-      "name": "Employment",
+      "type": "teaching",
+      "name": "Teaching",
       "color": "black"
     },
     {
       "type": "patent",
       "name": "Patent",
+      "color": "black"
+    },
+    {
+      "type": "project",
+      "name": "Notable Project",
       "color": "black"
     },
     {
@@ -785,17 +785,6 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "short-conference": "PacificVis",
       "date": "Apr 13, 2018",
       "external": "http://itolab.is.ocha.ac.jp/pvis2018/",
-      "published": true
-    },
-    {
-      "type": "committee",
-      "title": "IEEE InfoVis",
-      "short-title": "InfoVis",
-      "authors": "Reviewer",
-      "conference": "InfoVis",
-      "short-conference": "InfoVis",
-      "date": "Oct 26, 2018",
-      "external": "http://ieeevis.org/year/2018/welcome",
       "published": true
     },
     {

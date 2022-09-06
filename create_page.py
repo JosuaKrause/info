@@ -258,9 +258,11 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
     for doc in docs:
         kind = type_lookup[group_by(doc)]
         kind["docs"].append(doc)
+    etype_order = {}
     event_kind_lookup = {}
-    for kind in event_types:
+    for (ix, kind) in enumerate(event_types):
         event_kind_lookup[kind["type"]] = kind
+        etype_order[kind["type"]] = len(event_types) - ix
     event_times = {}
     events = []
     content = ""
@@ -269,8 +271,15 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
         if not kind["docs"]:
             continue
         content += f"<h3 id=\"{kind['type']}\">{kind['name']}</h3>"
-        kind["docs"].sort(
-            key=lambda t: (tparse(t["date"]), t["title"]), reverse=True)
+
+        def skey(t):
+            return (
+                etype_order[t["type"]],
+                tparse(t["date"]),
+                t["title"],
+            )
+
+        kind["docs"].sort(key=skey, reverse=True)
         for doc in kind["docs"]:
             id_str = (
                 f"{kind['name']}_{doc['title']}_"
