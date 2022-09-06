@@ -107,7 +107,7 @@ solutions utilizing adaptive NLP and predictive features with a no-code
 development platform. His focus is on deep representation learning, natural
 language processing, and adaptive learning at scale. He recently has been
 Adjunct Professor at <a href="http://engineering.nyu.edu/">NYU</a>
-where he received his Ph.D. in Explainable Machine Learning under
+where he also received his Ph.D. in Explainable Machine Learning under
 <a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
 """
 
