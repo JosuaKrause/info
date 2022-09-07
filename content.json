@@ -935,11 +935,44 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "type": "committee",
       "title": "IEEE VIS",
       "short-title": "VIS",
-      "authors": "Reviwer",
+      "authors": "Reviewer",
       "conference": "VIS",
       "short-conference": "VIS",
       "date": "Oct 21, 2022",
       "external": "http://ieeevis.org/year/2022/welcome",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "EuroVis",
+      "short-title": "EuroVis",
+      "authors": "Reviewer",
+      "conference": "EuroVis",
+      "short-conference": "EuroVis",
+      "date": "Jun 17, 2022",
+      "external": "https://conferences.eg.org/eurovis2022/",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "ICLR Workshop on Debugging Machine Learning Models",
+      "short-title": "DEBUGML",
+      "authors": "Program Committee",
+      "conference": "DEBUGML",
+      "short-conference": "DEBUGML",
+      "date": "May 6, 2019",
+      "external": "https://iclr.cc/Conferences/2019/Schedule?showEvent=628",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "OPUS Grant Proposal, National Science Center, Poland",
+      "short-title": "NCN: OPUS Grant Proposal",
+      "authors": "Grant Proposal Reviewer",
+      "conference": "NCN",
+      "short-conference": "NCN",
+      "date": "Apr 15, 2018",
+      "external": "https://www.ncn.gov.pl/en/",
       "published": true
     }
   ]
