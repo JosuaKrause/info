@@ -439,7 +439,7 @@ def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
     js_fillin = """
     function start() {
       var w = "100%";
-      var h = 200;
+      var h = 300;
       var radius = 8;
       var textHeight = 20;
       var timeline = new Timeline(
