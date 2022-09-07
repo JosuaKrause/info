@@ -974,6 +974,83 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "date": "Apr 15, 2018",
       "external": "https://www.ncn.gov.pl/en/",
       "published": true
+    },
+    {
+      "type": "committee",
+      "title": "Transactions on Visualization and Computer Graphics",
+      "short-title": "TVCG",
+      "authors": "Journal Reviewer",
+      "conference": "TVCG",
+      "short-conference": "TVCG",
+      "date": "2018",
+      "external": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=2945",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "Transactions on Visualization and Computer Graphics",
+      "short-title": "TVCG",
+      "authors": "Journal Reviewer",
+      "conference": "TVCG",
+      "short-conference": "TVCG",
+      "date": "2019",
+      "external": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=2945",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "Transactions on Visualization and Computer Graphics",
+      "short-title": "TVCG",
+      "authors": "Journal Reviewer",
+      "conference": "TVCG",
+      "short-conference": "TVCG",
+      "date": "2021",
+      "external": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=2945",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "Journal of Computational and Graphical Statistics",
+      "short-title": "JCGS",
+      "authors": "Journal Reviewer",
+      "conference": "JCGS",
+      "short-conference": "JCGS",
+      "date": "2021",
+      "external": "https://www.tandfonline.com/toc/ucgs20/current",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "Journal of Computational and Graphical Statistics",
+      "short-title": "JCGS",
+      "authors": "Journal Reviewer",
+      "conference": "JCGS",
+      "short-conference": "JCGS",
+      "date": "2022",
+      "external": "https://www.tandfonline.com/toc/ucgs20/current",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "ACM Transactions on Interactive Intelligent Systems",
+      "short-title": "TiiS",
+      "authors": "Journal Reviewer",
+      "conference": "TiiS",
+      "short-conference": "TiiS",
+      "date": "2021",
+      "external": "https://dl.acm.org/journal/tiis",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "IEEE Transactions on Big Data",
+      "short-title": "Transactions on Big Data",
+      "authors": "Journal Reviewer",
+      "conference": "Transactions on Big Data",
+      "short-conference": "Transactions on Big Data",
+      "date": "2021",
+      "external": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6687317",
+      "published": true
     }
   ]
 }
