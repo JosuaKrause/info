@@ -1051,6 +1051,39 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "date": "2021",
       "external": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6687317",
       "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Capstone Project: NYU Center for Data Science",
+      "short-title": "Capstone Project: NYU CDS",
+      "authors": "Mentor",
+      "conference": "NYU Center for Data Science",
+      "short-conference": "NYUCDS",
+      "date": "2019",
+      "external": "https://cds.nyu.edu/capstone-project/",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Capstone Project: NYU Center for Data Science",
+      "short-title": "Capstone Project: NYU CDS",
+      "authors": "Mentor",
+      "conference": "NYU Center for Data Science",
+      "short-conference": "NYUCDS",
+      "date": "2020",
+      "external": "https://cds.nyu.edu/capstone-project/",
+      "published": true
+    },
+    {
+      "type": "teaching",
+      "title": "Capstone Project: Columbia University",
+      "short-title": "Capstone Project: Columbia University",
+      "authors": "Mentor",
+      "conference": "Columbia University",
+      "short-conference": "Columbia",
+      "date": "2020",
+      "external": "https://sps.columbia.edu/academics/masters/applied-analytics/full-time-master-science/curriculum-courses",
+      "published": true
     }
   ]
 }
