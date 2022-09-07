@@ -19,3 +19,7 @@ h4:hover .anchor {
 :target .media-body {
   background-color: #ffa;
 }
+
+.type_committee {
+  filter: sepia(80%);
+}

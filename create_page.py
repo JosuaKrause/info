@@ -346,7 +346,7 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
             </div>
             """
             content += f"""
-            <div class="media" id="{entry_id}">
+            <div class="media type_{doc['type']}" id="{entry_id}">
               {entry}
             </div>
             """
