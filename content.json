@@ -917,7 +917,7 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "conference": "VIS Short Papers",
       "short-conference": "VIS Short Papers",
       "date": "Oct 29, 2021",
-      "external": "http://ieeevis.org/year/2021/info/call-participation/shortpapers",
+      "external": "http://ieeevis.org/year/2021/info/committees/program-committees",
       "published": true
     },
     {
@@ -928,18 +928,18 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "conference": "VIS Short Papers",
       "short-conference": "VIS Short Papers",
       "date": "Oct 21, 2022",
-      "external": "http://ieeevis.org/year/2022/info/call-participation/shortpapers",
+      "external": "http://ieeevis.org/year/2022/info/committees/program-committees",
       "published": true
     },
     {
       "type": "committee",
       "title": "IEEE VIS",
       "short-title": "VIS",
-      "authors": "Program Committee",
+      "authors": "Reviewer",
       "conference": "VIS",
       "short-conference": "VIS",
       "date": "Oct 21, 2022",
-      "external": "http://ieeevis.org/year/2022/info/committees/program-committees",
+      "external": "http://ieeevis.org/year/2022/welcome",
       "published": true
     },
     {
