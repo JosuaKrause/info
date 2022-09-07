@@ -756,6 +756,17 @@ of COQUITO via two case studies, involving medical and social media researchers.
     },
     {
       "type": "committee",
+      "title": "IEEE Information Visualization",
+      "short-title": "InfoVis",
+      "authors": "Reviewer",
+      "conference": "InfoVis",
+      "short-conference": "InfoVis",
+      "date": "Oct 30, 2015",
+      "external": "http://ieeevis.org/year/2015/info/vis-welcome/welcome",
+      "published": true
+    },
+    {
+      "type": "committee",
       "title": "IEEE Conference on Visual Analytics Science and Technology",
       "short-title": "VAST",
       "authors": "Reviewer",
@@ -829,6 +840,17 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "short-conference": "CHI",
       "date": "May 9, 2019",
       "external": "https://chi2019.acm.org/",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "ACM CHI Conference on Human Factors in Computing Systems",
+      "short-title": "ACM CHI",
+      "authors": "Reviewer",
+      "conference": "CHI",
+      "short-conference": "CHI",
+      "date": "May 12, 2016",
+      "external": "https://chi2016.acm.org/wp/",
       "published": true
     },
     {
@@ -982,6 +1004,17 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "authors": "Journal Reviewer",
       "conference": "TVCG",
       "short-conference": "TVCG",
+      "date": "2015",
+      "external": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=2945",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "Transactions on Visualization and Computer Graphics",
+      "short-title": "TVCG",
+      "authors": "Journal Reviewer",
+      "conference": "TVCG",
+      "short-conference": "TVCG",
       "date": "2018",
       "external": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=2945",
       "published": true
@@ -1050,6 +1083,28 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "short-conference": "Transactions on Big Data",
       "date": "2021",
       "external": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6687317",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "IEEE Transactions on Big Data",
+      "short-title": "Transactions on Big Data",
+      "authors": "Journal Reviewer",
+      "conference": "Transactions on Big Data",
+      "short-conference": "Transactions on Big Data",
+      "date": "2015",
+      "external": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6687317",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "IEEE Computer Graphics and Applications",
+      "short-title": "Computer Graphics and Applications",
+      "authors": "Journal Reviewer",
+      "conference": "Computer Graphics and Applications",
+      "short-conference": "Computer Graphics and Applications",
+      "date": "2015",
+      "external": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=38",
       "published": true
     },
     {
