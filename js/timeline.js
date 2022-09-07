@@ -93,9 +93,11 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     typeList.sort(function(ta, tb) {
       return d3.ascending(types[ta], types[tb]);
     });
+    var minY = 0;
     var yPos = {};
     typeList.forEach(function(tid, ix) {
       yPos[tid] = h - ix * (radius + 1);
+      minY = Math.min(h - ix * (radius + 1), minY);
     });
     var times = events.map(function(e) {
       return +e["time"] * 1000;
@@ -150,9 +152,9 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     function showAll(smooth) {
       showRectangle({
         "x": 0,
-        "y": 0,
+        "y": minY,
         "width": w,
-        "height": h,
+        "height": h - minY,
       }, 5, true, smooth);
     }
 

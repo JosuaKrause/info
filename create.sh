@@ -22,6 +22,9 @@ PREV_DIR=`pwd`
 pushd "${OUTPUT}" && find . -not -path '*lib/*' -not -path '*lib' | python "${PREV_DIR}/create_sitemap.py" "sitemap.xml" && popd
 
 if [ -z $PUBLISH ]; then
+  if hash open 2>/dev/null; then
+    open "http://localhost:8000/www/"
+  fi
   python -m http.server || true
   rm -rf "${OUTPUT}"
   rm "${LIB_COPY}"

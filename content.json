@@ -704,8 +704,8 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "title": "Identifying and ranking risk factors using trained predictive models (US Patent 11,355,246)",
       "short-title": "US 11,355,246",
       "authors": "Josua Krause, Kenney Ng, Adam Perer",
-      "conference": "IBM",
-      "short-conference": "IBM",
+      "conference": "United States Patent (US 11,355,246 B2)",
+      "short-conference": "US Patent",
       "date": "Jun 7, 2022",
       "external": "https://patentimages.storage.googleapis.com/df/42/d2/720b921a425f97/US11355246.pdf",
       "published": true
@@ -715,8 +715,8 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "title": "Identifying and ranking risk factors using trained predictive models (US Patent 11,355,245)",
       "short-title": "US 11,355,245",
       "authors": "Josua Krause, Kenney Ng, Adam Perer",
-      "conference": "IBM",
-      "short-conference": "IBM",
+      "conference": "United States Patent (US 11,355,245 B2)",
+      "short-conference": "US Patent",
       "date": "Jun 7, 2022",
       "external": "https://patentimages.storage.googleapis.com/45/ea/fd/51ad388d071be9/US11355245.pdf",
       "published": true
@@ -745,7 +745,7 @@ of COQUITO via two case studies, involving medical and social media researchers.
     },
     {
       "type": "committee",
-      "title": "IEEE InfoVis",
+      "title": "IEEE Information Visualization",
       "short-title": "InfoVis",
       "authors": "Reviewer",
       "conference": "InfoVis",
@@ -789,7 +789,7 @@ of COQUITO via two case studies, involving medical and social media researchers.
     },
     {
       "type": "committee",
-      "title": "IEEE InfoVis",
+      "title": "IEEE Information Visualization",
       "short-title": "InfoVis",
       "authors": "Reviewer",
       "conference": "InfoVis",
@@ -829,6 +829,62 @@ of COQUITO via two case studies, involving medical and social media researchers.
       "short-conference": "CHI",
       "date": "May 9, 2019",
       "external": "https://chi2019.acm.org/",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "EuroVis",
+      "short-title": "EuroVis",
+      "authors": "Reviewer",
+      "conference": "EuroVis",
+      "short-conference": "EuroVis",
+      "date": "Jun 7, 2019",
+      "external": "http://gpcg.pt/eurovis2019/index.htm",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "IEEE Information Visualization",
+      "short-title": "InfoVis",
+      "authors": "Reviewer",
+      "conference": "InfoVis",
+      "short-conference": "InfoVis",
+      "date": "Oct 25, 2019",
+      "external": "http://ieeevis.org/year/2019/welcome",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "IEEE Conference on Visual Analytics Science and Technology",
+      "short-title": "VAST",
+      "authors": "Reviewer",
+      "conference": "VAST",
+      "short-conference": "VAST",
+      "date": "Oct 25, 2019",
+      "external": "http://ieeevis.org/year/2019/welcome",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "EuroVis",
+      "short-title": "EuroVis",
+      "authors": "Reviewer",
+      "conference": "EuroVis",
+      "short-conference": "EuroVis",
+      "date": "May 29, 2020",
+      "external": "https://conferences.eg.org/egev20/",
+      "published": true
+    },
+    {
+      "type": "committee",
+      "title": "Short Papers Track of IEEE VIS",
+      "short-title": "VIS Short Papers",
+      "authors": "Program Committee, Session Chair",
+      "conference": "VIS Short Papers",
+      "short-conference": "VIS Short Papers",
+      "date": "Oct 30, 2020",
+      "external": "https://virtual.ieeevis.org/year/2020/session_s-papers-vis-ml.html",
+      "video": "https://youtu.be/1GJWd-xXfAk",
       "published": true
     }
   ]
