@@ -57,6 +57,17 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     });
     var groupScale = d3.scale.category10().domain(Object.keys(groups));
 
+    var visibleGroups = {};
+
+    function getGroupClass(g) {
+      return ".type_" + g;
+    }
+
+    function isVisible(g) {
+      var groupClass = getGroupClass(g);
+      return visibleGroups[groupClass] !== undefined ? visibleGroups[groupClass] : true;
+    }
+
     var lSel = legend.selectAll("div.legend-entry").data(Object.keys(groups), function(g) {
       return g;
     });
@@ -71,24 +82,76 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
       return typeNames[g] || "???";
     }).style({
       "vertical-align": "middle",
-      // "cursor": "pointer",
-    });
-    // .on("click", function(g) {
-    //   jumpToElem({
-    //     "link": "#" + g
-    //   });
-    // });
-    lSel.selectAll(".legend-color").style({
-      "width": "1em",
-      "height": "1em",
-      "border": "solid 1px black",
-      "background-color": function(g) {
-        return groupScale(g);
-      },
-      "display": "inline-block",
-      "vertical-align": "middle",
+      "cursor": "pointer",
+    }).on("click", function(g) {
+      // jumpToElem({
+      //   "link": "#" + g
+      // });
+      var allVisible = Object.keys(groups).reduce(function(prev, cur) {
+        return prev && isVisible(cur);
+      }, true);
+      if(allVisible) {
+        Object.keys(groups).forEach(function(cur) {
+          visibleGroups[getGroupClass(cur)] = cur === g;
+        });
+      } else {
+        visibleGroups[getGroupClass(g)] = !isVisible(g);
+      }
+      var allInvisible = Object.keys(groups).reduce(function(prev, cur) {
+        return prev && !isVisible(cur);
+      }, true);
+      if(allInvisible) {
+        Object.keys(groups).forEach(function(cur) {
+          visibleGroups[getGroupClass(cur)] = true;
+        });
+      }
+      updateLegendColor();
     });
 
+    function updateLegendColor() {
+      lSel.selectAll(".legend-text").style({
+        "opacity": function(g) {
+          return isVisible(g) ? null : 0.6;
+        },
+      })
+      lSel.selectAll(".legend-color").style({
+        "width": "1em",
+        "height": "1em",
+        "border": "solid 1px black",
+        "opacity": function(g) {
+          return isVisible(g) ? null : 0.6;
+        },
+        "background-color": function(g) {
+          return groupScale(g);
+        },
+        "display": "inline-block",
+        "vertical-align": "middle",
+      });
+      Object.keys(groups).forEach(function(g) {
+        d3.selectAll(getGroupClass(g)).style({
+          "display": isVisible(g) ? null : "none",
+        });
+      });
+      d3.selectAll("rect.event").style({
+        "opacity": function(e) {
+          return isVisible(e["group"]) ? null : 0.6;
+        },
+      });
+      d3.selectAll(".group_header").style({
+        "display": function() {
+          var allInvisible = true;
+          var sectionId = this.id;
+          d3.selectAll(".mg_" + sectionId).each(function() {
+            if(this.style.display !== "none") {
+              allInvisible = false;
+            }
+          });
+          return allInvisible ? "none" : null;
+        },
+      });
+    }
+
+    updateLegendColor();
     var typeList = Object.keys(types);
     typeList.sort(function(ta, tb) {
       return d3.ascending(types[ta], types[tb]);

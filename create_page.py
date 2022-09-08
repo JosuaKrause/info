@@ -270,7 +270,9 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
     for kind in types:
         if not kind["docs"]:
             continue
-        content += f"<h3 id=\"{kind['type']}\">{kind['name']}</h3>"
+        content += (
+            "<h3 class=\"group_header\" "
+            f"id=\"{kind['type']}\">{kind['name']}</h3>")
 
         def skey(t):
             return (
@@ -346,7 +348,9 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
             </div>
             """
             content += f"""
-            <div class="media type_{doc['type']}" id="{entry_id}">
+            <div
+                class="media type_{doc['type']} mg_{kind['type']}"
+                id="{entry_id}">
               {entry}
             </div>
             """
