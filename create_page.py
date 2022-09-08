@@ -112,7 +112,7 @@ where he also received his Ph.D. in Explainable Machine Learning under
 """
 
 DESCRIPTION_ADD = """
-<a href="material/cv.pdf">[Curriculum Vitae]</a>
+<a href="material/cv_krause.pdf">[Curriculum Vitae]</a>
 """
 
 
