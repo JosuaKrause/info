@@ -108,10 +108,12 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
       updateLegendColor();
     });
 
+    var opacityInvisible = 0.5;
+
     function updateLegendColor() {
       lSel.selectAll(".legend-text").style({
         "opacity": function(g) {
-          return isVisible(g) ? null : 0.6;
+          return isVisible(g) ? null : opacityInvisible;
         },
       })
       lSel.selectAll(".legend-color").style({
@@ -119,7 +121,7 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
         "height": "1em",
         "border": "solid 1px black",
         "opacity": function(g) {
-          return isVisible(g) ? null : 0.6;
+          return isVisible(g) ? null : opacityInvisible;
         },
         "background-color": function(g) {
           return groupScale(g);
@@ -134,7 +136,7 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
       });
       d3.selectAll("rect.event").style({
         "opacity": function(e) {
-          return isVisible(e["group"]) ? null : 0.6;
+          return isVisible(e["group"]) ? null : opacityInvisible;
         },
       });
       d3.selectAll(".group_header").style({
