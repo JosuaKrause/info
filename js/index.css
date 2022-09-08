@@ -2,6 +2,10 @@
  * Created by krause on 2016-07-22.
  */
 
+body {
+  overflow-y: scroll;
+}
+
 .anchor {
   opacity: 0;
   color: black !important;
