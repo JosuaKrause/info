@@ -117,6 +117,8 @@ DESCRIPTION_ADD = """
 <a href="material/cv_krause.pdf">[Curriculum Vitae]</a>
 """
 
+COPYRIGHT = "jk 2022"
+
 
 _compute_self = "total_seconds" not in dir(timedelta(seconds=1))
 _tz = pytz.timezone("US/Eastern")
@@ -227,7 +229,7 @@ def create_autopage(content, doc, ofile, dry_run):
         description=(
             f"{doc['title']} by {doc['authors']} "
             f"appears in {doc['conference']}"),
-    )
+        copyright=COPYRIGHT)
     if not dry_run:
         with open(ofile, "w", encoding="utf-8") as fout:
             fout.write(output)
@@ -350,9 +352,8 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
             </div>
             """
             content += f"""
-            <div
-                class="media type_{doc['type']} mg_{kind['type']}"
-                id="{entry_id}">
+            <div class="media type_{doc['type']} mg_{kind['type']}">
+              <div class="smt_anchor" id="{entry_id}"></div>
               {entry}
             </div>
             """
@@ -444,6 +445,15 @@ def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
         dry_run=dry_run)
     js_fillin = """
     function start() {
+      var header_height = d3.select("#smt_header").node().clientHeight;
+      var hd_margin_and_border = 22;
+      var el_margin_small = 15;
+      d3.select("#smt_pad").style({
+        "height": (hd_margin_and_border + header_height) + "px",
+      });
+      d3.selectAll(".smt_anchor").style({
+        "top": -(el_margin_small + header_height) + "px",
+      });
       var w = "100%";
       var h = 300;
       var radius = 8;
@@ -451,13 +461,12 @@ def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
       var timeline = new Timeline(
         d3.select("#div-timeline"),
         d3.select("#div-legend"),
-        w, h, radius, textHeight
-      );
+        w, h, radius, textHeight);
       d3.json("material/timeline.json", function(err, data) {
         if(err) {
           console.warn(err);
           d3.select("#timeline-row").style({
-            "display": "none"
+            "display": "none",
           });
           return;
         }
@@ -475,7 +484,8 @@ def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
         content=media,
         js=js_fillin,
         tracking=GA_TRACKING,
-        knowledge=LD_JSON_KNOWLEDGE)
+        knowledge=LD_JSON_KNOWLEDGE,
+        copyright=COPYRIGHT)
 
 
 def usage():

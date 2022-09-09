@@ -22,13 +22,13 @@
     {knowledge}
   </script>
 </head>
-<body onload="start()">
-  <nav class="navbar navbar-default" role="navigation">
+<body id="top" onload="start()">
+  <nav id="smt_header" class="navbar navbar-default sticky" role="navigation">
     <div class="container clearfix">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">{name}</a>
+      <div class="navbar-header nav-line">
+        <a id="namefield" class="navbar-brand" href="#top">{name}</a>
       </div>
-      <div class="nav navbar-nav navbar-right">
+      <div class="nav navbar-nav navbar-right nav-line">
         <a href="https://scholar.google.com/citations?user=hFjNgPEAAAAJ"><img src="img/scholarlogo.png" style="height: 32px;"></a>
         <a href="https://www.linkedin.com/in/josuakrause/"><img src="img/linkedinlogo.png" style="height: 32px;"></a>
         <a href="https://github.com/JosuaKrause/"><img src="img/GitHub-Mark-32px.png" style="width: 32px;"></a>
@@ -36,6 +36,12 @@
       </div>
     </div>
   </nav>
+  <footer>
+    <div class="footer-style">
+      © {copyright} <a href="https://github.com/JosuaKrause/info">[source]</a>
+    </div>
+  </footer>
+  <div id="smt_pad" class="smt_padding"></div>
   <div class="container bs-docs-container">
     <div class="row" id="timeline-row">
       <div class="col-md-8">
@@ -61,10 +67,5 @@
       </div>
     </div>
   </div>
-  <footer>
-    <div class="footer-style">
-      © jk 2022 <a href="https://github.com/JosuaKrause/info">[source]</a>
-    </div>
-  </footer>
 </body>
 </html>
