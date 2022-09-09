@@ -23,6 +23,10 @@ html {
   pointer-events: none;
 }
 
+.smt_padding {
+  width: 100%;
+}
+
 body {
   overflow-y: scroll;
   min-height: 100vh;
@@ -63,22 +67,22 @@ footer {
   filter: drop-shadow(0 0 8px white);
 }
 
-.smt_padding {
-  width: 100%;
-}
-
 .anchor {
-  opacity: 0;
-  color: black !important;
+  color: #333 !important;
   text-decoration: none;
 }
 
-.anchor:hover {
-  opacity: 0.5 !important;
+.anchor>i {
+  opacity: 0;
 }
 
-h4:hover .anchor {
-  opacity: 0.75;
+.anchor:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.anchor:hover>i {
+  opacity: 0.8;
 }
 
 :target ~ .media-body {

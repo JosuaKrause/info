@@ -329,10 +329,10 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
             kind_name = event_kind_lookup[doc["type"]]["name"]
             body = f"""
             <h4 class="media-heading">
-              {doc['title']}
-                <a href="#{entry_id}" class="anchor" aria-hidden="true">
-                  <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
-                </a><br/>
+              <a href="#{entry_id}" class="anchor">
+                {doc['title']}
+                <i class="fa fa-thumb-tack fa-1" aria-hidden="true"></i>
+              </a><br/>
               <small>{kind_name}: {authors}</small>
             </h4>
             <em>{doc['conference']} &mdash; {pub}</em>{appx}{awds}
