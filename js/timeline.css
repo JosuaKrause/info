@@ -2,18 +2,28 @@
  * Created by krause on 2016-04-22.
  */
 
+@media only screen and (max-width: 960px) {
+  #timeline-row {
+    margin-bottom: 1em;
+  }
+}
+
 #div-timeline * {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
 .axis {
   shape-rendering: crispEdges;
 }
+
 .x.axis line {
   stroke: lightgray;
 }
+
 .x.axis .minor {
   stroke-opacity: .5;
 }
+
 .x.axis path {
   display: none;
 }

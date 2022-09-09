@@ -2,6 +2,12 @@
  * Created by krause on 2016-07-22.
  */
 
+@media only screen and (max-width: 960px) {
+  body {
+    font-size: 145%;
+  }
+}
+
 body {
   overflow-y: scroll;
 }
@@ -26,4 +32,9 @@ h4:hover .anchor {
 
 .type_committee {
   filter: sepia(80%);
+}
+
+.footer-style {
+  padding: 10px;
+  text-align: right;
 }
