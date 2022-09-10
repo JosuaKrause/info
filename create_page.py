@@ -449,7 +449,7 @@ def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
         event_types=dobj["types"],
         dry_run=dry_run)
     js_fillin = """
-    function start() {
+    function adjustSizes() {
       var header_height = d3.select("#smt_header").node().clientHeight;
       var hd_margin_and_border = 22;
       var el_margin_small = 15;
@@ -459,6 +459,11 @@ def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
       d3.selectAll(".smt_anchor").style({
         "top": -(el_margin_small + header_height) + "px",
       });
+    }
+
+    function start() {
+      window.addEventListener("resize", adjustSizes);
+      adjustSizes();
       var w = "100%";
       var h = 300;
       var radius = 8;

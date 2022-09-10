@@ -84,9 +84,6 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
       "vertical-align": "middle",
       "cursor": "pointer",
     }).on("click", function(g) {
-      // jumpToElem({
-      //   "link": "#" + g
-      // });
       var allVisible = Object.keys(groups).reduce(function(prev, cur) {
         return prev && isVisible(cur);
       }, true);
@@ -169,7 +166,10 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     });
     var xScale = d3.time.scale().domain([ d3.min(times), d3.max(times) ]).range([ 0, w ]).nice();
     var visScale = xScale.copy();
-    var xAxis = d3.svg.axis().scale(visScale).tickSize(-h).tickSubdivide(true);
+    var xAxis = d3.svg.axis().scale(visScale).tickSize(-h).tickSubdivide(true).tickFormat(function(date) {
+      var res = date.getFullYear();
+      return res % 2 === 1 ? "" : res;
+    });
     var visAxis = visAxisG.classed({
       "x": true,
       "axis": true,

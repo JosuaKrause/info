@@ -19,7 +19,7 @@ img {
 .smt_anchor {
   display: block;
   position: relative;
-  top: -75px;
+  top: -86px;
   height: 0;
   width: 0;
   visibility: hidden;
@@ -28,7 +28,7 @@ img {
 }
 
 .smt_padding {
-  height: 75px;
+  height: 86px;
   width: 100%;
 }
 

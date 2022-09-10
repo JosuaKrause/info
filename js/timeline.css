@@ -2,14 +2,16 @@
  * Created by krause on 2016-04-22.
  */
 
-@media only screen and (max-width: 960px) {
-  #timeline-row {
-    margin-bottom: 1em;
-  }
+#timeline-row {
+  margin-bottom: 1em;
 }
 
 #div-timeline * {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#div-timeline>svg {
+  touch-action: none;
 }
 
 .axis {
