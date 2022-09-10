@@ -11,19 +11,19 @@
   <meta name="author" content="Josua (Joschi) Krause">
   <link rel="stylesheet" type="text/css" href="lib/jk-js/lib/bootstrap/css/bootstrap.min.css">
   <style type="text/css">
-  @media only screen and (max-width: 960px) {{
-    .backlink {{
-      visibility: hidden;
-      pointer-events: none;
-    }}
-  }}
-
   .backlink {{
     position: fixed;
     left: 20px;
     top: 10px;
     font-size: 30px;
     z-index: 1;
+  }}
+
+  @media only screen and (max-width: 960px) {{
+    .backlink {{
+      visibility: hidden;
+      pointer-events: none;
+    }}
   }}
 
   .backlink a:hover {{
@@ -40,7 +40,12 @@
   .footer-style {{
     padding: 10px;
     text-align: right;
-    filter: drop-shadow(0 0 4px white) drop-shadow(0 0 6px white) drop-shadow(0 0 8px white) drop-shadow(0 0 10px white);
+    filter: drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white);
+  }}
+
+  .empty-footer {{
+    height: 40px;
+    width: 100%;
   }}
   </style>
 </head>
@@ -71,6 +76,7 @@
         {bibtex}
       </div>
     </div>
+    <div class="empty-footer"></div>
   </div>
 </body>
 </html>

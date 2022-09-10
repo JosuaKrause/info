@@ -12,6 +12,10 @@ html {
   scroll-behavior: smooth;
 }
 
+img {
+  object-fit: contain;
+}
+
 .smt_anchor {
   display: block;
   position: relative;
@@ -24,7 +28,18 @@ html {
 }
 
 .smt_padding {
+  height: 75px;
   width: 100%;
+}
+
+@media only screen and (max-width: 960px) {
+  .smt_padding {
+    height: 161px;
+  }
+
+  .smt_anchor {
+    top: -161px;
+  }
 }
 
 body {
@@ -64,7 +79,12 @@ footer {
 .footer-style {
   padding: 10px;
   text-align: right;
-  filter: drop-shadow(0 0 4px white) drop-shadow(0 0 6px white) drop-shadow(0 0 8px white) drop-shadow(0 0 10px white);
+  filter: drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white);
+}
+
+.empty-footer {
+  height: 40px;
+  width: 100%;
 }
 
 .anchor {

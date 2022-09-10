@@ -172,9 +172,9 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     var xAxis = d3.svg.axis().scale(visScale).tickSize(-h).tickSubdivide(true);
     var visAxis = visAxisG.classed({
       "x": true,
-      "axis": true
+      "axis": true,
     }).attr({
-      "transform": "translate(" + [ 0, h ] + ")"
+      "transform": "translate(" + [ 0, h ] + ")",
     }).call(xAxis);
 
     function zoom() {
@@ -205,7 +205,7 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
 
     function applyZoom(move, scale, smooth) {
       asTransition(inner, smooth).attr({
-        "transform": "translate(" + move + ") scale(" + scale + ")"
+        "transform": "translate(" + move + ") scale(" + scale + ")",
       });
       visScale.range([ move[0], move[0] + w * scale ]);
       asTransition(visAxis, smooth).call(xAxis);

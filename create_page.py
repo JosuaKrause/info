@@ -316,7 +316,8 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
                 "<span style=\"text-decoration: underline;\">"
                 "Josua Krause</span>")
             awards = [
-                "<img src=\"img/badge.png\" style=\"height: 1em;\" "
+                "<img src=\"img/badge.png\" "
+                "style=\"width: 1em; height: 1em;\" "
                 f"alt=\"{award}\" title=\"{award}\">"
                 for award in doc["awards"]
             ] if chk(doc, "awards") else []
@@ -344,8 +345,12 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
                 else doc["title"])
             entry = f"""
             <a class="pull-left" href="#{entry_id}">
-              <img class="media-object" src="{lsrc}"
-                   title="{doc['title']}" alt="{sttl}" style="width: 64px;">
+              <img
+                class="media-object"
+                src="{lsrc}"
+                title="{doc['title']}"
+                alt="{sttl}"
+                style="width: 64px; height: 64px;">
             </a>
             <div class="media-body">
               {body}
