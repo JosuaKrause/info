@@ -57,9 +57,12 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
             return None
         if fname.endswith(".jpg"):
             return None
-        if os.path.isdir(filename):
-            # NOTE: canonical is /
-            # and not os.path.exists(os.path.join(filename, "index.html"))
+        if fname.endswith("index.html"):
+            return None
+        if fname.endswith("sitemap.xml"):
+            return None
+        if os.path.isdir(filename) and not os.path.exists(
+                os.path.join(filename, "index.html")):
             return None
         mtime = datetime.fromtimestamp(
             os.path.getmtime(filename), tz=_tz).isoformat()
