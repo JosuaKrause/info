@@ -18,7 +18,7 @@ install:
 create:
 	./create.sh
 
-run-web:
+run-web: create
 	./run_web.sh
 
 clean:
