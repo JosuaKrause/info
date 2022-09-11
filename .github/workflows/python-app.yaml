@@ -37,6 +37,18 @@ jobs:
       run: |
         make install
 
+    - name: Lint Code (missing trailing comma)
+      run: |
+        make lint-flake8
+
+    - name: Lint Code (type-check)
+      run: |
+        make lint-type-check
+
+    - name: Lint Code (pylint)
+      run: |
+        make lint-pylint
+
     - name: Build
       run: |
         make create

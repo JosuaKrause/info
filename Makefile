@@ -34,9 +34,9 @@ lint-flake8:
 	venv --show-source ./
 
 lint-all: \
-	lint-pylint \
+	lint-flake8 \
 	lint-type-check \
-	lint-flake8
+	lint-pylint
 
 pre-commit:
 	pre-commit install

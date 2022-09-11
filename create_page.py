@@ -13,6 +13,7 @@ from typing import (
     get_args,
     List,
     Literal,
+    Optional,
     Set,
     Tuple,
     TypedDict,
@@ -20,6 +21,7 @@ from typing import (
 
 import pytz
 from dateutil.parser import parse as tparse
+from PIL import Image
 
 
 Entry = TypedDict('Entry', {
@@ -260,6 +262,39 @@ def chk(doc: Entry, field: EntryField) -> bool:
     return field in doc and bool(doc[field])
 
 
+def resize_img(
+        prefix: str,
+        image: str,
+        width: Optional[int],
+        height: Optional[int],
+        *,
+        nostretch: bool = True) -> str:
+    ext_ix = image.rindex(".")
+    img = Image.open(os.path.join(prefix, image))
+    iwidth = img.width
+    iheight = img.height
+    if ((width is None and height is None)
+            or (width == iwidth and height == iheight)):
+        return image
+    if width is None:
+        assert height is not None
+        width = iwidth * iheight // height
+    if height is None:
+        height = iheight * iwidth // width
+    if nostretch and (
+            int(1000.0 * iwidth / width) != int(1000.0 * iheight / height)):
+        raise ValueError(
+            "resizing would stretch the image: "
+            f"{iwidth}x{iheight} to {width}x{height}")
+    oimg = img.resize((width, height))
+    oname = f"{image[:ext_ix]}_{oimg.width}x{oimg.height}.png"
+    ofname = os.path.join(prefix, oname)
+    if os.path.exists(ofname):
+        raise ValueError("image already exists!")
+    oimg.save(ofname)
+    return oname
+
+
 def create_autopage(
         content: str, doc: Entry, ofile: str, dry_run: bool) -> None:
     abstract = (
@@ -362,7 +397,7 @@ def add_misc_links(
 
 
 def create_media(
-        pref: str,
+        prefix: str,
         types: List[Group],
         group_by: Callable[[Entry], str],
         docs: List[Entry],
@@ -416,8 +451,7 @@ def create_media(
             if chk(doc, "bibtex"):
                 bibtex = doc["bibtex"].strip()
                 bibtex_link = f"bibtex/{entry_id}.bib"
-                bibtex_filename = os.path.join(
-                    pref if pref is not None else ".", bibtex_link)
+                bibtex_filename = os.path.join(prefix, bibtex_link)
                 if not dry_run:
                     if not os.path.exists(os.path.dirname(bibtex_filename)):
                         os.makedirs(os.path.dirname(bibtex_filename))
@@ -452,7 +486,10 @@ def create_media(
             </h4>
             <em>{doc['conference']} &mdash; {pub}</em>{appx}{awds}
             """
-            lsrc = doc["logo"] if chk(doc, "logo") else "img/nologo.png"
+            lsrc = (
+                resize_img(prefix, doc["logo"], 64, 64)
+                if chk(doc, "logo")
+                else "img/nologo.png")
             sttl = (
                 doc["short-title"]
                 if chk(doc, "short-title")
@@ -498,8 +535,7 @@ def create_media(
             }
             events.append(event)
     if not dry_run:
-        timeline_fn = os.path.join(
-            pref if pref is not None else ".", "material/timeline.json")
+        timeline_fn = os.path.join(prefix, "material/timeline.json")
         if not os.path.exists(os.path.dirname(timeline_fn)):
             os.makedirs(os.path.dirname(timeline_fn))
         with open(timeline_fn, "w", encoding="utf-8") as tlout:
@@ -515,17 +551,21 @@ def create_media(
             page_tmpl = tfin.read()
         for doc in auto_pages:
             create_autopage(
-                page_tmpl, doc, os.path.join(
-                    pref if pref is not None else ".", doc["href"]), dry_run)
+                page_tmpl, doc, os.path.join(prefix, doc["href"]), dry_run)
     return content
 
 
 def apply_template(
         tmpl: str,
         docs: str,
-        pref: str, *,
+        prefix: str,
+        *,
         is_ordered_by_type: bool,
         dry_run: bool) -> str:
+    resize_img(prefix, "img/scholarlogo.png", 32, 32)
+    resize_img(prefix, "img/linkedinlogo.png", 32, 32)
+    resize_img(prefix, "img/GitHub-Mark-32px.png", 32, 32)
+    resize_img(prefix, "img/photo.jpg", 64, 64)
     with open(tmpl, "r", encoding="utf-8") as tfin:
         content = tfin.read()
     with open(docs, "r", encoding="utf-8") as dfin:
@@ -563,7 +603,7 @@ def apply_template(
             } for year_str in sorted(types, key=int, reverse=True)
         ]
     media = create_media(
-        pref,
+        prefix,
         type_order,
         group_by,
         all_docs,
@@ -634,7 +674,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--prefix",
         type=str,
-        default=None,
+        default=".",
         help="specifies the file prefix")
     parser.add_argument(
         "--out",
@@ -652,13 +692,13 @@ def run() -> None:
     args = parse_args()
     tmpl = args.template
     docs = args.documents
-    pref = args.prefix
+    prefix = args.prefix
     out = args.out
     dry_run = args.dry
     content = apply_template(
         tmpl,
         docs,
-        pref,
+        prefix,
         is_ordered_by_type=False,
         dry_run=dry_run)
     if not dry_run:
