@@ -3,6 +3,7 @@ help:
 	@echo "install	install general dependencies"
 	@echo "create	create all output files"
 	@echo "run-web	serves the created files. when exiting it will remove all output files"
+	@echo "clean	remove all output files"
 	@echo "lint-flake8	run flake8 checker to deteck missing trailing comma"
 	@echo "lint-pylint	run linter check using pylint standard"
 	@echo "lint-type-check	run type check"
@@ -19,6 +20,9 @@ create:
 
 run-web:
 	./run_web.sh
+
+clean:
+	./clean.sh
 
 lint-pylint:
 	find . \( -name '*.py' -o -name '*.pyi' \) -and -not -path './venv/*' \

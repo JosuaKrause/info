@@ -262,6 +262,9 @@ def chk(doc: Entry, field: EntryField) -> bool:
     return field in doc and bool(doc[field])
 
 
+BADNESS = 0.1
+
+
 def resize_img(
         prefix: str,
         image: str,
@@ -269,28 +272,31 @@ def resize_img(
         height: Optional[int],
         *,
         nostretch: bool = True) -> str:
-    ext_ix = image.rindex(".")
     img = Image.open(os.path.join(prefix, image))
     iwidth = img.width
     iheight = img.height
+    if iwidth == 1 and iheight == 1:
+        return image
     if ((width is None and height is None)
             or (width == iwidth and height == iheight)):
         return image
     if width is None:
         assert height is not None
-        width = iwidth * iheight // height
+        width = iwidth * height // iheight
     if height is None:
-        height = iheight * iwidth // width
+        height = iheight * width // iwidth
     if nostretch and (
-            int(1000.0 * iwidth / width) != int(1000.0 * iheight / height)):
+            int(BADNESS * iwidth / width) != int(BADNESS * iheight / height)):
         raise ValueError(
             "resizing would stretch the image: "
-            f"{iwidth}x{iheight} to {width}x{height}")
+            f"{iwidth}x{iheight} to {width}x{height} "
+            f"(rw: {iwidth / width} rh: {iheight / height})")
     oimg = img.resize((width, height))
+    ext_ix = image.rindex(".")
     oname = f"{image[:ext_ix]}_{oimg.width}x{oimg.height}.png"
     ofname = os.path.join(prefix, oname)
-    if os.path.exists(ofname):
-        raise ValueError("image already exists!")
+    # if os.path.exists(ofname):
+    #     raise ValueError(f"image already exists! {ofname}")
     oimg.save(ofname)
     return oname
 
@@ -487,7 +493,7 @@ def create_media(
             <em>{doc['conference']} &mdash; {pub}</em>{appx}{awds}
             """
             lsrc = (
-                resize_img(prefix, doc["logo"], 64, 64)
+                resize_img(prefix, doc["logo"], 128, None)
                 if chk(doc, "logo")
                 else "img/nologo.png")
             sttl = (
@@ -562,10 +568,10 @@ def apply_template(
         *,
         is_ordered_by_type: bool,
         dry_run: bool) -> str:
-    resize_img(prefix, "img/scholarlogo.png", 32, 32)
-    resize_img(prefix, "img/linkedinlogo.png", 32, 32)
-    resize_img(prefix, "img/GitHub-Mark-32px.png", 32, 32)
-    resize_img(prefix, "img/photo.jpg", 64, 64)
+    resize_img(prefix, "img/scholarlogo.png", None, 64)
+    resize_img(prefix, "img/linkedinlogo.png", None, 64)
+    # resize_img(prefix, "img/GitHub-Mark-32px.png", 64, 64)
+    resize_img(prefix, "img/photo.jpg", None, 128)
     with open(tmpl, "r", encoding="utf-8") as tfin:
         content = tfin.read()
     with open(docs, "r", encoding="utf-8") as dfin:
