@@ -74,12 +74,13 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
             continue
         process_line(line)
 
-    curtime = datetime.fromtimestamp(time.time(), tz=_tz).isoformat()
-    out.write(tmpl.format(base=base, path="", mod=curtime))
-    out.write(tmpl.format(
-        base="https://josuakrause.github.io/",
-        path="",
-        mod=curtime))
+    # NOTE: duplicate, non-canonical, and redirect
+    # curtime = datetime.fromtimestamp(time.time(), tz=_tz).isoformat()
+    # out.write(tmpl.format(base=base, path="", mod=curtime))
+    # out.write(tmpl.format(
+    #     base="https://josuakrause.github.io/",
+    #     path="",
+    #     mod=curtime))
     out.write("</urlset>\n")
     out.flush()
 
