@@ -1,12 +1,115 @@
+import argparse
 import json
 import os
 import re
 import sys
 import zlib
 from datetime import datetime, timedelta
+from typing import (
+    Any,
+    Callable,
+    cast,
+    Dict,
+    get_args,
+    List,
+    Literal,
+    Set,
+    Tuple,
+    TypedDict,
+)
 
 import pytz
 from dateutil.parser import parse as tparse
+
+
+Entry = TypedDict('Entry', {
+    "abstract": str,
+    "authors": str,
+    "autopage": bool,
+    "awards": List[str],
+    "bibtex": str,
+    "conference": str,
+    "date": str,
+    "demo": str,
+    "external": str,
+    "github": str,
+    "href": str,
+    "keywords": List[str],
+    "logo": str,
+    "pdf": str,
+    "poster": str,
+    "published": bool,
+    "short-conference": str,
+    "short-title": str,
+    "slides": str,
+    "talk": str,
+    "teaser_desc": str,
+    "teaser": str,
+    "title": str,
+    "type": str,
+    "video": str,
+}, total=False)
+EntryField = Literal[
+    "abstract",
+    "authors",
+    "autopage",
+    "awards",
+    "bibtex",
+    "conference",
+    "date",
+    "demo",
+    "external",
+    "github",
+    "href",
+    "keywords",
+    "logo",
+    "pdf",
+    "poster",
+    "published",
+    "short-conference",
+    "short-title",
+    "slides",
+    "talk",
+    "teaser_desc",
+    "teaser",
+    "title",
+    "type",
+    "video",
+]
+ALLOWED_FIELDS: Set[EntryField] = set(get_args(EntryField))
+
+
+def parse_entry(obj: Dict[str, Any]) -> Entry:
+    for key in obj.keys():
+        if key not in ALLOWED_FIELDS:
+            raise ValueError(f"unknown field: {key}")
+    return cast(Entry, obj)
+
+
+Group = TypedDict('Group', {
+    "color": str,
+    "docs": List[Entry],
+    "name": str,
+    "type": str,
+})
+
+
+def parse_group(obj: Dict[str, Any]) -> Group:
+    return {
+        "name": f"{obj['name']}",
+        "type": f"{obj['type']}",
+        "color": f"{obj['color']}",
+        "docs": [],
+    }
+
+
+Event = TypedDict('Event', {
+    "id": str,
+    "group": str,
+    "name": str,
+    "time": int,
+    "link": str,
+})
 
 
 NL = "\n"
@@ -120,50 +223,51 @@ DESCRIPTION_ADD = """
 COPYRIGHT = "jk 2022"
 
 
-_compute_self = "total_seconds" not in dir(timedelta(seconds=1))
-_tz = pytz.timezone("US/Eastern")
-_epoch = datetime(year=1970, month=1, day=1, tzinfo=_tz)
-_DAY_SECONDS = 24 * 3600
-_MILLI = 10 ** 6
+COMPUTE_SELF: bool = "total_seconds" not in dir(timedelta(seconds=1))
+TZ_DEFAULT = pytz.timezone("US/Eastern")
+EPOCH: datetime = datetime(year=1970, month=1, day=1, tzinfo=TZ_DEFAULT)
+DAY_SECONDS: int = 24 * 3600
+MILLI: int = 10 ** 6
 
 
-def mktime(dtime):
+def mktime(dtime: datetime) -> int:
     if dtime.tzinfo is None:
         dtime = datetime(
             year=dtime.year,
             month=dtime.month,
             day=dtime.day,
-            tzinfo=_tz)
-    if not _compute_self:
-        res = (dtime - _epoch).total_seconds()
+            tzinfo=TZ_DEFAULT)
+    if not COMPUTE_SELF:
+        res = (dtime - EPOCH).total_seconds()
     else:
-        tdelta = dtime - _epoch
+        tdelta = dtime - EPOCH
         res = (
             tdelta.microseconds + (
-                tdelta.seconds + tdelta.days * _DAY_SECONDS) * _MILLI
-            ) / _MILLI
-    return int(res - res % _DAY_SECONDS)
+                tdelta.seconds + tdelta.days * DAY_SECONDS) * MILLI
+            ) / MILLI
+    return int(res - res % DAY_SECONDS)
 
 
-def monthtime(dtime):
+def monthtime(dtime: datetime) -> str:
     return f"{dtime.year}-{dtime.month}"
 
 
-def year(dtime):
+def year(dtime: datetime) -> int:
     return dtime.year
 
 
-def chk(doc, field):
-    return field in doc and doc[field]
+def chk(doc: Entry, field: EntryField) -> bool:
+    return field in doc and bool(doc[field])
 
 
-def create_autopage(content, doc, ofile, dry_run):
+def create_autopage(
+        content: str, doc: Entry, ofile: str, dry_run: bool) -> None:
     abstract = (
         "<h4>Abstract</h4><p style=\"text-align: justify;\">"
         f"{doc['abstract']}</p>" if chk(doc, "abstract") else "")
     bibtex = (
         f"<h4>Bibtex</h4><pre>{doc['bibtex'].strip()}</pre>"
-        if chk(doc, 'bibtex') else "")
+        if chk(doc, "bibtex") else "")
     image = f"""
     <div class="row">
         <div class="col-md-9">
@@ -178,10 +282,11 @@ def create_autopage(content, doc, ofile, dry_run):
         if m is not None:
             video = f"""
             <p style="text-align: center; margin: 0 auto;">
-              <iframe src="https://player.vimeo.com/video/{m.group(1)}"
-                      width="640" height="389" frameborder="0"
-                      webkitallowfullscreen mozallowfullscreen
-                      allowfullscreen></iframe>
+              <iframe
+                src="https://player.vimeo.com/video/{m.group(1)}"
+                width="640" height="389" frameborder="0"
+                webkitallowfullscreen mozallowfullscreen
+                allowfullscreen></iframe>
               <br><a href="https://vimeo.com/{
                 m.group(1)}">Watch video on Vimeo</a>
             </p>
@@ -195,10 +300,11 @@ def create_autopage(content, doc, ofile, dry_run):
         if m is not None:
             talk = f"""
             <p style="text-align: center; margin: 0 auto;">
-              <iframe src="https://player.vimeo.com/video/{m.group(1)}"
-                      width="640" height="389" frameborder="0"
-                      webkitallowfullscreen mozallowfullscreen
-                      allowfullscreen></iframe>
+              <iframe
+                src="https://player.vimeo.com/video/{m.group(1)}"
+                width="640" height="389" frameborder="0"
+                webkitallowfullscreen mozallowfullscreen
+                allowfullscreen></iframe>
               <br><a href="https://vimeo.com/{
                 m.group(1)}">Watch talk on Vimeo</a>
             </p>
@@ -207,8 +313,8 @@ def create_autopage(content, doc, ofile, dry_run):
             talk = ""
     else:
         talk = ""
-    links = []
-    add_misc_links(links, doc, video)
+    links: List[str] = []
+    add_misc_links(links, doc, bool(video))
     keywords = []
     if "keywords" in doc:
         keywords.extend(doc["keywords"])
@@ -235,7 +341,8 @@ def create_autopage(content, doc, ofile, dry_run):
             fout.write(output)
 
 
-def add_misc_links(appendix, doc, no_video=False):
+def add_misc_links(
+        appendix: List[str], doc: Entry, no_video: bool = False) -> None:
     if chk(doc, "demo"):
         appendix.append(f"<a href=\"{doc['demo']}\">[demo]</a>")
     if chk(doc, "pdf"):
@@ -254,23 +361,30 @@ def add_misc_links(appendix, doc, no_video=False):
         appendix.append(f"<a href=\"{doc['poster']}\">[poster]</a>")
 
 
-def create_media(pref, types, group_by, docs, *, event_types, dry_run):
-    type_lookup = {}
+def create_media(
+        pref: str,
+        types: List[Group],
+        group_by: Callable[[Entry], str],
+        docs: List[Entry],
+        *,
+        event_types: List[Group],
+        dry_run: bool) -> str:
+    type_lookup: Dict[str, Group] = {}
     for kind in types:
         type_lookup[kind["type"]] = kind
         kind["docs"] = []
     for doc in docs:
         kind = type_lookup[group_by(doc)]
         kind["docs"].append(doc)
-    etype_order = {}
-    event_kind_lookup = {}
+    etype_order: Dict[str, int] = {}
+    event_kind_lookup: Dict[str, Group] = {}
     for (ix, kind) in enumerate(event_types):
         event_kind_lookup[kind["type"]] = kind
         etype_order[kind["type"]] = len(event_types) - ix
-    event_times = {}
-    events = []
+    event_times: Dict[str, Set[str]] = {}
+    events: List[Event] = []
     content = ""
-    auto_pages = []
+    auto_pages: List[Entry] = []
     for kind in types:
         if not kind["docs"]:
             continue
@@ -278,7 +392,7 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
             "<h3 class=\"group_header\" "
             f"id=\"{kind['type']}\">{kind['name']}</h3>")
 
-        def skey(t):
+        def skey(t: Entry) -> Tuple[int, datetime, str]:
             return (
                 etype_order[t["type"]],
                 tparse(t["date"]),
@@ -375,7 +489,7 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
                 num += 1
                 tid = f"{otid} ({num})"
             event_times[mtime].add(tid)
-            event = {
+            event: Event = {
                 "id": tid,
                 "group": doc["type"],
                 "name": doc["title"],
@@ -406,31 +520,38 @@ def create_media(pref, types, group_by, docs, *, event_types, dry_run):
     return content
 
 
-def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
+def apply_template(
+        tmpl: str,
+        docs: str,
+        pref: str, *,
+        is_ordered_by_type: bool,
+        dry_run: bool) -> str:
     with open(tmpl, "r", encoding="utf-8") as tfin:
         content = tfin.read()
     with open(docs, "r", encoding="utf-8") as dfin:
         data = dfin.read()
 
-        def sanitize(m):
+        def sanitize(m: re.Match) -> str:
             return m.group(0).replace("\n", "\\n")
 
         data = re.sub(
             r'''"([^"]|\\\\")*":\s*"([^"]|\\\\")*"''', sanitize, data)
         dobj = json.loads(data)
+        all_groups = [parse_group(tobj) for tobj in dobj["types"]]
+        all_docs = [parse_entry(doc) for doc in dobj["documents"]]
 
-    def get_type(doc):
+    def get_type(doc: Entry) -> str:
         return doc["type"]
 
-    def get_date(doc):
+    def get_date(doc: Entry) -> str:
         return f"{year(tparse(doc['date']))}"
 
     if is_ordered_by_type:
-        type_order = dobj["types"]
+        type_order = all_groups
         group_by = get_type
     else:
         types = set()
-        for doc in dobj["documents"]:
+        for doc in all_docs:
             types.add(get_date(doc))
         group_by = get_date
         type_order = [
@@ -438,15 +559,15 @@ def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
                 "type": f"{year_str}",
                 "name": f"{year_str}",
                 "color": "black",
+                "docs": [],
             } for year_str in sorted(types, key=int, reverse=True)
         ]
-    doc_objs = dobj["documents"]
     media = create_media(
         pref,
         type_order,
         group_by,
-        doc_objs,
-        event_types=dobj["types"],
+        all_docs,
+        event_types=all_groups,
         dry_run=dry_run)
     js_fillin = """
     function adjustSizes() {
@@ -498,61 +619,42 @@ def apply_template(tmpl, docs, pref, *, is_ordered_by_type, dry_run):
         copyright=COPYRIGHT)
 
 
-def usage():
-    print(f"""
-usage: {
-    sys.argv[0]
-    } [-h] [--dry] [--out <file>] --documents <file> --template <file>
--h: print help
---documents <file>: specifies the documents input
---template <file>: specifies the template file
---prefix <file>: specifies the file prefix
---out <file>: specifies the output file. default is STD_OUT.
---dry: do not produce any output
-""".strip(), file=sys.stderr)
-    sys.exit(1)
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        prog=f"python {os.path.basename(__file__)}",
+        description="Create pages")
+    parser.add_argument(
+        "--documents",
+        type=str,
+        help="specifies the documents input")
+    parser.add_argument(
+        "--template",
+        type=str,
+        help="specifies the template file")
+    parser.add_argument(
+        "--prefix",
+        type=str,
+        default=None,
+        help="specifies the file prefix")
+    parser.add_argument(
+        "--out",
+        type=str,
+        default="-",
+        help="specifies the output file. default is STD_OUT.")
+    parser.add_argument(
+        "--dry",
+        action="store_true",
+        help="do not produce any output")
+    return parser.parse_args()
 
 
-def run():
-    tmpl = None
-    docs = None
-    pref = None
-    out = "-"
-    dry_run = False
-    args = sys.argv[:]
-    args.pop(0)
-    while args:
-        arg = args.pop(0)
-        if arg == "-h":
-            usage()
-        elif arg == "--template":
-            if not args:
-                print("--template requires argument", file=sys.stderr)
-                usage()
-            tmpl = args.pop(0)
-        elif arg == "--out":
-            if not args:
-                print("--out requires argument", file=sys.stderr)
-                usage()
-            out = args.pop(0)
-        elif arg == "--documents":
-            if not args:
-                print("--documents requires argument", file=sys.stderr)
-                usage()
-            docs = args.pop(0)
-        elif arg == "--prefix":
-            if not args:
-                print("--prefix requires argument", file=sys.stderr)
-                usage()
-            pref = args.pop(0)
-        elif arg == "--dry":
-            dry_run = True
-        else:
-            print(f"unrecognized argument: {arg}", file=sys.stderr)
-            usage()
-    if tmpl is None or docs is None:
-        print("input is underspecified", file=sys.stderr)
-        usage()
+def run() -> None:
+    args = parse_args()
+    tmpl = args.template
+    docs = args.documents
+    pref = args.prefix
+    out = args.out
+    dry_run = args.dry
     content = apply_template(
         tmpl,
         docs,

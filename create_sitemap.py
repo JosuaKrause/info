@@ -2,6 +2,7 @@ import os
 import sys
 import time
 from datetime import datetime
+from typing import IO, Iterable, Optional
 
 import pytz
 
@@ -9,7 +10,7 @@ import pytz
 _tz = pytz.timezone("US/Eastern")
 
 
-def has_private_folder(filename):
+def has_private_folder(filename: str) -> bool:
     fname = os.path.basename(filename)
     if fname.startswith(".") and fname != ".":
         return True
@@ -19,7 +20,7 @@ def has_private_folder(filename):
     return has_private_folder(rec)
 
 
-def create_sitemap(out, lines):
+def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
     out.write("""<?xml version="1.0" encoding="UTF-8"?>
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -35,7 +36,7 @@ def create_sitemap(out, lines):
 """
     base = "https://josuakrause.github.io/info/"
 
-    def process_line(line):
+    def process_line(line: str) -> Optional[str]:
         filename = os.path.normpath(line.strip())
         print(f"checking: {base}{filename}")
         if has_private_folder(filename):
@@ -83,7 +84,7 @@ def create_sitemap(out, lines):
     out.flush()
 
 
-def usage():
+def usage() -> None:
     print(f"""
 usage: {sys.argv[0]} [-h] <file>
 -h: print help
@@ -92,7 +93,7 @@ usage: {sys.argv[0]} [-h] <file>
     sys.exit(1)
 
 
-def run():
+def run() -> None:
     args = sys.argv[:]
     args.pop(0)
     if "-h" in args:

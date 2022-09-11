@@ -4,14 +4,7 @@ set -ex
 if [ -z $NO_DEFAULT ]; then
   OUTPUT="www"
   LIB_COPY="filelist.txt"
-  NO_WEB=1
   PUBLISH=
-fi
-
-if [ -z $NO_WEB ]; then
-  git submodule update --init --recursive
-  pip install --upgrade pip
-  pip install --upgrade python-dateutil ghp-import pytz
 fi
 
 mkdir -p "${OUTPUT}"
@@ -22,12 +15,7 @@ PREV_DIR=`pwd`
 pushd "${OUTPUT}" && find . -not -path '*lib/*' -not -path '*lib' | python "${PREV_DIR}/create_sitemap.py" "sitemap.xml" && popd
 
 if [ -z $PUBLISH ]; then
-  if hash open 2>/dev/null; then
-    open "http://localhost:8000/www/"
-  fi
-  python -m http.server || true
-  rm -rf "${OUTPUT}"
-  rm "${LIB_COPY}"
+  echo "run 'make run-web' next"
 else
   ghp-import -n "${OUTPUT}" && git push -qf origin gh-pages
 fi
