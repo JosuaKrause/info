@@ -456,6 +456,15 @@ solutions and provide two examples of where such techniques have been successful
       "published": true
     },
     {
+      "type": "project",
+      "title": "mdsjs",
+      "github": "https://github.com/JosuaKrause/mdsjs",
+      "authors": "Josua Krause",
+      "conference": "GitHub",
+      "date": "Jun 2015",
+      "published": true
+    },
+    {
       "type": "thesis",
       "title": "Annotation of Changes in Evolving Graphs — Annotation veränderlicher Graphen",
       "short-title": "Annotation of Changes in Evolving Graphs",
