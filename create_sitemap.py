@@ -63,6 +63,8 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
             return None
         if fname.endswith("sitemap.xml"):
             return None
+        if fname.endswith("cv.pdf"):
+            return None
         if os.path.isdir(filename) and not os.path.exists(
                 os.path.join(filename, "index.html")):
             return None
