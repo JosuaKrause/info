@@ -191,15 +191,15 @@ LD_JSON_KNOWLEDGE = """{
 }"""
 
 GA_TRACKING = """
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-77732102-1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4DHJEMESJD">
 </script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-77732102-1');
+  gtag('config', 'G-4DHJEMESJD');
 </script>
 """.strip()
 
