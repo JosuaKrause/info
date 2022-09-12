@@ -201,7 +201,7 @@ GA_TRACKING = """
 
   gtag('config', 'UA-77732102-1');
 </script>
-"""
+""".strip()
 
 TAG = r"<[^>]*?>"
 
@@ -216,11 +216,11 @@ language processing, and adaptive learning at scale. He recently has been
 Adjunct Professor at <a href="http://engineering.nyu.edu/">NYU</a>
 where he also received his Ph.D. in Explainable Machine Learning under
 <a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
-"""
+""".strip()
 
 DESCRIPTION_ADD = """
 <a href="material/cv_krause.pdf">[Curriculum Vitae]</a>
-"""
+""".strip()
 
 COPYRIGHT = "jk 2022"
 
