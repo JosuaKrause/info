@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 from datetime import datetime
 from typing import IO, Iterable, Optional
 
@@ -33,7 +34,8 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
     <lastmod>{mod}</lastmod>
   </url>
 """
-    base = "https://josuakrause.github.io/info/"
+    domain = "https://josuakrause.github.io"
+    base = f"{domain}/info/"
 
     def process_line(line: str) -> Optional[str]:
         filename = os.path.normpath(line.strip())
@@ -77,13 +79,13 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
             continue
         process_line(line)
 
+    curtime = datetime.fromtimestamp(time.time(), tz=_tz).isoformat()
     # NOTE: duplicate, non-canonical, and redirect
-    # curtime = datetime.fromtimestamp(time.time(), tz=_tz).isoformat()
     # out.write(tmpl.format(base=base, path="", mod=curtime))
-    # out.write(tmpl.format(
-    #     base="https://josuakrause.github.io/",
-    #     path="",
-    #     mod=curtime))
+    out.write(tmpl.format(base=f"{domain}/", path="", mod=curtime))
+    out.write(tmpl.format(base=f"{domain}/mdsjs/", path="", mod=curtime))
+    out.write(
+        tmpl.format(base=f"{domain}/bubblesets-js/", path="", mod=curtime))
     out.write("</urlset>\n")
     out.flush()
 
