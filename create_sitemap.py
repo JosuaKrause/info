@@ -84,8 +84,12 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
     # out.write(tmpl.format(base=base, path="", mod=curtime))
     out.write(tmpl.format(base=f"{domain}/", path="", mod=curtime))
     out.write(tmpl.format(base=f"{domain}/mdsjs/", path="", mod=curtime))
-    out.write(
-        tmpl.format(base=f"{domain}/bubblesets-js/", path="", mod=curtime))
+    out.write(tmpl.format(
+        base=f"{domain}/bubblesets-js/", path="", mod=curtime))
+    out.write(tmpl.format(
+        base=f"{domain}/bubblesets-js/", path="bench.html", mod=curtime))
+    out.write(tmpl.format(
+        base=f"{domain}/bubblesets-js/", path="cliques.html", mod=curtime))
     out.write("</urlset>\n")
     out.flush()
 
