@@ -376,7 +376,8 @@ def create_autopage(
         description=(
             f"{doc['title']} by {doc['authors']} "
             f"appears in {doc['conference']}"),
-        copyright=COPYRIGHT)
+        copyright=COPYRIGHT,
+        canonical=os.path.basename(ofile))
     if not dry_run:
         with open(ofile, "w", encoding="utf-8") as fout:
             fout.write(output)
