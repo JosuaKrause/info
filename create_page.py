@@ -446,6 +446,7 @@ def create_media(
             id_str = (
                 f"{kind['name']}_{doc['title']}_"
                 f"{mktime(tparse(doc['date']))}")
+            print(f"hashing: {id_str}")
             hash_id = zlib.crc32(id_str.encode("utf-8")) & 0xffffffff
             entry_id = f"entry{hash_id:08x}"
             appendix = []
