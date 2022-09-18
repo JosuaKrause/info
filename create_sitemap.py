@@ -112,6 +112,8 @@ def get_previous_filetimes(domain: str) -> Dict[str, str]:
 def same_file(fname: str, check_file: str) -> bool:
     if not fname:
         fname = "index.html"
+    if not check_file:
+        check_file = "index.html"
     return check_command([
         "git",
         "diff",
@@ -196,9 +198,8 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
             return None
         mtime = datetime.fromtimestamp(
             os.path.getmtime(filename), tz=TZ).isoformat()
-        actual_file = filename
         filename = filename.rstrip(".")
-        write_entry(root, filename, mtime, check_file=actual_file)
+        write_entry(root, filename, mtime, check_file=filename)
         return os.path.dirname(filename)
 
     for line in sorted(set(lines)):
