@@ -1,12 +1,12 @@
-import os
 import io
+import os
 import shutil
 import subprocess
 import sys
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime
-from typing import IO, Dict, Iterable, List, Optional
+from typing import Dict, IO, Iterable, List, Optional
 
 import pytz
 
