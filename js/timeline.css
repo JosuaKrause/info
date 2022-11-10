@@ -2,6 +2,18 @@
  * Created by krause on 2016-04-22.
  */
 
+svg {
+  cursor: grab;
+}
+
+svg:active {
+  cursor: grabbing;
+}
+
+.legend-entry:hover {
+  background-color: #eee;
+}
+
 #timeline-row {
   margin-bottom: 1em;
 }

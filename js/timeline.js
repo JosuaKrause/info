@@ -6,7 +6,7 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     "width": wtext,
     "height": h + textHeight,
   }).style({
-    "border": "solid black 1px"
+    "border": "solid black 1px",
   });
   var w = svg.node().clientWidth;
   if(w === 0) { // taking care of firefox
@@ -82,6 +82,8 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
       return typeNames[g] || "???";
     }).style({
       "vertical-align": "middle",
+    });
+    lSel.style({
       "cursor": "pointer",
     }).on("click", function(g) {
       var allVisible = Object.keys(groups).reduce(function(prev, cur) {

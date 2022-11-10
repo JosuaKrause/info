@@ -32,6 +32,10 @@ img {
   width: 100%;
 }
 
+h5 {
+  margin-top: 0;
+}
+
 @media only screen and (max-width: 960px) {
   .smt_padding {
     height: 161px;
@@ -39,6 +43,10 @@ img {
 
   .smt_anchor {
     top: -161px;
+  }
+
+  h5 {
+    margin-top: 10px;
   }
 }
 
