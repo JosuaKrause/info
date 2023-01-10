@@ -186,6 +186,10 @@ LD_JSON_KNOWLEDGE = """{
     {
       "@type": "http://schema.org/URL",
       "@id": "https://theorg.com/org/accern/team/josua-krause"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://medium.com/@josua.krause"
     }
   ]
 }"""
@@ -224,7 +228,7 @@ Curriculum Vitae:
 <a href="material/cv_krause.pdf">[Long]</a>
 """.strip()
 
-COPYRIGHT = "jk 2022"
+COPYRIGHT = "jk 2023"
 
 
 COMPUTE_SELF: bool = "total_seconds" not in dir(timedelta(seconds=1))
