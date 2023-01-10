@@ -248,7 +248,7 @@ def mktime(dtime: datetime) -> int:
         res = (
             tdelta.microseconds + (
                 tdelta.seconds + tdelta.days * DAY_SECONDS) * MILLI
-            ) / MILLI
+        ) / MILLI
     return int(res - res % DAY_SECONDS)
 
 
