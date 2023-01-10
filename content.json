@@ -373,6 +373,15 @@ solutions and provide two examples of where such techniques have been successful
       "published": true
     },
     {
+      "type": "blog",
+      "title": "The Problem with Teaching Language Models about the World",
+      "href": "https://medium.com/@josua.krause/the-problem-with-teaching-language-models-about-the-world-5e024b408711",
+      "authors": "Josua Krause",
+      "conference": "Medium",
+      "date": "Jan 7, 2023",
+      "published": true
+    },
+    {
       "type": "project",
       "title": "Quick Server",
       "github": "https://github.com/JosuaKrause/quick_server",

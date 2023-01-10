@@ -245,10 +245,8 @@ def mktime(dtime: datetime) -> int:
         res = (dtime - EPOCH).total_seconds()
     else:
         tdelta = dtime - EPOCH
-        res = (
-            tdelta.microseconds + (
-                tdelta.seconds + tdelta.days * DAY_SECONDS) * MILLI
-        ) / MILLI
+        large_units = tdelta.seconds + tdelta.days * DAY_SECONDS
+        res = (tdelta.microseconds + large_units * MILLI) / MILLI
     return int(res - res % DAY_SECONDS)
 
 
