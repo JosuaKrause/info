@@ -121,7 +121,7 @@ LD_JSON_KNOWLEDGE = """{
   "@id": "https://josuakrause.github.io/info/",
   "@type": "http://schema.org/Person",
   "http://schema.org/additionalName": "Joschi",
-  "http://schema.org/affiliation": {
+  "http://schema.org/alumniOf": {
     "@type": "http://schema.org/Organization",
     "http://schema.org/name": "Accern Corp."
   },
@@ -142,6 +142,10 @@ LD_JSON_KNOWLEDGE = """{
     {
       "@type": "http://schema.org/URL",
       "@id": "https://www.linkedin.com/in/josuakrause/"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://medium.com/@josua.krause"
     },
     {
       "@type": "http://schema.org/URL",
@@ -210,15 +214,12 @@ GA_TRACKING = """
 TAG = r"<[^>]*?>"
 
 DESCRIPTION = """
-Josua Krause is the VP of Data Science at
-<a href="https://www.accern.com/">Accern</a>, a no-code AI startup with offices
-in New York and Bangalore, where he leads the research, development, and
-deployment of AI models. Accern allows organizations to build and deploy AI
-solutions utilizing adaptive NLP and predictive features with a no-code
-development platform. His focus is on deep representation learning, natural
-language processing, and adaptive learning at scale. He recently has been
-Adjunct Professor at <a href="http://engineering.nyu.edu/">NYU</a>
-where he also received his Ph.D. in Explainable Machine Learning under
+Josua Krause has lead data science teams for research, development, and
+deployment of AI models. His focus is on deep representation learning, natural
+language processing with large language models, and adaptive learning at scale.
+He recently has been Adjunct Professor at
+<a href="http://engineering.nyu.edu/">NYU</a> where he also received his Ph.D.
+in Explainable Machine Learning under
 <a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
 """.strip()
 
@@ -574,6 +575,7 @@ def apply_template(
         *,
         is_ordered_by_type: bool,
         dry_run: bool) -> str:
+    resize_img(prefix, "img/mediumlogo.png", None, 64)
     resize_img(prefix, "img/scholarlogo.png", None, 64)
     resize_img(prefix, "img/linkedinlogo.png", None, 64)
     # resize_img(prefix, "img/GitHub-Mark-32px.png", 64, 64)
