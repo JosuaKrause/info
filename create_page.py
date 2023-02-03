@@ -218,9 +218,9 @@ Josua Krause has lead Data Science teams for research, development, and
 deployment of AI models. His focus is on deep representation learning, natural
 language processing with large language models, and adaptive learning at scale.
 He received his Ph.D. in Explainable Machine Learning under
-<a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>
+<a href="https://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>
 at
-<a href="http://engineering.nyu.edu/">NYU</a>.
+<a href="https://engineering.nyu.edu/">NYU</a>.
 """.strip()
 
 DESCRIPTION_ADD = """
