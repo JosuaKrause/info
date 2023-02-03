@@ -121,7 +121,7 @@ LD_JSON_KNOWLEDGE = """{
   "@id": "https://josuakrause.github.io/info/",
   "@type": "http://schema.org/Person",
   "http://schema.org/additionalName": "Joschi",
-  "http://schema.org/alumniOf": {
+  "http://schema.org/affiliation": {
     "@type": "http://schema.org/Organization",
     "http://schema.org/name": "Accern Corp."
   },
