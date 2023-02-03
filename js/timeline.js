@@ -22,6 +22,12 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     typeNames = _;
   };
 
+  var typeOrder = {};
+  this.typeOrder = function(_) {
+    if(!arguments.length) return typeOrder;
+    typeOrder = _;
+  };
+
   var events = [];
   this.events = function(_) {
     if(!arguments.length) return events;
@@ -55,7 +61,7 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
       types[e["id"]] = Math.min(+e["time"], e["id"] in types ? types[e["id"]] : Number.POSITIVE_INFINITY);
       groups[e["group"]] = true;
     });
-    var groupScale = d3.scale.category10().domain(Object.keys(groups));
+    var groupScale = d3.scale.category10().domain(typeOrder);
 
     var visibleGroups = {};
 
@@ -68,7 +74,7 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
       return visibleGroups[groupClass] !== undefined ? visibleGroups[groupClass] : true;
     }
 
-    var lSel = legend.selectAll("div.legend-entry").data(Object.keys(groups), function(g) {
+    var lSel = legend.selectAll("div.legend-entry").data(typeOrder, function(g) {
       return g;
     });
     lSel.exit().remove();

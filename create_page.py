@@ -217,10 +217,10 @@ DESCRIPTION = """
 Josua Krause has lead Data Science teams for research, development, and
 deployment of AI models. His focus is on deep representation learning, natural
 language processing with large language models, and adaptive learning at scale.
-He recently has been Adjunct Professor at
-<a href="http://engineering.nyu.edu/">NYU</a> where he also received his Ph.D.
-in Explainable Machine Learning under
-<a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>.
+He received his Ph.D. in Explainable Machine Learning under
+<a href="http://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>
+at
+<a href="http://engineering.nyu.edu/">NYU</a>.
 """.strip()
 
 DESCRIPTION_ADD = """
@@ -411,6 +411,7 @@ def add_misc_links(
 def create_media(
         prefix: str,
         types: List[Group],
+        group_order: List[str],
         group_by: Callable[[Entry], str],
         docs: List[Entry],
         *,
@@ -558,6 +559,7 @@ def create_media(
             print(json.dumps({
                 "events": events,
                 "type_names": type_names,
+                "type_order": group_order,
             }, sort_keys=True, indent=2), file=tlout)
     if auto_pages:
         with open("page.tmpl", "r", encoding="utf-8") as tfin:
@@ -616,9 +618,14 @@ def apply_template(
                 "docs": [],
             } for year_str in sorted(types, key=int, reverse=True)
         ]
+    group_order: List[str] = [
+        group["type"]
+        for group in all_groups
+    ]
     media = create_media(
         prefix,
         type_order,
+        group_order,
         group_by,
         all_docs,
         event_types=all_groups,
@@ -656,6 +663,7 @@ def apply_template(
           return;
         }
         timeline.typeNames(data["type_names"]);
+        timeline.typeOrder(data["type_order"]);
         timeline.events(data["events"]);
         timeline.update();
       });
