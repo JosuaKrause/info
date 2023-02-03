@@ -214,7 +214,7 @@ GA_TRACKING = """
 TAG = r"<[^>]*?>"
 
 DESCRIPTION = """
-Josua Krause has lead data science teams for research, development, and
+Josua Krause has lead Data Science teams for research, development, and
 deployment of AI models. His focus is on deep representation learning, natural
 language processing with large language models, and adaptive learning at scale.
 He recently has been Adjunct Professor at
