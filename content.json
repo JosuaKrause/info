@@ -26,8 +26,8 @@
       "color": "black"
     },
     {
-      "type": "teaching",
-      "name": "Teaching",
+      "type": "project",
+      "name": "Notable Project",
       "color": "black"
     },
     {
@@ -41,8 +41,8 @@
       "color": "black"
     },
     {
-      "type": "project",
-      "name": "Notable Project",
+      "type": "teaching",
+      "name": "Teaching",
       "color": "black"
     }
   ],
