@@ -1,11 +1,6 @@
 {
   "types": [
     {
-      "type": "book",
-      "name": "Book",
-      "color": "black"
-    },
-    {
       "type": "thesis",
       "name": "Thesis",
       "color": "black"
@@ -13,6 +8,11 @@
     {
       "type": "paper",
       "name": "Publication",
+      "color": "black"
+    },
+    {
+      "type": "book",
+      "name": "Book",
       "color": "black"
     },
     {
