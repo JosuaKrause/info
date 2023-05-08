@@ -644,9 +644,6 @@ def apply_template(
     }
 
     function start() {
-      jQuery && jQuery.htmlPrefilter = function(html) {
-        return html;
-      };
       window.addEventListener("resize", adjustSizes);
       adjustSizes();
       var w = "100%";

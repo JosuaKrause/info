@@ -452,6 +452,10 @@ function lassoExample(sel) {
 }
 
 function start() {
+    jQuery.htmlPrefilter = function(html) {
+        return html;
+    };
+
     function addExample(id, title, example, help) {
         var sel = d3.select("#content").append("div").attr({
             "id": id
