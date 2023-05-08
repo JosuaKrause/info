@@ -36,13 +36,13 @@
       "color": "black"
     },
     {
-      "type": "project",
-      "name": "Notable Project",
+      "type": "committee",
+      "name": "Committee",
       "color": "black"
     },
     {
-      "type": "committee",
-      "name": "Committee",
+      "type": "project",
+      "name": "Notable Project",
       "color": "black"
     }
   ],
