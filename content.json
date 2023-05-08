@@ -1,6 +1,11 @@
 {
   "types": [
     {
+      "type": "book",
+      "name": "Book",
+      "color": "black"
+    },
+    {
       "type": "thesis",
       "name": "Thesis",
       "color": "black"
@@ -375,6 +380,25 @@ solutions and provide two examples of where such techniques have been successful
       "authors": "Josua Krause",
       "conference": "Medium",
       "date": "Jan 7, 2023",
+      "published": true
+    },
+    {
+      "type": "book",
+      "title": "Dream Big, Little Girl: A Book about Science, Technology, and Art for Young Girls",
+      "logo": "img/cover_dream_big.png",
+      "href": "https://www.amazon.com/Dream-Big-Little-Girl-Technology/dp/B0BXNBHP13/",
+      "authors": "Narges Sharif Razavian, Josua Krause",
+      "conference": "Amazon",
+      "date": "Mar 8, 2023",
+      "bibtex": "@book{dreambig2023,
+        title={Dream Big, Little Girl: A Book about Science, Technology, and Art for Young Girls},
+        author={Sharif Razavian, Narges and Krause, Josua},
+        year={2023},
+        month={Mar},
+        publisher={Independently published},
+        pages={90},
+        isbn={979-8385793716}
+}",
       "published": true
     },
     {
