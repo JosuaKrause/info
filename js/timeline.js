@@ -87,6 +87,12 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
       return initVisibleGroups[groupClass] === visibleGroups[groupClass];
     }
 
+    function getDefault(g) {
+      var groupClass = getGroupClass(g);
+      if(initVisibleGroups[groupClass] === undefined) return true;
+      return initVisibleGroups[groupClass];
+    }
+
     var lSel = legend.selectAll("div.legend-entry").data(typeOrder, function(g) {
       return g;
     });
@@ -113,14 +119,14 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
           visibleGroups[getGroupClass(cur)] = cur === g;
         });
       } else {
-        visibleGroups[getGroupClass(g)] = !isVisible(g);
+        visibleGroups[getGroupClass(g)] = !isDefault(g);
       }
       var allInvisible = Object.keys(groups).reduce(function(prev, cur) {
-        return prev && !isVisible(cur);
+        return prev && !isDefault(cur);
       }, true);
       if(allInvisible) {
         Object.keys(groups).forEach(function(cur) {
-          visibleGroups[getGroupClass(cur)] = true;
+          visibleGroups[getGroupClass(cur)] = getDefault(cur);
         });
       }
       updateLegendColor();
