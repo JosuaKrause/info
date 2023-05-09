@@ -111,10 +111,17 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     lSel.style({
       "cursor": "pointer",
     }).on("click", function(g) {
-      var allVisible = Object.keys(groups).reduce(function(prev, cur) {
+      var allDefault = Object.keys(groups).reduce(function(prev, cur) {
         return prev && isDefault(cur);
       }, true);
-      if(allVisible) {
+      var allVisible = Object.keys(groups).reduce(function(prev, cur) {
+        return prev && isVisible(cur);
+      }, true);
+      if(allDefault) {
+        Object.keys(groups).forEach(function(cur) {
+          visibleGroups[getGroupClass(cur)] = cur === g ? true : !getDefault(g);
+        });
+      } else if(allVisible) {
         Object.keys(groups).forEach(function(cur) {
           visibleGroups[getGroupClass(cur)] = cur === g;
         });
