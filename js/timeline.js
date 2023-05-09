@@ -119,14 +119,14 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
           visibleGroups[getGroupClass(cur)] = cur === g;
         });
       } else {
-        visibleGroups[getGroupClass(g)] = !isDefault(g);
+        visibleGroups[getGroupClass(g)] = !isVisible(g);
       }
       var allInvisible = Object.keys(groups).reduce(function(prev, cur) {
-        return prev && !isDefault(cur);
+        return prev && !isVisible(cur);
       }, true);
       if(allInvisible) {
         Object.keys(groups).forEach(function(cur) {
-          visibleGroups[getGroupClass(cur)] = getDefault(cur);
+          visibleGroups[getGroupClass(cur)] = getDefault(g);
         });
       }
       updateLegendColor();
