@@ -126,7 +126,7 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
       }, true);
       if(allInvisible) {
         Object.keys(groups).forEach(function(cur) {
-          visibleGroups[getGroupClass(cur)] = getDefault(g);
+          visibleGroups[getGroupClass(cur)] = getDefault(cur);
         });
       }
       updateLegendColor();
