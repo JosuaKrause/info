@@ -69,7 +69,8 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     });
     var groupScale = d3.scale.category10().domain(typeOrder);
 
-    var visibleGroups = initVisibleGroups;
+    var visibleGroups = {};
+    Object.assign(visibleGroups, initVisibleGroups);
 
     function getGroupClass(g) {
       return ".type_" + g;
@@ -78,6 +79,12 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     function isVisible(g) {
       var groupClass = getGroupClass(g);
       return visibleGroups[groupClass] !== undefined ? visibleGroups[groupClass] : true;
+    }
+
+    function isDefault(g) {
+      var groupClass = getGroupClass(g);
+      if(initVisibleGroups[groupClass] === undefined) return isVisible(g);
+      return initVisibleGroups[groupClass] === visibleGroups[groupClass];
     }
 
     var lSel = legend.selectAll("div.legend-entry").data(typeOrder, function(g) {
@@ -99,7 +106,7 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
       "cursor": "pointer",
     }).on("click", function(g) {
       var allVisible = Object.keys(groups).reduce(function(prev, cur) {
-        return prev && isVisible(cur);
+        return prev && isDefault(cur);
       }, true);
       if(allVisible) {
         Object.keys(groups).forEach(function(cur) {
