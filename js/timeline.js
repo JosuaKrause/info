@@ -34,6 +34,12 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     events = _;
   };
 
+  var initVisibleGroups = {};
+  this.initVisibleGroups = function(_) {
+    if(!arguments.length) return initVisibleGroups;
+    initVisibleGroups = _;
+  };
+
   function fitInto(pixWidth, pixHeight, w, h, fit) {
     var rw = pixWidth / w;
     var rh = pixHeight / h;
@@ -63,7 +69,7 @@ function Timeline(content, legend, wtext, h, radius, textHeight) {
     });
     var groupScale = d3.scale.category10().domain(typeOrder);
 
-    var visibleGroups = {};
+    var visibleGroups = initVisibleGroups;
 
     function getGroupClass(g) {
       return ".type_" + g;

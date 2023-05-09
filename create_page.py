@@ -665,6 +665,7 @@ def apply_template(
         timeline.typeNames(data["type_names"]);
         timeline.typeOrder(data["type_order"]);
         timeline.events(data["events"]);
+        timeline.initVisibleGroups({"committee": false});
         timeline.update();
       });
     }
