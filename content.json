@@ -383,6 +383,16 @@ solutions and provide two examples of where such techniques have been successful
       "published": true
     },
     {
+      "type": "blog",
+      "title": "Asymmetric Topic Models",
+      "logo": "img/medium2.png",
+      "href": "https://medium.com/@josua.krause/asymmetric-topic-models-199a0e1d03fc",
+      "authors": "Josua Krause",
+      "conference": "Medium",
+      "date": "Jun 29, 2023",
+      "published": true
+    },
+    {
       "type": "book",
       "title": "Dream Big, Little Girl: A Book about Science, Technology, and Art for Young Girls",
       "logo": "img/cover_dream_big.png",
