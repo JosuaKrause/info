@@ -393,6 +393,25 @@ solutions and provide two examples of where such techniques have been successful
       "published": true
     },
     {
+      "type": "blog",
+      "title": "Dot Product is a Bad Distance Function",
+      "logo": "img/medium3.png",
+      "href": "https://medium.com/@josua.krause/",
+      "authors": "Josua Krause",
+      "conference": "Medium",
+      "date": "Jul 26, 2023",
+      "published": false
+    },
+    {
+      "type": "project",
+      "title": "Searchspace",
+      "github": "https://github.com/JosuaKrause/searchspace",
+      "authors": "Josua Krause",
+      "conference": "GitHub",
+      "date": "Jul 26, 2023",
+      "published": false
+    },
+    {
       "type": "book",
       "title": "Dream Big, Little Girl: A Book about Science, Technology, and Art for Young Girls",
       "logo": "img/cover_dream_big.png",

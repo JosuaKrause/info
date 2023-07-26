@@ -82,12 +82,17 @@ footer {
   bottom: 0;
   width: 100%;
   z-index: 1;
+  pointer-events: none;
 }
 
 .footer-style {
   padding: 10px;
   text-align: right;
   filter: drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white);
+}
+
+.footer-style a {
+  pointer-events: fill;
 }
 
 .empty-footer {

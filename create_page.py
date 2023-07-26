@@ -209,6 +209,7 @@ GA_TRACKING = """
 
   gtag('config', 'G-4DHJEMESJD');
 </script>
+<!-- Google tag end -->
 """.strip()
 
 TAG = r"<[^>]*?>"
