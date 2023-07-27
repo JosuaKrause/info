@@ -10,7 +10,7 @@ from email.utils import parsedate_to_datetime
 from typing import Dict, IO, Iterable, List, Optional
 
 import pytz
-import requests  # type: ignore  # FIXME add stubs
+import requests
 
 
 TZ = pytz.timezone("US/Eastern")
@@ -161,7 +161,9 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
         lmod = res.headers.get("last-modified")
         if lmod is None:
             return None
-        return parsedate_to_datetime(lmod).isoformat()
+        dout = parsedate_to_datetime(lmod)
+        dout = dout.astimezone(TZ)
+        return dout.isoformat()
 
     def write_entry(
             path: str,
