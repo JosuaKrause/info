@@ -174,9 +174,9 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
             check_online: bool = False) -> None:
         print(f"processing: {domain}{path}{fname}")
         old_mod = prev_times.get(f"{path}{fname}")
-        # if old_mod is not None:
-        #     if check_file is None or same_file(fname, check_file):
-        #         mod = old_mod
+        if old_mod is not None:
+            if check_file is None or same_file(fname, check_file):
+                mod = old_mod
         if check_online:
             online_mod = get_online_mod(path, fname)
             if online_mod is not None:
