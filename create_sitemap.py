@@ -216,8 +216,9 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
         if os.path.isdir(filename) and not os.path.exists(
                 os.path.join(filename, "index.html")):
             return None
-        mtime = datetime.fromtimestamp(
-            os.path.getmtime(filename), tz=TZ).isoformat()
+        dtime = datetime.fromtimestamp(os.path.getmtime(filename), tz=TZ)
+        dtime = dtime.replace(microsecond=0)
+        mtime = dtime.isoformat()
         filename = filename.rstrip(".")
         write_entry(root, filename, mtime, check_file=filename)
         return os.path.dirname(filename)
