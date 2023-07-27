@@ -6,10 +6,11 @@ import sys
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime
+from email.utils import parsedate_to_datetime
 from typing import Dict, IO, Iterable, List, Optional
 
 import pytz
-import requests
+import requests  # type: ignore  # FIXME add stubs
 
 
 TZ = pytz.timezone("US/Eastern")
@@ -157,7 +158,10 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
         res = requests.head(url, timeout=10)
         if res.status_code != 200:
             return None
-        return res.headers.get("last-modified")
+        lmod = res.headers.get("last-modified")
+        if lmod is None:
+            return None
+        return parsedate_to_datetime(lmod).isoformat()
 
     def write_entry(
             path: str,
