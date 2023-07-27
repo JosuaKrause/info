@@ -9,6 +9,7 @@ from datetime import datetime
 from typing import Dict, IO, Iterable, List, Optional
 
 import pytz
+import requests
 
 
 TZ = pytz.timezone("US/Eastern")
@@ -151,16 +152,29 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
     fetch_gh_pages()
     prev_times = get_previous_filetimes(domain)
 
+    def get_online_mod(path: str, fname: str) -> Optional[str]:
+        url = f"{domain}{path}{fname}"
+        res = requests.head(url, timeout=10)
+        if res.status_code != 200:
+            return None
+        return res.headers.get("last-modified")
+
     def write_entry(
             path: str,
             fname: str,
             mod: str,
-            check_file: Optional[str] = None) -> None:
+            *,
+            check_file: Optional[str] = None,
+            check_online: bool = False) -> None:
         print(f"processing: {domain}{path}{fname}")
         old_mod = prev_times.get(f"{path}{fname}")
         if old_mod is not None:
             if check_file is None or same_file(fname, check_file):
                 mod = old_mod
+        if check_online:
+            online_mod = get_online_mod(path, fname)
+            if online_mod is not None:
+                mod = online_mod
         if mod != old_mod:
             print(f"file change detected: {mod} != {old_mod}")
         out.write(tmpl.format(base=f"{domain}{path}", path=fname, mod=mod))
@@ -211,13 +225,13 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
     # NOTE: duplicate, non-canonical, and redirect
     # write_entry(root, "", curtime)
     write_entry("/", "", curtime, check_file="index.html")
-    write_entry("/mdsjs/", "", curtime)
-    write_entry("/bubblesets-js/", "", curtime)
-    write_entry("/bubblesets-js/", "bench.html", curtime)
-    write_entry("/bubblesets-js/", "cliques.html", curtime)
-    write_entry("/searchspace/", "", curtime)
-    write_entry("/searchspace/", "demo0.html", curtime)
-    write_entry("/searchspace/", "demo1.html", curtime)
+    write_entry("/mdsjs/", "", curtime, check_online=True)
+    write_entry("/bubblesets-js/", "", curtime, check_online=True)
+    write_entry("/bubblesets-js/", "bench.html", curtime, check_online=True)
+    write_entry("/bubblesets-js/", "cliques.html", curtime, check_online=True)
+    write_entry("/searchspace/", "", curtime, check_online=True)
+    write_entry("/searchspace/", "demo0.html", curtime, check_online=True)
+    write_entry("/searchspace/", "demo1.html", curtime, check_online=True)
     out.write("</urlset>\n")
     out.flush()
 
