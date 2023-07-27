@@ -405,6 +405,7 @@ solutions and provide two examples of where such techniques have been successful
     {
       "type": "project",
       "title": "Searchspace",
+      "href": "https://josuakrause.github.io/searchspace/",
       "github": "https://github.com/JosuaKrause/searchspace",
       "authors": "Josua Krause",
       "conference": "GitHub",

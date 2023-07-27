@@ -215,6 +215,9 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
     write_entry("/bubblesets-js/", "", curtime)
     write_entry("/bubblesets-js/", "bench.html", curtime)
     write_entry("/bubblesets-js/", "cliques.html", curtime)
+    write_entry("/searchspace/", "", curtime)
+    write_entry("/searchspace/", "demo0.html", curtime)
+    write_entry("/searchspace/", "demo1.html", curtime)
     out.write("</urlset>\n")
     out.flush()
 
