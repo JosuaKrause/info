@@ -239,6 +239,7 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
     write_entry("/searchspace/", "", curtime, check_online=True)
     write_entry("/searchspace/", "demo0.html", curtime, check_online=True)
     write_entry("/searchspace/", "demo1.html", curtime, check_online=True)
+    write_entry("/searchspace/", "demo2.html", curtime, check_online=True)
     out.write("</urlset>\n")
     out.flush()
 
