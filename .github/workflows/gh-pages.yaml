@@ -1,0 +1,75 @@
+name: Deploy GH-Pages
+
+on:
+  push:
+    branches: ['master']
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      OUTPUT: www
+      LIB_COPY: filelist.txt
+      NO_DEFAULT: 1
+      PUBLISH: 1
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Cache python modules
+        uses: actions/cache@v3
+        with:
+          path: '${{ env.pythonLocation }}'
+          key: ${{ env.pythonLocation }}-${{ hashFiles('**/requirements.txt') }}
+
+      - name: Install dependencies
+        run: |
+          make install
+
+      - name: Lint Code (missing trailing comma)
+        run: |
+          make lint-flake8
+
+      - name: Lint Code (type-check)
+        run: |
+          make lint-type-check
+
+      - name: Lint Code (pylint)
+        run: |
+          make lint-pylint
+
+      - name: Build
+        run: |
+          make create
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: '${{ env.OUTPUT }}'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
