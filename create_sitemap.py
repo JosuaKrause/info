@@ -82,10 +82,10 @@ def print_command(args: List[str]) -> None:
 def get_previous_filetimes(domain: str, root: str) -> Dict[str, str]:
     res: Dict[str, str] = {}
     url = f"{domain}{root}{SITEMAP}"
-    req = requests.get(url, timeout=10)
+    req = requests.get(url, timeout=10, stream=True)
     if req.status_code != 200:
         return res
-    tree = ET.parse(req.content)
+    tree = ET.parse(req.raw)
     for entry in tree.getroot():
         fname = None
         ftime = None
@@ -118,7 +118,11 @@ def has_private_folder(filename: str) -> bool:
     return has_private_folder(rec)
 
 
-def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
+def create_sitemap(
+        domain: str,
+        root: str,
+        out: IO[str],
+        lines: Iterable[str]) -> None:
     out.write("""<?xml version="1.0" encoding="UTF-8"?>
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -132,8 +136,6 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
     <lastmod>{mod}</lastmod>
   </url>
 """
-    domain = "https://josuakrause.github.io"
-    root = "/info/"
     prev_times = get_previous_filetimes(domain, root)
 
     def same_file(fname: str, check_file: str) -> bool:
@@ -257,10 +259,12 @@ def run() -> None:
     if len(args) != 1:
         usage()
     output = args[0]
+    domain = "https://josuakrause.github.io"
+    root = "/info/"
     good = False
     try:
         with open(output, "w", encoding="utf-8") as f_out:
-            create_sitemap(f_out, sys.stdin.readlines())
+            create_sitemap(domain, root, f_out, sys.stdin.readlines())
         good = True
     finally:
         if not good:
@@ -268,7 +272,15 @@ def run() -> None:
                 os.remove(output)
             except FileNotFoundError:
                 pass
-            sys.exit(2)
+            url = f"{domain}{root}{SITEMAP}"
+            print("attempting to reuse old sitemap")
+            try:
+                req = requests.get(url, timeout=10, stream=True)
+                if req.status_code == 200:
+                    with open(output, "wb") as f_out:
+                        shutil.copyfileobj(req.raw, f_out)
+            except OSError:
+                print("reusing old sitemap failed")
 
 
 if __name__ == "__main__":
