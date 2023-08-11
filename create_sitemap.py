@@ -5,7 +5,7 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from email.utils import parsedate_to_datetime
-from typing import Dict, IO, Iterable, Optional, Tuple
+from typing import IO, Iterable
 
 import pytz
 import requests
@@ -32,7 +32,7 @@ SITEMAP_HEADER_INTERNAL = """<?xml version="1.0" encoding="UTF-8"?>
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
     http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
-  xmlns:joschi="https://josuakrause.github.io/info/">
+  xmlns:joschi="https://josuakrause.github.io/info">
 """
 
 
@@ -58,7 +58,7 @@ def get_hash(content: bytes) -> str:
 
 
 def get_previous_filetimes(
-        domain: str, root: str) -> Dict[str, Tuple[str, Optional[str]]]:
+        domain: str, root: str) -> dict[str, tuple[str, str | None]]:
     url = f"{domain}{root}{SITEMAP_INTERNAL}"
     req = requests.get(url, timeout=10, stream=True)
     if req.status_code != 200:
@@ -67,7 +67,7 @@ def get_previous_filetimes(
         tree = ET.parse(req.raw)
     except ET.ParseError:
         return {}
-    res: Dict[str, Tuple[str, Optional[str]]] = {}
+    res: dict[str, tuple[str, str | None]] = {}
     for entry in tree.getroot():
         fname = None
         ftime = None
@@ -129,7 +129,7 @@ def create_sitemap(
         with open(f"{check_file}", "rb") as fin:
             return get_hash(fin.read())
 
-    def get_online_mod(path: str, fname: str) -> Optional[str]:
+    def get_online_mod(path: str, fname: str) -> str | None:
         url = f"{domain}{path}{fname}"
         res = requests.head(url, timeout=10)
         if res.status_code != 200:
@@ -146,7 +146,7 @@ def create_sitemap(
             fname: str,
             mod: str,
             *,
-            check_file: Optional[str] = None,
+            check_file: str | None = None,
             check_online: bool = False) -> None:
         print(f"processing: {domain}{path}{fname}")
         if check_online:
@@ -171,7 +171,7 @@ def create_sitemap(
         internal_out.write(ENTRY_TEMPLATE_INTERNAL.format(
             base=f"{domain}{path}", path=fname, mod=mod, fhash=fhash))
 
-    def process_line(line: str) -> Optional[str]:
+    def process_line(line: str) -> str | None:
         filename = os.path.normpath(line.strip())
         print(f"checking: {domain}{root}{filename}")
         if has_private_folder(filename):

@@ -5,19 +5,7 @@ import re
 import sys
 import zlib
 from datetime import datetime, timedelta
-from typing import (
-    Any,
-    Callable,
-    cast,
-    Dict,
-    get_args,
-    List,
-    Literal,
-    Optional,
-    Set,
-    Tuple,
-    TypedDict,
-)
+from typing import Any, Callable, cast, get_args, Literal, Set, TypedDict
 
 import pytz
 from dateutil.parser import parse as tparse
@@ -28,7 +16,7 @@ Entry = TypedDict('Entry', {
     "abstract": str,
     "authors": str,
     "autopage": bool,
-    "awards": List[str],
+    "awards": list[str],
     "bibtex": str,
     "conference": str,
     "date": str,
@@ -36,7 +24,7 @@ Entry = TypedDict('Entry', {
     "external": str,
     "github": str,
     "href": str,
-    "keywords": List[str],
+    "keywords": list[str],
     "logo": str,
     "pdf": str,
     "poster": str,
@@ -81,7 +69,7 @@ EntryField = Literal[
 ALLOWED_FIELDS: Set[EntryField] = set(get_args(EntryField))
 
 
-def parse_entry(obj: Dict[str, Any]) -> Entry:
+def parse_entry(obj: dict[str, Any]) -> Entry:
     for key in obj.keys():
         if key not in ALLOWED_FIELDS:
             raise ValueError(f"unknown field: {key}")
@@ -90,13 +78,13 @@ def parse_entry(obj: Dict[str, Any]) -> Entry:
 
 Group = TypedDict('Group', {
     "color": str,
-    "docs": List[Entry],
+    "docs": list[Entry],
     "name": str,
     "type": str,
 })
 
 
-def parse_group(obj: Dict[str, Any]) -> Group:
+def parse_group(obj: dict[str, Any]) -> Group:
     return {
         "name": f"{obj['name']}",
         "type": f"{obj['type']}",
@@ -274,8 +262,8 @@ BADNESS = 0.1
 def resize_img(
         prefix: str,
         image: str,
-        width: Optional[int],
-        height: Optional[int],
+        width: int | None,
+        height: int | None,
         *,
         nostretch: bool = True) -> str:
     img = Image.open(os.path.join(prefix, image))
@@ -360,7 +348,7 @@ def create_autopage(
             talk = ""
     else:
         talk = ""
-    links: List[str] = []
+    links: list[str] = []
     add_misc_links(links, doc, bool(video))
     keywords = []
     if "keywords" in doc:
@@ -390,7 +378,7 @@ def create_autopage(
 
 
 def add_misc_links(
-        appendix: List[str], doc: Entry, no_video: bool = False) -> None:
+        appendix: list[str], doc: Entry, no_video: bool = False) -> None:
     if chk(doc, "demo"):
         appendix.append(f"<a href=\"{doc['demo']}\">[demo]</a>")
     if chk(doc, "pdf"):
@@ -411,29 +399,29 @@ def add_misc_links(
 
 def create_media(
         prefix: str,
-        types: List[Group],
-        group_order: List[str],
+        types: list[Group],
+        group_order: list[str],
         group_by: Callable[[Entry], str],
-        docs: List[Entry],
+        docs: list[Entry],
         *,
-        event_types: List[Group],
+        event_types: list[Group],
         dry_run: bool) -> str:
-    type_lookup: Dict[str, Group] = {}
+    type_lookup: dict[str, Group] = {}
     for kind in types:
         type_lookup[kind["type"]] = kind
         kind["docs"] = []
     for doc in docs:
         kind = type_lookup[group_by(doc)]
         kind["docs"].append(doc)
-    etype_order: Dict[str, int] = {}
-    event_kind_lookup: Dict[str, Group] = {}
+    etype_order: dict[str, int] = {}
+    event_kind_lookup: dict[str, Group] = {}
     for (ix, kind) in enumerate(event_types):
         event_kind_lookup[kind["type"]] = kind
         etype_order[kind["type"]] = len(event_types) - ix
-    event_times: Dict[str, Set[str]] = {}
-    events: List[Event] = []
+    event_times: dict[str, Set[str]] = {}
+    events: list[Event] = []
     content = ""
-    auto_pages: List[Entry] = []
+    auto_pages: list[Entry] = []
     for kind in types:
         if not kind["docs"]:
             continue
@@ -441,7 +429,7 @@ def create_media(
             "<h3 class=\"group_header\" "
             f"id=\"{kind['type']}\">{kind['name']}</h3>")
 
-        def skey(t: Entry) -> Tuple[int, datetime, str]:
+        def skey(t: Entry) -> tuple[int, datetime, str]:
             return (
                 etype_order[t["type"]],
                 tparse(t["date"]),
@@ -619,7 +607,7 @@ def apply_template(
                 "docs": [],
             } for year_str in sorted(types, key=int, reverse=True)
         ]
-    group_order: List[str] = [
+    group_order: list[str] = [
         group["type"]
         for group in all_groups
     ]
