@@ -60,11 +60,10 @@ def get_hash(content: bytes) -> str:
 def get_previous_filetimes(
         domain: str, root: str) -> dict[str, tuple[str, str | None]]:
     url = f"{domain}{root}{SITEMAP_INTERNAL}"
-    req = requests.get(url, timeout=10)
+    req = requests.get(url, timeout=10, stream=True)
     if req.status_code != 200:
         return {}
-    print("xml", req.content)
-    tree = ET.parse(req.content)
+    tree = ET.parse(req.raw)
     res: dict[str, tuple[str, str | None]] = {}
     for entry in tree.getroot():
         fname = None
