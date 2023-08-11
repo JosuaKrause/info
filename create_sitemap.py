@@ -71,7 +71,6 @@ def get_previous_filetimes(
         ftime = None
         fhash = None
         for el in entry:
-            print("tag", el.tag)
             if el.tag.endswith("loc"):
                 fname = el.text
             elif el.tag.endswith("lastmod"):
@@ -88,7 +87,6 @@ def get_previous_filetimes(
                 "WARNING: invalid entry "
                 f"loc={fname} lastmod={ftime}", file=sys.stderr)
             continue
-        print(f"old sitemap entry: {fname[len(domain):]} {ftime} {fhash}")
         res[fname[len(domain):]] = (ftime, fhash)
     return res
 
@@ -162,9 +160,10 @@ def create_sitemap(
         if old_mod is not None and old_hash is not None:
             if old_hash == fhash:
                 mod = old_mod
-                print("file hash differs")
+            else:
+                print(f"file hash differs: new[{fhash}] != old[{old_hash}]")
         if mod != old_mod:
-            print(f"file change detected: {mod} != {old_mod}")
+            print(f"file change detected: new[{mod}] != old[{old_mod}]")
         out.write(ENTRY_TEMPLATE.format(
             base=f"{domain}{path}", path=fname, mod=mod))
         internal_out.write(ENTRY_TEMPLATE_INTERNAL.format(
