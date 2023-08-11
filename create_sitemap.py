@@ -1,3 +1,4 @@
+import hashlib
 import os
 import shutil
 import sys
@@ -5,7 +6,7 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from email.utils import parsedate_to_datetime
-from typing import Dict, IO, Iterable, Optional
+from typing import Dict, IO, Iterable, Optional, Tuple
 
 import pytz
 import requests
@@ -15,26 +16,59 @@ TZ = pytz.timezone("US/Eastern")
 
 
 SITEMAP = "sitemap.xml"
+BAD_OLD_SITEMAP = False
 
 
-def get_previous_filetimes(domain: str, root: str) -> Dict[str, str]:
+SITEMAP_HEADER = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+  xmlns:joschi="https://josuakrause.github.io/info/">
+"""
+
+
+ENTRY_TEMPLATE = """  <url>
+    <loc>{base}{path}</loc>
+    <lastmod>{mod}</lastmod>
+    <joschi:filehash>{fhash}</joschi:filehash>
+  </url>
+"""
+
+
+def get_hash(content: bytes) -> str:
+    blake = hashlib.blake2b(digest_size=32)
+    blake.update(content)
+    return blake.hexdigest()
+
+
+def get_previous_filetimes(
+        domain: str, root: str) -> Dict[str, Tuple[str, Optional[str]]]:
+    global BAD_OLD_SITEMAP
+
     url = f"{domain}{root}{SITEMAP}"
     req = requests.get(url, timeout=10, stream=True)
     if req.status_code != 200:
+        BAD_OLD_SITEMAP = True
         return {}
     try:
         tree = ET.parse(req.raw)
     except ET.ParseError:
+        BAD_OLD_SITEMAP = True
         return {}
-    res: Dict[str, str] = {}
+    res: Dict[str, Tuple[str, Optional[str]]] = {}
     for entry in tree.getroot():
         fname = None
         ftime = None
+        fhash = None
         for el in entry:
             if el.tag.endswith("loc"):
                 fname = el.text
             elif el.tag.endswith("lastmod"):
                 ftime = el.text
+            elif el.tag.endswith("filehash"):
+                fhash = el.text
         if fname is None or ftime is None:
             print(
                 "WARNING: incomplete entry "
@@ -45,7 +79,7 @@ def get_previous_filetimes(domain: str, root: str) -> Dict[str, str]:
                 "WARNING: invalid entry "
                 f"loc={fname} lastmod={ftime}", file=sys.stderr)
             continue
-        res[fname[len(domain):]] = ftime
+        res[fname[len(domain):]] = (ftime, fhash)
     return res
 
 
@@ -64,30 +98,23 @@ def create_sitemap(
         root: str,
         out: IO[str],
         lines: Iterable[str]) -> None:
-    out.write("""<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-""")
+    out.write(SITEMAP_HEADER)
     out.flush()
-    tmpl = """  <url>
-    <loc>{base}{path}</loc>
-    <lastmod>{mod}</lastmod>
-  </url>
-"""
+    tmpl = ENTRY_TEMPLATE
     prev_times = get_previous_filetimes(domain, root)
 
-    def same_file(fname: str, check_file: str) -> bool:
-        if not check_file:
-            check_file = "index.html"
-        url = f"{domain}{root}{fname}"
+    def get_online_hash(path: str, fname: str) -> Optional[str]:
+        url = f"{domain}{path}{fname}"
+        print(f"hash from url: {url}")
         res = requests.get(url, timeout=10)
         if res.status_code != 200:
-            return False
+            return None
+        return get_hash(res.content)
+
+    def get_file_hash(check_file: str) -> str:
+        print(f"hash from file: {check_file}")
         with open(f"{check_file}", "rb") as fin:
-            return res.content == fin.read()
+            return get_hash(fin.read())
 
     def get_online_mod(path: str, fname: str) -> Optional[str]:
         url = f"{domain}{path}{fname}"
@@ -109,17 +136,26 @@ def create_sitemap(
             check_file: Optional[str] = None,
             check_online: bool = False) -> None:
         print(f"processing: {domain}{path}{fname}")
-        old_mod = prev_times.get(f"{path}{fname}")
-        if old_mod is not None:
-            if check_file is None or same_file(fname, check_file):
-                mod = old_mod
         if check_online:
             online_mod = get_online_mod(path, fname)
             if online_mod is not None:
                 mod = online_mod
+            else:
+                print("WARNING: could not access url for mod time")
+        old_mod, old_hash = prev_times.get(f"{path}{fname}", (None, None))
+        if check_file is None:
+            fhash = get_online_hash(path, fname)
+            if fhash is None:
+                print("WARNING: could not compute hash for url")
+        else:
+            fhash = get_file_hash(check_file)
+        if old_mod is not None and old_hash is not None:
+            if old_hash == fhash:
+                mod = old_mod
         if mod != old_mod:
             print(f"file change detected: {mod} != {old_mod}")
-        out.write(tmpl.format(base=f"{domain}{path}", path=fname, mod=mod))
+        out.write(tmpl.format(
+            base=f"{domain}{path}", path=fname, mod=mod, fhash=fhash))
 
     def process_line(line: str) -> Optional[str]:
         filename = os.path.normpath(line.strip())
@@ -214,14 +250,15 @@ def run() -> None:
             except FileNotFoundError:
                 pass
             url = f"{domain}{root}{SITEMAP}"
-            print("attempting to reuse old sitemap")
-            try:
-                req = requests.get(url, timeout=10, stream=True)
-                if req.status_code == 200:
-                    with open(output, "wb") as f_out:
-                        shutil.copyfileobj(req.raw, f_out)
-            except OSError:
-                print("reusing old sitemap failed")
+            if not BAD_OLD_SITEMAP:
+                print("attempting to reuse old sitemap")
+                try:
+                    req = requests.get(url, timeout=10, stream=True)
+                    if req.status_code == 200:
+                        with open(output, "wb") as f_out:
+                            shutil.copyfileobj(req.raw, f_out)
+                except OSError:
+                    print("reusing old sitemap failed")
 
 
 if __name__ == "__main__":
