@@ -1,13 +1,11 @@
-import io
 import os
 import shutil
-import subprocess
 import sys
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from email.utils import parsedate_to_datetime
-from typing import Dict, IO, Iterable, List, Optional
+from typing import Dict, IO, Iterable, Optional
 
 import pytz
 import requests
@@ -19,73 +17,16 @@ TZ = pytz.timezone("US/Eastern")
 SITEMAP = "sitemap.xml"
 
 
-def check_command(args: List[str]) -> bool:
-    print(f"*CMD* {' '.join(args)}", file=sys.stderr)
-    proc = subprocess.run(
-        args,
-        check=False,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE)
-    stdout_str = proc.stdout.decode("utf-8").strip()
-    stderr_str = proc.stderr.decode("utf-8").strip()
-    if stderr_str:
-        print("*STDERR START*", file=sys.stderr)
-        print(stderr_str, file=sys.stderr)
-        print("*STDERR END*", file=sys.stderr)
-    if stdout_str:
-        print("*STDOUT START*", file=sys.stderr)
-        print(stdout_str, file=sys.stderr)
-        print("*STDOUT END*", file=sys.stderr)
-    print(f"*EXIT CODE* {proc.returncode}")
-    return proc.returncode == 0
-
-
-def run_command(args: List[str], stderr: IO[str] = sys.stderr) -> IO[str]:
-    stderr_buff = io.StringIO()
-    try:
-        proc = subprocess.run(
-            args,
-            check=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE)
-        res = io.StringIO(proc.stdout.decode("utf-8"))
-        shutil.copyfileobj(io.StringIO(proc.stderr.decode("utf-8")), stderr)
-        return res
-    except subprocess.CalledProcessError:
-        stderr_buff.seek(0, io.SEEK_SET)
-        stderr_str = stderr_buff.read()
-        if stderr_str:
-            print("*STDERR START*", file=sys.stderr)
-            print(stderr_str, file=sys.stderr)
-            print("*STDERR END*", file=sys.stderr)
-        print(f"error while executing: {' '.join(args)}", file=sys.stderr)
-        raise
-
-
-def print_command(args: List[str]) -> None:
-    print(f"*CMD* {' '.join(args)}", file=sys.stderr)
-    stderr = io.StringIO()
-    out = run_command(args, stderr=stderr)
-    stderr.seek(0, io.SEEK_SET)
-    stderr_str = stderr.read().strip()
-    if stderr_str:
-        print("*STDERR START*", file=sys.stderr)
-        print(stderr_str, file=sys.stderr)
-        print("*STDERR END*", file=sys.stderr)
-    stdout = out.read().strip()
-    if stdout:
-        print("*STDOUT START*", file=sys.stderr)
-        print(stdout, file=sys.stderr)
-        print("*STDOUT END*", file=sys.stderr)
-
-
 def get_previous_filetimes(domain: str, root: str) -> Dict[str, str]:
-    res: Dict[str, str] = {}
     url = f"{domain}{root}{SITEMAP}"
     req = requests.get(url, timeout=10, stream=True)
     if req.status_code != 200:
-        return res
-    tree = ET.parse(req.raw)
+        return {}
+    try:
+        tree = ET.parse(req.raw)
+    except ET.ParseError:
+        return {}
+    res: Dict[str, str] = {}
     for entry in tree.getroot():
         fname = None
         ftime = None
