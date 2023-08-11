@@ -79,6 +79,7 @@ def get_previous_filetimes(
                 "WARNING: invalid entry "
                 f"loc={fname} lastmod={ftime}", file=sys.stderr)
             continue
+        print(f"old sitemap entry: {fname[len(domain):]} {ftime} {fhash}")
         res[fname[len(domain):]] = (ftime, fhash)
     return res
 
@@ -103,12 +104,12 @@ def create_sitemap(
     tmpl = ENTRY_TEMPLATE
     prev_times = get_previous_filetimes(domain, root)
 
-    def get_online_hash(path: str, fname: str) -> Optional[str]:
+    def get_online_hash(path: str, fname: str) -> str:
         url = f"{domain}{path}{fname}"
         print(f"hash from url: {url}")
         res = requests.get(url, timeout=10)
         if res.status_code != 200:
-            return None
+            raise ValueError(f"failed to access {url} with {res.status_code}")
         return get_hash(res.content)
 
     def get_file_hash(check_file: str) -> str:
@@ -145,13 +146,12 @@ def create_sitemap(
         old_mod, old_hash = prev_times.get(f"{path}{fname}", (None, None))
         if check_file is None:
             fhash = get_online_hash(path, fname)
-            if fhash is None:
-                print("WARNING: could not compute hash for url")
         else:
             fhash = get_file_hash(check_file)
         if old_mod is not None and old_hash is not None:
             if old_hash == fhash:
                 mod = old_mod
+                print(f"file hash differs")
         if mod != old_mod:
             print(f"file change detected: {mod} != {old_mod}")
         out.write(tmpl.format(
