@@ -1,6 +1,5 @@
 import hashlib
 import os
-import shutil
 import sys
 import time
 import xml.etree.ElementTree as ET
@@ -15,11 +14,19 @@ import requests
 TZ = pytz.timezone("US/Eastern")
 
 
-SITEMAP = "sitemap.xml"
-BAD_OLD_SITEMAP = False
+SITEMAP_INTERNAL = "filetimes.xml"
 
 
 SITEMAP_HEADER = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+"""
+
+
+SITEMAP_HEADER_INTERNAL = """<?xml version="1.0" encoding="UTF-8"?>
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -30,6 +37,13 @@ SITEMAP_HEADER = """<?xml version="1.0" encoding="UTF-8"?>
 
 
 ENTRY_TEMPLATE = """  <url>
+    <loc>{base}{path}</loc>
+    <lastmod>{mod}</lastmod>
+  </url>
+"""
+
+
+ENTRY_TEMPLATE_INTERNAL = """  <url>
     <loc>{base}{path}</loc>
     <lastmod>{mod}</lastmod>
     <joschi:filehash>{fhash}</joschi:filehash>
@@ -45,17 +59,13 @@ def get_hash(content: bytes) -> str:
 
 def get_previous_filetimes(
         domain: str, root: str) -> Dict[str, Tuple[str, Optional[str]]]:
-    global BAD_OLD_SITEMAP
-
-    url = f"{domain}{root}{SITEMAP}"
+    url = f"{domain}{root}{SITEMAP_INTERNAL}"
     req = requests.get(url, timeout=10, stream=True)
     if req.status_code != 200:
-        BAD_OLD_SITEMAP = True
         return {}
     try:
         tree = ET.parse(req.raw)
     except ET.ParseError:
-        BAD_OLD_SITEMAP = True
         return {}
     res: Dict[str, Tuple[str, Optional[str]]] = {}
     for entry in tree.getroot():
@@ -98,10 +108,12 @@ def create_sitemap(
         domain: str,
         root: str,
         out: IO[str],
+        internal_out: IO[str],
         lines: Iterable[str]) -> None:
     out.write(SITEMAP_HEADER)
     out.flush()
-    tmpl = ENTRY_TEMPLATE
+    internal_out.write(SITEMAP_HEADER_INTERNAL)
+    internal_out.flush()
     prev_times = get_previous_filetimes(domain, root)
 
     def get_online_hash(path: str, fname: str) -> str:
@@ -151,10 +163,12 @@ def create_sitemap(
         if old_mod is not None and old_hash is not None:
             if old_hash == fhash:
                 mod = old_mod
-                print(f"file hash differs")
+                print("file hash differs")
         if mod != old_mod:
             print(f"file change detected: {mod} != {old_mod}")
-        out.write(tmpl.format(
+        out.write(ENTRY_TEMPLATE.format(
+            base=f"{domain}{path}", path=fname, mod=mod))
+        internal_out.write(ENTRY_TEMPLATE_INTERNAL.format(
             base=f"{domain}{path}", path=fname, mod=mod, fhash=fhash))
 
     def process_line(line: str) -> Optional[str]:
@@ -217,13 +231,16 @@ def create_sitemap(
     write_entry("/searchspace/", "demo2.html", curtime, check_online=True)
     out.write("</urlset>\n")
     out.flush()
+    internal_out.write("</urlset>\n")
+    internal_out.flush()
 
 
 def usage() -> None:
     print(f"""
-usage: {sys.argv[0]} [-h] <file>
+usage: {sys.argv[0]} [-h] <file> <internal>
 -h: print help
 <file>: specifies the output file
+<internal>: specifies the internal output file
 """.strip(), file=sys.stderr)
     sys.exit(1)
 
@@ -233,15 +250,18 @@ def run() -> None:
     args.pop(0)
     if "-h" in args:
         usage()
-    if len(args) != 1:
+    if len(args) != 2:
         usage()
     output = args[0]
+    internal = args[1]
     domain = "https://josuakrause.github.io"
     root = "/info/"
     good = False
     try:
         with open(output, "w", encoding="utf-8") as f_out:
-            create_sitemap(domain, root, f_out, sys.stdin.readlines())
+            with open(internal, "w", encoding="utf-8") as f_int:
+                create_sitemap(
+                    domain, root, f_out, f_int, sys.stdin.readlines())
         good = True
     finally:
         if not good:
@@ -249,16 +269,6 @@ def run() -> None:
                 os.remove(output)
             except FileNotFoundError:
                 pass
-            url = f"{domain}{root}{SITEMAP}"
-            if not BAD_OLD_SITEMAP:
-                print("attempting to reuse old sitemap")
-                try:
-                    req = requests.get(url, timeout=10, stream=True)
-                    if req.status_code == 200:
-                        with open(output, "wb") as f_out:
-                            shutil.copyfileobj(req.raw, f_out)
-                except OSError:
-                    print("reusing old sitemap failed")
 
 
 if __name__ == "__main__":

@@ -13,7 +13,7 @@ rsync -atv . "${OUTPUT}" --files-from "${LIB_COPY}"
 python create_page.py --documents content.json --template index.tmpl --out "${OUTPUT}/index.html" --prefix "${OUTPUT}"
 PREV_DIR=`pwd`
 pushd "${OUTPUT}"
-find . -not -path '*lib/*' -not -path '*lib' | python "${PREV_DIR}/create_sitemap.py" "sitemap.xml"
+find . -not -path '*lib/*' -not -path '*lib' | python "${PREV_DIR}/create_sitemap.py" "sitemap.xml" "filetimes.xml"
 popd
 
 if [ -z $PUBLISH ]; then
