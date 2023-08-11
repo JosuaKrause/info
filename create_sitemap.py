@@ -63,7 +63,7 @@ def get_previous_filetimes(
     req = requests.get(url, timeout=10, stream=True)
     if req.status_code != 200:
         return {}
-    print(req.content)
+    req.raw.seek(0)
     tree = ET.parse(req.raw)
     res: dict[str, tuple[str, str | None]] = {}
     for entry in tree.getroot():
