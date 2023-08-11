@@ -16,9 +16,7 @@ import requests
 TZ = pytz.timezone("US/Eastern")
 
 
-GH_REMOTE = "origin"
-GH_BRANCH = "gh-pages"
-GH_SITEMAP = "sitemap.xml"
+SITEMAP = "sitemap.xml"
 
 
 def check_command(args: List[str]) -> bool:
@@ -81,14 +79,13 @@ def print_command(args: List[str]) -> None:
         print("*STDOUT END*", file=sys.stderr)
 
 
-def fetch_gh_pages() -> None:
-    print_command(["git", "fetch", GH_REMOTE, GH_BRANCH])
-
-
-def get_previous_filetimes(domain: str) -> Dict[str, str]:
-    res = {}
-    gin = run_command(["git", "show", f"{GH_REMOTE}/{GH_BRANCH}:{GH_SITEMAP}"])
-    tree = ET.parse(gin)
+def get_previous_filetimes(domain: str, root: str) -> Dict[str, str]:
+    res: Dict[str, str] = {}
+    url = f"{domain}{root}{SITEMAP}"
+    req = requests.get(url, timeout=10)
+    if req.status_code != 200:
+        return res
+    tree = ET.parse(req.content)
     for entry in tree.getroot():
         fname = None
         ftime = None
@@ -109,19 +106,6 @@ def get_previous_filetimes(domain: str) -> Dict[str, str]:
             continue
         res[fname[len(domain):]] = ftime
     return res
-
-
-def same_file(fname: str, check_file: str) -> bool:
-    if not fname:
-        fname = "index.html"
-    if not check_file:
-        check_file = "index.html"
-    return check_command([
-        "git",
-        "diff",
-        "--quiet",
-        f"{GH_REMOTE}/{GH_BRANCH}:{fname}",
-        check_file])
 
 
 def has_private_folder(filename: str) -> bool:
@@ -150,8 +134,17 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
 """
     domain = "https://josuakrause.github.io"
     root = "/info/"
-    fetch_gh_pages()
-    prev_times = get_previous_filetimes(domain)
+    prev_times = get_previous_filetimes(domain, root)
+
+    def same_file(fname: str, check_file: str) -> bool:
+        if not check_file:
+            check_file = "index.html"
+        url = f"{domain}{root}{fname}"
+        res = requests.get(url, timeout=10)
+        if res.status_code != 200:
+            return False
+        with open(f"{check_file}", "rb") as fin:
+            return res.content == fin.read()
 
     def get_online_mod(path: str, fname: str) -> Optional[str]:
         url = f"{domain}{path}{fname}"
@@ -191,6 +184,8 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
         if has_private_folder(filename):
             return None
         fname = os.path.basename(filename)
+        if fname == "info":
+            return None
         if fname.endswith(".js"):
             return None
         if fname.endswith(".css"):
@@ -216,8 +211,6 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
         if os.path.isdir(filename) and not os.path.exists(
                 os.path.join(filename, "index.html")):
             return None
-        if os.path.isdir(filename) and filename.endswith("info"):
-            return None
         dtime = datetime.fromtimestamp(os.path.getmtime(filename), tz=TZ)
         dtime = dtime.replace(microsecond=0)
         mtime = dtime.isoformat()
@@ -228,7 +221,8 @@ def create_sitemap(out: IO[str], lines: Iterable[str]) -> None:
     for line in sorted(set(lines)):
         if not line.strip():
             continue
-        process_line(line)
+        if process_line(line) is None:
+            print(f"rejecting {line}")
 
     curtime = datetime.fromtimestamp(time.time(), tz=TZ).isoformat()
     # NOTE: duplicate, non-canonical, and redirect
@@ -263,8 +257,18 @@ def run() -> None:
     if len(args) != 1:
         usage()
     output = args[0]
-    with open(output, "w", encoding="utf-8") as f_out:
-        create_sitemap(f_out, sys.stdin.readlines())
+    good = False
+    try:
+        with open(output, "w", encoding="utf-8") as f_out:
+            create_sitemap(f_out, sys.stdin.readlines())
+        good = True
+    finally:
+        if not good:
+            try:
+                os.remove(output)
+            except FileNotFoundError:
+                pass
+            sys.exit(2)
 
 
 if __name__ == "__main__":
