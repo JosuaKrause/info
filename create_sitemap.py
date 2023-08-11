@@ -186,7 +186,7 @@ def create_sitemap(
         if has_private_folder(filename):
             return None
         fname = os.path.basename(filename)
-        if fname == "info":
+        if filename == ".":
             return None
         if fname.endswith(".js"):
             return None
