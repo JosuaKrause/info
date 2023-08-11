@@ -5,6 +5,7 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from email.utils import parsedate_to_datetime
+from io import BytesIO
 from typing import IO, Iterable
 
 import pytz
@@ -60,11 +61,10 @@ def get_hash(content: bytes) -> str:
 def get_previous_filetimes(
         domain: str, root: str) -> dict[str, tuple[str, str | None]]:
     url = f"{domain}{root}{SITEMAP_INTERNAL}"
-    req = requests.get(url, timeout=10, stream=True)
+    req = requests.get(url, timeout=10)
     if req.status_code != 200:
         return {}
-    req.raw.seek(0)
-    tree = ET.parse(req.raw)
+    tree = ET.parse(BytesIO(req.content))
     res: dict[str, tuple[str, str | None]] = {}
     for entry in tree.getroot():
         fname = None
