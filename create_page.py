@@ -250,6 +250,7 @@ def resize_img(
         height: int | None,
         *,
         nostretch: bool = True,
+        noupscale: bool = False,
         record_size: Callable[[int, int], None] | None = None) -> str:
     img = Image.open(os.path.join(prefix, image))
     iwidth = img.width
@@ -278,6 +279,9 @@ def resize_img(
             "resizing would stretch the image: "
             f"{iwidth}x{iheight} to {width}x{height} "
             f"(rw: {iwidth / width} rh: {iheight / height})")
+    if noupscale and (iwidth < width or iheight < height):
+        record(iwidth, iheight)
+        return image
     oimg = img.resize((width, height))
     ext_ix = image.rindex(".")
     oname = f"{image[:ext_ix]}_{oimg.width}x{oimg.height}.png"
@@ -473,10 +477,10 @@ def create_media(
             appendix = []
             if "href" in doc and doc["href"]:
                 if chk(doc, "autopage"):
-                    if chk(doc, "teaser"):
-                        ogimg = doc["teaser"]
-                    elif chk(doc, "logo"):
+                    if chk(doc, "logo"):
                         ogimg = doc["logo"]
+                    elif chk(doc, "teaser"):
+                        ogimg = doc["teaser"]
                     else:
                         ogimg = "img/photo.jpg"
                     doc["ogimg"] = resize_img(
@@ -484,6 +488,7 @@ def create_media(
                         ogimg,
                         None,
                         630,
+                        noupscale=True,
                         record_size=set_og(doc))
                     auto_pages.append(doc)
                 appendix.append(
