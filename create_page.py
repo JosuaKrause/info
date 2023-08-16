@@ -700,7 +700,7 @@ def apply_template(
     """
     return content.format(
         name="Josua (Joschi) Krause",
-        description=re.sub(SPACES, "", re.sub(TAG, "", DESCRIPTION)),
+        description=re.sub(SPACES, " ", re.sub(TAG, "", DESCRIPTION)),
         description_long=DESCRIPTION,
         description_add=DESCRIPTION_ADD,
         content=media,
