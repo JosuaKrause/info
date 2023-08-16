@@ -184,6 +184,7 @@ GA_TRACKING = """
 """.strip()
 
 TAG = r"<[^>]*?>"
+SPACES = r"\s+"
 
 DESCRIPTION = """
 Josua Krause has led Data Science teams for research, development, and
@@ -699,7 +700,7 @@ def apply_template(
     """
     return content.format(
         name="Josua (Joschi) Krause",
-        description=re.sub(TAG, "", DESCRIPTION),
+        description=re.sub(SPACES, "", re.sub(TAG, "", DESCRIPTION)),
         description_long=DESCRIPTION,
         description_add=DESCRIPTION_ADD,
         content=media,
