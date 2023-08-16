@@ -470,7 +470,7 @@ def create_media(
             appendix = []
             if "href" in doc and doc["href"]:
                 if chk(doc, "autopage"):
-                    if chk(doc, "logo"):
+                    if chk(doc, "logo") and doc["logo"] != "img/nologo.png":
                         ogimg = doc["logo"]
                     elif chk(doc, "teaser"):
                         ogimg = doc["teaser"]
