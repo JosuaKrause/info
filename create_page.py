@@ -38,6 +38,9 @@ Entry = TypedDict('Entry', {
     "title": str,
     "type": str,
     "video": str,
+    "ogimg": str,
+    "ogimgwidth": int,
+    "ogimgheight": int,
 }, total=False)
 EntryField = Literal[
     "abstract",
@@ -124,7 +127,7 @@ LD_JSON_KNOWLEDGE = """{
     "@type": "http://schema.org/URL",
     "@id": "https://josuakrause.github.io/info/img/photo.jpg"
   },
-  "http://schema.org/jobTitle": "Machine Learning Researcher",
+  "http://schema.org/jobTitle": "NLP Researcher",
   "http://schema.org/name": "Josua Krause",
   "http://schema.org/sameAs": [
     {
@@ -137,10 +140,6 @@ LD_JSON_KNOWLEDGE = """{
     },
     {
       "@type": "http://schema.org/URL",
-      "@id": "https://www.linkedin.com/in/josua-krause-48b3b091/"
-    },
-    {
-      "@type": "http://schema.org/URL",
       "@id": "https://github.com/JosuaKrause/"
     },
     {
@@ -149,19 +148,11 @@ LD_JSON_KNOWLEDGE = """{
     },
     {
       "@type": "http://schema.org/URL",
-      "@id": "http://archive.engineering.nyu.edu/people/josua-krause"
-    },
-    {
-      "@type": "http://schema.org/URL",
       "@id": "https://vimeo.com/user35425102"
     },
     {
       "@type": "http://schema.org/URL",
       "@id": "https://scholar.google.com/citations?user=hFjNgPEAAAAJ"
-    },
-    {
-      "@type": "http://schema.org/URL",
-      "@id": "https://dblp.uni-trier.de/pers/k/Krause:Josua.html"
     },
     {
       "@type": "http://schema.org/URL",
@@ -174,10 +165,6 @@ LD_JSON_KNOWLEDGE = """{
     {
       "@type": "http://schema.org/URL",
       "@id": "https://ieeexplore.ieee.org/author/37085594931"
-    },
-    {
-      "@type": "http://schema.org/URL",
-      "@id": "https://medium.com/@josua.krause"
     }
   ]
 }"""
@@ -261,14 +248,23 @@ def resize_img(
         width: int | None,
         height: int | None,
         *,
-        nostretch: bool = True) -> str:
+        nostretch: bool = True,
+        record_size: Callable[[int, int], None] | None = None) -> str:
     img = Image.open(os.path.join(prefix, image))
     iwidth = img.width
     iheight = img.height
+
+    def record(owidth: int, oheight: int) -> None:
+        if record_size is None:
+            return
+        record_size(owidth, oheight)
+
     if iwidth == 1 and iheight == 1:
+        record(iwidth, iheight)
         return image
     if ((width is None and height is None)
             or (width == iwidth and height == iheight)):
+        record(iwidth, iheight)
         return image
     if width is None:
         assert height is not None
@@ -287,6 +283,7 @@ def resize_img(
     ofname = os.path.join(prefix, oname)
     # if os.path.exists(ofname):
     #     raise ValueError(f"image already exists! {ofname}")
+    record(oimg.width, oimg.height)
     oimg.save(ofname)
     return oname
 
@@ -296,6 +293,14 @@ def create_autopage(
     abstract = (
         "<h4>Abstract</h4><p style=\"text-align: justify;\">"
         f"{doc['abstract']}</p>" if chk(doc, "abstract") else "")
+    ogabstract = (
+        doc["abstract"]
+        if chk(doc, "abstract") else (
+            doc["teaser_desc"]
+            if chk(doc, "teaser_desc")
+            else doc["authors"]
+        )
+    )
     bibtex = (
         f"<h4>Bibtex</h4><pre>{doc['bibtex'].strip()}</pre>"
         if chk(doc, "bibtex") else "")
@@ -311,8 +316,14 @@ def create_autopage(
     if chk(doc, "video"):
         m = re.match("^https?://vimeo.com/(\\d+)$", doc['video'])
         if m is not None:
+            style = (
+                "text-align: center; "
+                "margin: 0 auto; "
+                "width: 640px; "
+                "height: 389px"
+            )
             video = f"""
-            <p style="text-align: center; margin: 0 auto;">
+            <p style="{style}">
               <iframe
                 src="https://player.vimeo.com/video/{m.group(1)}"
                 width="640" height="389" frameborder="0"
@@ -329,8 +340,14 @@ def create_autopage(
     if chk(doc, "talk"):
         m = re.match("^https?://vimeo.com/(\\d+)$", doc['talk'])
         if m is not None:
+            style = (
+                "text-align: center; "
+                "margin: 0 auto; "
+                "width: 640px; "
+                "height: 389px"
+            )
             talk = f"""
-            <p style="text-align: center; margin: 0 auto;">
+            <p style="{style}">
               <iframe
                 src="https://player.vimeo.com/video/{m.group(1)}"
                 width="640" height="389" frameborder="0"
@@ -355,6 +372,7 @@ def create_autopage(
         authors=doc["authors"],
         image=image,
         abstract=abstract,
+        ogabstract=ogabstract,
         links=(
             f"<h3 style=\"text-align: center;\">{' '.join(links)}</h3>"
             if links else ""),
@@ -367,7 +385,10 @@ def create_autopage(
             f"{doc['title']} by {doc['authors']} "
             f"appears in {doc['conference']}"),
         copyright=COPYRIGHT,
-        canonical=os.path.basename(ofile))
+        canonical=os.path.basename(ofile),
+        ogimg=doc["ogimg"],
+        ogimgwidth=doc["ogimgwidth"],
+        ogimgheight=doc["ogimgheight"])
     if not dry_run:
         with open(ofile, "w", encoding="utf-8") as fout:
             fout.write(output)
@@ -432,6 +453,14 @@ def create_media(
                 t["title"],
             )
 
+        def set_og(doc: Entry) -> Callable[[int, int], None]:
+
+            def inner(owidth: int, oheight: int) -> None:
+                doc["ogimgwidth"] = owidth
+                doc["ogimgheight"] = oheight
+
+            return inner
+
         kind["docs"].sort(key=skey, reverse=True)
         for doc in kind["docs"]:
             id_str = (
@@ -443,6 +472,18 @@ def create_media(
             appendix = []
             if "href" in doc and doc["href"]:
                 if chk(doc, "autopage"):
+                    if chk(doc, "teaser"):
+                        ogimg = doc["teaser"]
+                    elif chk(doc, "logo"):
+                        ogimg = doc["logo"]
+                    else:
+                        ogimg = "img/photo.jpg"
+                    doc["ogimg"] = resize_img(
+                        prefix,
+                        ogimg,
+                        None,
+                        630,
+                        record_size=set_og(doc))
                     auto_pages.append(doc)
                 appendix.append(
                     f"<a href=\"{doc['href']}\">[page]</a>")
@@ -567,6 +608,7 @@ def apply_template(
     resize_img(prefix, "img/linkedinlogo.png", None, 64)
     # resize_img(prefix, "img/GitHub-Mark-32px.png", 64, 64)
     resize_img(prefix, "img/photo.jpg", None, 128)
+    ogimg = resize_img(prefix, "img/photo.jpg", None, 630)
     with open(tmpl, "r", encoding="utf-8") as tfin:
         content = tfin.read()
     with open(docs, "r", encoding="utf-8") as dfin:
@@ -664,7 +706,8 @@ def apply_template(
         js=js_fillin,
         tracking=GA_TRACKING,
         knowledge=LD_JSON_KNOWLEDGE,
-        copyright=COPYRIGHT)
+        copyright=COPYRIGHT,
+        ogimg=ogimg)
 
 
 def parse_args() -> argparse.Namespace:

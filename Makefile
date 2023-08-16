@@ -15,7 +15,7 @@ install:
 	pip install --upgrade --progress-bar off pip
 	pip install --upgrade --progress-bar off -r requirements.txt
 
-create:
+create: clean
 	./create.sh
 
 run-web: create
