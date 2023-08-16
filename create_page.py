@@ -111,7 +111,7 @@ LD_JSON_KNOWLEDGE = """{
   "http://schema.org/additionalName": "Joschi",
   "http://schema.org/affiliation": {
     "@type": "http://schema.org/Organization",
-    "http://schema.org/name": "Accern Corp."
+    "http://schema.org/name": "UNDP Accelerator Labs"
   },
   "http://schema.org/alumniOf": {
     "@type": "http://schema.org/EducationalOrganization",
@@ -124,7 +124,7 @@ LD_JSON_KNOWLEDGE = """{
     "@type": "http://schema.org/URL",
     "@id": "https://josuakrause.github.io/info/img/photo.jpg"
   },
-  "http://schema.org/jobTitle": "Vice President of Data Science",
+  "http://schema.org/jobTitle": "Machine Learning Researcher",
   "http://schema.org/name": "Josua Krause",
   "http://schema.org/sameAs": [
     {
@@ -174,10 +174,6 @@ LD_JSON_KNOWLEDGE = """{
     {
       "@type": "http://schema.org/URL",
       "@id": "https://ieeexplore.ieee.org/author/37085594931"
-    },
-    {
-      "@type": "http://schema.org/URL",
-      "@id": "https://theorg.com/org/accern/team/josua-krause"
     },
     {
       "@type": "http://schema.org/URL",
