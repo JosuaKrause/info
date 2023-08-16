@@ -298,14 +298,6 @@ def create_autopage(
     abstract = (
         "<h4>Abstract</h4><p style=\"text-align: justify;\">"
         f"{doc['abstract']}</p>" if chk(doc, "abstract") else "")
-    ogabstract = (
-        doc["abstract"]
-        if chk(doc, "abstract") else (
-            doc["teaser_desc"]
-            if chk(doc, "teaser_desc")
-            else doc["authors"]
-        )
-    )
     bibtex = (
         f"<h4>Bibtex</h4><pre>{doc['bibtex'].strip()}</pre>"
         if chk(doc, "bibtex") else "")
@@ -377,7 +369,6 @@ def create_autopage(
         authors=doc["authors"],
         image=image,
         abstract=abstract,
-        ogabstract=ogabstract,
         links=(
             f"<h3 style=\"text-align: center;\">{' '.join(links)}</h3>"
             if links else ""),
@@ -391,6 +382,8 @@ def create_autopage(
             f"appears in {doc['conference']}"),
         copyright=COPYRIGHT,
         canonical=os.path.basename(ofile),
+        ogtitle=doc["title"],
+        ogdescription=f"by {doc['authors']} appears in {doc['conference']}",
         ogimg=doc["ogimg"],
         ogimgwidth=doc["ogimgwidth"],
         ogimgheight=doc["ogimgheight"])
