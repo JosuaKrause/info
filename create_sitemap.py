@@ -3,10 +3,11 @@ import os
 import sys
 import time
 import xml.etree.ElementTree as ET
+from collections.abc import Callable, Iterable
 from datetime import datetime
 from email.utils import parsedate_to_datetime
 from io import BytesIO
-from typing import IO, Iterable
+from typing import IO
 
 import pytz
 import requests
@@ -33,7 +34,7 @@ SITEMAP_HEADER_INTERNAL = """<?xml version="1.0" encoding="UTF-8"?>
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
     http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
-  xmlns:joschi="https://josuakrause.github.io/info">
+  xmlns:joschi="https://www.josuakrause.com/">
 """
 
 
@@ -59,7 +60,8 @@ def get_hash(content: bytes) -> str:
 
 
 def get_previous_filetimes(
-        domain: str, root: str) -> dict[str, tuple[str, str | None]]:
+        domain: Callable[[str], str],
+        root: str) -> dict[str, tuple[str, str | None]]:
     url = f"{domain}{root}{SITEMAP_INTERNAL}"
     req = requests.get(url, timeout=10)
     if req.status_code != 200:
@@ -102,7 +104,7 @@ def has_private_folder(filename: str) -> bool:
 
 
 def create_sitemap(
-        domain: str,
+        domain: Callable[[str], str],
         root: str,
         out: IO[str],
         internal_out: IO[str],
@@ -252,8 +254,11 @@ def run() -> None:
         usage()
     output = args[0]
     internal = args[1]
-    domain = "https://josuakrause.github.io"
-    root = "/info/"
+
+    def domain(subdomain: str) -> str:
+        return f"https://{subdomain}.josuakrause.com"
+
+    root = "/"
     good = False
     try:
         with open(output, "w", encoding="utf-8") as f_out:

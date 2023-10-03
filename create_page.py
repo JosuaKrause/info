@@ -4,8 +4,9 @@ import os
 import re
 import sys
 import zlib
+from collections.abc import Callable
 from datetime import datetime, timedelta
-from typing import Any, Callable, cast, get_args, Literal, Set, TypedDict
+from typing import Any, cast, get_args, Literal, Set, TypedDict
 
 import pytz
 from dateutil.parser import parse as tparse
@@ -109,7 +110,7 @@ NL = "\n"
 
 
 LD_JSON_KNOWLEDGE = """{
-  "@id": "https://josuakrause.github.io/info/",
+  "@id": "https://www.josuakrause.com/",
   "@type": "http://schema.org/Person",
   "http://schema.org/additionalName": "Joschi",
   "http://schema.org/affiliation": {
@@ -125,7 +126,7 @@ LD_JSON_KNOWLEDGE = """{
   "http://schema.org/givenName": "Josua",
   "http://schema.org/image": {
     "@type": "http://schema.org/URL",
-    "@id": "https://josuakrause.github.io/info/img/photo.jpg"
+    "@id": "https://www.josuakrause.com/img/photo.jpg"
   },
   "http://schema.org/jobTitle": "NLP Researcher",
   "http://schema.org/name": "Josua Krause",

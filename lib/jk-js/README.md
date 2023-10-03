@@ -3,7 +3,7 @@ jk-js
 
 jk-js is a small JavaScript library providing utility functions.
 
-[Click here for a live example.](http://josuakrause.github.io/jk-js/)
+[Click here for a live example.](http://jk-js.josuakrause.com/)
 
 TODO write project description
 
