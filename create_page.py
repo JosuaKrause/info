@@ -166,6 +166,18 @@ LD_JSON_KNOWLEDGE = """{
     {
       "@type": "http://schema.org/URL",
       "@id": "https://ieeexplore.ieee.org/author/37085594931"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://www.researchgate.net/profile/Josua-Krause"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://orcid.org/0000-0001-7292-7196"
+    },
+    {
+      "@type": "http://schema.org/URL",
+      "@id": "https://www.semanticscholar.org/author/Josua-Krause/39697904"
     }
   ]
 }"""
@@ -606,6 +618,7 @@ def apply_template(
     resize_img(prefix, "img/mediumlogo.png", None, 64)
     resize_img(prefix, "img/scholarlogo.png", None, 64)
     resize_img(prefix, "img/linkedinlogo.png", None, 64)
+    resize_img(prefix, "img/researchgatelogo.png", None, 64)
     # resize_img(prefix, "img/GitHub-Mark-32px.png", 64, 64)
     resize_img(prefix, "img/photo.jpg", None, 128)
     ogimg = resize_img(prefix, "img/photo.jpg", None, 630)
