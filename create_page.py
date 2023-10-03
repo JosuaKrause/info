@@ -619,7 +619,7 @@ def apply_template(
     resize_img(prefix, "img/scholarlogo.png", None, 64)
     resize_img(prefix, "img/linkedinlogo.png", None, 64)
     resize_img(prefix, "img/researchgatelogo.png", None, 64)
-    # resize_img(prefix, "img/GitHub-Mark-32px.png", 64, 64)
+    resize_img(prefix, "img/github-mark.png", None, 64)
     resize_img(prefix, "img/photo.jpg", None, 128)
     ogimg = resize_img(prefix, "img/photo.jpg", None, 630)
     with open(tmpl, "r", encoding="utf-8") as tfin:
