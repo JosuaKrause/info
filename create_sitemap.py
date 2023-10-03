@@ -62,7 +62,7 @@ def get_hash(content: bytes) -> str:
 def get_previous_filetimes(
         domain: Callable[[str], str],
         root: str) -> dict[str, tuple[str, str | None]]:
-    url = f"{domain}{root}{SITEMAP_INTERNAL}"
+    url = f"{domain('')}{root}{SITEMAP_INTERNAL}"
     req = requests.get(url, timeout=10)
     if req.status_code != 200:
         return {}
@@ -84,12 +84,12 @@ def get_previous_filetimes(
                 "WARNING: incomplete entry "
                 f"loc={fname} lastmod={ftime}", file=sys.stderr)
             continue
-        if not fname.startswith(domain):
+        if ".josuakrause.com/" not in fname:
             print(
                 "WARNING: invalid entry "
                 f"loc={fname} lastmod={ftime}", file=sys.stderr)
             continue
-        res[fname[len(domain):]] = (ftime, fhash)
+        res[fname] = (ftime, fhash)
     return res
 
 
@@ -115,8 +115,8 @@ def create_sitemap(
     internal_out.flush()
     prev_times = get_previous_filetimes(domain, root)
 
-    def get_online_hash(path: str, fname: str) -> str:
-        url = f"{domain}{path}{fname}"
+    def get_online_hash(subdomain: str, path: str, fname: str) -> str:
+        url = f"{domain(subdomain)}{path}{fname}"
         print(f"hash from url: {url}")
         res = requests.get(url, timeout=10)
         if res.status_code != 200:
@@ -128,8 +128,8 @@ def create_sitemap(
         with open(f"{check_file}", "rb") as fin:
             return get_hash(fin.read())
 
-    def get_online_mod(path: str, fname: str) -> str | None:
-        url = f"{domain}{path}{fname}"
+    def get_online_mod(subdomain: str, path: str, fname: str) -> str | None:
+        url = f"{domain(subdomain)}{path}{fname}"
         res = requests.head(url, timeout=10)
         if res.status_code != 200:
             return None
@@ -141,22 +141,24 @@ def create_sitemap(
         return dout.isoformat()
 
     def write_entry(
+            subdomain: str,
             path: str,
             fname: str,
             mod: str,
             *,
             check_file: str | None = None,
             check_online: bool = False) -> None:
-        print(f"processing: {domain}{path}{fname}")
+        print(f"processing: {domain(subdomain)}{path}{fname}")
         if check_online:
-            online_mod = get_online_mod(path, fname)
+            online_mod = get_online_mod(subdomain, path, fname)
             if online_mod is not None:
                 mod = online_mod
             else:
                 print("WARNING: could not access url for mod time")
-        old_mod, old_hash = prev_times.get(f"{path}{fname}", (None, None))
+        old_mod, old_hash = prev_times.get(
+            f"{domain(subdomain)}{path}{fname}", (None, None))
         if check_file is None:
-            fhash = get_online_hash(path, fname)
+            fhash = get_online_hash(subdomain, path, fname)
         else:
             fhash = get_file_hash(check_file)
         if old_mod is not None and old_hash is not None:
@@ -167,13 +169,16 @@ def create_sitemap(
         if mod != old_mod:
             print(f"file change detected: new[{mod}] != old[{old_mod}]")
         out.write(ENTRY_TEMPLATE.format(
-            base=f"{domain}{path}", path=fname, mod=mod))
+            base=f"{domain(subdomain)}{path}", path=fname, mod=mod))
         internal_out.write(ENTRY_TEMPLATE_INTERNAL.format(
-            base=f"{domain}{path}", path=fname, mod=mod, fhash=fhash))
+            base=f"{domain(subdomain)}{path}",
+            path=fname,
+            mod=mod,
+            fhash=fhash))
 
-    def process_line(line: str) -> str | None:
+    def process_line(subdomain: str, line: str) -> str | None:
         filename = os.path.normpath(line.strip())
-        print(f"checking: {domain}{root}{filename}")
+        print(f"checking: {domain(subdomain)}{root}{filename}")
         if has_private_folder(filename):
             return None
         fname = os.path.basename(filename)
@@ -208,27 +213,30 @@ def create_sitemap(
         dtime = dtime.replace(microsecond=0)
         mtime = dtime.isoformat()
         filename = filename.rstrip(".")
-        write_entry(root, filename, mtime, check_file=filename)
+        write_entry(subdomain, root, filename, mtime, check_file=filename)
         return os.path.dirname(filename)
 
     for line in sorted(set(lines)):
         if not line.strip():
             continue
-        if process_line(line) is None:
+        if process_line("www", line) is None:
             print(f"rejecting {line}")
 
     curtime = datetime.fromtimestamp(time.time(), tz=TZ).isoformat()
     # NOTE: duplicate, non-canonical, and redirect
     # write_entry(root, "", curtime)
-    write_entry("/", "", curtime, check_file="index.html")
-    write_entry("/mdsjs/", "", curtime, check_online=True)
-    write_entry("/bubblesets-js/", "", curtime, check_online=True)
-    write_entry("/bubblesets-js/", "bench.html", curtime, check_online=True)
-    write_entry("/bubblesets-js/", "cliques.html", curtime, check_online=True)
-    write_entry("/searchspace/", "", curtime, check_online=True)
-    write_entry("/searchspace/", "demo0.html", curtime, check_online=True)
-    write_entry("/searchspace/", "demo1.html", curtime, check_online=True)
-    write_entry("/searchspace/", "demo2.html", curtime, check_online=True)
+    write_entry("www", "/", "", curtime, check_file="index.html")
+    write_entry("mdsjs", "/", "", curtime, check_online=True)
+    write_entry("bubblesets-js", "/", "", curtime, check_online=True)
+    write_entry(
+        "bubblesets-js", "/", "bench.html", curtime, check_online=True)
+    write_entry(
+        "bubblesets-js", "/", "cliques.html", curtime, check_online=True)
+    write_entry("searchspace", "/", "", curtime, check_online=True)
+    write_entry("searchspace", "/", "demo0.html", curtime, check_online=True)
+    write_entry("searchspace", "/", "demo1.html", curtime, check_online=True)
+    write_entry("searchspace", "/", "demo2.html", curtime, check_online=True)
+    write_entry("jk-js", "/", "", curtime, check_online=True)
     out.write("</urlset>\n")
     out.flush()
     internal_out.write("</urlset>\n")
@@ -256,6 +264,8 @@ def run() -> None:
     internal = args[1]
 
     def domain(subdomain: str) -> str:
+        if not subdomain:
+            return "https://josuakrause.com"
         return f"https://{subdomain}.josuakrause.com"
 
     root = "/"
