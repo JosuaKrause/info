@@ -202,6 +202,8 @@ def create_sitemap(
             return None
         if fname.endswith("index.html"):
             return None
+        if fname.endswith("404.html"):
+            return None
         if fname.endswith("sitemap.xml"):
             return None
         if fname.endswith("LICENSE"):
