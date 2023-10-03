@@ -204,6 +204,8 @@ def create_sitemap(
             return None
         if fname.endswith("sitemap.xml"):
             return None
+        if fname.endswith("LICENSE"):
+            return None
         if fname.endswith("cv.pdf"):
             return None
         if os.path.isdir(filename) and not os.path.exists(
