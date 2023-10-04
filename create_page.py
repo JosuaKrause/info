@@ -110,6 +110,7 @@ NL = "\n"
 
 
 LD_JSON_KNOWLEDGE = """{
+  "@context": "https://json-ld.org/contexts/person.jsonld",
   "@id": "https://www.josuakrause.com/",
   "@type": "http://schema.org/Person",
   "http://schema.org/additionalName": "Joschi",
@@ -121,7 +122,7 @@ LD_JSON_KNOWLEDGE = """{
     "@type": "http://schema.org/EducationalOrganization",
     "http://schema.org/name": "NYU"
   },
-  "http://schema.org/birthDate": "January 18, 1988",
+  "http://schema.org/birthDate": "1988-01-18",
   "http://schema.org/familyName": "Krause",
   "http://schema.org/givenName": "Josua",
   "http://schema.org/image": {
