@@ -200,10 +200,18 @@ GA_TRACKING = """
 TAG = r"<[^>]*?>"
 SPACES = r"\s+"
 
+DESCRIPTION_SHORT = """
+Josua Krause has led Data Science teams for research, development, and
+deployment of AI models. His focus is on accessibility of large language models
+in low-resource environments and facilitating information access in
+low-bandwidth communities through LLMs.
+""".strip()
+
 DESCRIPTION = """
 Josua Krause has led Data Science teams for research, development, and
-deployment of AI models. His focus is on deep representation learning, natural
-language processing with large language models, and adaptive learning at scale.
+deployment of AI models. His focus is on accessibility of large language models
+in low-resource environments and facilitating information access in
+low-bandwidth communities through LLMs.
 He received his Ph.D. in Explainable Machine Learning under
 <a href="https://enrico.bertini.io/">Prof. Dr. Enrico Bertini</a>
 at
@@ -713,7 +721,7 @@ def apply_template(
     """
     return content.format(
         name="Josua (Joschi) Krause",
-        description=re.sub(SPACES, " ", re.sub(TAG, "", DESCRIPTION)),
+        description=DESCRIPTION_SHORT,
         description_long=DESCRIPTION,
         description_add=DESCRIPTION_ADD,
         content=media,
