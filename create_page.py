@@ -14,11 +14,11 @@ from PIL import Image
 
 
 Entry = TypedDict('Entry', {
-    "abstract": str,
+    "abstract": list[str],
     "authors": str,
     "autopage": bool,
     "awards": list[str],
-    "bibtex": str,
+    "bibtex": list[str],
     "conference": str,
     "date": str,
     "demo": str,
@@ -319,9 +319,9 @@ def create_autopage(
         content: str, doc: Entry, ofile: str, dry_run: bool) -> None:
     abstract = (
         "<h4>Abstract</h4><p style=\"text-align: justify;\">"
-        f"{doc['abstract']}</p>" if chk(doc, "abstract") else "")
+        f"{NL.join(doc['abstract'])}</p>" if chk(doc, "abstract") else "")
     bibtex = (
-        f"<h4>Bibtex</h4><pre>{doc['bibtex'].strip()}</pre>"
+        f"<h4>Bibtex</h4><pre>{(NL.join(doc['bibtex'])).strip()}</pre>"
         if chk(doc, "bibtex") else "")
     image = f"""
     <div class="row">
@@ -510,7 +510,7 @@ def create_media(
                     f"<a href=\"{doc['href']}\">[page]</a>")
             add_misc_links(appendix, doc)
             if chk(doc, "bibtex"):
-                bibtex = doc["bibtex"].strip()
+                bibtex = (NL.join(doc["bibtex"])).strip()
                 bibtex_link = f"bibtex/{entry_id}.bib"
                 bibtex_filename = os.path.join(prefix, bibtex_link)
                 if not dry_run:
