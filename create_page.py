@@ -466,10 +466,10 @@ def create_media(
             "<h3 class=\"group_header\" "
             f"id=\"{kind['type']}\">{kind['name']}</h3>")
 
-        def skey(t: Entry) -> tuple[int, datetime, str]:
+        def skey(t: Entry) -> tuple[datetime, int, str]:
             return (
-                etype_order[t["type"]],
                 tparse(t["date"]),
+                etype_order[t["type"]],
                 t["title"],
             )
 
