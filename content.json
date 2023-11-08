@@ -477,6 +477,7 @@
     {
       "type": "project",
       "title": "redipy",
+      "logo": "img/redipy_logo.png",
       "github": "https://github.com/JosuaKrause/redipy",
       "href": "https://pypi.org/project/redipy/",
       "authors": "Josua Krause",
