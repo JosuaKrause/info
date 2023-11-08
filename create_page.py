@@ -253,10 +253,10 @@ def mktime(dtime: datetime) -> int:
 def normdate(datestr: str) -> str:
     if "," not in datestr:
         return f"Jan 1, {datestr}"
-    monthday, year = datestr.split(",", 1)
+    monthday, tyear = datestr.split(",", 1)
     if any(char.isdigit() for char in monthday):
         return datestr
-    return f"{monthday} 1, {year}"
+    return f"{monthday} 1, {tyear}"
 
 
 def monthtime(dtime: datetime) -> str:
@@ -267,7 +267,7 @@ def year(dtime: datetime) -> int:
     return dtime.year
 
 
-def datetuple(dtime: datetime) -> (int, int, int):
+def datetuple(dtime: datetime) -> tuple[int, int, int]:
     return (dtime.year, dtime.month, dtime.day)
 
 
