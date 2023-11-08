@@ -84,7 +84,7 @@
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2014)",
       "short-conference": "Vis",
       "github": "https://github.com/nyuvis/infuse-java/",
-      "date": "Oct 2014",
+      "date": "Oct, 2014",
       "published": true,
       "pdf": "material/vast2014-infuse.pdf",
       "video": "http://vimeo.com/114366032",
@@ -112,7 +112,7 @@
       "short-conference": "CHI",
       "logo": "img/scatterplot.png",
       "published": true,
-      "date": "May 2016",
+      "date": "May, 2016",
       "external": "http://vgc.poly.edu/projects/similarityperception/",
       "pdf": "material/chi2016-similarity.pdf",
       "awards": ["Honorable Mention"],
@@ -146,7 +146,7 @@
       "logo": "img/prospector.png",
       "slides": "material/chi-prospector-05-12.key",
       "published": true,
-      "date": "May 2016",
+      "date": "May, 2016",
       "pdf": "material/chi2016-prospector.pdf",
       "video": "https://vimeo.com/166142733",
       "href": "prospector.html",
@@ -198,7 +198,7 @@
       "short-conference": "VAST",
       "logo": "img/explainer.png",
       "published": true,
-      "date": "Oct 2017",
+      "date": "Oct, 2017",
       "demo": "http://nyuvis-web.poly.edu/projects/explanation_explorer/",
       "pdf": "https://arxiv.org/abs/1705.01968",
       "github": "https://github.com/nyuvis/explanation_explorer",
@@ -446,6 +446,7 @@
     {
       "type": "project",
       "title": "Searchspace",
+      "logo": "img/searchspace.png",
       "href": "https://searchspace.josuakrause.com/",
       "github": "https://github.com/JosuaKrause/searchspace",
       "authors": "Josua Krause",
@@ -511,7 +512,7 @@
       "github": "https://github.com/JosuaKrause/Bubble-Sets",
       "authors": "Josua Krause, Christopher Collins",
       "conference": "GitHub",
-      "date": "May 2011",
+      "date": "May, 2011",
       "published": true
     },
     {
@@ -521,7 +522,7 @@
       "href": "https://bubblesets-js.josuakrause.com",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "June 2016",
+      "date": "June, 2016",
       "published": true
     },
     {
@@ -530,7 +531,7 @@
       "github": "https://github.com/nyuvis/patient-viz",
       "authors": "Josua Krause, Narges Sharif Razavian, Enrico Bertini, David Sontag",
       "conference": "GitHub",
-      "date": "Jan 2015",
+      "date": "Jan, 2015",
       "published": true
     },
     {
@@ -540,7 +541,7 @@
       "href": "https://jk-js.josuakrause.com",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "Sep 2014",
+      "date": "Sep, 2014",
       "published": true
     },
     {
@@ -549,7 +550,7 @@
       "github": "https://github.com/JosuaKrause/JKanvas",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "Jul 2012",
+      "date": "Jul, 2012",
       "published": true
     },
     {
@@ -558,7 +559,7 @@
       "github": "https://github.com/JosuaKrause/curl-chk",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "May 2015",
+      "date": "May, 2015",
       "published": true
     },
     {
@@ -567,7 +568,7 @@
       "github": "https://github.com/JosuaKrause/mustache.xq",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "May 2013",
+      "date": "May, 2013",
       "published": true
     },
     {
@@ -577,7 +578,7 @@
       "href": "https://mdsjs.josuakrause.com",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "Jun 2015",
+      "date": "Jun, 2015",
       "published": true
     },
     {
@@ -621,7 +622,7 @@
       "authors": "Josua Krause, Adam Perer, Enrico Bertini",
       "conference": "Moore Sloan Poster Session NYU (Poster)",
       "short-conference": "NYU",
-      "date": "May 2014",
+      "date": "May, 2014",
       "published": true
     },
     {
@@ -673,7 +674,7 @@
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2015)",
       "short-conference": "Vis",
       "slides": "material/vast-coquito.key",
-      "date": "Oct 2015",
+      "date": "Oct, 2015",
       "pdf": "material/vast2015-coquito.pdf",
       "published": true,
       "href": "coquito.html",
@@ -730,7 +731,7 @@
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
-      "date": "Feb 2015",
+      "date": "Feb, 2015",
       "published": true
     },
     {
@@ -739,7 +740,7 @@
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
-      "date": "Sep 2015",
+      "date": "Sep, 2015",
       "published": true
     },
     {
@@ -748,7 +749,7 @@
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
-      "date": "Feb 2016",
+      "date": "Feb, 2016",
       "published": true
     },
     {
@@ -757,7 +758,7 @@
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
-      "date": "Sep 2016",
+      "date": "Sep, 2016",
       "published": true
     },
     {
@@ -766,7 +767,7 @@
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
-      "date": "Sep 2017",
+      "date": "Sep, 2017",
       "published": true
     },
     {

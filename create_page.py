@@ -250,12 +250,25 @@ def mktime(dtime: datetime) -> int:
     return int(res - res % DAY_SECONDS)
 
 
+def normdate(datestr: str) -> str:
+    if "," not in datestr:
+        return f"Jan 1, {datestr}"
+    monthday, year = datestr.split(",", 1)
+    if any(char.isdigit() for char in monthday):
+        return datestr
+    return f"{monthday} 1, {year}"
+
+
 def monthtime(dtime: datetime) -> str:
     return f"{dtime.year}-{dtime.month}"
 
 
 def year(dtime: datetime) -> int:
     return dtime.year
+
+
+def datetuple(dtime: datetime) -> (int, int, int):
+    return (dtime.year, dtime.month, dtime.day)
 
 
 def chk(doc: Entry, field: EntryField) -> bool:
@@ -466,9 +479,13 @@ def create_media(
             "<h3 class=\"group_header\" "
             f"id=\"{kind['type']}\">{kind['name']}</h3>")
 
-        def skey(t: Entry) -> tuple[datetime, int, str]:
+        def skey(t: Entry) -> tuple[int, int, int, int, str]:
+            tyear, tmonth, tday = datetuple(tparse(normdate(t["date"])))
+            print(t, tyear, tmonth, tday)
             return (
-                tparse(t["date"]),
+                tyear,
+                tmonth,
+                tday,
                 etype_order[t["type"]],
                 t["title"],
             )
