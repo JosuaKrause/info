@@ -55,7 +55,7 @@ body {
   min-height: 100vh;
 }
 
-div.navbar-header>* {
+div.navbar-header > * {
   font-size: 180%;
   margin-top: 0.18em;
 }
@@ -88,7 +88,8 @@ footer {
 .footer-style {
   padding: 10px;
   text-align: right;
-  filter: drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white);
+  filter: drop-shadow(0 0 4px white) drop-shadow(0 0 4px white)
+    drop-shadow(0 0 4px white) drop-shadow(0 0 4px white);
 }
 
 .footer-style a {
@@ -105,7 +106,7 @@ footer {
   text-decoration: none;
 }
 
-.anchor>i {
+.anchor > i {
   opacity: 0;
 }
 
@@ -114,7 +115,7 @@ footer {
   text-decoration: none;
 }
 
-.anchor:hover>i {
+.anchor:hover > i {
   opacity: 0.8;
 }
 
@@ -124,4 +125,29 @@ footer {
 
 .type_committee {
   filter: sepia(80%);
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    color: hsl(210, 10%, 62%);
+    background-color: #121212;
+  }
+
+  body {
+    color: hsl(210, 10%, 42%);
+    background-color: #333;
+  }
+
+  .anchor {
+    color: hsl(210, 10%, 52%) !important;
+  }
+
+  :target ~ .media-body {
+    background-color: rgba(209, 209, 31, 0.829);
+  }
+
+  .navbar-default {
+    background-color: #242121;
+    border-color: #231e1e;
+  }
 }

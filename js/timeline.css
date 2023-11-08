@@ -62,7 +62,7 @@ svg:active {
   }
 }
 
-#div-timeline>svg {
+#div-timeline > svg {
   touch-action: none;
 }
 
@@ -75,9 +75,31 @@ svg:active {
 }
 
 .x.axis .minor {
-  stroke-opacity: .5;
+  stroke-opacity: 0.5;
 }
 
 .x.axis path {
   display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .x.axis line {
+    stroke: rgb(47, 47, 47);
+  }
+
+  .legend-entry:hover {
+    background-color: #262626;
+  }
+
+  @keyframes blink {
+    0% {
+      background-color: rgb(20, 20, 20);
+    }
+    50% {
+      background-color: #2f2f2f;
+    }
+    100% {
+      background-color: rgb(20, 20, 20);
+    }
+  }
 }
