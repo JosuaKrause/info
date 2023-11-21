@@ -1,127 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
-<head>
-  {tracking}
-  <link rel="icon" type="image/png" href="{logo}">
-  <title>{title}</title>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{description}">
-  <meta name="author" content="Josua (Joschi) Krause">
-  <meta
-    property="og:url"
-    content="https://www.josuakrause.com/{canonical}"
-  />
-  <meta
-    name="title"
-    property="og:title"
-    content="{ogtitle}"
-  />
-  <meta
-    name="description"
-    property="og:description"
-    content="{ogdescription}"
-  />
-  <meta
-    property="og:image"
-    content="https://www.josuakrause.com/{ogimg}"
-  />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="{ogimgwidth}" />
-  <meta property="og:image:height" content="{ogimgheight}" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:domain" content="www.josuakrause.com" />
-  <meta
-    name="twitter:url"
-    content="https://www.josuakrause.com/{canonical}"
-  />
-  <meta
-    name="twitter:title"
-    content="{ogtitle}"
-  />
-  <meta
-    name="twitter:description"
-    content="{ogdescription}"
-  />
-  <meta
-    name="twitter:image"
-    content="https://www.josuakrause.com/{ogimg}"
-  />
-  <link rel="canonical" href="https://www.josuakrause.com/{canonical}">
-  <link rel="stylesheet" type="text/css" href="lib/jk-js/lib/bootstrap/css/bootstrap.min.css">
-  <style type="text/css">
-  .backlink {{
-    position: fixed;
-    left: 20px;
-    top: 10px;
-    font-size: 30px;
-    z-index: 1;
-  }}
-
-  @media only screen and (max-width: 960px) {{
-    .backlink {{
-      visibility: hidden;
-      pointer-events: none;
-    }}
-  }}
-
-  .backlink a:hover {{
-    text-decoration: none;
-  }}
-
-  footer {{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 1;
-  }}
-
-  .footer-style {{
-    padding: 10px;
-    text-align: right;
-    filter: drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white);
-  }}
-
-  .empty-footer {{
-    height: 40px;
-    width: 100%;
-  }}
-
-  iframe {{
-    max-width: 90vw;
-    max-height: 60vw;
-  }}
-  </style>
-</head>
-<body>
-  <div class="backlink"><a href=".">⬅</a></div>
-  <footer>
-    <div class="footer-style">
-      © {copyright} <a href="https://github.com/JosuaKrause/info">[source]</a>
-    </div>
-  </footer>
-  <div class="container bs-docs-container">
-    <div class="row">
-      <div class="col-md-9">
-        <div style="text-align: center;">
-          <h3><em>{conference}</em></h3>
-          <h1>{title}</h1>
-          <h3>{authors}</h3>
+  <head>
+    {tracking}
+    <link rel="icon" type="image/png" href="{logo}" />
+    <title>{title}</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{description}" />
+    <meta name="author" content="Josua Krause (Joschi)" />
+    <meta
+      property="og:url"
+      content="https://www.josuakrause.com/{canonical}"
+    />
+    <meta name="title" property="og:title" content="{ogtitle}" />
+    <meta
+      name="description"
+      property="og:description"
+      content="{ogdescription}"
+    />
+    <meta property="og:image" content="https://www.josuakrause.com/{ogimg}" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="{ogimgwidth}" />
+    <meta property="og:image:height" content="{ogimgheight}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="www.josuakrause.com" />
+    <meta
+      name="twitter:url"
+      content="https://www.josuakrause.com/{canonical}"
+    />
+    <meta name="twitter:title" content="{ogtitle}" />
+    <meta name="twitter:description" content="{ogdescription}" />
+    <meta name="twitter:image" content="https://www.josuakrause.com/{ogimg}" />
+    <link rel="canonical" href="https://www.josuakrause.com/{canonical}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="lib/jk-js/lib/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="page.css" />
+  </head>
+  <body>
+    <div class="backlink"><a href=".">⬅</a></div>
+    <footer>
+      <div class="footer-style">
+        © {copyright}
+        <a href="https://github.com/JosuaKrause/info">[source]</a>
+      </div>
+    </footer>
+    <div class="container bs-docs-container">
+      <div class="row">
+        <div class="col-md-9">
+          <div style="text-align: center">
+            <h3><em>{conference}</em></h3>
+            <h1>{title}</h1>
+            <h3>{authors}</h3>
+          </div>
         </div>
       </div>
-    </div>
-    {image}
-    <div class="row">
-      <div class="col-md-9">
-        {abstract}
-        {links}
-        {video}
-        {talk}
-        {bibtex}
+      {image}
+      <div class="row">
+        <div class="col-md-9">{abstract} {links} {video} {talk} {bibtex}</div>
       </div>
+      <div class="empty-footer"></div>
     </div>
-    <div class="empty-footer"></div>
-  </div>
-</body>
+  </body>
 </html>

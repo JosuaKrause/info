@@ -1,115 +1,131 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
-<head>
-  {tracking}
-  <link rel="icon" type="image/png" href="img/icon.png">
-  <title>{name}</title>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{description}">
-  <meta name="author" content="Josua (Joschi) Krause">
-  <meta
-    property="og:url"
-    content="https://www.josuakrause.com/"
-  />
-  <meta
-    name="title"
-    property="og:title"
-    content="{name}"
-  />
-  <meta
-    name="description"
-    property="og:description"
-    content="{description}"
-  />
-  <meta
-    property="og:image"
-    content="https://www.josuakrause.com/{ogimg}"
-  />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="675" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:domain" content="www.josuakrause.com" />
-  <meta
-    name="twitter:url"
-    content="https://www.josuakrause.com/"
-  />
-  <meta
-    name="twitter:title"
-    content="{name}"
-  />
-  <meta
-    name="twitter:description"
-    content="{description}"
-  />
-  <meta
-    name="twitter:image"
-    content="https://www.josuakrause.com/{ogimg}"
-  />
-  <link rel="canonical" href="https://www.josuakrause.com/">
-  <link rel="stylesheet" type="text/css" href="lib/jk-js/lib/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="js/timeline.css">
-  <link rel="stylesheet" type="text/css" href="js/index.css">
-  <script src="lib/jk-js/lib/d3/d3.min.js" charset="utf-8" async="true"></script>
-  <script src="js/timeline.js" charset="utf-8" async="true"></script>
-  <script type="text/javascript">
+  <head>
+    {tracking}
+    <link rel="icon" type="image/png" href="img/icon.png" />
+    <title>{name}</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{description}" />
+    <meta name="author" content="Josua Krause (Joschi)" />
+    <meta property="og:url" content="https://www.josuakrause.com/" />
+    <meta name="title" property="og:title" content="{name}" />
+    <meta
+      name="description"
+      property="og:description"
+      content="{description}"
+    />
+    <meta property="og:image" content="https://www.josuakrause.com/{ogimg}" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="675" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="www.josuakrause.com" />
+    <meta name="twitter:url" content="https://www.josuakrause.com/" />
+    <meta name="twitter:title" content="{name}" />
+    <meta name="twitter:description" content="{description}" />
+    <meta name="twitter:image" content="https://www.josuakrause.com/{ogimg}" />
+    <link rel="canonical" href="https://www.josuakrause.com/" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="lib/jk-js/lib/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="js/timeline.css" />
+    <link rel="stylesheet" type="text/css" href="js/index.css" />
+    <script
+      src="lib/jk-js/lib/d3/d3.min.js"
+      charset="utf-8"
+      async="true"
+    ></script>
+    <script src="js/timeline.js" charset="utf-8" async="true"></script>
     {js}
-  </script>
-  <script type="application/ld+json">
-    {knowledge}
-  </script>
-</head>
-<body id="top" onload="start()">
-  <nav id="smt_header" class="navbar navbar-default sticky" role="navigation">
-    <div class="container clearfix">
-      <div class="navbar-header nav-line">
-        <a id="namefield" class="navbar-brand" href="#top">{name}</a>
+    <script type="application/ld+json">
+      {knowledge}
+    </script>
+  </head>
+  <body id="top" onload="start()">
+    <nav
+      id="smt_header"
+      class="navbar navbar-default sticky"
+      role="navigation"
+    >
+      <div class="container clearfix">
+        <div class="navbar-header nav-line">
+          <a id="namefield" class="navbar-brand" href="#top">{name}</a>
+        </div>
+        <div class="nav navbar-nav navbar-right nav-line">
+          <a href="https://medium.com/@josua.krause"
+            ><img
+              src="img/mediumlogo_64x64.png"
+              alt="Medium"
+              style="width: 32px; height: 32px"
+          /></a>
+          <a href="https://scholar.google.com/citations?user=hFjNgPEAAAAJ"
+            ><img
+              src="img/scholarlogo_64x64.png"
+              alt="Google Scholar"
+              style="width: 32px; height: 32px"
+          /></a>
+          <a href="https://www.researchgate.net/profile/Josua-Krause"
+            ><img
+              src="img/researchgatelogo_64x64.png"
+              alt="ResearchGate"
+              style="width: 32px; height: 32px"
+          /></a>
+          <a href="https://www.linkedin.com/in/josuakrause/"
+            ><img
+              src="img/linkedinlogo_75x64.png"
+              alt="LinkedIn"
+              style="width: 32px; height: 32px"
+          /></a>
+          <a href="https://github.com/JosuaKrause/"
+            ><img
+              src="img/github-mark_64x64.png"
+              alt="GitHub"
+              style="width: 32px; height: 32px"
+          /></a>
+          <img
+            src="img/photo_137x128.png"
+            alt="Josua Krause"
+            style="width: 64px; height: 64px"
+          />
+        </div>
       </div>
-      <div class="nav navbar-nav navbar-right nav-line">
-        <a href="https://medium.com/@josua.krause"><img src="img/mediumlogo_64x64.png" alt="Medium" style="width: 32px; height: 32px;"></a>
-        <a href="https://scholar.google.com/citations?user=hFjNgPEAAAAJ"><img src="img/scholarlogo_64x64.png" alt="Google Scholar" style="width: 32px; height: 32px;"></a>
-        <a href="https://www.researchgate.net/profile/Josua-Krause"><img src="img/researchgatelogo_64x64.png" alt="ResearchGate" style="width: 32px; height: 32px;"></a>
-        <a href="https://www.linkedin.com/in/josuakrause/"><img src="img/linkedinlogo_75x64.png" alt="LinkedIn" style="width: 32px; height: 32px;"></a>
-        <a href="https://github.com/JosuaKrause/"><img src="img/github-mark_64x64.png" alt="GitHub" style="width: 32px; height: 32px;"></a>
-        <img src="img/photo_137x128.png" alt="Josua Krause" style="width: 64px; height: 64px;">
+    </nav>
+    <footer>
+      <div class="footer-style">
+        © {copyright}
+        <a href="https://github.com/JosuaKrause/info">[source]</a>
+      </div>
+    </footer>
+    <div id="smt_pad" class="smt_padding"></div>
+    <div class="container bs-docs-container">
+      <div class="row" id="timeline-row">
+        <div class="col-md-8">
+          <div id="div-timeline"></div>
+        </div>
+        <div class="col-md-2">
+          <h5>Filter</h5>
+          <div id="div-legend"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <p style="text-align: justify">{description_long}</p>
+          <p style="text-align: justify">{description_add}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10" role="main">{content}</div>
       </div>
     </div>
-  </nav>
-  <footer>
-    <div class="footer-style">
-      © {copyright} <a href="https://github.com/JosuaKrause/info">[source]</a>
-    </div>
-  </footer>
-  <div id="smt_pad" class="smt_padding"></div>
-  <div class="container bs-docs-container">
-    <div class="row" id="timeline-row">
-      <div class="col-md-8">
-        <div id="div-timeline"></div>
-      </div>
-      <div class="col-md-2">
-        <h5>Filter</h5>
-        <div id="div-legend"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-9">
-        <p style="text-align: justify;">
-          {description_long}
-        </p>
-        <p style="text-align: justify;">
-          {description_add}
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10" role="main">
-        {content}
-      </div>
-    </div>
-  </div>
-  <div class="empty-footer"></div>
-  <link rel="stylesheet" type="text/css" href="lib/font-awesome/css/font-awesome.min.css">
-</body>
+    <div class="empty-footer"></div>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="lib/font-awesome/css/font-awesome.min.css"
+    />
+  </body>
 </html>

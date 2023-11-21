@@ -737,12 +737,12 @@ def apply_template(
     }
     """
     return content.format(
-        name="Josua (Joschi) Krause",
+        name="Josua Krause (Joschi)",
         description=DESCRIPTION_SHORT,
         description_long=DESCRIPTION,
         description_add=DESCRIPTION_ADD,
         content=media,
-        js=js_fillin,
+        js=f'<script type="text/javascript">{js_fillin}</script>',
         tracking=GA_TRACKING,
         knowledge=LD_JSON_KNOWLEDGE,
         copyright=COPYRIGHT,
