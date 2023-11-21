@@ -220,8 +220,8 @@ at
 
 DESCRIPTION_ADD = """
 Curriculum Vitae:
-<a href="material/cv_krause_short.pdf">[Short]</a>
-<a href="material/cv_krause.pdf">[Long]</a>
+<a href="material/cv_krause_short.pdf">[Short CV]</a>
+<a href="material/cv_krause.pdf">[Long CV]</a>
 """.strip()
 
 COPYRIGHT = "jk 2023"
