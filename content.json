@@ -477,7 +477,7 @@
     },
     {
       "type": "project",
-      "title": "redipy",
+      "title": "RediPy",
       "logo": "img/redipy_logo.png",
       "github": "https://github.com/JosuaKrause/redipy",
       "article": "https://medium.com/@josua.krause/a-backend-agnostic-redis-interface-9fdeb8641bc5?source=friends_link&sk=565113f29f4cfadf174aa3ab23ab9a16",
