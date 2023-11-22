@@ -444,6 +444,16 @@
       "published": true
     },
     {
+      "type": "blog",
+      "title": "A Backend Agnostic Redis Interface",
+      "logo": "img/redipy_logo.png",
+      "href": "https://medium.com/@josua.krause/a-backend-agnostic-redis-interface-9fdeb8641bc5?source=friends_link&sk=565113f29f4cfadf174aa3ab23ab9a16",
+      "authors": "Josua Krause",
+      "conference": "Medium",
+      "date": "Nov 22, 2023",
+      "published": true
+    },
+    {
       "type": "project",
       "title": "Searchspace",
       "logo": "img/searchspace.png",
