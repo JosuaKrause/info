@@ -15,6 +15,7 @@ from PIL import Image
 
 Entry = TypedDict('Entry', {
     "abstract": list[str],
+    "article": str,
     "authors": str,
     "autopage": bool,
     "awards": list[str],
@@ -45,6 +46,7 @@ Entry = TypedDict('Entry', {
 }, total=False)
 EntryField = Literal[
     "abstract",
+    "article",
     "authors",
     "autopage",
     "awards",
@@ -443,6 +445,8 @@ def add_misc_links(
         appendix.append(f"<a href=\"{doc['slides']}\">[slides]</a>")
     if chk(doc, "external"):
         appendix.append(f"<a href=\"{doc['external']}\">[external]</a>")
+    if chk(doc, "article"):
+        appendix.append(f"<a href=\"{doc['article']}\">[article]</a>")
     if chk(doc, "poster"):
         appendix.append(f"<a href=\"{doc['poster']}\">[poster]</a>")
 
