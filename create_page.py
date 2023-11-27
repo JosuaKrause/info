@@ -140,7 +140,7 @@ LD_JSON_KNOWLEDGE = """{
     },
     {
       "@type": "http://schema.org/URL",
-      "@id": "https://medium.com/@josua.krause"
+      "@id": "https://medium.josuakrause.com/"
     },
     {
       "@type": "http://schema.org/URL",

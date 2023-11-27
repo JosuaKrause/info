@@ -231,6 +231,7 @@ def create_sitemap(
     # write_entry(root, "", curtime)
     write_entry("www", "/", "", curtime, check_file="index.html")
     write_entry("mdsjs", "/", "", curtime, check_online=True)
+    write_entry("medium", "/", "", curtime, check_online=True)
     write_entry("bubblesets-js", "/", "", curtime, check_online=True)
     write_entry(
         "bubblesets-js", "/", "bench.html", curtime, check_online=True)
