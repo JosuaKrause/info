@@ -576,10 +576,13 @@ def create_media(
                 doc["short-title"]
                 if chk(doc, "short-title")
                 else doc["title"])
+            add_class = ""
+            if lsrc == "img/nologo.png":
+                add_class = " no-img"
             entry = f"""
             <a class="pull-left" href="#{entry_id}">
               <img
-                class="media-object"
+                class="media-object{add_class}"
                 src="{lsrc}"
                 title="{doc['title']}"
                 alt="{sttl}"
