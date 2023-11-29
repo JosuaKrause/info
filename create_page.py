@@ -204,9 +204,8 @@ SPACES = r"\s+"
 
 DESCRIPTION_SHORT = """
 Josua Krause has led Data Science teams for research, development, and
-deployment of AI models. His focus is on accessibility of large language models
-in low-resource environments and facilitating information access in
-low-bandwidth communities through LLMs.
+deployment of AI models with focus on LLM access in low-resource,
+low-bandwidth areas.
 """.strip()
 
 DESCRIPTION = """
