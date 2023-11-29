@@ -16,6 +16,12 @@ img {
   object-fit: contain;
 }
 
+.page_title {
+  font-size: 21pt !important;
+  font-weight: normal !important;
+  margin: 3px;
+}
+
 .smt_anchor {
   display: block;
   position: relative;
@@ -55,7 +61,7 @@ body {
   min-height: 100vh;
 }
 
-div.navbar-header>* {
+div.navbar-header > * {
   font-size: 180%;
   margin-top: 0.18em;
 }
@@ -88,7 +94,8 @@ footer {
 .footer-style {
   padding: 10px;
   text-align: right;
-  filter: drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white) drop-shadow(0 0 4px white);
+  filter: drop-shadow(0 0 4px white) drop-shadow(0 0 4px white)
+    drop-shadow(0 0 4px white) drop-shadow(0 0 4px white);
 }
 
 .footer-style a {
@@ -105,7 +112,7 @@ footer {
   text-decoration: none;
 }
 
-.anchor>i {
+.anchor > i {
   opacity: 0;
 }
 
@@ -114,7 +121,7 @@ footer {
   text-decoration: none;
 }
 
-.anchor:hover>i {
+.anchor:hover > i {
   opacity: 0.8;
 }
 
