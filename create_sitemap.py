@@ -114,6 +114,7 @@ def create_sitemap(
     internal_out.write(SITEMAP_HEADER_INTERNAL)
     internal_out.flush()
     prev_times = get_previous_filetimes(domain, root)
+    entries: list[tuple[datetime, Callable[[], None]]] = []
 
     def get_online_hash(subdomain: str, path: str, fname: str) -> str:
         url = f"{domain(subdomain)}{path}{fname}"
@@ -168,13 +169,17 @@ def create_sitemap(
                 print(f"file hash differs: new[{fhash}] != old[{old_hash}]")
         if mod != old_mod:
             print(f"file change detected: new[{mod}] != old[{old_mod}]")
-        out.write(ENTRY_TEMPLATE.format(
-            base=f"{domain(subdomain)}{path}", path=fname, mod=mod))
-        internal_out.write(ENTRY_TEMPLATE_INTERNAL.format(
-            base=f"{domain(subdomain)}{path}",
-            path=fname,
-            mod=mod,
-            fhash=fhash))
+
+        def write_out() -> None:
+            out.write(ENTRY_TEMPLATE.format(
+                base=f"{domain(subdomain)}{path}", path=fname, mod=mod))
+            internal_out.write(ENTRY_TEMPLATE_INTERNAL.format(
+                base=f"{domain(subdomain)}{path}",
+                path=fname,
+                mod=mod,
+                fhash=fhash))
+
+        entries.append((datetime.fromisoformat(mod), write_out))
 
     def process_line(subdomain: str, line: str) -> str | None:
         filename = os.path.normpath(line.strip())
@@ -242,6 +247,10 @@ def create_sitemap(
     write_entry("searchspace", "/", "demo1.html", curtime, check_online=True)
     write_entry("searchspace", "/", "demo2.html", curtime, check_online=True)
     write_entry("jk-js", "/", "", curtime, check_online=True)
+
+    entries.sort(key=lambda elem: elem[0], reverse=True)
+    for _, entry_cb in entries:
+        entry_cb()
     out.write("</urlset>\n")
     out.flush()
     internal_out.write("</urlset>\n")
