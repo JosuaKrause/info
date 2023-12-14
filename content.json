@@ -44,6 +44,26 @@
       "type": "teaching",
       "name": "Teaching",
       "color": "black"
+    },
+    {
+      "type": "ta",
+      "name": "Teaching Assistant",
+      "color": "black"
+    },
+    {
+      "type": "mentoring",
+      "name": "Mentoring",
+      "color": "black"
+    },
+    {
+      "type": "webinar",
+      "name": "Webinar",
+      "color": "black"
+    },
+    {
+      "type": "tutorial",
+      "name": "Tutorial",
+      "color": "black"
     }
   ],
   "documents": [
@@ -139,6 +159,7 @@
     {
       "type": "paper",
       "title": "Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models",
+      "ogtitle": "Prospector: Visual Inspection of Black-box ML Models",
       "short-title": "Prospector",
       "authors": "Josua Krause, Adam Perer, Kenney Ng",
       "conference": "ACM CHI 2016",
@@ -192,8 +213,10 @@
     {
       "type": "paper",
       "title": "A Workflow for Visual Diagnostics of Binary Classifiers using Instance-Level Explanations",
+      "ogtitle": "Visual Diagnostics of Binary Classifiers using Instance-Level Explanations",
       "short-title": "Explainer",
       "authors": "Josua Krause, Aritra Dasgupta, Jordan Swartz, Yindalon Aphinyanaphongs, Enrico Bertini",
+      "ogdescription": "by Josua Krause, Aritra Dasgupta, Jordan Swartz, Yindalon Aphinyanaphongs, Enrico Bertini",
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2017)",
       "short-conference": "VAST",
       "logo": "img/explainer.png",
@@ -258,6 +281,7 @@
     {
       "type": "poster",
       "title": "A User Study on the Effect of Aggregating Explanations for Interpreting Machine Learning Models",
+      "ogtitle": "The Effect of Aggregating Explanations for Interpreting ML Models",
       "logo": "img/nologo.png",
       "short-title": "Study on Aggregating Explanations for Interpreting Models",
       "authors": "Josua Krause, Adam Perer, Enrico Bertini",
@@ -356,6 +380,7 @@
     {
       "type": "paper",
       "title": "SeekAView: An Intelligent Dimensionality Reduction Strategy for Navigating HD Data Spaces",
+      "ogtitle": "SeekAView",
       "logo": "img/seekaviewlogo.png",
       "short-title": "SeekAView",
       "demo": "http://nyuvis.github.io/SeekAView/",
@@ -382,6 +407,7 @@
     {
       "type": "poster",
       "title": "Explanatory Visual Analytics for Enhancing Human Interpretability of Machine Learning Models",
+      "ogtitle": "Visual Analytics for Enhancing Human Interpretability of ML Models",
       "short-title": "Visual Analytics Explanations for Machine Learning",
       "authors": "Josua Krause, Aritra Dasgupta, Enrico Bertini",
       "conference": "Visualization in Data Science (VDS at IEEE VIS 2016)",
@@ -709,7 +735,7 @@
       ]
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Concepts of Programming",
       "authors": "Teaching Assistant",
       "conference": "Universität Konstanz",
@@ -718,7 +744,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Concepts of Computer Science",
       "authors": "Teaching Assistant",
       "conference": "Universität Konstanz",
@@ -727,7 +753,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Information Visualization",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
@@ -736,7 +762,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Information Visualization",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
@@ -745,7 +771,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Information Visualization",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
@@ -754,7 +780,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Information Visualization",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
@@ -763,7 +789,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Foundations of Data Science",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
@@ -772,7 +798,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "tutorial",
       "title": "D3 Tutorial on Electronic Health Records — Introduction to Visual Analytics in Healthcare",
       "short-title": "D3 Tutorial on Electronic Health Records",
       "github": "https://github.com/JosuaKrause/d3-tutorial",
@@ -783,7 +809,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "tutorial",
       "title": "React Tutorial for Visualizations",
       "short-title": "React Tutorial for Visualizations",
       "github": "https://github.com/JosuaKrause/react_vis_tutorial/",
@@ -794,7 +820,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "tutorial",
       "title": "VIS for Practice Workshop — Visualization for the Web: Front- & Backends",
       "short-title": "VIS for Practice Workshop",
       "authors": "Workshop",
@@ -814,10 +840,10 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "webinar",
       "title": "How to Spot and Understand AI Bias within Financial Services",
       "short-title": "AI Bias Webinar",
-      "authors": "Webinar",
+      "authors": "Josua Krause, Anshul Vikram Pandey",
       "conference": "Accern",
       "short-conference": "Accern",
       "date": "Mar 30, 2022",
@@ -1244,7 +1270,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "mentoring",
       "title": "Capstone Project: NYU Center for Data Science",
       "short-title": "Capstone Project: NYU CDS",
       "authors": "Mentor",
@@ -1255,7 +1281,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "mentoring",
       "title": "Capstone Project: NYU Center for Data Science",
       "short-title": "Capstone Project: NYU CDS",
       "authors": "Mentor",
@@ -1266,7 +1292,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "mentoring",
       "title": "Capstone Project: NYU Center for Data Science",
       "short-title": "Capstone Project: NYU CDS",
       "authors": "Mentor",
@@ -1277,7 +1303,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "mentoring",
       "title": "Capstone Project: Columbia University",
       "short-title": "Capstone Project: Columbia University",
       "authors": "Mentor",

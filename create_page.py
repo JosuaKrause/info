@@ -418,8 +418,10 @@ def create_autopage(
             f"appears in {doc['conference']}"),
         copyright=COPYRIGHT,
         canonical=os.path.basename(ofile),
-        ogtitle=doc["title"],
-        ogdescription=f"by {doc['authors']} appears in {doc['conference']}",
+        ogtitle=doc.get("ogtitle", doc["title"]),
+        ogdescription=doc.get(
+            "ogdescription",
+            f"by {doc['authors']} appears in {doc['conference']}"),
         ogimg=doc["ogimg"],
         ogimgwidth=doc["ogimgwidth"],
         ogimgheight=doc["ogimgheight"])
