@@ -28,6 +28,11 @@ Entry = TypedDict('Entry', {
     "href": str,
     "keywords": list[str],
     "logo": str,
+    "ogdescription": str,
+    "ogimg": str,
+    "ogimgheight": int,
+    "ogimgwidth": int,
+    "ogtitle": str,
     "pdf": str,
     "poster": str,
     "published": bool,
@@ -40,9 +45,6 @@ Entry = TypedDict('Entry', {
     "title": str,
     "type": str,
     "video": str,
-    "ogimg": str,
-    "ogimgwidth": int,
-    "ogimgheight": int,
 }, total=False)
 EntryField = Literal[
     "abstract",
