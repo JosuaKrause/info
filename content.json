@@ -16,11 +16,6 @@
       "color": "black"
     },
     {
-      "type": "poster",
-      "name": "Poster / Workshop",
-      "color": "black"
-    },
-    {
       "type": "blog",
       "name": "Blog",
       "color": "black"
@@ -33,6 +28,11 @@
     {
       "type": "patent",
       "name": "Patent",
+      "color": "black"
+    },
+    {
+      "type": "mentoring",
+      "name": "Mentoring",
       "color": "black"
     },
     {
@@ -51,18 +51,8 @@
       "color": "black"
     },
     {
-      "type": "mentoring",
-      "name": "Mentoring",
-      "color": "black"
-    },
-    {
-      "type": "webinar",
-      "name": "Webinar",
-      "color": "black"
-    },
-    {
-      "type": "tutorial",
-      "name": "Tutorial",
+      "type": "poster",
+      "name": "Poster / Workshop",
       "color": "black"
     }
   ],
@@ -798,7 +788,7 @@
       "published": true
     },
     {
-      "type": "tutorial",
+      "type": "teaching",
       "title": "D3 Tutorial on Electronic Health Records — Introduction to Visual Analytics in Healthcare",
       "short-title": "D3 Tutorial on Electronic Health Records",
       "github": "https://github.com/JosuaKrause/d3-tutorial",
@@ -809,18 +799,18 @@
       "published": true
     },
     {
-      "type": "tutorial",
+      "type": "project",
       "title": "React Tutorial for Visualizations",
       "short-title": "React Tutorial for Visualizations",
       "github": "https://github.com/JosuaKrause/react_vis_tutorial/",
-      "authors": "Tutorial",
+      "authors": "Josua Krause",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
       "date": "Oct 16, 2017",
       "published": true
     },
     {
-      "type": "tutorial",
+      "type": "teaching",
       "title": "VIS for Practice Workshop — Visualization for the Web: Front- & Backends",
       "short-title": "VIS for Practice Workshop",
       "authors": "Workshop",
@@ -840,10 +830,10 @@
       "published": true
     },
     {
-      "type": "webinar",
+      "type": "teaching",
       "title": "How to Spot and Understand AI Bias within Financial Services",
       "short-title": "AI Bias Webinar",
-      "authors": "Josua Krause, Anshul Vikram Pandey",
+      "authors": "Webinar",
       "conference": "Accern",
       "short-conference": "Accern",
       "date": "Mar 30, 2022",
