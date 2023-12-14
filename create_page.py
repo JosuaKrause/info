@@ -59,6 +59,8 @@ EntryField = Literal[
     "href",
     "keywords",
     "logo",
+    "ogdescription",
+    "ogtitle",
     "pdf",
     "poster",
     "published",
