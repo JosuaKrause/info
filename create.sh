@@ -8,7 +8,7 @@ if [ -z $NO_DEFAULT ]; then
 fi
 
 mkdir -p "${OUTPUT}"
-find . -not -path '*.pytest_cache/*' -not -path '*.mypy_cache/*' -not -path '*.git*/*' -not -path '*'"${OUTPUT}/"'*' -not -path '*mvn-repo/*' -type f -not -name '*.md' -not -name '*.py' -not -name '*.tmpl' -not -name '*.sh' -not -name '*.ini' -not -name '*.toml' -not -name "${LIB_COPY}" -not -name '.*' -not -name "Makefile" -not -name "requirements.txt" -not -name "content.json" > "${LIB_COPY}"
+find . -not -path '*.pytest_cache/*' -not -path '*.mypy_cache/*' -not -path '*.git*/*' -not -path '*'"${OUTPUT}/"'*' -type f -not -name '*.md' -not -name '*.py' -not -name '*.tmpl' -not -name '*.sh' -not -name '*.ini' -not -name '*.toml' -not -name "${LIB_COPY}" -not -name '.*' -not -name "Makefile" -not -name "requirements.txt" -not -name "content.json" > "${LIB_COPY}"
 rsync -atv . "${OUTPUT}" --files-from "${LIB_COPY}"
 python create_page.py --documents content.json --template index.tmpl --out "${OUTPUT}/index.html" --prefix "${OUTPUT}"
 PREV_DIR=`pwd`
