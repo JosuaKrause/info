@@ -205,6 +205,8 @@ def create_sitemap(
             return None
         if fname.endswith(".jpg"):
             return None
+        if fname.endswith(".jpeg"):
+            return None
         if fname.endswith(".jar"):
             return None
         if fname.endswith(".md5"):
