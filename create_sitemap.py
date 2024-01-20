@@ -7,7 +7,7 @@ from collections.abc import Callable, Iterable
 from datetime import datetime
 from email.utils import parsedate_to_datetime
 from io import BytesIO
-from typing import IO
+from typing import IO, TypedDict
 
 import pytz
 import requests
@@ -51,6 +51,21 @@ ENTRY_TEMPLATE_INTERNAL = """  <url>
     <joschi:filehash>{fhash}</joschi:filehash>
   </url>
 """
+
+
+FileCache = TypedDict('FileCache', {
+    "lastmod": str,
+    "filehash": str,
+})
+
+
+CACHED_FILE_LOOKUP: dict[str, FileCache] = {
+    "https://medium.josuakrause.com/": {
+        "lastmod": "2023-12-19T17:31:09.104979-05:00",
+        "filehash":
+            "d968bcd4f808dbb9c629de59455c9016f17901dc80614a0971da011e00a99e03",
+    },
+}
 
 
 def get_hash(content: bytes) -> str:
@@ -118,6 +133,9 @@ def create_sitemap(
 
     def get_online_hash(subdomain: str, path: str, fname: str) -> str:
         url = f"{domain(subdomain)}{path}{fname}"
+        cache = CACHED_FILE_LOOKUP.get(url)
+        if cache is not None:
+            return cache["filehash"]
         print(f"hash from url: {url}")
         res = requests.get(url, timeout=10, allow_redirects=True)
         if res.status_code != 200:
@@ -131,6 +149,9 @@ def create_sitemap(
 
     def get_online_mod(subdomain: str, path: str, fname: str) -> str | None:
         url = f"{domain(subdomain)}{path}{fname}"
+        cache = CACHED_FILE_LOOKUP.get(url)
+        if cache is not None:
+            return cache["lastmod"]
         res = requests.head(url, timeout=10, allow_redirects=True)
         if res.status_code != 200:
             return None
