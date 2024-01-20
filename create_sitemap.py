@@ -63,7 +63,7 @@ def get_previous_filetimes(
         domain: Callable[[str], str],
         root: str) -> dict[str, tuple[str, str | None]]:
     url = f"{domain('')}{root}{SITEMAP_INTERNAL}"
-    req = requests.get(url, timeout=10)
+    req = requests.get(url, timeout=10, allow_redirects=True)
     if req.status_code != 200:
         return {}
     tree = ET.parse(BytesIO(req.content))
@@ -119,7 +119,7 @@ def create_sitemap(
     def get_online_hash(subdomain: str, path: str, fname: str) -> str:
         url = f"{domain(subdomain)}{path}{fname}"
         print(f"hash from url: {url}")
-        res = requests.get(url, timeout=10)
+        res = requests.get(url, timeout=10, allow_redirects=True)
         if res.status_code != 200:
             raise ValueError(f"failed to access {url} with {res.status_code}")
         return get_hash(res.content)
@@ -131,7 +131,7 @@ def create_sitemap(
 
     def get_online_mod(subdomain: str, path: str, fname: str) -> str | None:
         url = f"{domain(subdomain)}{path}{fname}"
-        res = requests.head(url, timeout=10)
+        res = requests.head(url, timeout=10, allow_redirects=True)
         if res.status_code != 200:
             return None
         lmod = res.headers.get("last-modified")
