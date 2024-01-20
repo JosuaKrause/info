@@ -250,10 +250,6 @@ def create_sitemap(
     write_entry("mdsjs", "/", "", curtime, check_online=True)
     write_entry("medium", "/", "", curtime, check_online=True)
     write_entry("bubblesets-js", "/", "", curtime, check_online=True)
-    write_entry(
-        "bubblesets-js", "/", "bench.html", curtime, check_online=True)
-    write_entry(
-        "bubblesets-js", "/", "cliques.html", curtime, check_online=True)
     write_entry("searchspace", "/", "", curtime, check_online=True)
     write_entry("searchspace", "/", "demo0.html", curtime, check_online=True)
     write_entry("searchspace", "/", "demo1.html", curtime, check_online=True)
