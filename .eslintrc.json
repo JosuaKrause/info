@@ -16,6 +16,6 @@
     "no-implicit-globals": "error",
     "no-undef": "error"
   },
-  "plugins": ["eslint-plugin-html"],
+  "plugins": ["html"],
   "ignorePatterns": ["lib/"]
 }
