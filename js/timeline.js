@@ -17,8 +17,7 @@
  */
 // @ts-check
 
-import { d3 } from './d3.js';
-
+/** @typedef {import("./d3").D3} D3 */
 /**
  * @template T
  * @typedef {import("./d3").D3Selection<T>} D3Selection<T>
@@ -28,6 +27,7 @@ import { d3 } from './d3.js';
 
 export class Timeline {
   constructor(
+    /** @type {D3} */ d3,
     /** @type {D3Selection<null>} */ content,
     /** @type {D3Selection<null>} */ legend,
     /** @type {string} */ wtext,
@@ -35,6 +35,8 @@ export class Timeline {
     /** @type {number} */ radius,
     /** @type {number} */ textHeight,
   ) {
+    /** @type {D3} */
+    this._d3 = d3;
     /** @type {D3Selection<null>} */
     this._svg = content
       .append('svg')
@@ -145,6 +147,7 @@ export class Timeline {
   }
 
   update() {
+    const d3 = this._d3;
     /** @type {{ [key: string]: number }} */
     const types = {};
     /** @type {{ [key: string]: boolean }} */

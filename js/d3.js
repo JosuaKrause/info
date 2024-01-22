@@ -104,6 +104,8 @@
  * @prop {(values: number[]) => number} max
  */
 
-/** @type {D3} */
-// @ts-ignore Property 'd3' does not exist on type 'Window & typeof globalThis'.
-export const d3 = window.d3;
+/** @return {D3} */
+export const getD3 = () => {
+  // @ts-ignore Property 'd3' does not exist on type 'Window & typeof globalThis'.
+  return window.d3;
+};

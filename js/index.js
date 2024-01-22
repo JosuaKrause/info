@@ -17,10 +17,13 @@
  */
 // @ts-check
 
-import { d3 } from './d3.js';
+import { getD3 } from './d3.js';
 import { Timeline } from './timeline.js';
 
+/** @typedef {import("./d3").D3} D3 */
+
 function adjustSizes() {
+  const d3 = getD3();
   const headerHeight = d3.select('#smt_header').node().clientHeight;
   const hdMarginAndBorder = 22;
   const elMarginSmall = 15;
@@ -33,6 +36,7 @@ function adjustSizes() {
 }
 
 function start() {
+  const d3 = getD3();
   window.addEventListener('resize', adjustSizes);
   adjustSizes();
   const w = '100%';
@@ -40,6 +44,7 @@ function start() {
   const radius = 8;
   const textHeight = 20;
   const timeline = new Timeline(
+    d3,
     d3.select('#div-timeline'),
     d3.select('#div-legend'),
     w,
