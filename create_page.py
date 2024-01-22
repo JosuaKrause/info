@@ -642,6 +642,7 @@ def create_media(
             if mtime not in event_times:
                 event_times[mtime] = set()
             num = 1
+            # TODO honor end-date here
             while tid in event_times[mtime]:
                 num += 1
                 tid = f"{otid} ({num})"

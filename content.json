@@ -46,11 +46,6 @@
       "color": "black"
     },
     {
-      "type": "employment",
-      "name": "Employment",
-      "color": "black"
-    },
-    {
       "type": "ta",
       "name": "Teaching Assistant",
       "color": "black"
@@ -59,12 +54,17 @@
       "type": "poster",
       "name": "Poster / Workshop",
       "color": "black"
+    },
+    {
+      "type": "employment",
+      "name": "Employment",
+      "color": "black"
     }
   ],
   "documents": [
     {
       "type": "employment",
-      "title": "UNDP Accelerator Labs",
+      "title": "UNDP: Accelerator Labs",
       "short-title": "UNDP",
       "authors": "NLP Researcher",
       "conference": "UNDP",
@@ -89,8 +89,8 @@
       "title": "Accern",
       "short-title": "Accern",
       "authors": "VP of Data Science",
-      "conference": "Accern",
-      "short-conference": "Accern",
+      "conference": "Accern Corp.",
+      "short-conference": "Accern Corp.",
       "date": "May 1, 2018",
       "end-date": "Mar 31, 2023",
       "published": true
