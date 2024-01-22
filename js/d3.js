@@ -47,7 +47,10 @@
  * @prop {(time: number) => D3Selection<T>} duration
  * @prop {(curve: string) => D3Selection<T>} ease
  * @prop {(query: string) => D3Selection<T>} selectAll
- * @prop {<D>(data: D[], cb: (g: D) => D) => D3Selection<D>} data
+ * @prop {{
+ *  <D>(data: D[], cb: (g: D) => D): D3Selection<D>;
+ *  <D>(data: D[]): D3Selection<D>;
+ * }} data
  * @prop {() => D3Selection<T>} enter
  * @prop {() => D3Selection<T>} exit
  * @prop {() => D3Selection<T>} remove

@@ -17,8 +17,8 @@
  */
 // @ts-check
 
-import { d3 } from './d3';
-import { Timeline } from './timeline';
+import { d3 } from './d3.js';
+import { Timeline } from './timeline.js';
 
 function adjustSizes() {
   const headerHeight = d3.select('#smt_header').node().clientHeight;

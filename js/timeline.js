@@ -17,7 +17,7 @@
  */
 // @ts-check
 
-import { d3 } from './d3';
+import { d3 } from './d3.js';
 
 /** @typedef {import("./d3").TimelineEvent} TimelineEvent */
 /**
@@ -410,9 +410,7 @@ export class Timeline {
       );
     };
 
-    const sel = this._base
-      .selectAll('rect.event')
-      .data(this._events, (e) => e);
+    const sel = this._base.selectAll('rect.event').data(this._events);
     sel.exit().remove();
     sel.enter().append('rect').classed({ event: true });
 
