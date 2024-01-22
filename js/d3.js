@@ -24,6 +24,7 @@
  *  link: string,
  *  name: string,
  *  time: number,
+ *  endTime?: number,
  * }} TimelineEvent
  */
 /**

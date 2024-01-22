@@ -21,11 +21,14 @@ import sys
 import zlib
 from collections.abc import Callable
 from datetime import datetime, timedelta
-from typing import Any, cast, get_args, Literal, Set, TypedDict
+from typing import Any, cast, get_args, Literal, NotRequired, Set, TypedDict
 
 import pytz
 from dateutil.parser import parse as tparse
 from PIL import Image
+
+
+ONGOING = "current"
 
 
 Entry = TypedDict('Entry', {
@@ -37,6 +40,7 @@ Entry = TypedDict('Entry', {
     "bibtex": list[str],
     "conference": str,
     "date": str,
+    "end-date": NotRequired[str],
     "demo": str,
     "external": str,
     "github": str,
@@ -70,6 +74,7 @@ EntryField = Literal[
     "bibtex",
     "conference",
     "date",
+    "end-date",
     "demo",
     "external",
     "github",
@@ -123,6 +128,7 @@ Event = TypedDict('Event', {
     "group": str,
     "name": str,
     "time": int,
+    "endTime": NotRequired[int],
     "link": str,
 })
 
@@ -575,8 +581,16 @@ def create_media(
                 f"alt=\"{award}\" title=\"{award}\">"
                 for award in doc["awards"]
             ] if chk(doc, "awards") else []
-            pub = (
-                doc["date"] if doc["published"] else "to be published&hellip;")
+            if doc["published"]:
+                end_date = doc.get("end-date")
+                pub = doc["date"]
+                if end_date is not None:
+                    if end_date == ONGOING:
+                        pub = f"{pub} – current"
+                    else:
+                        pub = f"{pub} – {end_date}"
+            else:
+                pub = "to be published&hellip;"
             appx = f"<br/>{NL}{' '.join(appendix)}" if appendix else ""
             awds = (
                 f"{' ' if appx else f'<br/>{NL}'}{' '.join(awards)}"
@@ -639,6 +653,12 @@ def create_media(
                 "time": mktime(tparse(doc["date"])),
                 "link": f"#{entry_id}",
             }
+            end_date = doc.get("end-date")
+            if end_date is not None:
+                if end_date == ONGOING:
+                    event["endTime"] = -1
+                else:
+                    event["endTime"] = mktime(tparse(end_date))
             events.append(event)
     if not dry_run:
         timeline_fn = os.path.join(prefix, "material/timeline.json")
@@ -694,6 +714,8 @@ def apply_template(
         return doc["type"]
 
     def get_date(doc: Entry) -> str:
+        if doc["type"] == "employment":
+            return "employment"
         return f"{year(tparse(doc['date']))}"
 
     if is_ordered_by_type:
@@ -701,17 +723,32 @@ def apply_template(
         group_by = get_type
     else:
         types = set()
+        num_types = set()
         for doc in all_docs:
-            types.add(get_date(doc))
+            cur_type = get_date(doc)
+            types.add(cur_type)
+            try:
+                num_types.add(int(cur_type))
+            except ValueError:
+                pass
         group_by = get_date
-        type_order = [
+        first_types: list[Group] = [
+            {
+                "type": "employment",
+                "name": "Employment",
+                "color": "black",
+                "docs": [],
+            },
+        ]
+        date_types: list[Group] = [
             {
                 "type": f"{year_str}",
                 "name": f"{year_str}",
                 "color": "black",
                 "docs": [],
-            } for year_str in sorted(types, key=int, reverse=True)
+            } for year_str in sorted(num_types, key=int, reverse=True)
         ]
+        type_order = first_types + date_types
     group_order: list[str] = [
         group["type"]
         for group in all_groups

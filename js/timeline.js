@@ -19,11 +19,11 @@
 
 import { d3 } from './d3.js';
 
-/** @typedef {import("./d3").TimelineEvent} TimelineEvent */
 /**
  * @template T
  * @typedef {import("./d3").D3Selection<T>} D3Selection<T>
  */
+/** @typedef {import("./d3").TimelineEvent} TimelineEvent */
 /** @typedef {{ x: number, y: number, width: number, height: number }} Rect */
 
 export class Timeline {
@@ -51,7 +51,7 @@ export class Timeline {
     this._w = this._svg.node().clientWidth;
     if (this._w === 0) {
       // taking care of firefox
-      this._w = this._svg.node().getBoundingClientRect()['width'] - 2; // border: 1px
+      this._w = this._svg.node().getBoundingClientRect().width - 2; // border: 1px
     }
     /** @type {number} */
     this._h = h;
@@ -150,11 +150,8 @@ export class Timeline {
     /** @type {{ [key: string]: boolean }} */
     const groups = {};
     this._events.forEach((e) => {
-      types[e['id']] = Math.min(
-        +e['time'],
-        e['id'] in types ? types[e['id']] : Number.POSITIVE_INFINITY,
-      );
-      groups[e['group']] = true;
+      types[e.id] = Math.min(+e.time, types[e.id] ?? Number.POSITIVE_INFINITY);
+      groups[e.group] = true;
     });
     const groupScale = d3.scale.category10().domain(this._typeOrder);
 
@@ -273,7 +270,7 @@ export class Timeline {
       const rects = d3.selectAll('rect.event');
       rects.style({
         opacity: (e) => {
-          return isVisible(e['group']) ? null : opacityInvisible;
+          return isVisible(e.group) ? null : opacityInvisible;
         },
       });
       /** @type {D3Selection<null>} */
@@ -311,7 +308,7 @@ export class Timeline {
       minY = Math.min(this._h - ix * (this._radius + 1), minY);
     });
     const times = this._events.map((e) => {
-      return +e['time'] * 1000;
+      return +e.time * 1000;
     });
     const xScale = d3.time
       .scale()
@@ -387,7 +384,7 @@ export class Timeline {
       /** @type {boolean} */ smooth,
     ) => {
       this.asTransition(this._inner, smooth).attr({
-        transform: 'translate(' + move + ') scale(' + scale + ')',
+        transform: `translate(${move}) scale(${scale})`,
       });
       visScale.range([move[0], move[0] + this._w * scale]);
       this.asTransition(visAxis, smooth).call(xAxis);
@@ -421,15 +418,23 @@ export class Timeline {
     sel
       .attr({
         x: (e) => {
-          return xScale(+e['time'] * 1000);
+          return xScale(+e.time * 1000);
         },
         y: (e) => {
-          return yPos[e['id']];
+          return yPos[e.id];
         },
-        width: this._radius,
+        width: (e) => {
+          if (!e.endTime) {
+            return this._radius;
+          }
+          if (+e.endTime < 0) {
+            return this._w - xScale(+e.time * 1000);
+          }
+          return xScale(+e.endTime * 1000) - xScale(+e.time * 1000);
+        },
         height: this._radius,
         fill: (e) => {
-          return groupScale(e['group']);
+          return groupScale(e.group);
         },
         stroke: 'black',
         'stroke-width': 0.5,
@@ -451,7 +456,7 @@ export class Timeline {
             'alignment-baseline': 'bottom',
             cursor: 'pointer',
           })
-          .text(e['name'])
+          .text(e.name)
           .on('click', () => {
             jumpToElem(e);
           })

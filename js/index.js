@@ -55,9 +55,9 @@ function start() {
       });
       return;
     }
-    timeline.typeNames(data['type_names']);
-    timeline.typeOrder(data['type_order']);
-    timeline.events(data['events']);
+    timeline.typeNames(data.type_names);
+    timeline.typeOrder(data.type_order);
+    timeline.events(data.events);
     timeline.initVisibleGroups({ '.type_committee': false });
     timeline.update();
   });
