@@ -59,7 +59,7 @@ svg:active {
 
 #div-legend:empty {
   width: 165px;
-  height: 256.6px;
+  height: 257px;
   transition: all 0.5s ease-in-out;
   animation: blink normal 2s infinite ease-in-out;
   filter: blur(5px);
@@ -68,12 +68,12 @@ svg:active {
 @media only screen and (max-width: 960px) {
   #div-timeline:empty {
     width: 100%;
-    height: 325.2px;
+    height: 326px;
   }
 
   #div-legend:empty {
     width: 100%;
-    height: 265.2px;
+    height: 266px;
   }
 }
 
