@@ -64,7 +64,7 @@
   "documents": [
     {
       "type": "employment",
-      "title": "UNDP: Accelerator Labs",
+      "title": "UNDP Accelerator Labs",
       "short-title": "UNDP",
       "authors": "NLP Researcher",
       "conference": "UNDP",
@@ -873,7 +873,7 @@
       "title": "AI4CI: Artificial Intelligence for Collective Intelligence",
       "short-title": "UNDP AI4CI",
       "authors": "Invited Talk",
-      "conference": "UNDP: Accelerator Labs",
+      "conference": "UNDP Accelerator Labs",
       "short-conference": "UNDP",
       "date": "Jun 14, 2022",
       "external": "https://docs.google.com/document/d/1ghIntKryQeX8MbqdQh_otq3YTS0BRW1m044BBT0sF0I",
