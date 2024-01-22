@@ -1,7 +1,6 @@
 /*
  * Homepage of Josua Krause
- * Copyright (C) 2016  Josua Krause
- * Copyright (C) 2024  Josua Krause
+ * Copyright (C) 2016–2024  Josua Krause
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,27 +15,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+// @ts-check
+
+import { d3 } from './d3';
+import { Timeline } from './timeline';
 
 function adjustSizes() {
-  var header_height = d3.select('#smt_header').node().clientHeight;
-  var hd_margin_and_border = 22;
-  var el_margin_small = 15;
+  const headerHeight = d3.select('#smt_header').node().clientHeight;
+  const hdMarginAndBorder = 22;
+  const elMarginSmall = 15;
   d3.select('#smt_pad').style({
-    height: hd_margin_and_border + header_height + 'px',
+    height: `${hdMarginAndBorder + headerHeight}px`,
   });
   d3.selectAll('.smt_anchor').style({
-    top: -(el_margin_small + header_height) + 'px',
+    top: `${-(elMarginSmall + headerHeight)}px`,
   });
 }
 
 function start() {
   window.addEventListener('resize', adjustSizes);
   adjustSizes();
-  var w = '100%';
-  var h = 300;
-  var radius = 8;
-  var textHeight = 20;
-  var timeline = new Timeline(
+  const w = '100%';
+  const h = 300;
+  const radius = 8;
+  const textHeight = 20;
+  const timeline = new Timeline(
     d3.select('#div-timeline'),
     d3.select('#div-legend'),
     w,
@@ -44,7 +47,7 @@ function start() {
     radius,
     textHeight,
   );
-  d3.json('material/timeline.json', function (err, data) {
+  d3.json('material/timeline.json', (err, data) => {
     if (err) {
       console.warn(err);
       d3.select('#timeline-row').style({
@@ -58,4 +61,10 @@ function start() {
     timeline.initVisibleGroups({ '.type_committee': false });
     timeline.update();
   });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', start);
+} else {
+  start();
 }

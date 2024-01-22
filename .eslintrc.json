@@ -16,6 +16,9 @@
     "no-implicit-globals": "error",
     "no-undef": "error"
   },
-  "plugins": ["html"],
+  "settings": {
+    "html/html-extensions": [".html", ".tmpl"]
+  },
+  "plugins": ["eslint-plugin-html"],
   "ignorePatterns": ["lib/"]
 }
