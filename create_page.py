@@ -29,6 +29,7 @@ from PIL import Image
 
 
 ONGOING = "current"
+FADEOUT = "employment"
 
 
 Entry = TypedDict('Entry', {
@@ -509,9 +510,11 @@ def create_media(
     for kind in types:
         if not kind["docs"]:
             continue
+        fadeout = " fadeout" if kind["type"] == FADEOUT else ""
         content += (
             "<h3 class=\"group_header\" "
-            f"id=\"{kind['type']}\">{kind['name']}</h3>")
+            f"id=\"{kind['type']}\">{kind['name']}</h3>"
+            f"<div class=\"gdiv_{kind['type']}{fadeout}\">")
 
         def skey(t: Entry) -> tuple[int, int, int, int, str]:
             tyear, tmonth, tday = datetuple(tparse(normdate(t["date"])))
@@ -596,7 +599,7 @@ def create_media(
                 f"{' ' if appx else f'<br/>{NL}'}{' '.join(awards)}"
                 if awards else "")
             kind_name = event_kind_lookup[doc["type"]]["name"]
-            if kind_name == "Employment":
+            if doc["type"] == FADEOUT:
                 kind_name = "Role"
             body = f"""
             <h4 class="media-heading">
@@ -663,6 +666,8 @@ def create_media(
                 else:
                     event["endTime"] = mktime(tparse(end_date))
             events.append(event)
+
+        content += "</div>"
     if not dry_run:
         timeline_fn = os.path.join(prefix, "material/timeline.json")
         if not os.path.exists(os.path.dirname(timeline_fn)):
@@ -717,7 +722,7 @@ def apply_template(
         return doc["type"]
 
     def get_date(doc: Entry) -> str:
-        if doc["type"] == "employment":
+        if doc["type"] == FADEOUT:
             return "employment"
         return f"{year(tparse(doc['date']))}"
 

@@ -407,6 +407,9 @@ export class Timeline {
       );
     };
 
+    /** @type {{ [key: string]: boolean }} */
+    const canceled = {};
+    let tasks = 0;
     const sel = this._base.selectAll('rect.event').data(this._events);
     sel.exit().remove();
     sel.enter().append('rect').classed({ event: true });
@@ -430,7 +433,10 @@ export class Timeline {
           if (+e.endTime < 0) {
             return this._w - xScale(+e.time * 1000);
           }
-          return xScale(+e.endTime * 1000) - xScale(+e.time * 1000);
+          return (
+            xScale((+e.endTime + 31 * 24 * 60 * 60) * 1000) -
+            xScale(+e.time * 1000)
+          );
         },
         height: this._radius,
         fill: (e) => {
@@ -503,9 +509,6 @@ export class Timeline {
       opacity: 1,
       cursor: 'default',
     });
-    /** @type {{ [key: string]: boolean }} */
-    const canceled = {};
-    let tasks = 0;
 
     showAll(false);
   }

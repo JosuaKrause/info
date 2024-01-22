@@ -61,6 +61,15 @@ function start() {
     timeline.initVisibleGroups({ '.type_committee': false });
     timeline.update();
   });
+
+  const isBot = /bot|crawl|spider/i.test(navigator.userAgent);
+  const gde = d3.selectAll('.gdiv_employment');
+  gde.on('click', () => {
+    gde.classed({ fadeout: false });
+  });
+  if (isBot) {
+    gde.classed({ fadeout: false });
+  }
 }
 
 if (document.readyState === 'loading') {
