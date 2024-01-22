@@ -596,6 +596,8 @@ def create_media(
                 f"{' ' if appx else f'<br/>{NL}'}{' '.join(awards)}"
                 if awards else "")
             kind_name = event_kind_lookup[doc["type"]]["name"]
+            if kind_name == "Employment":
+                kind_name = "Role"
             body = f"""
             <h4 class="media-heading">
               <a href="#{entry_id}" class="anchor">
