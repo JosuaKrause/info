@@ -1,3 +1,18 @@
+# Homepage of Josua Krause
+# Copyright (C) 2024  Josua Krause
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import argparse
 import json
 import os
@@ -6,11 +21,15 @@ import sys
 import zlib
 from collections.abc import Callable
 from datetime import datetime, timedelta
-from typing import Any, cast, get_args, Literal, Set, TypedDict
+from typing import Any, cast, get_args, Literal, NotRequired, Set, TypedDict
 
 import pytz
 from dateutil.parser import parse as tparse
 from PIL import Image
+
+
+ONGOING = "current"
+FADEOUT = "employment"
 
 
 Entry = TypedDict('Entry', {
@@ -22,6 +41,7 @@ Entry = TypedDict('Entry', {
     "bibtex": list[str],
     "conference": str,
     "date": str,
+    "end-date": NotRequired[str],
     "demo": str,
     "external": str,
     "github": str,
@@ -55,6 +75,7 @@ EntryField = Literal[
     "bibtex",
     "conference",
     "date",
+    "end-date",
     "demo",
     "external",
     "github",
@@ -108,6 +129,7 @@ Event = TypedDict('Event', {
     "group": str,
     "name": str,
     "time": int,
+    "endTime": NotRequired[int],
     "link": str,
 })
 
@@ -191,14 +213,18 @@ LD_JSON_KNOWLEDGE = """{
 
 GA_TRACKING = """
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4DHJEMESJD">
-</script>
+<script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-4DHJEMESJD"
+></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args) {
+    window.dataLayer.push(args);
+    }
+    gtag('js', new Date());
 
-  gtag('config', 'G-4DHJEMESJD');
+    gtag('config', 'G-4DHJEMESJD');
 </script>
 <!-- Google tag end -->
 """.strip()
@@ -484,9 +510,11 @@ def create_media(
     for kind in types:
         if not kind["docs"]:
             continue
+        fadeout = " fadeout" if kind["type"] == FADEOUT else ""
         content += (
             "<h3 class=\"group_header\" "
-            f"id=\"{kind['type']}\">{kind['name']}</h3>")
+            f"id=\"{kind['type']}\">{kind['name']}</h3>"
+            f"<div class=\"gdiv_{kind['type']}{fadeout}\">")
 
         def skey(t: Entry) -> tuple[int, int, int, int, str]:
             tyear, tmonth, tday = datetuple(tparse(normdate(t["date"])))
@@ -556,13 +584,23 @@ def create_media(
                 f"alt=\"{award}\" title=\"{award}\">"
                 for award in doc["awards"]
             ] if chk(doc, "awards") else []
-            pub = (
-                doc["date"] if doc["published"] else "to be published&hellip;")
+            if doc["published"]:
+                end_date = doc.get("end-date")
+                pub = doc["date"]
+                if end_date is not None:
+                    if end_date == ONGOING:
+                        pub = f"{pub} – current"
+                    else:
+                        pub = f"{pub} – {end_date}"
+            else:
+                pub = "to be published&hellip;"
             appx = f"<br/>{NL}{' '.join(appendix)}" if appendix else ""
             awds = (
                 f"{' ' if appx else f'<br/>{NL}'}{' '.join(awards)}"
                 if awards else "")
             kind_name = event_kind_lookup[doc["type"]]["name"]
+            if doc["type"] == FADEOUT:
+                kind_name = "Role"
             body = f"""
             <h4 class="media-heading">
               <a href="#{entry_id}" class="anchor">
@@ -609,6 +647,7 @@ def create_media(
             if mtime not in event_times:
                 event_times[mtime] = set()
             num = 1
+            # TODO honor end-date here
             while tid in event_times[mtime]:
                 num += 1
                 tid = f"{otid} ({num})"
@@ -620,7 +659,15 @@ def create_media(
                 "time": mktime(tparse(doc["date"])),
                 "link": f"#{entry_id}",
             }
+            end_date = doc.get("end-date")
+            if end_date is not None:
+                if end_date == ONGOING:
+                    event["endTime"] = -1
+                else:
+                    event["endTime"] = mktime(tparse(end_date))
             events.append(event)
+
+        content += "</div>"
     if not dry_run:
         timeline_fn = os.path.join(prefix, "material/timeline.json")
         if not os.path.exists(os.path.dirname(timeline_fn)):
@@ -675,6 +722,8 @@ def apply_template(
         return doc["type"]
 
     def get_date(doc: Entry) -> str:
+        if doc["type"] == FADEOUT:
+            return "employment"
         return f"{year(tparse(doc['date']))}"
 
     if is_ordered_by_type:
@@ -682,17 +731,32 @@ def apply_template(
         group_by = get_type
     else:
         types = set()
+        num_types = set()
         for doc in all_docs:
-            types.add(get_date(doc))
+            cur_type = get_date(doc)
+            types.add(cur_type)
+            try:
+                num_types.add(int(cur_type))
+            except ValueError:
+                pass
         group_by = get_date
-        type_order = [
+        first_types: list[Group] = [
+            {
+                "type": "employment",
+                "name": "Employment",
+                "color": "black",
+                "docs": [],
+            },
+        ]
+        date_types: list[Group] = [
             {
                 "type": f"{year_str}",
                 "name": f"{year_str}",
                 "color": "black",
                 "docs": [],
-            } for year_str in sorted(types, key=int, reverse=True)
+            } for year_str in sorted(num_types, key=int, reverse=True)
         ]
+        type_order = first_types + date_types
     group_order: list[str] = [
         group["type"]
         for group in all_groups
@@ -705,53 +769,12 @@ def apply_template(
         all_docs,
         event_types=all_groups,
         dry_run=dry_run)
-    js_fillin = """
-    function adjustSizes() {
-      var header_height = d3.select("#smt_header").node().clientHeight;
-      var hd_margin_and_border = 22;
-      var el_margin_small = 15;
-      d3.select("#smt_pad").style({
-        "height": (hd_margin_and_border + header_height) + "px",
-      });
-      d3.selectAll(".smt_anchor").style({
-        "top": -(el_margin_small + header_height) + "px",
-      });
-    }
-
-    function start() {
-      window.addEventListener("resize", adjustSizes);
-      adjustSizes();
-      var w = "100%";
-      var h = 300;
-      var radius = 8;
-      var textHeight = 20;
-      var timeline = new Timeline(
-        d3.select("#div-timeline"),
-        d3.select("#div-legend"),
-        w, h, radius, textHeight);
-      d3.json("material/timeline.json", function(err, data) {
-        if(err) {
-          console.warn(err);
-          d3.select("#timeline-row").style({
-            "display": "none",
-          });
-          return;
-        }
-        timeline.typeNames(data["type_names"]);
-        timeline.typeOrder(data["type_order"]);
-        timeline.events(data["events"]);
-        timeline.initVisibleGroups({".type_committee": false});
-        timeline.update();
-      });
-    }
-    """
     return content.format(
         name="Josua Krause (Joschi)",
         description=DESCRIPTION_SHORT,
         description_long=DESCRIPTION,
         description_add=DESCRIPTION_ADD,
         content=media,
-        js=f'<script type="text/javascript">{js_fillin}</script>',
         tracking=GA_TRACKING,
         knowledge=LD_JSON_KNOWLEDGE,
         copyright=COPYRIGHT,

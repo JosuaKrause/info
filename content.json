@@ -54,9 +54,47 @@
       "type": "poster",
       "name": "Poster / Workshop",
       "color": "black"
+    },
+    {
+      "type": "employment",
+      "name": "Employment",
+      "color": "black"
     }
   ],
   "documents": [
+    {
+      "type": "employment",
+      "title": "UNDP Accelerator Labs",
+      "short-title": "UNDP",
+      "authors": "NLP Researcher",
+      "conference": "UNDP",
+      "short-conference": "UNDP",
+      "date": "Apr, 2023",
+      "end-date": "current",
+      "published": true
+    },
+    {
+      "type": "employment",
+      "title": "Foundations of Data Science",
+      "short-title": "Foundations of Data Science",
+      "authors": "Adjunct Professor",
+      "conference": "New York University",
+      "short-conference": "NYU",
+      "date": "Sep, 2021",
+      "end-date": "Dec, 2021",
+      "published": true
+    },
+    {
+      "type": "employment",
+      "title": "Accern",
+      "short-title": "Accern",
+      "authors": "VP of Data Science",
+      "conference": "Accern Corp.",
+      "short-conference": "Accern Corp.",
+      "date": "May, 2018",
+      "end-date": "Mar, 2023",
+      "published": true
+    },
     {
       "type": "poster",
       "title": "Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations",
@@ -821,16 +859,6 @@
     },
     {
       "type": "teaching",
-      "title": "Foundations of Data Science",
-      "short-title": "Foundations of Data Science",
-      "authors": "Adjunct Professor",
-      "conference": "New York University",
-      "short-conference": "NYU",
-      "date": "Dec 27, 2021",
-      "published": true
-    },
-    {
-      "type": "teaching",
       "title": "How to Spot and Understand AI Bias within Financial Services",
       "short-title": "AI Bias Webinar",
       "authors": "Webinar",
@@ -845,7 +873,7 @@
       "title": "AI4CI: Artificial Intelligence for Collective Intelligence",
       "short-title": "UNDP AI4CI",
       "authors": "Invited Talk",
-      "conference": "UNDP: Accelerator Labs",
+      "conference": "UNDP Accelerator Labs",
       "short-conference": "UNDP",
       "date": "Jun 14, 2022",
       "external": "https://docs.google.com/document/d/1ghIntKryQeX8MbqdQh_otq3YTS0BRW1m044BBT0sF0I",

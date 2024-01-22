@@ -3,3 +3,4 @@ www
 filelist.txt
 filetimes.xml
 .pytest_cache
+/node_modules/
