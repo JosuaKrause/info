@@ -22,8 +22,8 @@ import { Timeline } from './timeline.js';
 
 /** @typedef {import("./d3").D3} D3 */
 
-function adjustSizes() {
-  const d3 = getD3();
+async function adjustSizes() {
+  const d3 = await getD3();
   const headerHeight = d3.select('#smt_header').node().clientHeight;
   const hdMarginAndBorder = 22;
   const elMarginSmall = 15;
@@ -35,10 +35,15 @@ function adjustSizes() {
   });
 }
 
-function start() {
-  const d3 = getD3();
+async function start() {
+  const d3 = await getD3();
+  if (!d3) {
+    console.warn('could not load d3');
+    document.getElementById('timeline-row').style.display = 'none';
+    return;
+  }
   window.addEventListener('resize', adjustSizes);
-  adjustSizes();
+  await adjustSizes();
   const w = '100%';
   const h = 300;
   const radius = 8;
@@ -80,5 +85,5 @@ function start() {
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', start);
 } else {
-  start();
+  await start();
 }

@@ -573,6 +573,7 @@
     {
       "type": "project",
       "title": "Bubble Sets for JavaScript",
+      "logo": "img/bigb.png",
       "github": "https://github.com/JosuaKrause/bubblesets-js",
       "href": "https://bubblesets-js.josuakrause.com",
       "authors": "Josua Krause",
