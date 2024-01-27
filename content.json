@@ -161,9 +161,9 @@
       "logo": "img/scatterplot.png",
       "published": true,
       "date": "May, 2016",
-      "external": "http://vgc.poly.edu/projects/similarityperception/",
+      "external": "https://nyuscholars.nyu.edu/en/publications/towards-understanding-human-similarity-perception-in-the-analysis/",
       "pdf": "material/chi2016-similarity.pdf",
-      "awards": ["Honorable Mention"],
+      "awards": ["Best Paper Award: Honorable Mention"],
       "bibtex": [
         "@inproceedings{Pandey:2016:TUH:2858036.2858155,",
         "author = {Pandey, Anshul Vikram and Krause, Josua and Felix, Cristian and Boy, Jeremy and Bertini, Enrico},",
