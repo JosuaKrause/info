@@ -108,14 +108,25 @@
  * @param {number=} retries
  * @return {Promise<D3 | null>}
  */
-export const getD3 = async (retries = 0) => {
-  // @ts-ignore Property 'd3' does not exist on type 'Window & typeof globalThis'.
-  const d3 = window.d3;
-  if (!d3) {
-    if (retries > 10000) {
-      return null;
+export const getD3 = (retries = 0) => {
+  return new Promise((resolve, reject) => {
+    // @ts-ignore Property 'd3' does not exist on type 'Window & typeof globalThis'.
+    const d3 = window.d3;
+    if (d3) {
+      resolve(d3);
+      return;
     }
-    return await getD3((retries ?? 0) + 1);
-  }
-  return d3;
+    if (retries > 10000) {
+      resolve(null);
+      return;
+    }
+    setTimeout(async () => {
+      try {
+        const res = await getD3((retries ?? 0) + 1);
+        resolve(res);
+      } catch (err) {
+        reject(err);
+      }
+    }, 10);
+  });
 };

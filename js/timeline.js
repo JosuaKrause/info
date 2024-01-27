@@ -48,6 +48,8 @@ export class Timeline {
         border: 'solid black 1px',
       });
     /** @type {D3Selection<null>} */
+    this._defs = this._svg.append('defs');
+    /** @type {D3Selection<null>} */
     this._legend = legend;
     /** @type {number} */
     this._w = this._svg.node().clientWidth;
@@ -421,6 +423,10 @@ export class Timeline {
       window.location.href = e.link;
     };
 
+    /** @type {{ [key: string]: string }} */
+    const gradients = {
+      fade_stroke: 'black',
+    };
     sel
       .attr({
         x: (e) => {
@@ -443,9 +449,21 @@ export class Timeline {
         },
         height: this._radius,
         fill: (e) => {
+          if (e.endTime && +e.endTime < 0) {
+            const gname = `fade_${e.group}`;
+            if (!gradients[gname]) {
+              gradients[gname] = groupScale(e.group);
+            }
+            return `url(#${gname})`;
+          }
           return groupScale(e.group);
         },
-        stroke: 'black',
+        stroke: (e) => {
+          if (e.endTime && +e.endTime < 0) {
+            return 'url(#fade_stroke)';
+          }
+          return 'black';
+        },
         'stroke-width': 0.5,
       })
       .style({
@@ -508,6 +526,23 @@ export class Timeline {
       .on('click', (e) => {
         jumpToElem(e);
       });
+    const gradientList = Object.keys(gradients).map((g) => [g, gradients[g]]);
+    const grads = this._defs
+      .selectAll('linearGradient')
+      .data(gradientList, (g) => g);
+    const gradsEnter = grads.enter().append('linearGradient');
+    gradsEnter.append('stop').attr({
+      offset: 0,
+      'stop-color': (g) => g[1],
+    });
+    gradsEnter.append('stop').attr({
+      offset: 1,
+      'stop-color': 'white',
+    });
+    grads.exit().remove();
+    grads.attr({
+      id: (g) => g[0],
+    });
     const label = this._base.append('text').classed({ label: true }).attr({
       opacity: 1,
       cursor: 'default',

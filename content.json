@@ -509,6 +509,16 @@
       "published": true
     },
     {
+      "type": "project",
+      "title": "UN Datathon 2023",
+      "href": "https://unstats.un.org/bigdata/events/2023/un-datathon/winners.cshtml",
+      "authors": "Josua Krause, Jeremy Boy, Rafael Cuñat, Evan Wheeler, Shouryadipta Sarkar",
+      "conference": "UN Mercatorians",
+      "awards": ["Best European Team", "Best Solution using AIS Data"],
+      "date": "Jan 18, 2024",
+      "published": true
+    },
+    {
       "type": "book",
       "title": "Dream Big, Little Girl: A Book about Science, Technology, and Art for Young Girls",
       "logo": "img/cover_dream_big.png",
