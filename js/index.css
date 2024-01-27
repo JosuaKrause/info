@@ -148,27 +148,23 @@ footer {
 }
 
 .fadeout {
+  --mask: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0,
+      rgba(0, 0, 0, 1) 40%,
+      rgba(0, 0, 0, 0) 95%,
+      rgba(0, 0, 0, 0) 0
+    )
+    100% 50% / 100% 100% repeat-x;
+
   max-height: 150px;
   overflow: hidden;
   cursor: pointer;
+  mask: var(--mask);
 }
 
 .fadeout:has(:target) {
   max-height: max-content;
   overflow: auto;
-}
-
-.fadeout:before {
-  content: '';
-  width: 100%;
-  height: 50px;
-  position: relative;
-  top: 0;
-  left: 0;
-  mask-image: linear-gradient(transparent, rgb(0 0 0 / 100%));
-  background: white;
-}
-
-.fadeout:has(:target):before {
-  display: none;
+  mask: unset;
 }
