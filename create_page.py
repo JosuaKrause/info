@@ -579,9 +579,11 @@ def create_media(
                 "<span style=\"text-decoration: underline;\">"
                 "Josua Krause</span>")
             awards = [
+                f"<span alt=\"{award}\" class=\"entrybadge\">"
                 "<img src=\"img/badge.png\" "
                 "style=\"width: 1em; height: 1em;\" "
                 f"alt=\"{award}\" title=\"{award}\">"
+                "</span>"
                 for award in doc["awards"]
             ] if chk(doc, "awards") else []
             if doc["published"]:

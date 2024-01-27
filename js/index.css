@@ -168,3 +168,14 @@ footer {
   overflow: auto;
   mask: unset;
 }
+
+.entrybadge {
+  white-space: nowrap;
+}
+
+@media (hover: none) {
+  .entrybadge::after {
+    content: attr(alt);
+    vertical-align: middle;
+  }
+}
