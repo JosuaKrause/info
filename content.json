@@ -519,6 +519,16 @@
       "published": true
     },
     {
+      "type": "project",
+      "title": "AIpiary",
+      "logo": "img/aipiary.png",
+      "href": "https://www.theaipiary.com/",
+      "authors": "Josua Krause",
+      "conference": "AIpiary",
+      "date": "Jun 5, 2024",
+      "published": true
+    },
+    {
       "type": "book",
       "title": "Dream Big, Little Girl: A Book about Science, Technology, and Art for Young Girls",
       "logo": "img/cover_dream_big.png",
