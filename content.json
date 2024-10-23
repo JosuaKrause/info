@@ -64,13 +64,24 @@
   "documents": [
     {
       "type": "employment",
+      "title": "Bloomberg AI",
+      "short-title": "Bloomberg",
+      "authors": "Senior Language Modeling Engineer",
+      "conference": "Bloomberg",
+      "short-conference": "Bloomberg",
+      "date": "Sep, 2024",
+      "end-date": "current",
+      "published": true
+    },
+    {
+      "type": "employment",
       "title": "UNDP Accelerator Labs",
       "short-title": "UNDP",
       "authors": "NLP Researcher",
       "conference": "UNDP",
       "short-conference": "UNDP",
       "date": "Apr, 2023",
-      "end-date": "current",
+      "end-date": "Aug, 2024",
       "published": true
     },
     {
