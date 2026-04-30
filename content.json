@@ -51,11 +51,6 @@
       "color": "black"
     },
     {
-      "type": "award",
-      "name": "Award",
-      "color": "black"
-    },
-    {
       "type": "poster",
       "name": "Poster / Workshop",
       "color": "black"
@@ -63,6 +58,11 @@
     {
       "type": "employment",
       "name": "Employment",
+      "color": "black"
+    },
+    {
+      "type": "award",
+      "name": "Award",
       "color": "black"
     }
   ],
