@@ -577,6 +577,17 @@
     },
     {
       "type": "project",
+      "title": "Nappy",
+      "logo": "img/nappy_logo.png",
+      "github": "https://github.com/JosuaKrause/nappy",
+      "href": "https://nappy.josuakrause.com/",
+      "authors": "Josua Krause",
+      "conference": "GitHub",
+      "date": "Sep 2, 2026",
+      "published": true
+    },
+    {
+      "type": "project",
       "title": "RediPy",
       "logo": "img/redipy_logo.png",
       "github": "https://github.com/JosuaKrause/redipy",
