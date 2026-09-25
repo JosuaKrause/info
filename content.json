@@ -133,8 +133,8 @@
       "date": "May 14, 2017",
       "published": true,
       "pdf": "material/rivelo.pdf",
-      "demo": "http://nyuvis-web.poly.edu/projects/rivelo/demo.html",
-      "external": "http://nyuvis-web.poly.edu/projects/rivelo/",
+      "demo": "https://web.archive.org/web/20170929221536/http://nyuvis-web.poly.edu/projects/rivelo/demo.html",
+      "external": "https://web.archive.org/web/20170929221327/http://nyuvis-web.poly.edu/projects/rivelo/",
       "github": "https://github.com/nyuvis/rivelo",
       "bibtex": [
         "@article{rivelo,",
@@ -162,7 +162,7 @@
       "date": "Oct, 2014",
       "published": true,
       "pdf": "material/vast2014-infuse.pdf",
-      "video": "http://vimeo.com/114366032",
+      "video": "https://vimeo.com/114366032",
       "bibtex": [
         "@article{infuse,",
         "author={Krause, Josua and Perer, Adam and Bertini, Enrico},",
@@ -188,7 +188,7 @@
       "logo": "img/scatterplot.png",
       "published": true,
       "date": "May, 2016",
-      "external": "https://nyuscholars.nyu.edu/en/publications/towards-understanding-human-similarity-perception-in-the-analysis/",
+      "external": "https://doi.org/10.1145/2858036.2858155",
       "pdf": "material/chi2016-similarity.pdf",
       "awards": ["Best Paper Award: Honorable Mention"],
       "bibtex": [
@@ -277,11 +277,9 @@
       "logo": "img/explainer.png",
       "published": true,
       "date": "Oct, 2017",
-      "demo": "http://nyuvis-web.poly.edu/projects/explanation_explorer/",
       "pdf": "https://arxiv.org/abs/1705.01968",
       "github": "https://github.com/nyuvis/explanation_explorer",
       "video": "https://vimeo.com/235631465",
-      "talk": "https://vimeo.com/238852188",
       "href": "explainer.html",
       "slides": "material/explainer.key",
       "autopage": true,
@@ -348,7 +346,7 @@
       "slides": "material/idea2018-slides.pdf",
       "href": "explanation_study.html",
       "teaser": "img/idea2018.png",
-      "demo": "http://nyuvis-web.poly.edu/projects/explainer/",
+      "demo": "https://web.archive.org/web/20181004210727/http://nyuvis-web.poly.edu/projects/explainer/",
       "external": "http://poloclub.gatech.edu/idea2018/",
       "autopage": true,
       "abstract": [
@@ -413,7 +411,7 @@
       "title": "Interactive Visualization for Real-Time Public Transport Journey Planning",
       "logo": "img/busvislogo.png",
       "short-title": "BusVis",
-      "external": "http://graphics.uni-konstanz.de/publikationen/2012/busvis",
+      "external": "https://web.archive.org/web/20160824144837/http://graphics.uni-konstanz.de/publikationen/2012/busvis/",
       "authors": "Josua Krause, Marc Spicker, Leonard Wörteler, Matthias Schäfer, Leishi Zhang, Hendrik Strobelt",
       "conference": "SIGRAD 2012 — Short Paper",
       "short-conference": "SIGRAD",
@@ -488,7 +486,7 @@
     {
       "type": "blog",
       "title": "Adaptive Modeling: Building Models that Last",
-      "href": "https://accern.com/post/adaptive-modeling-building-models-that-last",
+      "href": "https://web.archive.org/web/20210203191238/https://accern.com/post/adaptive-modeling-building-models-that-last",
       "authors": "Josua Krause",
       "conference": "Accern",
       "date": "Feb 3, 2021",
@@ -549,6 +547,12 @@
       "type": "project",
       "title": "The AIpiary",
       "logo": "img/aipiary.png",
+      "href": "aipiary.html",
+      "autopage": true,
+      "notice": [
+        "The AIpiary is no longer live.",
+        "The code will be made available soon."
+      ],
       "authors": "Josua Krause",
       "conference": "AIpiary",
       "date": "Jun 5, 2024",
@@ -923,7 +927,7 @@
       "conference": "Accern",
       "short-conference": "Accern",
       "date": "Mar 30, 2022",
-      "external": "https://meet.accern.com/ai-bias-webinar",
+      "external": "https://web.archive.org/web/20220610180718/https://meet.accern.com/ai-bias-webinar",
       "published": true
     },
     {
@@ -1033,7 +1037,7 @@
       "conference": "PacificVis",
       "short-conference": "PacificVis",
       "date": "Apr 13, 2018",
-      "external": "http://itolab.is.ocha.ac.jp/pvis2018/",
+      "external": "https://web.archive.org/web/20180415132053/http://itolab.is.ocha.ac.jp/pvis2018/",
       "published": true
     },
     {
@@ -1210,7 +1214,7 @@
       "conference": "EuroVis",
       "short-conference": "EuroVis",
       "date": "Jun 17, 2022",
-      "external": "https://conferences.eg.org/eurovis2022/",
+      "external": "https://web.archive.org/web/20220627025507/https://conferences.eg.org/eurovis2022/",
       "published": true
     },
     {

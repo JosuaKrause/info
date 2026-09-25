@@ -48,6 +48,7 @@ Entry = TypedDict('Entry', {
     "href": str,
     "keywords": list[str],
     "logo": str,
+    "notice": list[str],
     "ogdescription": str,
     "ogimg": str,
     "ogimgheight": int,
@@ -82,6 +83,7 @@ EntryField = Literal[
     "href",
     "keywords",
     "logo",
+    "notice",
     "ogdescription",
     "ogtitle",
     "pdf",
@@ -356,6 +358,9 @@ def resize_img(
 
 def create_autopage(
         content: str, doc: Entry, ofile: str, dry_run: bool) -> None:
+    notice = (
+        "<p class=\"lead\" style=\"text-align: center;\">"
+        f"{NL.join(doc['notice'])}</p>" if chk(doc, "notice") else "")
     abstract = (
         "<h4>Abstract</h4><p style=\"text-align: justify;\">"
         f"{NL.join(doc['abstract'])}</p>" if chk(doc, "abstract") else "")
@@ -429,6 +434,7 @@ def create_autopage(
         conference=doc["conference"],
         authors=doc["authors"],
         image=image,
+        notice=notice,
         abstract=abstract,
         links=(
             f"<h3 style=\"text-align: center;\">{' '.join(links)}</h3>"
