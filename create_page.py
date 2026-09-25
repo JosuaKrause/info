@@ -357,12 +357,12 @@ def create_autopage(
     bibtex = (
         f"<h4>Bibtex</h4><pre>{(NL.join(doc['bibtex'])).strip()}</pre>"
         if chk(doc, "bibtex") else "")
+    teaser_alt = (
+        doc["teaser_desc"] if chk(doc, "teaser_desc") else doc.get("teaser"))
     image = f"""
     <div class="row">
         <div class="col-md-9">
-            <img alt="{
-        doc['teaser_desc'] if chk(doc, 'teaser_desc') else doc['teaser']
-        }" src="{doc['teaser']}" style="margin: 0 5%; width: 90%;">
+            <img alt="{teaser_alt}" src="{doc['teaser']}" style="margin: 0 5%; width: 90%;">
         </div>
     </div>
     """ if chk(doc, "teaser") else ""
