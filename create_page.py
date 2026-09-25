@@ -252,7 +252,7 @@ Curriculum Vitae:
 <a href="material/cv_krause.pdf">[Long CV]</a>
 """.strip()
 
-COPYRIGHT = "jk 2023"
+COPYRIGHT = f"jk {datetime.now().year}"
 
 
 COMPUTE_SELF: bool = "total_seconds" not in dir(timedelta(seconds=1))
