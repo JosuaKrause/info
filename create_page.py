@@ -219,9 +219,8 @@ GA_TRACKING = """
 ></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(...args) {
-    window.dataLayer.push(args);
-    }
+    // eslint-disable-next-line prefer-rest-params -- gtag.js only accepts the arguments object
+    function gtag() { window.dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-4DHJEMESJD');
