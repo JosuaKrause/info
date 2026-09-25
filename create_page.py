@@ -212,10 +212,13 @@ LD_JSON_KNOWLEDGE = """{
 }"""
 
 TRACKING = """
+<script>
+    window.goatcounter = {path: function () { return location.host + location.pathname }};
+</script>
 <script
     data-goatcounter="https://josuakrause.goatcounter.com/count"
     async
-    src="//gc.zgo.at/count.js"
+    src="https://gc.zgo.at/count.js"
 ></script>
 """.strip()
 
