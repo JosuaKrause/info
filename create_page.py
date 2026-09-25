@@ -211,21 +211,12 @@ LD_JSON_KNOWLEDGE = """{
   ]
 }"""
 
-GA_TRACKING = """
-<!-- Google tag (gtag.js) -->
+TRACKING = """
 <script
+    data-goatcounter="https://josuakrause.goatcounter.com/count"
     async
-    src="https://www.googletagmanager.com/gtag/js?id=G-4DHJEMESJD"
+    src="//gc.zgo.at/count.js"
 ></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    // eslint-disable-next-line prefer-rest-params -- gtag.js only accepts the arguments object
-    function gtag() { window.dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-4DHJEMESJD');
-</script>
-<!-- Google tag end -->
 """.strip()
 
 TAG = r"<[^>]*?>"
@@ -441,7 +432,7 @@ def create_autopage(
         logo=doc['logo'] if chk(doc, 'logo') else "img/nologo.png",
         video=video,
         talk=talk,
-        tracking=GA_TRACKING,
+        tracking=TRACKING,
         description=(
             f"{doc['title']} by {doc['authors']} "
             f"appears in {doc['conference']}"),
@@ -776,7 +767,7 @@ def apply_template(
         description_long=DESCRIPTION,
         description_add=DESCRIPTION_ADD,
         content=media,
-        tracking=GA_TRACKING,
+        tracking=TRACKING,
         knowledge=LD_JSON_KNOWLEDGE,
         copyright=COPYRIGHT,
         ogimg=ogimg)
