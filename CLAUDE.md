@@ -9,7 +9,7 @@ A static personal website (josuakrause.com) built by Python scripts and deployed
 ## Commands
 
 ```bash
-make install      # install Python deps (also runs git submodule update)
+make install      # install Python deps
 make create       # build the site into www/
 make run-web      # build and serve locally (removes www/ on exit)
 make clean        # remove www/ and filelist.txt
@@ -20,9 +20,15 @@ make lint-pylint       # pylint
 make lint-all          # all three lints
 
 make pre-commit        # install pre-commit hook and run isort
+
+npm ci                 # install JS dev tools
+npm run lint           # eslint on js/ and the templates
+npm run typecheck      # tsc in strict mode
+npm run format         # prettier --write
+npm run check          # lint, typecheck and prettier --check
 ```
 
-There are no automated tests beyond the lint checks. CI runs `lint-flake8`, `lint-type-check`, `lint-pylint`, then `make create` on every push to `master` and deploys to GitHub Pages.
+There are no automated tests beyond the lint checks. CI runs `lint-flake8`, `lint-type-check`, `lint-pylint`, then `make create` on every push to `master` and deploys to GitHub Pages. CI does not run the JS checks.
 
 ## Architecture
 
@@ -48,6 +54,7 @@ Each document gets a stable anchor ID computed as `CRC32("{type_name}_{title}_{m
 ### content.json schema
 
 Each document object is validated by the `Entry` TypedDict in `create_page.py`. All field names must match the `EntryField` Literal exactly — the parser raises `ValueError` on unknown keys. Notable fields:
+
 - `"autopage": true` — triggers generation of a standalone HTML page at `href`
 - `"end-date": "current"` — marks ongoing entries (employment, etc.)
 - `"published": false` — shows "to be published…" instead of the date

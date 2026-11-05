@@ -5,7 +5,11 @@
   "type": "module",
   "main": "js/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --no-ignore js index.tmpl page.tmpl 404.html",
+    "typecheck": "tsc -p .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run typecheck && npm run format:check"
   },
   "repository": {
     "type": "git",
@@ -23,6 +27,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-html": "^7.1.0",
+    "prettier": "^3.9.10",
     "typescript": "^5.3.3"
   },
   "private": true
