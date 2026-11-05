@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Homepage of Josua Krause
-# Copyright (C) 2024  Josua Krause
+# Copyright (C) 2024–2026  Josua Krause
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +42,6 @@ find . \
   -not -name '.*' \
   -not -name "Makefile" \
   -not -name "requirements.txt" \
-  -not -name "jsconfig.json" \
   -not -name "package-lock.json" \
   -not -name "package.json" \
   -not -name "tsconfig.json" \

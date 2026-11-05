@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "module": "ESNext",
-    "target": "ESNext",
-    "noImplicitAny": true,
+    "moduleResolution": "Node",
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "allowJs": true,
+    "checkJs": true,
     "noEmit": true,
-    "lib": ["ESNext.Array", "ESNext", "DOM", "DOM.Iterable"],
-    "downlevelIteration": true
+    "strict": true
   },
   "files": ["js/d3.js", "js/index.js", "js/timeline.js"]
 }

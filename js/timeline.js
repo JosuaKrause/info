@@ -1,6 +1,6 @@
 /*
  * Homepage of Josua Krause
- * Copyright (C) 2016–2024  Josua Krause
+ * Copyright (C) 2016–2026  Josua Krause
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -138,10 +138,13 @@ export class Timeline {
     return newScale;
   }
 
-  asTransition(
-    /** @type {D3Selection<string>} */ sel,
-    /** @type {boolean} */ smooth,
-  ) {
+  /**
+   * @template T
+   * @param {D3Selection<T>} sel
+   * @param {boolean} smooth
+   * @return {D3Selection<T>}
+   */
+  asTransition(sel, smooth) {
     if (!smooth) {
       return sel;
     }
