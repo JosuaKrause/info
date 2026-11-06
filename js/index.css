@@ -179,3 +179,58 @@ footer {
     vertical-align: middle;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    color: #d4d4d4;
+    background-color: #121212;
+  }
+
+  a {
+    color: #6cb4ff;
+  }
+
+  a:hover,
+  a:focus {
+    color: #9fceff;
+  }
+
+  small,
+  .small {
+    color: #a0a0a0;
+  }
+
+  .navbar-default {
+    background-color: #1e1e1e;
+    border-color: #2c2c2c;
+  }
+
+  .navbar-default .navbar-brand,
+  .navbar-default .navbar-brand:hover,
+  .navbar-default .navbar-brand:focus {
+    color: #d4d4d4;
+  }
+
+  /* dark monochrome logos and award badges: flip the lightness, keep the hue */
+  .invert-dark,
+  .entrybadge img {
+    filter: invert(1) hue-rotate(180deg);
+  }
+
+  .footer-style {
+    filter: drop-shadow(0 0 4px #121212) drop-shadow(0 0 4px #121212)
+      drop-shadow(0 0 4px #121212) drop-shadow(0 0 4px #121212);
+  }
+
+  .anchor {
+    color: #bdbdbd !important;
+  }
+
+  :target ~ .media-body {
+    background-color: rgba(255, 221, 87, 0.16);
+  }
+}

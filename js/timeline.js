@@ -38,15 +38,10 @@ export class Timeline {
     /** @type {D3} */
     this._d3 = d3;
     /** @type {D3Selection<null>} */
-    this._svg = content
-      .append('svg')
-      .attr({
-        width: wtext,
-        height: h + textHeight,
-      })
-      .style({
-        border: 'solid black 1px',
-      });
+    this._svg = content.append('svg').attr({
+      width: wtext,
+      height: h + textHeight,
+    });
     /** @type {D3Selection<null>} */
     this._defs = this._svg.append('defs');
     /** @type {D3Selection<null>} */
@@ -428,7 +423,7 @@ export class Timeline {
 
     /** @type {{ [key: string]: string }} */
     const gradients = {
-      fade_stroke: 'black',
+      fade_stroke: 'currentColor',
     };
     sel
       .attr({
@@ -465,7 +460,7 @@ export class Timeline {
           if (e.endTime && +e.endTime < 0) {
             return 'url(#fade_stroke)';
           }
-          return 'black';
+          return 'currentColor';
         },
         'stroke-width': 0.5,
       })
@@ -538,7 +533,7 @@ export class Timeline {
       offset: 0,
       'stop-color': (g) => g[1],
     });
-    gradsEnter.append('stop').attr({
+    gradsEnter.append('stop').classed({ 'fade-end': true }).attr({
       offset: 1,
       'stop-color': 'white',
     });

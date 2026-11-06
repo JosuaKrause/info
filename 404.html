@@ -55,6 +55,31 @@
         font-size: 14px;
         margin: 0 10px;
       }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color-scheme: dark;
+        }
+        body {
+          color: #d4d4d4;
+          background-color: #121212;
+        }
+        a {
+          color: #6cb4ff;
+        }
+        h1 {
+          text-shadow: none;
+        }
+        p {
+          color: rgba(255, 255, 255, 0.55);
+        }
+        #suggestions {
+          color: #444;
+        }
+        #suggestions a {
+          color: #a0a0a0;
+        }
+      }
     </style>
   </head>
   <body>

@@ -58,3 +58,28 @@ iframe {
   max-width: 90vw;
   max-height: 60vw;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    color: #d4d4d4;
+    background-color: #121212;
+  }
+
+  a {
+    color: #6cb4ff;
+  }
+
+  a:hover,
+  a:focus {
+    color: #9fceff;
+  }
+
+  .footer-style {
+    filter: drop-shadow(0 0 4px #121212) drop-shadow(0 0 4px #121212)
+      drop-shadow(0 0 4px #121212) drop-shadow(0 0 4px #121212);
+  }
+}

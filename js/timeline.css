@@ -79,6 +79,9 @@ svg:active {
 
 #div-timeline > svg {
   touch-action: none;
+  border: 1px solid black;
+  /* event outlines and the fade gradients use currentColor */
+  color: black;
 }
 
 .axis {
@@ -95,4 +98,40 @@ svg:active {
 
 .x.axis path {
   display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  #div-timeline > svg {
+    border-color: #3a3a3a;
+    color: #c8c8c8;
+  }
+
+  #div-timeline text {
+    fill: currentColor;
+  }
+
+  .x.axis line {
+    stroke: #2e2e2e;
+  }
+
+  /* ongoing entries fade into the page background */
+  .fade-end {
+    stop-color: #121212;
+  }
+
+  .legend-entry:hover {
+    background-color: #262626;
+  }
+
+  @keyframes blink {
+    0% {
+      background-color: #121212;
+    }
+    50% {
+      background-color: #2a2a2a;
+    }
+    100% {
+      background-color: #121212;
+    }
+  }
 }
