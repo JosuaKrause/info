@@ -1,6 +1,6 @@
 /*
  * Homepage of Josua Krause
- * Copyright (C) 2024  Josua Krause
+ * Copyright (C) 2024–2026  Josua Krause
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,14 +35,24 @@
  * }} TimelineData
  */
 /**
+ * A value for `attr` or `style`. `null` removes the attribute or style.
+ * @typedef {string | number | boolean | null} D3Value
+ */
+/**
+ * @template T
+ * @typedef {{
+ *  [key: string]: D3Value | ((this: HTMLElement, g: T) => D3Value),
+ * }} D3Values
+ */
+/**
  * @template T
  * @typedef D3Selection<T>
  * @prop {(tag: string) => D3Selection<T>} append
  * @prop {{
- *  (obj: { [key: string]: string | number | boolean | ((g: T) => string | number | boolean) }): D3Selection<T>;
+ *  (obj: D3Values<T>): D3Selection<T>;
  *  (name: string): string;
  * }} attr
- * @prop {(obj: { [key: string]: string | number | boolean | ((g: T) => string | number | boolean) }) => D3Selection<T>} style
+ * @prop {(obj: D3Values<T>) => D3Selection<T>} style
  * @prop {() => HTMLElement} node
  * @prop {() => D3Selection<T>} transition
  * @prop {(time: number) => D3Selection<T>} duration
@@ -57,9 +67,9 @@
  * @prop {() => D3Selection<T>} remove
  * @prop {(clazzes: { [key: string]: boolean }) => D3Selection<T>} classed
  * @prop {(text: ((g: T) => string) | string) => D3Selection<T>} text
- * @prop {(cb: ((g: T) => void)) => D3Selection<T>} each
+ * @prop {(cb: ((this: HTMLElement, g: T) => void)) => D3Selection<T>} each
  * @prop {(cb: ((g: D3Selection<T>) => void)) => D3Selection<T>} call
- * @prop {(eventName: string, cb: (g: T) => void) => D3Selection<T>} on
+ * @prop {(eventName: string, cb: ((this: HTMLElement, g: T) => void) | null) => D3Selection<T>} on
  */
 /**
  * @template T
@@ -91,7 +101,7 @@
  */
 /**
  * @typedef D3
- * @prop {<T>(query: string) => D3Selection<T>} select
+ * @prop {<T>(query: string | Element) => D3Selection<T>} select
  * @prop {<T>(query: string) => D3Selection<T>} selectAll
  * @prop {(url: string, cb: (err: Error | null, data: TimelineData) => void) => void} json
  * @prop {{ category10: () => D3Scale<string> }} scale

@@ -23,7 +23,6 @@
         "el",
         "f",
         "fn",
-        "fn",
         "fp",
         "fs",
         "ft",
@@ -92,38 +91,3 @@
 
 [tool.pylint.IMPORTS]
     allow-wildcard-with-all = "yes"
-
-[tool.pylint.TYPECHECK]
-    generated-members = ["torch.*"]
-    ignored-modules = [
-        "datrie",
-        "dawg",
-    ]
-
-[tool.pytest.ini_options]
-    filterwarnings = [
-        "error",
-        "ignore::DeprecationWarning",
-        "ignore::RuntimeWarning",
-        "ignore::ImportWarning",
-    ]
-    markers = [
-        "local: marks tests as local only (deselect with '-m \"not local\"')",
-    ]
-
-[tool.coverage.run]
-    branch = true
-    omit = [
-        "*/__init__*",
-        "*/sitecustomize*",
-        "*/test/*",
-    ]
-
-[tool.coverage.report]
-    exclude_lines = [
-        "if TYPE_CHECKING:",
-        "raise NotImplementedError()",
-    ]
-
-[tool.coverage.html]
-    directory = "coverage/html_report"

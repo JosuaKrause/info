@@ -1,6 +1,6 @@
 /*
  * Homepage of Josua Krause
- * Copyright (C) 2016–2024  Josua Krause
+ * Copyright (C) 2016–2026  Josua Krause
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,9 @@ import { Timeline } from './timeline.js';
 
 async function adjustSizes() {
   const d3 = await getD3();
+  if (!d3) {
+    return;
+  }
   const headerHeight = d3.select('#smt_header').node().clientHeight;
   const hdMarginAndBorder = 22;
   const elMarginSmall = 15;
@@ -39,7 +42,10 @@ async function start() {
   const d3 = await getD3();
   if (!d3) {
     console.warn('could not load d3');
-    document.getElementById('timeline-row').style.display = 'none';
+    const timelineRow = document.getElementById('timeline-row');
+    if (timelineRow) {
+      timelineRow.style.display = 'none';
+    }
     return;
   }
   window.addEventListener('resize', adjustSizes);
