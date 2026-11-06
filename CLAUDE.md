@@ -28,7 +28,7 @@ npm run format         # prettier --write
 npm run check          # lint, typecheck and prettier --check
 ```
 
-There are no automated tests beyond the lint checks. CI runs `lint-flake8`, `lint-type-check`, `lint-pylint`, then `make create` on every push to `master` and deploys to GitHub Pages. CI does not run the JS checks.
+There are no automated tests beyond the lint checks. CI runs `lint-flake8`, `lint-type-check`, `lint-pylint`, then `make create` on every push to `master` and deploys to GitHub Pages. A separate `checks.yaml` workflow runs `npm run check` on every pull request and push to `master`; it does not gate the deploy.
 
 ## Architecture
 
