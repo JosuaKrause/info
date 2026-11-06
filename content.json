@@ -16,11 +16,6 @@
       "color": "black"
     },
     {
-      "type": "poster",
-      "name": "Poster / Workshop",
-      "color": "black"
-    },
-    {
       "type": "blog",
       "name": "Blog",
       "color": "black"
@@ -36,6 +31,11 @@
       "color": "black"
     },
     {
+      "type": "mentoring",
+      "name": "Mentoring",
+      "color": "black"
+    },
+    {
       "type": "committee",
       "name": "Committee",
       "color": "black"
@@ -44,9 +44,84 @@
       "type": "teaching",
       "name": "Teaching",
       "color": "black"
+    },
+    {
+      "type": "ta",
+      "name": "Teaching Assistant",
+      "color": "black"
+    },
+    {
+      "type": "poster",
+      "name": "Poster / Workshop",
+      "color": "black"
+    },
+    {
+      "type": "employment",
+      "name": "Employment",
+      "color": "black"
+    },
+    {
+      "type": "award",
+      "name": "Award",
+      "color": "black"
     }
   ],
   "documents": [
+    {
+      "type": "employment",
+      "title": "Bloomberg AI",
+      "short-title": "Bloomberg",
+      "authors": "Senior Language Modeling Engineer",
+      "conference": "Bloomberg",
+      "short-conference": "Bloomberg",
+      "date": "Sep, 2024",
+      "end-date": "current",
+      "published": true
+    },
+    {
+      "type": "employment",
+      "title": "UNDP Accelerator Labs",
+      "short-title": "UNDP",
+      "authors": "NLP Researcher",
+      "conference": "UNDP",
+      "short-conference": "UNDP",
+      "date": "Apr, 2023",
+      "end-date": "Aug, 2024",
+      "published": true
+    },
+    {
+      "type": "employment",
+      "title": "Foundations of Data Science",
+      "short-title": "Foundations of Data Science",
+      "authors": "Adjunct Professor",
+      "conference": "New York University",
+      "short-conference": "NYU",
+      "date": "Sep, 2021",
+      "end-date": "Dec, 2021",
+      "published": true
+    },
+    {
+      "type": "employment",
+      "title": "Accern",
+      "short-title": "Accern",
+      "authors": "VP of Data Science – Head of AI",
+      "conference": "Accern Corp.",
+      "short-conference": "Accern Corp.",
+      "date": "Jun, 2018",
+      "end-date": "Jan, 2023",
+      "published": true
+    },
+    {
+      "type": "award",
+      "title": "UNDP Accelerator Labs – Certificate of Recognition",
+      "short-title": "Certificate of Recognition",
+      "authors": "Josua Krause",
+      "conference": "UNDP Accelerator Labs",
+      "short-conference": "UNDP Accelerator Labs",
+      "poster": "material/undp_acclabl_krause_certificate.pdf",
+      "date": "Dec 24, 2025",
+      "published": true
+    },
     {
       "type": "poster",
       "title": "Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations",
@@ -58,8 +133,8 @@
       "date": "May 14, 2017",
       "published": true,
       "pdf": "material/rivelo.pdf",
-      "demo": "http://nyuvis-web.poly.edu/projects/rivelo/demo.html",
-      "external": "http://nyuvis-web.poly.edu/projects/rivelo/",
+      "demo": "https://web.archive.org/web/20170929221536/http://nyuvis-web.poly.edu/projects/rivelo/demo.html",
+      "external": "https://web.archive.org/web/20170929221327/http://nyuvis-web.poly.edu/projects/rivelo/",
       "github": "https://github.com/nyuvis/rivelo",
       "bibtex": [
         "@article{rivelo,",
@@ -84,10 +159,10 @@
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2014)",
       "short-conference": "Vis",
       "github": "https://github.com/nyuvis/infuse-java/",
-      "date": "Oct 2014",
+      "date": "Oct, 2014",
       "published": true,
       "pdf": "material/vast2014-infuse.pdf",
-      "video": "http://vimeo.com/114366032",
+      "video": "https://vimeo.com/114366032",
       "bibtex": [
         "@article{infuse,",
         "author={Krause, Josua and Perer, Adam and Bertini, Enrico},",
@@ -112,10 +187,10 @@
       "short-conference": "CHI",
       "logo": "img/scatterplot.png",
       "published": true,
-      "date": "May 2016",
-      "external": "http://vgc.poly.edu/projects/similarityperception/",
+      "date": "May, 2016",
+      "external": "https://doi.org/10.1145/2858036.2858155",
       "pdf": "material/chi2016-similarity.pdf",
-      "awards": ["Honorable Mention"],
+      "awards": ["Best Paper Award: Honorable Mention"],
       "bibtex": [
         "@inproceedings{Pandey:2016:TUH:2858036.2858155,",
         "author = {Pandey, Anshul Vikram and Krause, Josua and Felix, Cristian and Boy, Jeremy and Bertini, Enrico},",
@@ -139,6 +214,7 @@
     {
       "type": "paper",
       "title": "Interacting with Predictions: Visual Inspection of Black-box Machine Learning Models",
+      "ogtitle": "Prospector: Visual Inspection of Black-box ML Models",
       "short-title": "Prospector",
       "authors": "Josua Krause, Adam Perer, Kenney Ng",
       "conference": "ACM CHI 2016",
@@ -146,7 +222,7 @@
       "logo": "img/prospector.png",
       "slides": "material/chi-prospector-05-12.key",
       "published": true,
-      "date": "May 2016",
+      "date": "May, 2016",
       "pdf": "material/chi2016-prospector.pdf",
       "video": "https://vimeo.com/166142733",
       "href": "prospector.html",
@@ -192,18 +268,18 @@
     {
       "type": "paper",
       "title": "A Workflow for Visual Diagnostics of Binary Classifiers using Instance-Level Explanations",
+      "ogtitle": "Visual Diagnostics of Binary Classifiers using Instance-Level Explanations",
       "short-title": "Explainer",
       "authors": "Josua Krause, Aritra Dasgupta, Jordan Swartz, Yindalon Aphinyanaphongs, Enrico Bertini",
+      "ogdescription": "by Josua Krause, Aritra Dasgupta, Jordan Swartz, Yindalon Aphinyanaphongs, Enrico Bertini",
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2017)",
       "short-conference": "VAST",
       "logo": "img/explainer.png",
       "published": true,
-      "date": "Oct 2017",
-      "demo": "http://nyuvis-web.poly.edu/projects/explanation_explorer/",
+      "date": "Oct, 2017",
       "pdf": "https://arxiv.org/abs/1705.01968",
       "github": "https://github.com/nyuvis/explanation_explorer",
       "video": "https://vimeo.com/235631465",
-      "talk": "https://vimeo.com/238852188",
       "href": "explainer.html",
       "slides": "material/explainer.key",
       "autopage": true,
@@ -258,6 +334,7 @@
     {
       "type": "poster",
       "title": "A User Study on the Effect of Aggregating Explanations for Interpreting Machine Learning Models",
+      "ogtitle": "The Effect of Aggregating Explanations for Interpreting ML Models",
       "logo": "img/nologo.png",
       "short-title": "Study on Aggregating Explanations for Interpreting Models",
       "authors": "Josua Krause, Adam Perer, Enrico Bertini",
@@ -269,7 +346,7 @@
       "slides": "material/idea2018-slides.pdf",
       "href": "explanation_study.html",
       "teaser": "img/idea2018.png",
-      "demo": "http://nyuvis-web.poly.edu/projects/explainer/",
+      "demo": "https://web.archive.org/web/20181004210727/http://nyuvis-web.poly.edu/projects/explainer/",
       "external": "http://poloclub.gatech.edu/idea2018/",
       "autopage": true,
       "abstract": [
@@ -334,7 +411,7 @@
       "title": "Interactive Visualization for Real-Time Public Transport Journey Planning",
       "logo": "img/busvislogo.png",
       "short-title": "BusVis",
-      "external": "http://graphics.uni-konstanz.de/publikationen/2012/busvis",
+      "external": "https://web.archive.org/web/20160824144837/http://graphics.uni-konstanz.de/publikationen/2012/busvis/",
       "authors": "Josua Krause, Marc Spicker, Leonard Wörteler, Matthias Schäfer, Leishi Zhang, Hendrik Strobelt",
       "conference": "SIGRAD 2012 — Short Paper",
       "short-conference": "SIGRAD",
@@ -356,6 +433,7 @@
     {
       "type": "paper",
       "title": "SeekAView: An Intelligent Dimensionality Reduction Strategy for Navigating HD Data Spaces",
+      "ogtitle": "SeekAView",
       "logo": "img/seekaviewlogo.png",
       "short-title": "SeekAView",
       "demo": "http://nyuvis.github.io/SeekAView/",
@@ -382,6 +460,7 @@
     {
       "type": "poster",
       "title": "Explanatory Visual Analytics for Enhancing Human Interpretability of Machine Learning Models",
+      "ogtitle": "Visual Analytics for Enhancing Human Interpretability of ML Models",
       "short-title": "Visual Analytics Explanations for Machine Learning",
       "authors": "Josua Krause, Aritra Dasgupta, Enrico Bertini",
       "conference": "Visualization in Data Science (VDS at IEEE VIS 2016)",
@@ -407,7 +486,7 @@
     {
       "type": "blog",
       "title": "Adaptive Modeling: Building Models that Last",
-      "href": "https://accern.com/post/adaptive-modeling-building-models-that-last",
+      "href": "https://web.archive.org/web/20210203191238/https://accern.com/post/adaptive-modeling-building-models-that-last",
       "authors": "Josua Krause",
       "conference": "Accern",
       "date": "Feb 3, 2021",
@@ -417,7 +496,7 @@
       "type": "blog",
       "title": "The Problem with Teaching Language Models about the World",
       "logo": "img/medium1.png",
-      "href": "https://medium.com/@josua.krause/the-problem-with-teaching-language-models-about-the-world-5e024b408711?source=friends_link&sk=bf651f26f6a12243808569b529b14fbe",
+      "href": "https://medium.josuakrause.com/the-problem-with-teaching-language-models-about-the-world-5e024b408711?source=friends_link&sk=bf651f26f6a12243808569b529b14fbe",
       "authors": "Josua Krause",
       "conference": "Medium",
       "date": "Jan 7, 2023",
@@ -427,7 +506,7 @@
       "type": "blog",
       "title": "Asymmetric Topic Models",
       "logo": "img/medium2.png",
-      "href": "https://medium.com/@josua.krause/asymmetric-topic-models-199a0e1d03fc?source=friends_link&sk=92e54e8705afdf60def5a600216934e2",
+      "href": "https://medium.josuakrause.com/asymmetric-topic-models-199a0e1d03fc?source=friends_link&sk=92e54e8705afdf60def5a600216934e2",
       "authors": "Josua Krause",
       "conference": "Medium",
       "date": "Jun 29, 2023",
@@ -437,7 +516,7 @@
       "type": "blog",
       "title": "Dot Product is a Bad Distance Function",
       "logo": "img/medium3.png",
-      "href": "https://medium.com/@josua.krause/aff7667da6cc?source=friends_link&sk=1a7e02ec41f35b625fe5eb08da8623cb",
+      "href": "https://medium.josuakrause.com/aff7667da6cc?source=friends_link&sk=1a7e02ec41f35b625fe5eb08da8623cb",
       "authors": "Josua Krause",
       "conference": "Medium",
       "date": "Jul 26, 2023",
@@ -446,11 +525,37 @@
     {
       "type": "project",
       "title": "Searchspace",
+      "logo": "img/searchspace.png",
       "href": "https://searchspace.josuakrause.com/",
       "github": "https://github.com/JosuaKrause/searchspace",
       "authors": "Josua Krause",
       "conference": "GitHub",
       "date": "Jul 26, 2023",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "UN Datathon 2023",
+      "href": "https://unstats.un.org/bigdata/events/2023/un-datathon/winners.cshtml",
+      "authors": "Josua Krause, Jeremy Boy, Rafael Cuñat, Evan Wheeler, Shouryadipta Sarkar",
+      "conference": "UN Mercatorians",
+      "awards": ["Best European Team", "Best Solution using AIS Data"],
+      "date": "Jan 18, 2024",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "The AIpiary",
+      "logo": "img/aipiary.png",
+      "href": "aipiary.html",
+      "autopage": true,
+      "notice": [
+        "The AIpiary is no longer live.",
+        "The code will be made available soon."
+      ],
+      "authors": "Josua Krause",
+      "conference": "AIpiary",
+      "date": "Jun 5, 2024",
       "published": true
     },
     {
@@ -476,9 +581,21 @@
     },
     {
       "type": "project",
-      "title": "redipy",
+      "title": "Nappy",
+      "logo": "img/nappy_logo.png",
+      "github": "https://github.com/JosuaKrause/nappy",
+      "href": "https://nappy.josuakrause.com/",
+      "authors": "Josua Krause",
+      "conference": "GitHub",
+      "date": "Sep 2, 2026",
+      "published": true
+    },
+    {
+      "type": "project",
+      "title": "RediPy",
       "logo": "img/redipy_logo.png",
       "github": "https://github.com/JosuaKrause/redipy",
+      "article": "https://medium.josuakrause.com/a-backend-agnostic-redis-interface-9fdeb8641bc5?source=friends_link&sk=565113f29f4cfadf174aa3ab23ab9a16",
       "href": "https://pypi.org/project/redipy/",
       "authors": "Josua Krause",
       "conference": "GitHub",
@@ -511,17 +628,18 @@
       "github": "https://github.com/JosuaKrause/Bubble-Sets",
       "authors": "Josua Krause, Christopher Collins",
       "conference": "GitHub",
-      "date": "May 2011",
+      "date": "May, 2011",
       "published": true
     },
     {
       "type": "project",
       "title": "Bubble Sets for JavaScript",
+      "logo": "img/bigb.png",
       "github": "https://github.com/JosuaKrause/bubblesets-js",
       "href": "https://bubblesets-js.josuakrause.com",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "June 2016",
+      "date": "June, 2016",
       "published": true
     },
     {
@@ -530,7 +648,7 @@
       "github": "https://github.com/nyuvis/patient-viz",
       "authors": "Josua Krause, Narges Sharif Razavian, Enrico Bertini, David Sontag",
       "conference": "GitHub",
-      "date": "Jan 2015",
+      "date": "Jan, 2015",
       "published": true
     },
     {
@@ -540,7 +658,7 @@
       "href": "https://jk-js.josuakrause.com",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "Sep 2014",
+      "date": "Sep, 2014",
       "published": true
     },
     {
@@ -549,7 +667,7 @@
       "github": "https://github.com/JosuaKrause/JKanvas",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "Jul 2012",
+      "date": "Jul, 2012",
       "published": true
     },
     {
@@ -558,7 +676,7 @@
       "github": "https://github.com/JosuaKrause/curl-chk",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "May 2015",
+      "date": "May, 2015",
       "published": true
     },
     {
@@ -567,7 +685,7 @@
       "github": "https://github.com/JosuaKrause/mustache.xq",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "May 2013",
+      "date": "May, 2013",
       "published": true
     },
     {
@@ -577,7 +695,7 @@
       "href": "https://mdsjs.josuakrause.com",
       "authors": "Josua Krause",
       "conference": "GitHub",
-      "date": "Jun 2015",
+      "date": "Jun, 2015",
       "published": true
     },
     {
@@ -621,7 +739,7 @@
       "authors": "Josua Krause, Adam Perer, Enrico Bertini",
       "conference": "Moore Sloan Poster Session NYU (Poster)",
       "short-conference": "NYU",
-      "date": "May 2014",
+      "date": "May, 2014",
       "published": true
     },
     {
@@ -673,7 +791,7 @@
       "conference": "IEEE Transactions on Visualization and Computer Graphics (VAST 2015)",
       "short-conference": "Vis",
       "slides": "material/vast-coquito.key",
-      "date": "Oct 2015",
+      "date": "Oct, 2015",
       "pdf": "material/vast2015-coquito.pdf",
       "published": true,
       "href": "coquito.html",
@@ -707,7 +825,7 @@
       ]
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Concepts of Programming",
       "authors": "Teaching Assistant",
       "conference": "Universität Konstanz",
@@ -716,7 +834,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Concepts of Computer Science",
       "authors": "Teaching Assistant",
       "conference": "Universität Konstanz",
@@ -725,48 +843,48 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Information Visualization",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
-      "date": "Feb 2015",
+      "date": "Feb, 2015",
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Information Visualization",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
-      "date": "Sep 2015",
+      "date": "Sep, 2015",
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Information Visualization",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
-      "date": "Feb 2016",
+      "date": "Feb, 2016",
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Information Visualization",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
-      "date": "Sep 2016",
+      "date": "Sep, 2016",
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "ta",
       "title": "Foundations of Data Science",
       "authors": "Teaching Assistant",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
-      "date": "Sep 2017",
+      "date": "Sep, 2017",
       "published": true
     },
     {
@@ -781,11 +899,11 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "project",
       "title": "React Tutorial for Visualizations",
       "short-title": "React Tutorial for Visualizations",
       "github": "https://github.com/JosuaKrause/react_vis_tutorial/",
-      "authors": "Tutorial",
+      "authors": "Josua Krause",
       "conference": "NYU Tandon School of Engineering",
       "short-conference": "NYU",
       "date": "Oct 16, 2017",
@@ -803,23 +921,13 @@
     },
     {
       "type": "teaching",
-      "title": "Foundations of Data Science",
-      "short-title": "Foundations of Data Science",
-      "authors": "Adjunct Professor",
-      "conference": "New York University",
-      "short-conference": "NYU",
-      "date": "Dec 27, 2021",
-      "published": true
-    },
-    {
-      "type": "teaching",
       "title": "How to Spot and Understand AI Bias within Financial Services",
       "short-title": "AI Bias Webinar",
       "authors": "Webinar",
       "conference": "Accern",
       "short-conference": "Accern",
       "date": "Mar 30, 2022",
-      "external": "https://meet.accern.com/ai-bias-webinar",
+      "external": "https://web.archive.org/web/20220610180718/https://meet.accern.com/ai-bias-webinar",
       "published": true
     },
     {
@@ -827,7 +935,7 @@
       "title": "AI4CI: Artificial Intelligence for Collective Intelligence",
       "short-title": "UNDP AI4CI",
       "authors": "Invited Talk",
-      "conference": "UNDP: Accelerator Labs",
+      "conference": "UNDP Accelerator Labs",
       "short-conference": "UNDP",
       "date": "Jun 14, 2022",
       "external": "https://docs.google.com/document/d/1ghIntKryQeX8MbqdQh_otq3YTS0BRW1m044BBT0sF0I",
@@ -929,7 +1037,7 @@
       "conference": "PacificVis",
       "short-conference": "PacificVis",
       "date": "Apr 13, 2018",
-      "external": "http://itolab.is.ocha.ac.jp/pvis2018/",
+      "external": "https://web.archive.org/web/20180415132053/http://itolab.is.ocha.ac.jp/pvis2018/",
       "published": true
     },
     {
@@ -1106,7 +1214,7 @@
       "conference": "EuroVis",
       "short-conference": "EuroVis",
       "date": "Jun 17, 2022",
-      "external": "https://conferences.eg.org/eurovis2022/",
+      "external": "https://web.archive.org/web/20220627025507/https://conferences.eg.org/eurovis2022/",
       "published": true
     },
     {
@@ -1242,7 +1350,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "mentoring",
       "title": "Capstone Project: NYU Center for Data Science",
       "short-title": "Capstone Project: NYU CDS",
       "authors": "Mentor",
@@ -1253,7 +1361,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "mentoring",
       "title": "Capstone Project: NYU Center for Data Science",
       "short-title": "Capstone Project: NYU CDS",
       "authors": "Mentor",
@@ -1264,7 +1372,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "mentoring",
       "title": "Capstone Project: NYU Center for Data Science",
       "short-title": "Capstone Project: NYU CDS",
       "authors": "Mentor",
@@ -1275,7 +1383,7 @@
       "published": true
     },
     {
-      "type": "teaching",
+      "type": "mentoring",
       "title": "Capstone Project: Columbia University",
       "short-title": "Capstone Project: Columbia University",
       "authors": "Mentor",

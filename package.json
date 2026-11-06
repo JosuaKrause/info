@@ -1,0 +1,35 @@
+{
+  "name": "info",
+  "version": "1.0.0",
+  "description": "Homepage of Josua Krause",
+  "type": "module",
+  "main": "js/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc -p .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run typecheck && npm run format:check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosuaKrause/info.git"
+  },
+  "keywords": [],
+  "author": "Josua Krause",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/JosuaKrause/info/issues"
+  },
+  "homepage": "https://www.josuakrause.com",
+  "devDependencies": {
+    "eslint": "^9.39.5",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-html": "^8.2.1",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.3.3"
+  },
+  "private": true
+}

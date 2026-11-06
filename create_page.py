@@ -1,3 +1,18 @@
+# Homepage of Josua Krause
+# Copyright (C) 2024–2026  Josua Krause
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import argparse
 import json
 import os
@@ -6,27 +21,39 @@ import sys
 import zlib
 from collections.abc import Callable
 from datetime import datetime, timedelta
-from typing import Any, cast, get_args, Literal, Set, TypedDict
+from typing import Any, cast, get_args, Literal, NotRequired, Set, TypedDict
 
 import pytz
 from dateutil.parser import parse as tparse
 from PIL import Image
 
 
+ONGOING = "current"
+FADEOUT = "employment"
+
+
 Entry = TypedDict('Entry', {
     "abstract": list[str],
+    "article": str,
     "authors": str,
     "autopage": bool,
     "awards": list[str],
     "bibtex": list[str],
     "conference": str,
     "date": str,
+    "end-date": NotRequired[str],
     "demo": str,
     "external": str,
     "github": str,
     "href": str,
     "keywords": list[str],
     "logo": str,
+    "notice": list[str],
+    "ogdescription": str,
+    "ogimg": str,
+    "ogimgheight": int,
+    "ogimgwidth": int,
+    "ogtitle": str,
     "pdf": str,
     "poster": str,
     "published": bool,
@@ -39,24 +66,26 @@ Entry = TypedDict('Entry', {
     "title": str,
     "type": str,
     "video": str,
-    "ogimg": str,
-    "ogimgwidth": int,
-    "ogimgheight": int,
 }, total=False)
 EntryField = Literal[
     "abstract",
+    "article",
     "authors",
     "autopage",
     "awards",
     "bibtex",
     "conference",
     "date",
+    "end-date",
     "demo",
     "external",
     "github",
     "href",
     "keywords",
     "logo",
+    "notice",
+    "ogdescription",
+    "ogtitle",
     "pdf",
     "poster",
     "published",
@@ -102,6 +131,7 @@ Event = TypedDict('Event', {
     "group": str,
     "name": str,
     "time": int,
+    "endTime": NotRequired[int],
     "link": str,
 })
 
@@ -138,7 +168,7 @@ LD_JSON_KNOWLEDGE = """{
     },
     {
       "@type": "http://schema.org/URL",
-      "@id": "https://medium.com/@josua.krause"
+      "@id": "https://medium.josuakrause.com/"
     },
     {
       "@type": "http://schema.org/URL",
@@ -183,18 +213,17 @@ LD_JSON_KNOWLEDGE = """{
   ]
 }"""
 
-GA_TRACKING = """
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4DHJEMESJD">
-</script>
+TRACKING = """
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4DHJEMESJD');
+    window.goatcounter = {
+        path: function(p) { return location.host + p },
+    };
 </script>
-<!-- Google tag end -->
+<script
+    data-goatcounter="https://josuakrause.goatcounter.com/count"
+    async
+    src="https://gc.zgo.at/count.js"
+></script>
 """.strip()
 
 TAG = r"<[^>]*?>"
@@ -202,9 +231,8 @@ SPACES = r"\s+"
 
 DESCRIPTION_SHORT = """
 Josua Krause has led Data Science teams for research, development, and
-deployment of AI models. His focus is on accessibility of large language models
-in low-resource environments and facilitating information access in
-low-bandwidth communities through LLMs.
+deployment of AI models with focus on LLM access in low-resource,
+low-bandwidth areas.
 """.strip()
 
 DESCRIPTION = """
@@ -220,11 +248,11 @@ at
 
 DESCRIPTION_ADD = """
 Curriculum Vitae:
-<a href="material/cv_krause_short.pdf">[Short]</a>
-<a href="material/cv_krause.pdf">[Long]</a>
+<a href="material/cv_krause_short.pdf">[Short CV]</a>
+<a href="material/cv_krause.pdf">[Long CV]</a>
 """.strip()
 
-COPYRIGHT = "jk 2023"
+COPYRIGHT = f"jk {datetime.now().year}"
 
 
 COMPUTE_SELF: bool = "total_seconds" not in dir(timedelta(seconds=1))
@@ -250,12 +278,25 @@ def mktime(dtime: datetime) -> int:
     return int(res - res % DAY_SECONDS)
 
 
+def normdate(datestr: str) -> str:
+    if "," not in datestr:
+        return f"Jan 1, {datestr}"
+    monthday, tyear = datestr.split(",", 1)
+    if any(char.isdigit() for char in monthday):
+        return datestr
+    return f"{monthday} 1, {tyear}"
+
+
 def monthtime(dtime: datetime) -> str:
     return f"{dtime.year}-{dtime.month}"
 
 
 def year(dtime: datetime) -> int:
     return dtime.year
+
+
+def datetuple(dtime: datetime) -> tuple[int, int, int]:
+    return (dtime.year, dtime.month, dtime.day)
 
 
 def chk(doc: Entry, field: EntryField) -> bool:
@@ -317,18 +358,21 @@ def resize_img(
 
 def create_autopage(
         content: str, doc: Entry, ofile: str, dry_run: bool) -> None:
+    notice = (
+        "<p class=\"lead\" style=\"text-align: center;\">"
+        f"{NL.join(doc['notice'])}</p>" if chk(doc, "notice") else "")
     abstract = (
         "<h4>Abstract</h4><p style=\"text-align: justify;\">"
         f"{NL.join(doc['abstract'])}</p>" if chk(doc, "abstract") else "")
     bibtex = (
         f"<h4>Bibtex</h4><pre>{(NL.join(doc['bibtex'])).strip()}</pre>"
         if chk(doc, "bibtex") else "")
+    teaser_alt = (
+        doc["teaser_desc"] if chk(doc, "teaser_desc") else doc.get("teaser"))
     image = f"""
     <div class="row">
         <div class="col-md-9">
-            <img alt="{
-        doc['teaser_desc'] if chk(doc, 'teaser_desc') else doc['teaser']
-        }" src="{doc['teaser']}" style="margin: 0 5%; width: 90%;">
+            <img alt="{teaser_alt}" src="{doc['teaser']}" style="margin: 0 5%; width: 90%;">
         </div>
     </div>
     """ if chk(doc, "teaser") else ""
@@ -390,6 +434,7 @@ def create_autopage(
         conference=doc["conference"],
         authors=doc["authors"],
         image=image,
+        notice=notice,
         abstract=abstract,
         links=(
             f"<h3 style=\"text-align: center;\">{' '.join(links)}</h3>"
@@ -398,14 +443,16 @@ def create_autopage(
         logo=doc['logo'] if chk(doc, 'logo') else "img/nologo.png",
         video=video,
         talk=talk,
-        tracking=GA_TRACKING,
+        tracking=TRACKING,
         description=(
             f"{doc['title']} by {doc['authors']} "
             f"appears in {doc['conference']}"),
         copyright=COPYRIGHT,
         canonical=os.path.basename(ofile),
-        ogtitle=doc["title"],
-        ogdescription=f"by {doc['authors']} appears in {doc['conference']}",
+        ogtitle=doc.get("ogtitle", doc["title"]),
+        ogdescription=doc.get(
+            "ogdescription",
+            f"by {doc['authors']} appears in {doc['conference']}"),
         ogimg=doc["ogimg"],
         ogimgwidth=doc["ogimgwidth"],
         ogimgheight=doc["ogimgheight"])
@@ -430,6 +477,8 @@ def add_misc_links(
         appendix.append(f"<a href=\"{doc['slides']}\">[slides]</a>")
     if chk(doc, "external"):
         appendix.append(f"<a href=\"{doc['external']}\">[external]</a>")
+    if chk(doc, "article"):
+        appendix.append(f"<a href=\"{doc['article']}\">[article]</a>")
     if chk(doc, "poster"):
         appendix.append(f"<a href=\"{doc['poster']}\">[poster]</a>")
 
@@ -462,13 +511,19 @@ def create_media(
     for kind in types:
         if not kind["docs"]:
             continue
+        fadeout = " fadeout" if kind["type"] == FADEOUT else ""
         content += (
             "<h3 class=\"group_header\" "
-            f"id=\"{kind['type']}\">{kind['name']}</h3>")
+            f"id=\"{kind['type']}\">{kind['name']}</h3>"
+            f"<div class=\"gdiv_{kind['type']}{fadeout}\">")
 
-        def skey(t: Entry) -> tuple[datetime, int, str]:
+        def skey(t: Entry) -> tuple[int, int, int, int, str]:
+            tyear, tmonth, tday = datetuple(tparse(normdate(t["date"])))
+            print(t, tyear, tmonth, tday)
             return (
-                tparse(t["date"]),
+                tyear,
+                tmonth,
+                tday,
                 etype_order[t["type"]],
                 t["title"],
             )
@@ -525,18 +580,30 @@ def create_media(
                 "<span style=\"text-decoration: underline;\">"
                 "Josua Krause</span>")
             awards = [
+                f"<span alt=\"{award}\" class=\"entrybadge\">"
                 "<img src=\"img/badge.png\" "
                 "style=\"width: 1em; height: 1em;\" "
                 f"alt=\"{award}\" title=\"{award}\">"
+                "</span>"
                 for award in doc["awards"]
             ] if chk(doc, "awards") else []
-            pub = (
-                doc["date"] if doc["published"] else "to be published&hellip;")
+            if doc["published"]:
+                end_date = doc.get("end-date")
+                pub = doc["date"]
+                if end_date is not None:
+                    if end_date == ONGOING:
+                        pub = f"{pub} – current"
+                    else:
+                        pub = f"{pub} – {end_date}"
+            else:
+                pub = "to be published&hellip;"
             appx = f"<br/>{NL}{' '.join(appendix)}" if appendix else ""
             awds = (
                 f"{' ' if appx else f'<br/>{NL}'}{' '.join(awards)}"
                 if awards else "")
             kind_name = event_kind_lookup[doc["type"]]["name"]
+            if doc["type"] == FADEOUT:
+                kind_name = "Role"
             body = f"""
             <h4 class="media-heading">
               <a href="#{entry_id}" class="anchor">
@@ -586,6 +653,7 @@ def create_media(
             if mtime not in event_times:
                 event_times[mtime] = set()
             num = 1
+            # TODO honor end-date here
             while tid in event_times[mtime]:
                 num += 1
                 tid = f"{otid} ({num})"
@@ -597,7 +665,15 @@ def create_media(
                 "time": mktime(tparse(doc["date"])),
                 "link": f"#{entry_id}",
             }
+            end_date = doc.get("end-date")
+            if end_date is not None:
+                if end_date == ONGOING:
+                    event["endTime"] = -1
+                else:
+                    event["endTime"] = mktime(tparse(end_date))
             events.append(event)
+
+        content += "</div>"
     if not dry_run:
         timeline_fn = os.path.join(prefix, "material/timeline.json")
         if not os.path.exists(os.path.dirname(timeline_fn)):
@@ -652,6 +728,8 @@ def apply_template(
         return doc["type"]
 
     def get_date(doc: Entry) -> str:
+        if doc["type"] == FADEOUT:
+            return "employment"
         return f"{year(tparse(doc['date']))}"
 
     if is_ordered_by_type:
@@ -659,17 +737,32 @@ def apply_template(
         group_by = get_type
     else:
         types = set()
+        num_types = set()
         for doc in all_docs:
-            types.add(get_date(doc))
+            cur_type = get_date(doc)
+            types.add(cur_type)
+            try:
+                num_types.add(int(cur_type))
+            except ValueError:
+                pass
         group_by = get_date
-        type_order = [
+        first_types: list[Group] = [
+            {
+                "type": "employment",
+                "name": "Employment",
+                "color": "black",
+                "docs": [],
+            },
+        ]
+        date_types: list[Group] = [
             {
                 "type": f"{year_str}",
                 "name": f"{year_str}",
                 "color": "black",
                 "docs": [],
-            } for year_str in sorted(types, key=int, reverse=True)
+            } for year_str in sorted(num_types, key=int, reverse=True)
         ]
+        type_order = first_types + date_types
     group_order: list[str] = [
         group["type"]
         for group in all_groups
@@ -682,54 +775,13 @@ def apply_template(
         all_docs,
         event_types=all_groups,
         dry_run=dry_run)
-    js_fillin = """
-    function adjustSizes() {
-      var header_height = d3.select("#smt_header").node().clientHeight;
-      var hd_margin_and_border = 22;
-      var el_margin_small = 15;
-      d3.select("#smt_pad").style({
-        "height": (hd_margin_and_border + header_height) + "px",
-      });
-      d3.selectAll(".smt_anchor").style({
-        "top": -(el_margin_small + header_height) + "px",
-      });
-    }
-
-    function start() {
-      window.addEventListener("resize", adjustSizes);
-      adjustSizes();
-      var w = "100%";
-      var h = 300;
-      var radius = 8;
-      var textHeight = 20;
-      var timeline = new Timeline(
-        d3.select("#div-timeline"),
-        d3.select("#div-legend"),
-        w, h, radius, textHeight);
-      d3.json("material/timeline.json", function(err, data) {
-        if(err) {
-          console.warn(err);
-          d3.select("#timeline-row").style({
-            "display": "none",
-          });
-          return;
-        }
-        timeline.typeNames(data["type_names"]);
-        timeline.typeOrder(data["type_order"]);
-        timeline.events(data["events"]);
-        timeline.initVisibleGroups({".type_committee": false});
-        timeline.update();
-      });
-    }
-    """
     return content.format(
-        name="Josua (Joschi) Krause",
+        name="Josua Krause (Joschi)",
         description=DESCRIPTION_SHORT,
         description_long=DESCRIPTION,
         description_add=DESCRIPTION_ADD,
         content=media,
-        js=js_fillin,
-        tracking=GA_TRACKING,
+        tracking=TRACKING,
         knowledge=LD_JSON_KNOWLEDGE,
         copyright=COPYRIGHT,
         ogimg=ogimg)

@@ -1,3 +1,18 @@
+# Homepage of Josua Krause
+# Copyright (C) 2024–2026  Josua Krause
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import hashlib
 import os
 import sys
@@ -7,7 +22,7 @@ from collections.abc import Callable, Iterable
 from datetime import datetime
 from email.utils import parsedate_to_datetime
 from io import BytesIO
-from typing import IO
+from typing import IO, TypedDict
 
 import pytz
 import requests
@@ -53,6 +68,21 @@ ENTRY_TEMPLATE_INTERNAL = """  <url>
 """
 
 
+FileCache = TypedDict('FileCache', {
+    "lastmod": str,
+    "filehash": str,
+})
+
+
+CACHED_FILE_LOOKUP: dict[str, FileCache] = {
+    "https://medium.josuakrause.com/": {
+        "lastmod": "2023-12-19T17:31:09.104979-05:00",
+        "filehash":
+            "d968bcd4f808dbb9c629de59455c9016f17901dc80614a0971da011e00a99e03",
+    },
+}
+
+
 def get_hash(content: bytes) -> str:
     blake = hashlib.blake2b(digest_size=32)
     blake.update(content)
@@ -63,7 +93,7 @@ def get_previous_filetimes(
         domain: Callable[[str], str],
         root: str) -> dict[str, tuple[str, str | None]]:
     url = f"{domain('')}{root}{SITEMAP_INTERNAL}"
-    req = requests.get(url, timeout=10)
+    req = requests.get(url, timeout=10, allow_redirects=True)
     if req.status_code != 200:
         return {}
     tree = ET.parse(BytesIO(req.content))
@@ -114,11 +144,15 @@ def create_sitemap(
     internal_out.write(SITEMAP_HEADER_INTERNAL)
     internal_out.flush()
     prev_times = get_previous_filetimes(domain, root)
+    entries: list[tuple[datetime, Callable[[], None]]] = []
 
     def get_online_hash(subdomain: str, path: str, fname: str) -> str:
         url = f"{domain(subdomain)}{path}{fname}"
+        cache = CACHED_FILE_LOOKUP.get(url)
+        if cache is not None:
+            return cache["filehash"]
         print(f"hash from url: {url}")
-        res = requests.get(url, timeout=10)
+        res = requests.get(url, timeout=10, allow_redirects=True)
         if res.status_code != 200:
             raise ValueError(f"failed to access {url} with {res.status_code}")
         return get_hash(res.content)
@@ -130,7 +164,10 @@ def create_sitemap(
 
     def get_online_mod(subdomain: str, path: str, fname: str) -> str | None:
         url = f"{domain(subdomain)}{path}{fname}"
-        res = requests.head(url, timeout=10)
+        cache = CACHED_FILE_LOOKUP.get(url)
+        if cache is not None:
+            return cache["lastmod"]
+        res = requests.head(url, timeout=10, allow_redirects=True)
         if res.status_code != 200:
             return None
         lmod = res.headers.get("last-modified")
@@ -168,13 +205,17 @@ def create_sitemap(
                 print(f"file hash differs: new[{fhash}] != old[{old_hash}]")
         if mod != old_mod:
             print(f"file change detected: new[{mod}] != old[{old_mod}]")
-        out.write(ENTRY_TEMPLATE.format(
-            base=f"{domain(subdomain)}{path}", path=fname, mod=mod))
-        internal_out.write(ENTRY_TEMPLATE_INTERNAL.format(
-            base=f"{domain(subdomain)}{path}",
-            path=fname,
-            mod=mod,
-            fhash=fhash))
+
+        def write_out() -> None:
+            out.write(ENTRY_TEMPLATE.format(
+                base=f"{domain(subdomain)}{path}", path=fname, mod=mod))
+            internal_out.write(ENTRY_TEMPLATE_INTERNAL.format(
+                base=f"{domain(subdomain)}{path}",
+                path=fname,
+                mod=mod,
+                fhash=fhash))
+
+        entries.append((datetime.fromisoformat(mod), write_out))
 
     def process_line(subdomain: str, line: str) -> str | None:
         filename = os.path.normpath(line.strip())
@@ -200,15 +241,27 @@ def create_sitemap(
             return None
         if fname.endswith(".jpg"):
             return None
+        if fname.endswith(".jpeg"):
+            return None
+        if fname.endswith(".jar"):
+            return None
+        if fname.endswith(".md5"):
+            return None
+        if fname.endswith(".sha1"):
+            return None
+        if fname.endswith(".pom"):
+            return None
+        if fname.endswith(".xml"):
+            return None
         if fname.endswith("index.html"):
             return None
         if fname.endswith("404.html"):
             return None
         if fname.endswith("sitemap.xml"):
             return None
-        if fname.endswith("LICENSE"):
+        if fname.endswith("robots.txt"):
             return None
-        if fname.endswith("cv.pdf"):
+        if fname.endswith("LICENSE"):
             return None
         if os.path.isdir(filename) and not os.path.exists(
                 os.path.join(filename, "index.html")):
@@ -231,16 +284,17 @@ def create_sitemap(
     # write_entry(root, "", curtime)
     write_entry("www", "/", "", curtime, check_file="index.html")
     write_entry("mdsjs", "/", "", curtime, check_online=True)
+    write_entry("medium", "/", "", curtime, check_online=True)
     write_entry("bubblesets-js", "/", "", curtime, check_online=True)
-    write_entry(
-        "bubblesets-js", "/", "bench.html", curtime, check_online=True)
-    write_entry(
-        "bubblesets-js", "/", "cliques.html", curtime, check_online=True)
     write_entry("searchspace", "/", "", curtime, check_online=True)
     write_entry("searchspace", "/", "demo0.html", curtime, check_online=True)
     write_entry("searchspace", "/", "demo1.html", curtime, check_online=True)
     write_entry("searchspace", "/", "demo2.html", curtime, check_online=True)
     write_entry("jk-js", "/", "", curtime, check_online=True)
+
+    entries.sort(key=lambda elem: elem[0], reverse=True)
+    for _, entry_cb in entries:
+        entry_cb()
     out.write("</urlset>\n")
     out.flush()
     internal_out.write("</urlset>\n")

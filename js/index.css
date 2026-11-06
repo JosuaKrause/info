@@ -1,5 +1,19 @@
-/**
- * Created by krause on 2016-07-22.
+/*
+ * Homepage of Josua Krause
+ * Copyright (C) 2016–2026  Josua Krause
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 @media only screen and (max-width: 960px) {
@@ -14,6 +28,12 @@ html {
 
 img {
   object-fit: contain;
+}
+
+.page_title {
+  font-size: 21pt !important;
+  font-weight: normal !important;
+  margin: 3px;
 }
 
 .smt_anchor {
@@ -125,6 +145,39 @@ footer {
 
 .type_committee {
   filter: sepia(80%);
+}
+
+.fadeout {
+  --mask: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0,
+      rgba(0, 0, 0, 1) 40%,
+      rgba(0, 0, 0, 0) 95%,
+      rgba(0, 0, 0, 0) 0
+    )
+    100% 50% / 100% 100% repeat-x;
+
+  max-height: 150px;
+  overflow: hidden;
+  cursor: pointer;
+  mask: var(--mask);
+}
+
+.fadeout:has(:target) {
+  max-height: max-content;
+  overflow: auto;
+  mask: unset;
+}
+
+.entrybadge {
+  white-space: nowrap;
+}
+
+@media (hover: none) {
+  .entrybadge::after {
+    content: attr(alt);
+    vertical-align: middle;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
