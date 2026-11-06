@@ -547,11 +547,12 @@
       "type": "project",
       "title": "The AIpiary",
       "logo": "img/aipiary.png",
+      "github": "https://github.com/JosuaKrause/theAIpiary",
       "href": "aipiary.html",
       "autopage": true,
       "notice": [
         "The AIpiary is no longer live.",
-        "The code will be made available soon."
+        "Its code is available on <a href=\"https://github.com/JosuaKrause/theAIpiary\">GitHub</a>."
       ],
       "authors": "Josua Krause",
       "conference": "AIpiary",
