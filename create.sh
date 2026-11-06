@@ -45,6 +45,7 @@ find . \
   -not -name "package-lock.json" \
   -not -name "package.json" \
   -not -name "tsconfig.json" \
+  -not -name "eslint.config.js" \
   -not -name "content.json" \
   > "${LIB_COPY}"
 rsync -atv . "${OUTPUT}" --files-from "${LIB_COPY}"
