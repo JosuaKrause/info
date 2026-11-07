@@ -551,6 +551,25 @@
       "href": "aipiary.html",
       "autopage": true,
       "notice": ["The AIpiary is no longer live."],
+      "keywords": [
+        "distributed inference",
+        "volunteer computing",
+        "large language models"
+      ],
+      "abstract": [
+        "The AIpiary was a swarm-based \"inverse cloud\" for running machine learning",
+        "models. Only a small server ran in the cloud: it hosted the website, kept",
+        "track of users and chats, and handed out tasks. The models themselves ran on",
+        "volunteers' own GPUs. Anyone with an account could start a worker bee on their",
+        "machine, which then picked up chat requests from everyone in the swarm. The",
+        "swarm served one model, a Llama 3.1 chat assistant called Beatrix Buzz.",
+        "Workers bid for tasks through an auction queue on the server, which put a",
+        "task back in the queue when the worker that took it went away. Each worker",
+        "ran the model with llama.cpp in a scattermind graph and kept no chat history",
+        "on the volunteer's machine: it read and wrote the conversation through the",
+        "server's API. The entire project is now open source and available on",
+        "<a href=\"https://github.com/JosuaKrause/theAIpiary\">GitHub</a>."
+      ],
       "authors": "Josua Krause",
       "conference": "AIpiary",
       "date": "Jun 5, 2024",
