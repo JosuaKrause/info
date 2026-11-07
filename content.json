@@ -550,10 +550,7 @@
       "github": "https://github.com/JosuaKrause/theAIpiary",
       "href": "aipiary.html",
       "autopage": true,
-      "notice": [
-        "The AIpiary is no longer live.",
-        "The entire project is now open source and available on <a href=\"https://github.com/JosuaKrause/theAIpiary\">GitHub</a>."
-      ],
+      "notice": ["The AIpiary is no longer live."],
       "keywords": [
         "distributed inference",
         "volunteer computing",
@@ -570,7 +567,8 @@
         "task back in the queue when the worker that took it went away. Each worker",
         "ran the model with llama.cpp in a scattermind graph and kept no chat history",
         "on the volunteer's machine: it read and wrote the conversation through the",
-        "server's API."
+        "server's API. The entire project is now open source and available on",
+        "<a href=\"https://github.com/JosuaKrause/theAIpiary\">GitHub</a>."
       ],
       "authors": "Josua Krause",
       "conference": "AIpiary",
