@@ -550,7 +550,10 @@
       "github": "https://github.com/JosuaKrause/theAIpiary",
       "href": "aipiary.html",
       "autopage": true,
-      "notice": ["The AIpiary is no longer live."],
+      "notice": [
+        "The AIpiary is no longer live.",
+        "The entire project is now open source and available on <a href=\"https://github.com/JosuaKrause/theAIpiary\">GitHub</a>."
+      ],
       "keywords": [
         "distributed inference",
         "volunteer computing",
